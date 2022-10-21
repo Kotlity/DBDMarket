@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "492653029375",
+    "project_id": "dbdmarket-593a1",
+    "storage_bucket": "dbdmarket-593a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492653029375:android:80058b724e54ea94e869ca",
+        "android_client_info": {
+          "package_name": "com.dbd.market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492653029375-nq597bg4316j9r313v8u8muvmclen0n8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZt5pEtPcDHSiV4VIv4u5rar5ffVE3tLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492653029375-nq597bg4316j9r313v8u8muvmclen0n8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
