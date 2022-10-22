@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundAppColor"
+    tools:context=".screens.fragments.IntroductionFragment">
+
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="center"
+        android:src="@drawable/blood_of_drop_icon"
+        app:layout_constraintBottom_toTopOf="@id/bloodOfDropHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/bloodOfDropVerticalRightGuideline"
+        app:layout_constraintLeft_toLeftOf="@id/bloodOfDropVerticalRightGuideline"
+        app:layout_constraintStart_toStartOf="@id/bloodOfDropVerticalLeftGuideline"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bloodpoints_icon"
+        app:layout_constraintBottom_toBottomOf="@id/bloodPointsBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@id/bloodOfDropVerticalRightGuideline"
+        app:layout_constraintStart_toStartOf="@id/bloodOfDropVerticalLeftGuideline"
+        app:layout_constraintTop_toTopOf="@id/bloodPointsTopHorizontalGuideline"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        style="@style/appTitleStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/bloodPointsTopHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@id/bloodOfDropVerticalRightGuideline"
+        app:layout_constraintStart_toStartOf="@id/bloodOfDropVerticalLeftGuideline"
+        app:layout_constraintTop_toTopOf="@id/bloodOfDropHorizontalGuideline" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:rotation="-25"
+        android:scaleType="fitXY"
+        android:src="@drawable/blood_wrist_icon"
+        app:layout_constraintBottom_toBottomOf="@id/bloodWristHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@id/bloodOfDropVerticalLeftGuideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bloodOfDropHorizontalGuideline"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:rotation="25"
+        android:scaleType="fitXY"
+        android:src="@drawable/blood_wrist_icon"
+        app:layout_constraintBottom_toBottomOf="@id/bloodWristBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@id/bloodWristRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@id/bloodWristLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@id/bloodWristTopHorizontalGuideline"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        style="@style/appDescriptionStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/bloodPointsBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@id/appDescriptionRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@id/appDescriptionLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@id/bloodPointsTopHorizontalGuideline" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/appButtonStart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/app_start_button_drawable"
+        android:text="@string/appStartButtonString"
+        android:textAllCaps="false"
+        android:textSize="@dimen/appStartButtonTextSize"
+        app:layout_constraintBottom_toBottomOf="@id/buttonStartHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@id/buttonStartRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@id/buttonStartLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@id/bloodWristBottomHorizontalGuideline"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bloodOfDropHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bloodOfDropVerticalLeftGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bloodOfDropVerticalRightGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bloodPointsTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.37" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bloodPointsBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bloodWristHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bloodWristBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.79" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bloodWristLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.70" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bloodWristRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bloodWristTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.63" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appDescriptionLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appDescriptionRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/buttonStartHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/buttonStartLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.38" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/buttonStartRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.62" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
