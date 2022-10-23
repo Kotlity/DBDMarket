@@ -6,8 +6,8 @@
             <solid android:color="@color/red"/>
             <stroke
                 android:color="@color/white"
-                android:width="@dimen/appStartButtonStrokeWidth"/>
-            <corners android:radius="@dimen/appStartButtonRadius"/>
+                android:width="@dimen/appSignUpUpButtonStrokeWidth"/>
+            <corners android:radius="@dimen/appSignInUpButtonRadius"/>
         </shape>
     </item>
 

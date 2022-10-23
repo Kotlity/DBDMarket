@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundAppColor"
+    android:background="@color/dark_grey"
     tools:context=".screens.fragments.IntroductionFragment">
 
 
@@ -33,6 +33,7 @@
 
     <TextView
         style="@style/appTitleStyle"
+        android:textSize="@dimen/appTitleIntroductionSize"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@id/bloodPointsTopHorizontalGuideline"
@@ -79,6 +80,7 @@
         android:layout_height="0dp"
         android:background="@drawable/app_start_button_drawable"
         android:text="@string/appStartButtonString"
+        android:fontFamily="@font/app_buttons_font"
         android:textAllCaps="false"
         android:textSize="@dimen/appStartButtonTextSize"
         app:layout_constraintBottom_toBottomOf="@id/buttonStartHorizontalGuideline"

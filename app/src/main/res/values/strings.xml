@@ -13,4 +13,8 @@
     <string name="appTitleString">DBD Market</string>
     <string name="appDescriptionString">Welcome to the online store\ndedicated to the game\nDead by Daylight</string>
     <string name="appStartButtonString">Start</string>
+    <string name="appHelperDescriptionString">If you already have an account, then click \"Sign In\",\nif you are here for the first time, then click \"Sign Up\".</string>
+    <string name="appSignInButtonString">Sign In</string>
+    <string name="appSignUpButtonString">Sign Up</string>
+    <string name="or">Or</string>
 </resources>

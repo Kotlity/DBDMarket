@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="appTitleSize">38sp</dimen>
+    <dimen name="appTitleIntroductionSize">38sp</dimen>
+    <dimen name="appTitleAccountOptionsSize">50sp</dimen>
     <dimen name="appDescriptionSize">24sp</dimen>
     <dimen name="appStartButtonStrokeWidth">2dp</dimen>
+    <dimen name="appSignInUpButtonStrokeWidth">3dp</dimen>
+    <dimen name="appSignUpUpButtonStrokeWidth">2dp</dimen>
     <dimen name="appStartButtonRadius">10dp</dimen>
-    <dimen name="appStartButtonTextSize">20sp</dimen>
+    <dimen name="appSignInUpButtonRadius">14dp</dimen>
+    <dimen name="appStartButtonTextSize">28sp</dimen>
+    <dimen name="appSignInButtonTextSize">22sp</dimen>
+    <dimen name="appSignUpButtonTextSize">21sp</dimen>
+    <dimen name="lineMarginHorizontal">5dp</dimen>
+    <dimen name="appHelperDescriptionTextSize">20sp</dimen>
+    <dimen name="appOrTextSize">16sp</dimen>
+    <dimen name="appOrMarginHorizontal">6dp</dimen>
 
 </resources>
