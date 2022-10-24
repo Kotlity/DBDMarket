@@ -3,6 +3,7 @@
 
     <dimen name="appTitleIntroductionSize">38sp</dimen>
     <dimen name="appTitleAccountOptionsSize">50sp</dimen>
+    <dimen name="appTitleLoginSize">50sp</dimen>
     <dimen name="appDescriptionSize">24sp</dimen>
     <dimen name="appStartButtonStrokeWidth">2dp</dimen>
     <dimen name="appSignInUpButtonStrokeWidth">3dp</dimen>
@@ -16,5 +17,19 @@
     <dimen name="appHelperDescriptionTextSize">20sp</dimen>
     <dimen name="appOrTextSize">16sp</dimen>
     <dimen name="appOrMarginHorizontal">6dp</dimen>
-
+    <dimen name="shadowLoginRegisterRadius">7</dimen>
+    <dimen name="appLoginTextSize">45sp</dimen>
+    <dimen name="appLoginShadowDx">1.5</dimen>
+    <dimen name="appLoginShadowDy">1.3</dimen>
+    <dimen name="loginEditTextPaddingStart">10dp</dimen>
+    <dimen name="loginEditTextDrawablePadding">7dp</dimen>
+    <dimen name="loginEditTextStrokeWidth">3dp</dimen>
+    <dimen name="linksAndHelpersMarginStart">2dp</dimen>
+    <dimen name="appForgotPasswordSize">15sp</dimen>
+    <dimen name="helperRegisterSize">17sp</dimen>
+    <dimen name="registerSize">15sp</dimen>
+    <dimen name="appLoginButtonTextSize">27sp</dimen>
+    <dimen name="appLogosImageViewsWidthSize">50dp</dimen>
+    <dimen name="spaceBetweenLogosWidthSize">20dp</dimen>
+    <integer name="zero">0</integer>
 </resources>

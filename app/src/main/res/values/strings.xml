@@ -17,4 +17,11 @@
     <string name="appSignInButtonString">Sign In</string>
     <string name="appSignUpButtonString">Sign Up</string>
     <string name="or">Or</string>
+    <string name="loginTitleString">Login</string>
+    <string name="emailLoginEditTextHint">Email</string>
+    <string name="passwordEditTextHint">Password</string>
+    <string name="forgotPasswordString">Forgot password</string>
+    <string name="helperRegisterString">Don\'t have an account?</string>
+    <string name="registerString">Register now</string>
+    <string name="appLoginButtonString">Login</string>
 </resources>

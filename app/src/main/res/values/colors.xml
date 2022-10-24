@@ -9,7 +9,12 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="dark_grey">#302B2B</color>
+    <color name="light_white">#B8B7B7</color>
     <color name="red">#BF0707</color>
     <color name="light_grey">#28BF23</color>
     <color name="blue">#04259F</color>
+    <color name="dark_yellow">#B8A216</color>
+    <color name="green">#15D11C</color>
+    <color name="purple">#3F32AE</color>
+    <color name="pink">#CA25D6</color>
 </resources>
