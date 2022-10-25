@@ -1,5 +1,6 @@
 package com.dbd.market.viewmodels
 
+import androidx.lifecycle.ViewModel
 import com.dbd.market.data.User
 import com.dbd.market.repositories.RegisterRepository
 import com.dbd.market.utils.Resource
@@ -10,7 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(private val repository: RegisterRepository) {
+class RegisterViewModel @Inject constructor(private val repository: RegisterRepository): ViewModel() {
 
     private var _registerUser = MutableStateFlow<Resource<FirebaseUser>>(Resource.Loading())
     val registerUser = _registerUser.asStateFlow()
