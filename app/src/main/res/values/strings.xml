@@ -18,10 +18,16 @@
     <string name="appSignUpButtonString">Sign Up</string>
     <string name="or">Or</string>
     <string name="loginTitleString">Login</string>
-    <string name="emailLoginEditTextHint">Email</string>
-    <string name="passwordEditTextHint">Password</string>
+    <string name="emailLoginRegisterEditTextHint">Email</string>
+    <string name="passwordLoginRegisterEditTextHint">Password</string>
     <string name="forgotPasswordString">Forgot password</string>
     <string name="helperRegisterString">Don\'t have an account?</string>
-    <string name="registerString">Register now</string>
+    <string name="registerLinkString">Register now</string>
     <string name="appLoginButtonString">Login</string>
+    <string name="registerTitleString">Register</string>
+    <string name="helperLoginString">Do you have an account?</string>
+    <string name="loginLinkString">Log in now</string>
+    <string name="appRegisterButtonString">Register</string>
+    <string name="lastNameLoginRegisterEditTextHint">Last name</string>
+    <string name="firstNameLoginRegisterEditTextHint">First name</string>
 </resources>

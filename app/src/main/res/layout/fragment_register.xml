@@ -1,14 +1,319 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/login_register_background"
     tools:context=".screens.fragments.RegisterFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        style="@style/appTitleStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textSize="@dimen/appTitleLoginSize"
+        app:layout_constraintBottom_toBottomOf="@id/appTitleBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/appTitleTopHorizontalGuideline" />
 
-</FrameLayout>
+    <TextView
+        style="@style/appRegisterTitleStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:shadowColor="@color/pink"
+        android:shadowDx="@dimen/appLoginRegisterShadowDx"
+        android:shadowDy="@dimen/appLoginRegisterShadowDy"
+        android:shadowRadius="@dimen/shadowLoginRegisterRadius"
+        android:textSize="@dimen/appLoginRegisterTextSize"
+        app:layout_constraintBottom_toBottomOf="@id/appRegisterTitleBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/appRegisterTitleTopHorizontalGuideline" />
+
+    <EditText
+        android:id="@+id/firstNameRegisterEditText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/login_register_edit_text_background"
+        android:drawableStart="@drawable/login_register_first_last_name_icon_edit_text_selector"
+        android:drawablePadding="@dimen/loginRegisterEditTextDrawablePadding"
+        android:fontFamily="@font/app_description_font"
+        android:hint="@string/firstNameLoginRegisterEditTextHint"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:paddingStart="@dimen/loginRegisterEditTextPaddingStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/appFirstNameEditTextBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/appEditTextsRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/appEditTextsLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/appFirstNameEditTextTopHorizontalGuideline"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/lastNameRegisterEditText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/login_register_edit_text_background"
+        android:drawableStart="@drawable/login_register_first_last_name_icon_edit_text_selector"
+        android:drawablePadding="@dimen/loginRegisterEditTextDrawablePadding"
+        android:fontFamily="@font/app_description_font"
+        android:hint="@string/lastNameLoginRegisterEditTextHint"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:paddingStart="@dimen/loginRegisterEditTextPaddingStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/appLastNameEditTextBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/appEditTextsRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/appEditTextsLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/appLastNameEditTextTopHorizontalGuideline"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/emailRegisterEditText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/login_register_edit_text_background"
+        android:drawableStart="@drawable/login_register_email_icon_edit_text_selector"
+        android:drawablePadding="@dimen/loginRegisterEditTextDrawablePadding"
+        android:fontFamily="@font/app_description_font"
+        android:hint="@string/emailLoginRegisterEditTextHint"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:paddingStart="@dimen/loginRegisterEditTextPaddingStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/appEmailEditTextBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/appEditTextsRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/appEditTextsLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/appEmailEditTextTopHorizontalGuideline"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/passwordRegisterEditText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/login_register_edit_text_background"
+        android:drawableStart="@drawable/login_register_password_icon_edit_text_selector"
+        android:drawablePadding="@dimen/loginRegisterEditTextDrawablePadding"
+        android:fontFamily="@font/app_description_font"
+        android:hint="@string/passwordLoginRegisterEditTextHint"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:paddingStart="@dimen/loginRegisterEditTextPaddingStart"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/appPasswordEditTextBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/appEditTextsRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/appEditTextsLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/appPasswordEditTextTopHorizontalGuideline"
+        tools:ignore="RtlSymmetry" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/appRegisterBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/appEditTextsRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/appEditTextsLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/appRegisterTopHorizontalGuideline">
+
+        <TextView
+            style="@style/appHelperLoginStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/loginLinkTextView"
+            style="@style/appLoginLinkStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/appButtonRegister"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/app_login_register_button_drawable"
+        android:fontFamily="@font/app_buttons_font"
+        android:text="@string/appRegisterButtonString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/appLoginRegisterButtonTextSize"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="@+id/appEditTextsLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/appRegisterButtonTopHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/appEditTextsRightVerticalGuideline"
+        app:layout_constraintBottom_toBottomOf="@+id/appRegisterButtonBottomHorizontalGuideline"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/appEditTextsLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/appRegisterFacebookGoogleIconsTopHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/appEditTextsRightVerticalGuideline"
+        app:layout_constraintBottom_toBottomOf="@+id/appRegisterFacebookGoogleIconsBottomHorizontalGuideline"
+        android:gravity="center">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/registerFacebookLogoImageView"
+            android:layout_width="@dimen/appLogosImageViewsWidthSize"
+            android:layout_height="wrap_content"
+            android:src="@drawable/facebook_logo_icon"/>
+
+        <View
+            android:layout_width="@dimen/spaceBetweenLogosWidthSize"
+            android:layout_height="0dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/registerGoogleLogoImageView"
+            android:layout_width="@dimen/appLogosImageViewsWidthSize"
+            android:layout_height="wrap_content"
+            android:src="@drawable/google_logo_icon"/>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appTitleTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appTitleBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appRegisterTitleTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.22" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appRegisterTitleBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.30" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appFirstNameEditTextTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.40" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appFirstNameEditTextBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.47" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appLastNameEditTextTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.48" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appLastNameEditTextBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appEmailEditTextTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.56" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appEmailEditTextBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.63" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appPasswordEditTextTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.64" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appPasswordEditTextBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.71" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appEditTextsLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appEditTextsRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appRegisterTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.72" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appRegisterBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appRegisterButtonTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.82" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appRegisterButtonBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.89" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appRegisterFacebookGoogleIconsTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appRegisterFacebookGoogleIconsBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
