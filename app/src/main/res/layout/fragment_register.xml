@@ -133,11 +133,13 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
         android:id="@+id/appButtonRegister"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/app_login_register_button_drawable"
+        app:spinning_bar_color="@color/red"
+        app:spinning_bar_width="@dimen/appButtonSpinningBarWidth"
         android:fontFamily="@font/app_buttons_font"
         android:text="@string/appRegisterButtonString"
         android:textColor="@color/white"

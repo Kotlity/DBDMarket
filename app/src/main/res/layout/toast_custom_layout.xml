@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toastLinearLayout"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/toast_custom_background"
+    android:paddingHorizontal="@dimen/toastCustomLinearLayoutPaddingHorizontal">
+
+    <ImageView
+        android:id="@+id/toastCustomImageView"
+        android:layout_width="@dimen/appToastCustomImageViewSize"
+        android:layout_height="@dimen/appToastCustomImageViewSize"
+        android:src="@drawable/ic_error_icon"
+        tools:ignore="ContentDescription"/>
+
+    <TextView
+        android:id="@+id/toastCustomTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/toastCustomErrorMessageString"
+        android:textColor="@color/black"
+        android:textSize="@dimen/appToastCustomTextViewSize"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:fontFamily="@font/app_description_font"/>
+
+</LinearLayout>
