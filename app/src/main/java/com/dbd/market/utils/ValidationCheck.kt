@@ -1,21 +1,20 @@
 package com.dbd.market.utils
 
 import android.util.Patterns
-
-const val FIRSTNAME_IS_EMPTY= "Firstname cannot be empty"
-const val FIRSTNAME_STARTS_WITH_LOWERCASE = "Firstname cannot starts with lowercase"
-const val FIRSTNAME_STARTS_WITH_DIGIT = "Firstname cannot starts with a digit"
-const val LASTNAME_IS_EMPTY= "Lastname cannot be empty"
-const val LASTNAME_STARTS_WITH_LOWERCASE = "Lastname cannot starts with lowercase"
-const val LASTNAME_STARTS_WITH_DIGIT = "Lastname cannot starts with a digit"
-const val EMAIL_IS_EMPTY = "Email cannot be empty"
-const val WRONG_EMAIL_FORMAT = "Wrong email format"
-const val EMAIL_STARTS_WITH_DIGIT = "Email cannot starts with a digit"
-const val EMAIL_STARTS_WITH_UPPERCASE = "Email cannot starts with uppercase"
-const val PASSWORD_IS_EMPTY = "Password cannot be empty"
-const val WRONG_PASSWORD_FORMAT = "Password cannot starts with a digit"
-const val MINIMUM_PASSWORD_LENGTH = "Password must not be less than 6 characters"
-const val MIN_PASSWORD_LENGTH = 6
+import com.dbd.market.utils.Constants.EMAIL_IS_EMPTY
+import com.dbd.market.utils.Constants.EMAIL_STARTS_WITH_DIGIT
+import com.dbd.market.utils.Constants.EMAIL_STARTS_WITH_UPPERCASE
+import com.dbd.market.utils.Constants.FIRSTNAME_IS_EMPTY
+import com.dbd.market.utils.Constants.FIRSTNAME_STARTS_WITH_DIGIT
+import com.dbd.market.utils.Constants.FIRSTNAME_STARTS_WITH_LOWERCASE
+import com.dbd.market.utils.Constants.LASTNAME_IS_EMPTY
+import com.dbd.market.utils.Constants.LASTNAME_STARTS_WITH_DIGIT
+import com.dbd.market.utils.Constants.LASTNAME_STARTS_WITH_LOWERCASE
+import com.dbd.market.utils.Constants.MINIMUM_PASSWORD_LENGTH
+import com.dbd.market.utils.Constants.MIN_PASSWORD_LENGTH
+import com.dbd.market.utils.Constants.PASSWORD_IS_EMPTY
+import com.dbd.market.utils.Constants.WRONG_EMAIL_FORMAT
+import com.dbd.market.utils.Constants.WRONG_PASSWORD_FORMAT
 
 fun checkValidationFirstname(firstname: String): RegisterValidation {
     return if (firstname.isEmpty()) RegisterValidation.Error(FIRSTNAME_IS_EMPTY)

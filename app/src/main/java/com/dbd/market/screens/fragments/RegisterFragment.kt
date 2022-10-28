@@ -14,13 +14,12 @@ import com.dbd.market.R
 import com.dbd.market.data.User
 import com.dbd.market.databinding.FragmentRegisterBinding
 import com.dbd.market.utils.*
+import com.dbd.market.utils.Constants.LOGCAT_TAG
 import com.dbd.market.viewmodels.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
-const val LOGCAT_TAG = "MyTag"
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {

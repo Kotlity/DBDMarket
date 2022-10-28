@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.dbd.market.data.User
 import com.dbd.market.repositories.RegisterRepository
 import com.dbd.market.utils.*
+import com.dbd.market.utils.Constants.USER_COLLECTION_PATH
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -15,9 +16,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(private val repository: RegisterRepository): ViewModel() {
+class RegisterViewModel @Inject constructor(private val registerRepository: RegisterRepository): ViewModel() {
 
-    private val _registerUser = MutableStateFlow<Resource<FirebaseUser>>(Resource.Undefined())
+    private val _registerUser = MutableStateFlow<Resource<User>>(Resource.Undefined())
     val registerUser = _registerUser.asStateFlow()
 
     private val _validationState = Channel<RegisterFieldsState>()
@@ -28,10 +29,10 @@ class RegisterViewModel @Inject constructor(private val repository: RegisterRepo
             viewModelScope.launch {
                 _registerUser.emit(Resource.Loading())
             }
-            repository.createUserWithEmailAndPassword(user, password,
+            registerRepository.createUserWithEmailAndPassword(user, password,
                 onSuccess = { authResult ->
                     authResult.user?.let { firebaseUser ->
-                        _registerUser.value = Resource.Success(firebaseUser)
+                        saveUserInfoToFirebaseFirestore(firebaseUser.uid, user, USER_COLLECTION_PATH)
                     }
                 },
                 onFailure = { authException ->
@@ -59,5 +60,16 @@ class RegisterViewModel @Inject constructor(private val repository: RegisterRepo
                 && validationLastname is RegisterValidation.Success
                 && validationEmail is RegisterValidation.Success
                 && validationPassword is RegisterValidation.Success)
+    }
+
+    private fun saveUserInfoToFirebaseFirestore(userUID: String, user: User, collectionPath: String) {
+        registerRepository.saveUserToFirebaseFirestore(userUID, user, collectionPath,
+            onSuccess = {
+                _registerUser.value = Resource.Success(user)
+            },
+            onFailure = { savingException ->
+                _registerUser.value = Resource.Error(savingException.message.toString())
+            }
+        )
     }
 }
