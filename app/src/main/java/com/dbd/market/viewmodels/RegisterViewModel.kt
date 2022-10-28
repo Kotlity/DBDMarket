@@ -4,33 +4,60 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbd.market.data.User
 import com.dbd.market.repositories.RegisterRepository
-import com.dbd.market.utils.Resource
+import com.dbd.market.utils.*
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(private val repository: RegisterRepository): ViewModel() {
 
-    private var _registerUser = MutableStateFlow<Resource<FirebaseUser>>(Resource.Undefined())
+    private val _registerUser = MutableStateFlow<Resource<FirebaseUser>>(Resource.Undefined())
     val registerUser = _registerUser.asStateFlow()
 
+    private val _validationState = Channel<RegisterFieldsState>()
+    val validationState = _validationState.receiveAsFlow()
+
     fun createUserWithEmailAndPassword(user: User, password: String) {
-        viewModelScope.launch {
-            _registerUser.emit(Resource.Loading())
-        }
-        repository.createUserWithEmailAndPassword(user, password,
-            onSuccess = { authResult ->
-                authResult.user?.let { firebaseUser ->
-                    _registerUser.value = Resource.Success(firebaseUser)
-                }
-            },
-            onFailure = { authException ->
-                _registerUser.value = Resource.Error(authException.message.toString())
+        if (checkValidation(user, password)) {
+            viewModelScope.launch {
+                _registerUser.emit(Resource.Loading())
             }
-        )
+            repository.createUserWithEmailAndPassword(user, password,
+                onSuccess = { authResult ->
+                    authResult.user?.let { firebaseUser ->
+                        _registerUser.value = Resource.Success(firebaseUser)
+                    }
+                },
+                onFailure = { authException ->
+                    _registerUser.value = Resource.Error(authException.message.toString())
+                }
+            )
+        } else {
+            val registerFieldsState = RegisterFieldsState(
+                checkValidationFirstname(user.firstName),
+                checkValidationLastname(user.lastName),
+                checkValidationEmail(user.email),
+                checkValidationPassword(password))
+            viewModelScope.launch {
+                _validationState.send(registerFieldsState)
+            }
+        }
+    }
+
+    private fun checkValidation(user: User, password: String): Boolean {
+        val validationFirstname = checkValidationFirstname(user.firstName)
+        val validationLastname = checkValidationLastname(user.lastName)
+        val validationEmail = checkValidationEmail(user.email)
+        val validationPassword = checkValidationPassword(password)
+        return (validationFirstname is RegisterValidation.Success
+                && validationLastname is RegisterValidation.Success
+                && validationEmail is RegisterValidation.Success
+                && validationPassword is RegisterValidation.Success)
     }
 }

@@ -13,12 +13,12 @@ import androidx.lifecycle.lifecycleScope
 import com.dbd.market.R
 import com.dbd.market.data.User
 import com.dbd.market.databinding.FragmentRegisterBinding
-import com.dbd.market.utils.Resource
-import com.dbd.market.utils.setUnderlineToLinkTextView
-import com.dbd.market.utils.showToast
+import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 const val LOGCAT_TAG = "MyTag"
 
@@ -40,7 +40,7 @@ class RegisterFragment : Fragment() {
         setUnderlineToLinkTextView(getString(R.string.loginLinkString), binding.loginLinkTextView)
         registerUserByEmailAndPassword()
         observeRegisterState()
-
+        observeValidationEditTextsState()
     }
 
     private fun registerUserByEmailAndPassword() {
@@ -71,6 +71,45 @@ class RegisterFragment : Fragment() {
                     }
                     is Resource.Loading -> binding.appButtonRegister.startAnimation()
                     is Resource.Undefined -> Unit
+                }
+            }
+        }
+    }
+
+    private fun observeValidationEditTextsState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            registerViewModel.validationState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                if (it.firstname is RegisterValidation.Error) {
+                    withContext(Dispatchers.Main) {
+                        binding.firstNameRegisterEditText.apply {
+                            requestFocus()
+                            error = it.firstname.errorMessage
+                        }
+                    }
+                }
+                if (it.lastname is RegisterValidation.Error) {
+                    withContext(Dispatchers.Main) {
+                        binding.lastNameRegisterEditText.apply {
+                            requestFocus()
+                            error = it.lastname.errorMessage
+                        }
+                    }
+                }
+                if (it.email is RegisterValidation.Error) {
+                    withContext(Dispatchers.Main) {
+                        binding.emailRegisterEditText.apply {
+                            requestFocus()
+                            error = it.email.errorMessage
+                        }
+                    }
+                }
+                if (it.password is RegisterValidation.Error) {
+                    withContext(Dispatchers.Main) {
+                        binding.passwordRegisterEditText.apply {
+                            requestFocus()
+                            error = it.password.errorMessage
+                        }
+                    }
                 }
             }
         }
