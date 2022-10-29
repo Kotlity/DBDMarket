@@ -20,11 +20,11 @@ class RegisterViewModel @Inject constructor(private val registerRepository: Regi
     private val _registerUser = MutableStateFlow<Resource<User>>(Resource.Undefined())
     val registerUser = _registerUser.asStateFlow()
 
-    private val _validationState = Channel<RegisterFieldsState>()
-    val validationState = _validationState.receiveAsFlow()
+    private val _registerValidationState = Channel<RegisterFieldsState>()
+    val registerValidationState = _registerValidationState.receiveAsFlow()
 
     fun createUserWithEmailAndPassword(user: User, password: String) {
-        if (checkValidation(user, password)) {
+        if (isCorrectedEditTextsInput(user, password)) {
             viewModelScope.launch {
                 _registerUser.emit(Resource.Loading())
             }
@@ -45,20 +45,20 @@ class RegisterViewModel @Inject constructor(private val registerRepository: Regi
                 checkValidationEmail(user.email),
                 checkValidationPassword(password))
             viewModelScope.launch {
-                _validationState.send(registerFieldsState)
+                _registerValidationState.send(registerFieldsState)
             }
         }
     }
 
-    private fun checkValidation(user: User, password: String): Boolean {
+    private fun isCorrectedEditTextsInput(user: User, password: String): Boolean {
         val validationFirstname = checkValidationFirstname(user.firstName)
         val validationLastname = checkValidationLastname(user.lastName)
         val validationEmail = checkValidationEmail(user.email)
         val validationPassword = checkValidationPassword(password)
-        return (validationFirstname is RegisterValidation.Success
-                && validationLastname is RegisterValidation.Success
-                && validationEmail is RegisterValidation.Success
-                && validationPassword is RegisterValidation.Success)
+        return (validationFirstname is LoginRegisterValidation.Success
+                && validationLastname is LoginRegisterValidation.Success
+                && validationEmail is LoginRegisterValidation.Success
+                && validationPassword is LoginRegisterValidation.Success)
     }
 
     private fun saveUserInfoToFirebaseFirestore(userUID: String, user: User, collectionPath: String) {

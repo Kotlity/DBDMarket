@@ -19,23 +19,42 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
     private val _loginUser: MutableSharedFlow<Resource<FirebaseUser>> = MutableSharedFlow()
     val loginUser = _loginUser.asSharedFlow()
 
+    private val _loginValidationState = Channel<LoginFieldsState>()
+    val loginValidationState = _loginValidationState.receiveAsFlow()
+
     fun loginUserWithEmailAndPassword(email: String, password: String) {
-        viewModelScope.launch {
-            _loginUser.emit(Resource.Loading())
-        }
-        loginRepository.loginUserWithEmailAndPassword(email, password,
-            onSuccess = { authResult ->
-                authResult.user?.let { firebaseUser ->
+        if (isCorrectedEditTextsInput(email, password)) {
+            viewModelScope.launch {
+                _loginUser.emit(Resource.Loading())
+            }
+            loginRepository.loginUserWithEmailAndPassword(email, password,
+                onSuccess = { authResult ->
+                    authResult.user?.let { firebaseUser ->
+                        viewModelScope.launch {
+                            _loginUser.emit(Resource.Success(firebaseUser))
+                        }
+                    }
+                },
+                onFailure = { authException ->
                     viewModelScope.launch {
-                        _loginUser.emit(Resource.Success(firebaseUser))
+                        _loginUser.emit(Resource.Error(authException.message.toString()))
                     }
                 }
-            },
-            onFailure = { authException ->
-                viewModelScope.launch {
-                    _loginUser.emit(Resource.Error(authException.message.toString()))
-                }
+            )
+        } else {
+            val loginFieldsState = LoginFieldsState(
+                email = checkValidationEmail(email),
+                password = checkValidationPassword(password)
+            )
+            viewModelScope.launch {
+                _loginValidationState.send(loginFieldsState)
             }
-        )
+        }
+    }
+
+    private fun isCorrectedEditTextsInput(email: String, password: String): Boolean {
+        val emailValidation = checkValidationEmail(email)
+        val passwordValidation = checkValidationPassword(password)
+        return emailValidation is LoginRegisterValidation.Success && passwordValidation is LoginRegisterValidation.Success
     }
 }

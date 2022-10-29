@@ -13,12 +13,15 @@ import androidx.lifecycle.lifecycleScope
 import com.dbd.market.R
 import com.dbd.market.databinding.FragmentLoginBinding
 import com.dbd.market.utils.Constants.LOGCAT_TAG
+import com.dbd.market.utils.LoginRegisterValidation
 import com.dbd.market.utils.Resource
 import com.dbd.market.utils.setUnderlineToLinkTextView
 import com.dbd.market.utils.showToast
 import com.dbd.market.viewmodels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -38,6 +41,7 @@ class LoginFragment : Fragment() {
         setUnderlineToLinkTextView(getString(R.string.forgotPasswordString), binding.forgotPasswordLinkTextView)
         loginUserByEmailAndPassword()
         observeLoginState()
+        observeLoginValidationEditTextsState()
     }
 
     private fun loginUserByEmailAndPassword() {
@@ -69,4 +73,31 @@ class LoginFragment : Fragment() {
         }
     }
 
+    private fun observeLoginValidationEditTextsState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            loginViewModel.loginValidationState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                if (it.email is LoginRegisterValidation.Error) {
+                    withContext(Dispatchers.Main) {
+                        binding.emailLoginEditText.apply {
+                            requestFocus()
+                            error = it.email.errorMessage
+                        }
+                    }
+                }
+                if (it.password is LoginRegisterValidation.Error) {
+                    withContext(Dispatchers.Main) {
+                        binding.passwordLoginEditText.apply {
+                            requestFocus()
+                            error = it.password.errorMessage
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.appButtonLogin.dispose()
+    }
 }

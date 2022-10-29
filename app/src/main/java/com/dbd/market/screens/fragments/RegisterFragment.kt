@@ -39,7 +39,7 @@ class RegisterFragment : Fragment() {
         setUnderlineToLinkTextView(getString(R.string.loginLinkString), binding.loginLinkTextView)
         registerUserByEmailAndPassword()
         observeRegisterState()
-        observeValidationEditTextsState()
+        observeRegisterValidationEditTextsState()
     }
 
     private fun registerUserByEmailAndPassword() {
@@ -75,10 +75,10 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun observeValidationEditTextsState() {
+    private fun observeRegisterValidationEditTextsState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            registerViewModel.validationState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
-                if (it.firstname is RegisterValidation.Error) {
+            registerViewModel.registerValidationState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                if (it.firstname is LoginRegisterValidation.Error) {
                     withContext(Dispatchers.Main) {
                         binding.firstNameRegisterEditText.apply {
                             requestFocus()
@@ -86,7 +86,7 @@ class RegisterFragment : Fragment() {
                         }
                     }
                 }
-                if (it.lastname is RegisterValidation.Error) {
+                if (it.lastname is LoginRegisterValidation.Error) {
                     withContext(Dispatchers.Main) {
                         binding.lastNameRegisterEditText.apply {
                             requestFocus()
@@ -94,7 +94,7 @@ class RegisterFragment : Fragment() {
                         }
                     }
                 }
-                if (it.email is RegisterValidation.Error) {
+                if (it.email is LoginRegisterValidation.Error) {
                     withContext(Dispatchers.Main) {
                         binding.emailRegisterEditText.apply {
                             requestFocus()
@@ -102,7 +102,7 @@ class RegisterFragment : Fragment() {
                         }
                     }
                 }
-                if (it.password is RegisterValidation.Error) {
+                if (it.password is LoginRegisterValidation.Error) {
                     withContext(Dispatchers.Main) {
                         binding.passwordRegisterEditText.apply {
                             requestFocus()
@@ -112,5 +112,10 @@ class RegisterFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.appButtonRegister.dispose()
     }
 }
