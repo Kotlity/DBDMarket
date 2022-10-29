@@ -1,5 +1,7 @@
 package com.dbd.market.di.modules
 
+import com.dbd.market.repositories.login.LoginRepository
+import com.dbd.market.repositories.login.LoginRepositoryImplementation
 import com.dbd.market.repositories.register.RegisterRepository
 import com.dbd.market.repositories.register.RegisterRepositoryImplementation
 import com.google.firebase.auth.FirebaseAuth
@@ -27,4 +29,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFirebaseFirestore() = Firebase.firestore
+
+    @Provides
+    @Singleton
+    fun provideLoginRepository(firebaseAuth: FirebaseAuth): LoginRepository = LoginRepositoryImplementation(firebaseAuth)
 }
