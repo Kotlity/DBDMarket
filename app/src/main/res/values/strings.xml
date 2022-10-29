@@ -30,5 +30,4 @@
     <string name="appRegisterButtonString">Register</string>
     <string name="lastNameLoginRegisterEditTextHint">Last name</string>
     <string name="firstNameLoginRegisterEditTextHint">First name</string>
-    <string name="toastCustomErrorMessageString">Something went wrong…</string>
 </resources>

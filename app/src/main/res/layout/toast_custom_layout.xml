@@ -19,11 +19,9 @@
         android:id="@+id/toastCustomTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/toastCustomErrorMessageString"
         android:textColor="@color/black"
         android:textSize="@dimen/appToastCustomTextViewSize"
         android:layout_gravity="center"
-        android:textStyle="bold"
         android:fontFamily="@font/app_description_font"/>
 
 </LinearLayout>

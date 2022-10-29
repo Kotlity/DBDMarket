@@ -65,7 +65,7 @@ class RegisterFragment : Fragment() {
                     }
 
                     is Resource.Error -> {
-                        showToast(requireContext(), binding.root)
+                        showToast(requireContext(), binding.root, it.message.toString())
                         binding.appButtonRegister.revertAnimation()
                     }
                     is Resource.Loading -> binding.appButtonRegister.startAnimation()
