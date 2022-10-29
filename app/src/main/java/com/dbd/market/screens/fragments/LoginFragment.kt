@@ -1,5 +1,6 @@
 package com.dbd.market.screens.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,11 +13,9 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.dbd.market.R
 import com.dbd.market.databinding.FragmentLoginBinding
+import com.dbd.market.screens.activities.MarketActivity
+import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.LOGCAT_TAG
-import com.dbd.market.utils.LoginRegisterValidation
-import com.dbd.market.utils.Resource
-import com.dbd.market.utils.setUnderlineToLinkTextView
-import com.dbd.market.utils.showToast
 import com.dbd.market.viewmodels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +41,7 @@ class LoginFragment : Fragment() {
         loginUserByEmailAndPassword()
         observeLoginState()
         observeLoginValidationEditTextsState()
+        navigateToRegisterFragment()
     }
 
     private fun loginUserByEmailAndPassword() {
@@ -59,8 +59,10 @@ class LoginFragment : Fragment() {
             loginViewModel.loginUser.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
                 when (it) {
                     is Resource.Success -> {
-                        Log.d(LOGCAT_TAG,it.data.toString())
                         binding.appButtonLogin.revertAnimation()
+                        val intent = Intent(requireActivity(), MarketActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
                     }
                     is Resource.Error -> {
                         showToast(requireContext(), binding.root, it.message.toString())
@@ -94,6 +96,10 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun navigateToRegisterFragment() {
+        navigateToAnotherFragment(binding.registerLinkTextView, R.id.action_loginFragment_to_registerFragment)
     }
 
     override fun onDestroy() {

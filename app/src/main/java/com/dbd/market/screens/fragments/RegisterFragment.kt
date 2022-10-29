@@ -40,6 +40,7 @@ class RegisterFragment : Fragment() {
         registerUserByEmailAndPassword()
         observeRegisterState()
         observeRegisterValidationEditTextsState()
+        navigateToLoginFragment()
     }
 
     private fun registerUserByEmailAndPassword() {
@@ -112,6 +113,10 @@ class RegisterFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun navigateToLoginFragment() {
+        navigateToAnotherFragment(binding.loginLinkTextView, R.id.action_registerFragment_to_loginFragment)
     }
 
     override fun onDestroy() {
