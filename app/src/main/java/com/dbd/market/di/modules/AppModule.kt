@@ -1,7 +1,7 @@
 package com.dbd.market.di.modules
 
-import com.dbd.market.repositories.RegisterRepository
-import com.dbd.market.repositories.RegisterRepositoryImplementation
+import com.dbd.market.repositories.register.RegisterRepository
+import com.dbd.market.repositories.register.RegisterRepositoryImplementation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
