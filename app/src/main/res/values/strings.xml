@@ -35,4 +35,5 @@
     <string name="resetPasswordEditTextHint">Enter your email</string>
     <string name="appCancelResetPasswordButtonTextString">Cancel</string>
     <string name="appSendResetPasswordButtonTextString">Send</string>
+    <string name="successResetPasswordToastMessageString">A password reset link has been sent to your email</string>
 </resources>

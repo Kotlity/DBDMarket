@@ -2,7 +2,6 @@ package com.dbd.market.screens.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.dbd.market.R
 import com.dbd.market.databinding.FragmentLoginBinding
 import com.dbd.market.screens.activities.MarketActivity
 import com.dbd.market.utils.*
-import com.dbd.market.utils.Constants.LOGCAT_TAG
 import com.dbd.market.utils.Constants.SUCCESSFULLY_ACCOUNT_LOGIN_TOAST_MESSAGE
 import com.dbd.market.viewmodels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,6 +42,7 @@ class LoginFragment : Fragment() {
         observeLoginValidationEditTextsState()
         navigateToRegisterFragment()
         resetPasswordViaEmail()
+        observeResetPasswordState()
     }
 
     private fun loginUserByEmailAndPassword() {
@@ -114,9 +113,22 @@ class LoginFragment : Fragment() {
                 getString(R.string.appCancelResetPasswordButtonTextString),
                 getString(R.string.appSendResetPasswordButtonTextString),
                 onPositiveButtonClick = { inputEmailAddress ->
-
+                    loginViewModel.resetPasswordViaEmail(inputEmailAddress)
                 }
             )
+        }
+    }
+
+    private fun observeResetPasswordState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            loginViewModel.resetPassword.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                when(it) {
+                    is Resource.Success -> showToast(requireActivity(), binding.root, R.drawable.ic_done_icon, getString(R.string.successResetPasswordToastMessageString))
+                    is Resource.Error -> showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                    is Resource.Loading -> Unit
+                    is Resource.Undefined -> Unit
+                }
+            }
         }
     }
 
