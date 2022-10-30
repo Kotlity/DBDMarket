@@ -41,6 +41,7 @@ fun Fragment.showDialog(
     positiveButton.setOnClickListener {
         val inputEmailAddress = emailEditText.text.toString().trim()
         onPositiveButtonClick(inputEmailAddress)
+        dialog.dismiss()
     }
 
     dialog.apply {

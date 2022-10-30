@@ -12,8 +12,18 @@ class LoginRepositoryImplementation @Inject constructor(private val firebaseAuth
             .addOnSuccessListener { authResult ->
                 onSuccess(authResult)
             }
-            .addOnFailureListener { exception ->
-                onFailure(exception)
+            .addOnFailureListener { loginException ->
+                onFailure(loginException)
+            }
+    }
+
+    override fun resetPasswordWithEmail(email: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        firebaseAuth.sendPasswordResetEmail(email)
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { resetException ->
+                onFailure(resetException)
             }
     }
 }

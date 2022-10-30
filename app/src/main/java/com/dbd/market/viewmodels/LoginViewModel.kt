@@ -22,6 +22,9 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
     private val _loginValidationState = Channel<LoginFieldsState>()
     val loginValidationState = _loginValidationState.receiveAsFlow()
 
+    private val _resetPassword = MutableSharedFlow<Resource<String>>()
+    val resetPassword = _resetPassword.asSharedFlow()
+
     fun loginUserWithEmailAndPassword(email: String, password: String) {
         if (isCorrectedEditTextsInput(email, password)) {
             viewModelScope.launch {
@@ -56,5 +59,23 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
         val emailValidation = checkValidationEmail(email)
         val passwordValidation = checkValidationPassword(password)
         return emailValidation is LoginRegisterValidation.Success && passwordValidation is LoginRegisterValidation.Success
+    }
+
+    fun resetPasswordViaEmail(email: String) {
+        viewModelScope.launch {
+            _resetPassword.emit(Resource.Loading())
+        }
+        loginRepository.resetPasswordWithEmail(email,
+            onSuccess = {
+                viewModelScope.launch {
+                    _resetPassword.emit(Resource.Success(email))
+                }
+            },
+            onFailure = { resetException ->
+                viewModelScope.launch {
+                    _resetPassword.emit(Resource.Error(resetException.message.toString()))
+                }
+            }
+        )
     }
 }
