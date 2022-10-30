@@ -38,5 +38,16 @@
     <dimen name="appToastCustomStrokeWidthSize">1dp</dimen>
     <dimen name="appToastCustomRadiusSize">15dp</dimen>
     <dimen name="appButtonSpinningBarWidth">3dp</dimen>
-
+    <dimen name="appDialogCustomRadiusSize">7dp</dimen>
+    <dimen name="appDialogViewsMarginTop">10dp</dimen>
+    <dimen name="appDialogButtonsMarginVertical">10dp</dimen>
+    <dimen name="appResetPasswordTitleDialogTextSize">25sp</dimen>
+    <dimen name="appResetPasswordDescriptionDialogTextSize">15sp</dimen>
+    <dimen name="appLoginRegisterButtonStrokeWidth">1dp</dimen>
+    <dimen name="appCancelSendButtonsDialogStrokeWidth">2dp</dimen>
+    <dimen name="appCancelSendButtonsDialogTextSize">18sp</dimen>
+    <dimen name="appCancelSendDialogButtonsLinearLayoutPaddingHorizontal">30dp</dimen>
+    <dimen name="horizontalSpaceBetweenCancelAndSendDialogButtons">20dp</dimen>
+    <dimen name="cardViewDialogElevation">10dp</dimen>
+    <dimen name="cardViewDialogCornerRadius">15dp</dimen>
 </resources>

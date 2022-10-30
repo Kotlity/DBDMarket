@@ -78,7 +78,7 @@
         android:id="@+id/appButtonStart"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/app_start_button_drawable"
+        android:background="@drawable/app_start_button_background"
         android:text="@string/appStartButtonString"
         android:fontFamily="@font/app_buttons_font"
         android:textAllCaps="false"

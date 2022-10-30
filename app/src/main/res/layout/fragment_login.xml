@@ -107,7 +107,7 @@
         android:id="@+id/appButtonLogin"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/app_login_register_button_drawable"
+        android:background="@drawable/app_login_register_button_background"
         app:spinning_bar_color="@color/red"
         app:spinning_bar_width="@dimen/appButtonSpinningBarWidth"
         android:fontFamily="@font/app_buttons_font"

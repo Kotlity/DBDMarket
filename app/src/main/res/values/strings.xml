@@ -30,4 +30,9 @@
     <string name="appRegisterButtonString">Register</string>
     <string name="lastNameLoginRegisterEditTextHint">Last name</string>
     <string name="firstNameLoginRegisterEditTextHint">First name</string>
+    <string name="resetPasswordTitleDialogTextViewString">Reset password</string>
+    <string name="resetPasswordDescriptionDialogTextViewString">Please enter your account email so we can send you a password reset link to this email</string>
+    <string name="resetPasswordEditTextHint">Enter your email</string>
+    <string name="appCancelResetPasswordButtonTextString">Cancel</string>
+    <string name="appSendResetPasswordButtonTextString">Send</string>
 </resources>

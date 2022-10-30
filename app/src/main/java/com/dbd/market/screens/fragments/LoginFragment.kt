@@ -43,6 +43,7 @@ class LoginFragment : Fragment() {
         observeLoginState()
         observeLoginValidationEditTextsState()
         navigateToRegisterFragment()
+        resetPasswordViaEmail()
     }
 
     private fun loginUserByEmailAndPassword() {
@@ -102,6 +103,21 @@ class LoginFragment : Fragment() {
 
     private fun navigateToRegisterFragment() {
         navigateToAnotherFragment(binding.registerLinkTextView, R.id.action_loginFragment_to_registerFragment)
+    }
+
+    private fun resetPasswordViaEmail() {
+        binding.forgotPasswordLinkTextView.setOnClickListener {
+            showDialog(
+                requireActivity(),
+                getString(R.string.resetPasswordTitleDialogTextViewString),
+                getString(R.string.resetPasswordDescriptionDialogTextViewString),
+                getString(R.string.appCancelResetPasswordButtonTextString),
+                getString(R.string.appSendResetPasswordButtonTextString),
+                onPositiveButtonClick = { inputEmailAddress ->
+
+                }
+            )
+        }
     }
 
     override fun onDestroy() {
