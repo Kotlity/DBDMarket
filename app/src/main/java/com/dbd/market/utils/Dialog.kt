@@ -40,8 +40,18 @@ fun Fragment.showDialog(
     }
     positiveButton.setOnClickListener {
         val inputEmailAddress = emailEditText.text.toString().trim()
-        onPositiveButtonClick(inputEmailAddress)
-        dialog.dismiss()
+        if (checkValidationEmail(inputEmailAddress) is ValidationStatus.Success) {
+            onPositiveButtonClick(inputEmailAddress)
+            dialog.dismiss()
+        } else {
+            val resetPasswordFieldState = ResetPasswordFieldState(checkValidationEmail(inputEmailAddress))
+            if (resetPasswordFieldState.email is ValidationStatus.Error) {
+                positiveButton.apply {
+                    requestFocus()
+                    error = resetPasswordFieldState.email.errorMessage
+                }
+            }
+        }
     }
 
     dialog.apply {

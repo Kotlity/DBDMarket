@@ -1,7 +1,6 @@
 package com.dbd.market.screens.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.dbd.market.R
 import com.dbd.market.data.User
 import com.dbd.market.databinding.FragmentRegisterBinding
 import com.dbd.market.utils.*
-import com.dbd.market.utils.Constants.LOGCAT_TAG
 import com.dbd.market.utils.Constants.SUCCESSFULLY_CREATED_A_NEW_ACCOUNT_TOAST_MESSAGE
 import com.dbd.market.viewmodels.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -82,7 +80,7 @@ class RegisterFragment : Fragment() {
     private fun observeRegisterValidationEditTextsState() {
         viewLifecycleOwner.lifecycleScope.launch {
             registerViewModel.registerValidationState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
-                if (it.firstname is LoginRegisterValidation.Error) {
+                if (it.firstname is ValidationStatus.Error) {
                     withContext(Dispatchers.Main) {
                         binding.firstNameRegisterEditText.apply {
                             requestFocus()
@@ -90,7 +88,7 @@ class RegisterFragment : Fragment() {
                         }
                     }
                 }
-                if (it.lastname is LoginRegisterValidation.Error) {
+                if (it.lastname is ValidationStatus.Error) {
                     withContext(Dispatchers.Main) {
                         binding.lastNameRegisterEditText.apply {
                             requestFocus()
@@ -98,7 +96,7 @@ class RegisterFragment : Fragment() {
                         }
                     }
                 }
-                if (it.email is LoginRegisterValidation.Error) {
+                if (it.email is ValidationStatus.Error) {
                     withContext(Dispatchers.Main) {
                         binding.emailRegisterEditText.apply {
                             requestFocus()
@@ -106,7 +104,7 @@ class RegisterFragment : Fragment() {
                         }
                     }
                 }
-                if (it.password is LoginRegisterValidation.Error) {
+                if (it.password is ValidationStatus.Error) {
                     withContext(Dispatchers.Main) {
                         binding.passwordRegisterEditText.apply {
                             requestFocus()

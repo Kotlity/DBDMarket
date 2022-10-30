@@ -58,7 +58,7 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
     private fun isCorrectedEditTextsInput(email: String, password: String): Boolean {
         val emailValidation = checkValidationEmail(email)
         val passwordValidation = checkValidationPassword(password)
-        return emailValidation is LoginRegisterValidation.Success && passwordValidation is LoginRegisterValidation.Success
+        return emailValidation is ValidationStatus.Success && passwordValidation is ValidationStatus.Success
     }
 
     fun resetPasswordViaEmail(email: String) {

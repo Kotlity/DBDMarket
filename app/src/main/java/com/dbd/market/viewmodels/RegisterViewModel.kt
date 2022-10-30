@@ -55,10 +55,10 @@ class RegisterViewModel @Inject constructor(private val registerRepository: Regi
         val validationLastname = checkValidationLastname(user.lastName)
         val validationEmail = checkValidationEmail(user.email)
         val validationPassword = checkValidationPassword(password)
-        return (validationFirstname is LoginRegisterValidation.Success
-                && validationLastname is LoginRegisterValidation.Success
-                && validationEmail is LoginRegisterValidation.Success
-                && validationPassword is LoginRegisterValidation.Success)
+        return (validationFirstname is ValidationStatus.Success
+                && validationLastname is ValidationStatus.Success
+                && validationEmail is ValidationStatus.Success
+                && validationPassword is ValidationStatus.Success)
     }
 
     private fun saveUserInfoToFirebaseFirestore(userUID: String, user: User, collectionPath: String) {

@@ -80,7 +80,7 @@ class LoginFragment : Fragment() {
     private fun observeLoginValidationEditTextsState() {
         viewLifecycleOwner.lifecycleScope.launch {
             loginViewModel.loginValidationState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
-                if (it.email is LoginRegisterValidation.Error) {
+                if (it.email is ValidationStatus.Error) {
                     withContext(Dispatchers.Main) {
                         binding.emailLoginEditText.apply {
                             requestFocus()
@@ -88,7 +88,7 @@ class LoginFragment : Fragment() {
                         }
                     }
                 }
-                if (it.password is LoginRegisterValidation.Error) {
+                if (it.password is ValidationStatus.Error) {
                     withContext(Dispatchers.Main) {
                         binding.passwordLoginEditText.apply {
                             requestFocus()
