@@ -12,7 +12,6 @@
         android:id="@+id/toastCustomImageView"
         android:layout_width="@dimen/appToastCustomImageViewSize"
         android:layout_height="@dimen/appToastCustomImageViewSize"
-        android:src="@drawable/ic_error_icon"
         tools:ignore="ContentDescription"/>
 
     <TextView

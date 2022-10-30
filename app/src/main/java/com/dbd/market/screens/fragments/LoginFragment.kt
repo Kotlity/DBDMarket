@@ -16,6 +16,7 @@ import com.dbd.market.databinding.FragmentLoginBinding
 import com.dbd.market.screens.activities.MarketActivity
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.LOGCAT_TAG
+import com.dbd.market.utils.Constants.SUCCESSFULLY_ACCOUNT_LOGIN_TOAST_MESSAGE
 import com.dbd.market.viewmodels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -60,13 +61,14 @@ class LoginFragment : Fragment() {
                 when (it) {
                     is Resource.Success -> {
                         binding.appButtonLogin.revertAnimation()
+                        showToast(requireActivity(), binding.root, R.drawable.ic_done_icon, SUCCESSFULLY_ACCOUNT_LOGIN_TOAST_MESSAGE)
                         val intent = Intent(requireActivity(), MarketActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                     }
                     is Resource.Error -> {
-                        showToast(requireContext(), binding.root, it.message.toString())
                         binding.appButtonLogin.revertAnimation()
+                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
                     }
                     is Resource.Loading -> binding.appButtonLogin.startAnimation()
                     is Resource.Undefined -> Unit

@@ -20,4 +20,7 @@ object Constants {
     const val MIN_PASSWORD_LENGTH = 6
 
     const val USER_COLLECTION_PATH = "user"
+
+    const val SUCCESSFULLY_ACCOUNT_LOGIN_TOAST_MESSAGE = "You have successfully logged in"
+    const val SUCCESSFULLY_CREATED_A_NEW_ACCOUNT_TOAST_MESSAGE = "You have successfully created a new account, now sign in"
 }

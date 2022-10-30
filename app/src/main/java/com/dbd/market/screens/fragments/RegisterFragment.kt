@@ -10,11 +10,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.dbd.market.R
 import com.dbd.market.data.User
 import com.dbd.market.databinding.FragmentRegisterBinding
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.LOGCAT_TAG
+import com.dbd.market.utils.Constants.SUCCESSFULLY_CREATED_A_NEW_ACCOUNT_TOAST_MESSAGE
 import com.dbd.market.viewmodels.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -61,13 +63,14 @@ class RegisterFragment : Fragment() {
             registerViewModel.registerUser.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
                 when (it) {
                     is Resource.Success -> {
-                        Log.d(LOGCAT_TAG,it.data.toString())
                         binding.appButtonRegister.revertAnimation()
+                        showToast(requireActivity(), binding.root, R.drawable.ic_done_icon, SUCCESSFULLY_CREATED_A_NEW_ACCOUNT_TOAST_MESSAGE)
+                        navigateToLoginFragmentAfterRegisteringANewAccount()
                     }
 
                     is Resource.Error -> {
-                        showToast(requireContext(), binding.root, it.message.toString())
                         binding.appButtonRegister.revertAnimation()
+                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
                     }
                     is Resource.Loading -> binding.appButtonRegister.startAnimation()
                     is Resource.Undefined -> Unit
@@ -117,6 +120,10 @@ class RegisterFragment : Fragment() {
 
     private fun navigateToLoginFragment() {
         navigateToAnotherFragment(binding.loginLinkTextView, R.id.action_registerFragment_to_loginFragment)
+    }
+
+    private fun navigateToLoginFragmentAfterRegisteringANewAccount() {
+        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
     }
 
     override fun onDestroy() {
