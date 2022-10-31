@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/introductionFragment"
-        android:name="com.dbd.market.screens.fragments.IntroductionFragment"
+        android:name="com.dbd.market.screens.fragments.introduction.IntroductionFragment"
         android:label="fragment_introduction"
         tools:layout="@layout/fragment_introduction" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInUpOptionFragment"
-        android:name="com.dbd.market.screens.fragments.SignInUpOptionFragment"
+        android:name="com.dbd.market.screens.fragments.introduction.SignInUpOptionFragment"
         android:label="fragment_sign_in_up_option"
         tools:layout="@layout/fragment_sign_in_up_option" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.dbd.market.screens.fragments.RegisterFragment"
+        android:name="com.dbd.market.screens.fragments.introduction.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.dbd.market.screens.fragments.LoginFragment"
+        android:name="com.dbd.market.screens.fragments.introduction.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action

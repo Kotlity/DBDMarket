@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_register_background"
-    tools:context=".screens.fragments.LoginFragment">
+    tools:context=".screens.fragments.introduction.LoginFragment">
 
     <TextView
         style="@style/appTitleStyle"

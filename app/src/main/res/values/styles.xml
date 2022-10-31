@@ -19,7 +19,7 @@
 
     <style name="appLoginTitleStyle">
         <item name="android:text">@string/loginTitleString</item>
-        <item name="android:textColor">@color/light_grey</item>
+        <item name="android:textColor">@color/light_green</item>
         <item name="android:textSize">@dimen/appDescriptionSize</item>
         <item name="fontFamily">@font/login_register_title_font</item>
         <item name="android:textAlignment">center</item>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/account_options_background"
-    tools:context=".screens.fragments.SignInUpOptionFragment">
+    tools:context=".screens.fragments.introduction.SignInUpOptionFragment">
 
     <TextView
         style="@style/appTitleStyle"

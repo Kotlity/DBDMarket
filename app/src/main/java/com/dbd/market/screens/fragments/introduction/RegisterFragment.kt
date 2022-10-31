@@ -1,4 +1,4 @@
-package com.dbd.market.screens.fragments
+package com.dbd.market.screens.fragments.introduction
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
