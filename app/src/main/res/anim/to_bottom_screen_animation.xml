@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <translate android:fromYDelta="@fraction/animationPoint0percent" android:toYDelta="@fraction/animationPoint100percent" android:duration="@integer/animationDuration400milliseconds"/>
+
+</set>

@@ -13,6 +13,8 @@
         <action
             android:id="@+id/action_introductionFragment_to_signInUpOptionFragment"
             app:destination="@id/signInUpOptionFragment"
+            app:enterAnim="@anim/from_right_screen_animation"
+            app:exitAnim="@anim/to_left_screen_animation"
             app:popUpTo="@id/introductionFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -23,10 +25,18 @@
         tools:layout="@layout/fragment_sign_in_up_option" >
         <action
             android:id="@+id/action_signInUpOptionFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/from_left_screen_animation"
+            app:exitAnim="@anim/to_right_screen_animation"
+            app:popEnterAnim="@anim/from_top_screen_animation"
+            app:popExitAnim="@anim/to_bottom_screen_animation"/>
         <action
             android:id="@+id/action_signInUpOptionFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_right_screen_animation"
+            app:exitAnim="@anim/to_left_screen_animation"
+            app:popEnterAnim="@anim/from_bottom_screen_animation"
+            app:popExitAnim="@anim/to_top_screen_animation"/>
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -36,6 +46,10 @@
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_right_screen_animation"
+            app:exitAnim="@anim/to_left_screen_animation"
+            app:popEnterAnim="@anim/from_bottom_screen_animation"
+            app:popExitAnim="@anim/to_top_screen_animation"
             app:popUpTo="@id/signInUpOptionFragment" />
     </fragment>
     <fragment
@@ -46,6 +60,10 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment"
+            app:enterAnim="@anim/from_left_screen_animation"
+            app:exitAnim="@anim/to_right_screen_animation"
+            app:popEnterAnim="@anim/from_top_screen_animation"
+            app:popExitAnim="@anim/to_bottom_screen_animation"
             app:popUpTo="@id/signInUpOptionFragment" />
     </fragment>
 </navigation>

@@ -50,4 +50,9 @@
     <dimen name="horizontalSpaceBetweenCancelAndSendDialogButtons">20dp</dimen>
     <dimen name="cardViewDialogElevation">10dp</dimen>
     <dimen name="cardViewDialogCornerRadius">15dp</dimen>
+    <fraction name="animationPoint100percent">100%</fraction>
+    <fraction name="animationPoint0percent">0%</fraction>
+    <fraction name="animationPointMinus100percent">-100%</fraction>
+    <integer name="animationDuration300milliseconds">300</integer>
+    <integer name="animationDuration400milliseconds">400</integer>
 </resources>
