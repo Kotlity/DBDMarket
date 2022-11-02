@@ -40,4 +40,5 @@
     <string name="cartIconBottomNavigationMenuString">Cart fragment</string>
     <string name="searchIconBottomNavigationMenuString">Search fragment</string>
     <string name="userIconBottomNavigationMenuString">User fragment</string>
+    <string name="searchProductsHomeHeaderText">Search products…</string>
 </resources>

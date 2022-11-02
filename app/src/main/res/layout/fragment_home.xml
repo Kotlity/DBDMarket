@@ -1,14 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_grey"
     tools:context=".screens.fragments.market.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <LinearLayout
+        android:id="@+id/homeHeader"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/appHomeHeaderBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/appHomeHeaderRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/appHomeHeaderLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/appHomeHeaderTopHorizontalGuideline">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/search_products_home_header_background">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/app_title_font"
+                android:paddingVertical="@dimen/appSearchProductsTextPaddingVertical"
+                android:paddingStart="@dimen/appSearchProductsTextPaddingStart"
+                android:singleLine="true"
+                android:text="@string/searchProductsHomeHeaderText"
+                android:textSize="@dimen/appSearchHomeHeaderProductsTextSize"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="@dimen/app_search_home_header_icon_size"
+                android:layout_height="@dimen/app_search_home_header_icon_size"
+                android:layout_marginEnd="@dimen/app_horizontal_space_between_home_header_icons"
+                android:src="@drawable/ic_search_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="@dimen/app_horizontal_space_between_home_header_icons"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="@dimen/app_scan_and_voice_home_header_icons_size"
+            android:layout_height="@dimen/app_scan_and_voice_home_header_icons_size"
+            android:background="@drawable/app_home_header_icons_background"
+            android:padding="@dimen/app_home_header_scan_and_voice_icons_padding"
+            android:src="@drawable/ic_scan_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:layout_width="@dimen/app_horizontal_space_between_home_header_icons"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="@dimen/app_scan_and_voice_home_header_icons_size"
+            android:layout_height="@dimen/app_scan_and_voice_home_header_icons_size"
+            android:background="@drawable/app_home_header_icons_background"
+            android:padding="@dimen/app_home_header_scan_and_voice_icons_padding"
+            android:src="@drawable/ic_voice_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/homeTabLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/red"
+        app:layout_constraintBottom_toBottomOf="@+id/appTabLayoutBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/appHomeHeaderRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/appHomeHeaderLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/appTabLayoutTopHorizontalGuideline"
+        app:tabMode="scrollable"
+        app:tabRippleColor="@color/pink"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextAppearance="@style/tabLayout_text_style"
+        app:tabTextColor="@color/grey" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/homeViewPager2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/appViewPager2BottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/appHomeHeaderRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/appHomeHeaderLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/appViewPager2TopHorizontalGuideline" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appHomeHeaderLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appHomeHeaderRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appHomeHeaderTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appHomeHeaderBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appTabLayoutTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appTabLayoutBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appViewPager2TopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/appViewPager2BottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.97" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
