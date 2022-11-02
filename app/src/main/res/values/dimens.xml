@@ -57,6 +57,7 @@
     <dimen name="app_horizontal_space_between_home_header_icons">10dp</dimen>
     <dimen name="app_scan_and_voice_home_header_icons_size">35dp</dimen>
     <dimen name="app_home_header_scan_and_voice_icons_padding">5dp</dimen>
+    <dimen name="search_products_and_tab_layout_background_radius">15dp</dimen>
     <fraction name="animationPoint100percent">100%</fraction>
     <fraction name="animationPoint0percent">0%</fraction>
     <fraction name="animationPointMinus100percent">-100%</fraction>

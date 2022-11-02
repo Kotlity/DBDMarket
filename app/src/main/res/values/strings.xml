@@ -41,4 +41,10 @@
     <string name="searchIconBottomNavigationMenuString">Search fragment</string>
     <string name="userIconBottomNavigationMenuString">User fragment</string>
     <string name="searchProductsHomeHeaderText">Search products…</string>
+    <string name="mainCategoryTabLayoutTitleString">Main</string>
+    <string name="suitsCategoryTabLayoutTitleString">Suits</string>
+    <string name="weaponCategoryTabLayoutTitleString">Weapon</string>
+    <string name="headdressCategoryTabLayoutTitleString">Headdress</string>
+    <string name="torsoCategoryTabLayoutTitleString">Torso</string>
+    <string name="shoesCategoryTabLayoutTitleString">Shoes</string>
 </resources>

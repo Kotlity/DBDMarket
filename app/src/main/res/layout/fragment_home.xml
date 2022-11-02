@@ -22,7 +22,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/search_products_home_header_background">
+            android:background="@drawable/search_products_and_tab_layout_background">
 
             <TextView
                 android:layout_width="0dp"
@@ -85,16 +85,18 @@
         android:id="@+id/homeTabLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/red"
+        android:background="@drawable/search_products_and_tab_layout_background"
         app:layout_constraintBottom_toBottomOf="@+id/appTabLayoutBottomHorizontalGuideline"
         app:layout_constraintEnd_toEndOf="@+id/appHomeHeaderRightVerticalGuideline"
         app:layout_constraintStart_toStartOf="@+id/appHomeHeaderLeftVerticalGuideline"
         app:layout_constraintTop_toTopOf="@+id/appTabLayoutTopHorizontalGuideline"
         app:tabMode="scrollable"
+        app:tabInlineLabel="true"
+        app:tabIconTint="@color/tab_layout_icons_color_selector"
+        app:tabIndicatorColor="@color/red"
         app:tabRippleColor="@color/pink"
         app:tabSelectedTextColor="@color/black"
-        app:tabTextAppearance="@style/tabLayout_text_style"
-        app:tabTextColor="@color/grey" />
+        app:tabTextAppearance="@style/tabLayout_text_style"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/homeViewPager2"
@@ -146,7 +148,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.16" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/appViewPager2TopHorizontalGuideline"
