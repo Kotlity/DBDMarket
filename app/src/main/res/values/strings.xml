@@ -47,4 +47,5 @@
     <string name="headdressCategoryTabLayoutTitleString">Headdress</string>
     <string name="torsoCategoryTabLayoutTitleString">Torso</string>
     <string name="shoesCategoryTabLayoutTitleString">Shoes</string>
+    <string name="appSpecialProductButtonTextString">Add to cart</string>
 </resources>

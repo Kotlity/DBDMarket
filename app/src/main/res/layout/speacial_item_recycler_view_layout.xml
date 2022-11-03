@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/appSpecialProductItemLayoutWidth"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardCornerRadius="@dimen/appSpecialProductCardCornerRadius"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="@dimen/appSpecialProductCardElevation">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/special_item_card_view_background">
+
+            <ImageView
+                android:id="@+id/specialProductImageView"
+                android:layout_width="@dimen/appSpecialProductImageViewWidth"
+                android:layout_height="@dimen/appSpecialProductImageViewHeight"
+                android:layout_marginTop="@dimen/appSpecialProductImageViewMarginTop"
+                android:layout_marginStart="@dimen/appSpecialProductImageViewMarginStart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/specialItemProductNameTextView"
+                style="@style/special_item_name_textview_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/appSpecialProductNameMarginTop"
+                android:paddingHorizontal="@dimen/appSpecialProductNamePaddingHorizontal"
+                android:textSize="@dimen/appSpecialProductNameTextViewSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/specialProductImageView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/specialItemProductPriceTextView"
+                style="@style/special_item_price_textview_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/appSpecialProductPriceTextViewSize"
+                android:layout_marginBottom="@dimen/appSpecialProductPriceTextViewMarginBottom"
+                app:layout_constraintStart_toEndOf="@+id/specialProductImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/specialItemAddToCartButton"/>
+
+            <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                android:id="@+id/specialItemAddToCartButton"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/appSpecialItemAddToCartButtonHeight"
+                android:layout_marginEnd="@dimen/appSpecialItemAddToCartButtonMarginEnd"
+                android:layout_marginBottom="@dimen/appSpecialItemAddToCartButtonMarginBottom"
+                android:background="@drawable/special_item_button_background"
+                android:fontFamily="@font/app_title_font"
+                android:text="@string/appSpecialProductButtonTextString"
+                android:textSize="@dimen/appSpecialItemAddToCartButtonTextSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:spinning_bar_color="@color/red"
+                app:spinning_bar_width="@dimen/appButtonSpinningBarWidth" />
+
+            <ImageView
+                android:id="@+id/specialProductFavoriteImageView"
+                android:layout_width="@dimen/appSpecialProductFavoriteImageViewWidthAndHeight"
+                android:layout_height="@dimen/appSpecialProductFavoriteImageViewWidthAndHeight"
+                android:src="@drawable/ic_favorite_icon"
+                android:layout_marginTop="@dimen/appSpecialProductFavoriteImageViewMarginTop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/specialProductImageView"
+                app:layout_constraintEnd_toStartOf="@+id/specialItemAddToCartButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:tint="@color/red"
+                tools:ignore="ContentDescription" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,4 +18,6 @@
     <color name="purple">#3F32AE</color>
     <color name="pink">#CA25D6</color>
     <color name="grey">#AAA7A7</color>
+    <color name="light_red">#D55B5B</color>
+    <color name="light_purple">#5D45A1</color>
 </resources>

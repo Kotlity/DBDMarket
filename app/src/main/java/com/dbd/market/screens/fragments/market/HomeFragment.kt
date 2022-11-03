@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
         homeViewPager2Adapter.addFragmentToTabLayout(WeaponFragment())
         homeViewPager2Adapter.addFragmentToTabLayout(HeaddressFragment())
         homeViewPager2Adapter.addFragmentToTabLayout(TorsoFragment())
-        homeViewPager2Adapter.addFragmentToTabLayout(ShoesFragment())
+        homeViewPager2Adapter.addFragmentToTabLayout(LegsFragment())
         binding.homeViewPager2.adapter = homeViewPager2Adapter
         TabLayoutMediator(binding.homeTabLayout, binding.homeViewPager2) { tab, position ->
             when (position) {
