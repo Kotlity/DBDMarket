@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    tools:context=".helpers.products_adder.screen.ProductsAdderActivity">
+
+    <TextView
+        android:id="@+id/productsAdderTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/productsAdderTitleTextViewMarginTop"
+        android:fontFamily="@font/app_title_font"
+        android:text="@string/productsAdderTitleTextViewString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/productsAdderTitleTextViewSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/productsAdderEditTextsLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/productsAdderTitleTextView"
+        app:layout_constraintStart_toStartOf="@+id/productsAdderTitleTextView"
+        app:layout_constraintTop_toTopOf="@+id/productsAdderEditTextsHorizontalGuideline">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/productsAdderTextViewsMarginStart"
+            android:text="@string/productsAdderNameTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productsAdderMostTextViewsSize"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <EditText
+            android:id="@+id/nameEditTextProductsAdder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productsAdderEditTextsHeight"
+            android:background="@drawable/products_adder_edit_texts_background"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/productsAdderTextViewsMarginStart"
+            android:text="@string/productsAdderCategoriesTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productsAdderCategoriesTextViewSize"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <EditText
+            android:id="@+id/categoryEditTextProductsAdder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productsAdderEditTextsHeight"
+            android:background="@drawable/products_adder_edit_texts_background"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/productsAdderTextViewsMarginStart"
+            android:text="@string/productsAdderDescriptionTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productsAdderMostTextViewsSize"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <EditText
+            android:id="@+id/descriptionEditTextProductsAdder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productsAdderEditTextsHeight"
+            android:background="@drawable/products_adder_edit_texts_background"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/productsAdderTextViewsMarginStart"
+            android:text="@string/productsAdderPriceTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productsAdderMostTextViewsSize"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <EditText
+            android:id="@+id/priceEditTextProductsAdder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productsAdderEditTextsHeight"
+            android:background="@drawable/products_adder_edit_texts_background"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/productsAdderTextViewsMarginStart"
+            android:text="@string/productsAdderDiscountTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productsAdderMostTextViewsSize"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <EditText
+            android:id="@+id/discountEditTextProductsAdder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productsAdderEditTextsHeight"
+            android:background="@drawable/products_adder_edit_texts_background"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/productsAdderTextViewsMarginStart"
+            android:text="@string/productsAdderSizeTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productsAdderSizeTextViewTextSize"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <EditText
+            android:id="@+id/sizesEditTextProductsAdder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productsAdderEditTextsHeight"
+            android:background="@drawable/products_adder_edit_texts_background"
+            android:inputType="text"
+            android:maxLines="1" />
+
+    </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/productsAdderSelectedImagesCountTextViewString"
+            android:textSize="@dimen/productsAdderSelectedImagesCountTextViewSize"
+            android:textColor="@color/white"
+            android:textStyle="italic"
+            android:layout_marginBottom="@dimen/productsAdderSelectedImagesCountTextViewMarginBottom"
+            app:layout_constraintStart_toStartOf="@+id/productsAdderAddImagesButton"
+            app:layout_constraintEnd_toEndOf="@+id/productsAdderAddImagesButton"
+            app:layout_constraintBottom_toTopOf="@+id/productsAdderAddImagesButton"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/productsAdderAddImagesButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/productsAdderSetImagesButtonTextString"
+            android:textStyle="bold"
+            android:textSize="@dimen/productsAdderSetImagesButtonTextSize"
+            android:textAllCaps="false"
+            android:background="@drawable/products_adder_set_images_button_background"
+            app:layout_constraintEnd_toEndOf="@+id/productsAdderEditTextsLinearLayout"
+            app:layout_constraintStart_toStartOf="@+id/productsAdderEditTextsLinearLayout"
+            app:layout_constraintTop_toTopOf="@+id/productsAdderAddButtonsTopHorizontalGuideline"
+            app:layout_constraintBottom_toBottomOf="@+id/productsAdderAddButtonsBottomHorizontalGuideline"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderEditTextsHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.13" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderAddButtonsTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.79" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderAddButtonsBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.84" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
