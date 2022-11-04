@@ -83,4 +83,5 @@
     <fraction name="animationPointMinus100percent">-100%</fraction>
     <integer name="animationDuration300milliseconds">300</integer>
     <integer name="animationDuration400milliseconds">400</integer>
+    <dimen name="appMainCategoryFragmentTitleTextViewSize">27sp</dimen>
 </resources>
