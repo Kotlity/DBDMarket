@@ -15,16 +15,18 @@
         android:theme="@style/Theme.DBDMarket"
         tools:targetApi="31">
         <activity
-            android:name=".ProductsAdderActivity"
-            android:exported="false" />
-        <activity
-            android:name=".screens.activities.MarketActivity"
+            android:name=".helpers.products_adder.screen.ProductsAdderActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".screens.activities.MarketActivity"
+            android:exported="true">
+
         </activity>
         <activity
             android:name=".screens.activities.LoginRegisterActivity"

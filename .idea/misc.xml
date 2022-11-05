@@ -17,6 +17,7 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/bottom_navigation_item_selector.xml" value="0.3035" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/bottom_navigation_view_background.xml" value="0.3035" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/dialog_custom_background.xml" value="0.1895" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_add_icon.xml" value="0.238" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_cart_icon.xml" value="0.3035" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_done_icon.xml" value="0.1895" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_email_icon.xml" value="0.19" />
@@ -69,6 +70,7 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/special_rv_item.xml" value="0.3875" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/toast_custom_layout.xml" value="0.264" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.38645833333333335" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/menu/products_adder_toolbar_menu.xml" value="0.3875" />
       </map>
     </option>
   </component>

@@ -7,6 +7,17 @@
     android:background="@color/dark_grey"
     tools:context=".helpers.products_adder.screen.ProductsAdderActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/productsAdderToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/light_red"
+        app:title="@string/productsAdderToolbarTitleString"
+        app:titleTextColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <TextView
         android:id="@+id/productsAdderTitleTextView"
         android:layout_width="wrap_content"
@@ -18,7 +29,7 @@
         android:textSize="@dimen/productsAdderTitleTextViewSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/productsAdderToolbar"/>
 
     <LinearLayout
         android:id="@+id/productsAdderEditTextsLinearLayout"
@@ -48,7 +59,8 @@
             android:layout_height="@dimen/productsAdderEditTextsHeight"
             android:background="@drawable/products_adder_edit_texts_background"
             android:inputType="text"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:paddingStart="10dp"/>
 
         <View
             android:layout_width="0dp"
@@ -118,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/productsAdderEditTextsHeight"
             android:background="@drawable/products_adder_edit_texts_background"
-            android:inputType="text"
+            android:inputType="number"
             android:maxLines="1" />
 
         <TextView
@@ -139,7 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/productsAdderEditTextsHeight"
             android:background="@drawable/products_adder_edit_texts_background"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:maxLines="1" />
 
         <View
@@ -200,20 +212,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.13" />
+        app:layout_constraintGuide_percent="0.18" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/productsAdderAddButtonsTopHorizontalGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.79" />
+        app:layout_constraintGuide_percent="0.85" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/productsAdderAddButtonsBottomHorizontalGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.84" />
+        app:layout_constraintGuide_percent="0.90" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
