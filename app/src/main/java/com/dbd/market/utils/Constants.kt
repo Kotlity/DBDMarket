@@ -23,4 +23,43 @@ object Constants {
 
     const val SUCCESSFULLY_ACCOUNT_LOGIN_TOAST_MESSAGE = "You have successfully logged in"
     const val SUCCESSFULLY_CREATED_A_NEW_ACCOUNT_TOAST_MESSAGE = "You have successfully created a new account, now sign in"
+
+    const val PRODUCT_NAME_IS_EMPTY = "The product's name cannot be empty"
+    const val PRODUCT_CATEGORY_IS_EMPTY = "The product's category cannot be empty"
+    const val PRODUCT_DESCRIPTION_IS_EMPTY = "The product's description cannot be empty"
+    const val PRODUCT_PRICE_IS_EMPTY = "The product's price cannot be empty"
+    const val PRODUCT_SIZE_IS_EMPTY = "The product's size cannot be empty"
+
+    const val PRODUCT_NAME_MAX_LENGTH = 50
+    const val PRODUCT_CATEGORY_MAX_LENGTH = 40
+    const val PRODUCT_DESCRIPTION_MAX_LENGTH = 200
+    const val PRODUCT_PRICE_MAX_LENGTH = 5
+    const val PRODUCT_DISCOUNT_MAX_LENGTH = 4
+    const val PRODUCT_SIZE_MAX_LENGTH = 4
+
+    const val PRODUCT_DISCOUNT_MAX_VALUE = 1.0
+
+    const val PRODUCT_NAME_WRONG_LENGTH = "The product's name cannot be more than 50 characters"
+    const val PRODUCT_CATEGORY_WRONG_LENGTH = "The product's category cannot be more than 40 characters"
+    const val PRODUCT_DESCRIPTION_WRONG_LENGTH = "The product's description cannot be more than 200 characters"
+    const val PRODUCT_PRICE_WRONG_LENGTH = "The product's price cannot be more than 99999$"
+    const val PRODUCT_DISCOUNT_WRONG_LENGTH = "The product's discount cannot be more than 4 characters"
+    const val PRODUCT_SIZE_WRONG_LENGTH = "The product's size cannot be more than 15 characters"
+
+    const val WRONG_PRODUCT_CATEGORY_FORMAT = "Wrong format of the product's category"
+    const val PRODUCT_CATEGORY_CONTAINS_DIGITS = "The product's category cannot contains digits"
+    const val PRODUCT_SIZE_CONTAINS_DIGITS = "The product's size cannot contains digits"
+    const val PRODUCT_SIZE_CONTAINS_LOWERCASE = "The product's size cannot contains lowercase"
+    const val PRODUCT_DISCOUNT_WRONG_MAX_VALUE = "The product's discount cannot be more than 0.99 percent"
+    const val PRODUCT_PRICE_CONTAINS_SPACE = "The product's price cannot contains spaces"
+    const val PRODUCT_PRICE_CONTAINS_WRONG_INPUT = "The product's price should contains only digits"
+    const val PRODUCT_DISCOUNT_CONTAINS_SPACE = "The product's discount cannot contains spaces"
+    const val PRODUCT_DISCOUNT_WRONG_FIRST_CHAR = "The product's discount should starts with 0"
+    const val PRODUCT_DISCOUNT_WRONG_SECOND_CHAR = "The product's discount should contains . after 0"
+
+    const val PRODUCT_NAME_STARTS_WITH_LOWERCASE = "The product's name cannot starts with lowercase"
+    const val PRODUCT_DESCRIPTION_STARTS_WITH_LOWERCASE = "The product's description cannot starts with lowercase"
+
+    const val PRODUCT_NAME_STARTS_WITH_DIGIT = "The product's name cannot starts with a digit"
+    const val PRODUCT_DESCRIPTION_STARTS_WITH_DIGIT = "The product's description cannot starts with a digit"
 }

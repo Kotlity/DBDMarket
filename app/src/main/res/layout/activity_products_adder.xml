@@ -60,7 +60,7 @@
             android:background="@drawable/products_adder_edit_texts_background"
             android:inputType="text"
             android:maxLines="1"
-            android:paddingStart="10dp"/>
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart"/>
 
         <View
             android:layout_width="0dp"
@@ -85,7 +85,8 @@
             android:layout_height="@dimen/productsAdderEditTextsHeight"
             android:background="@drawable/products_adder_edit_texts_background"
             android:inputType="text"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -106,7 +107,8 @@
             android:layout_height="@dimen/productsAdderEditTextsHeight"
             android:background="@drawable/products_adder_edit_texts_background"
             android:inputType="text"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart"/>
 
         <View
             android:layout_width="0dp"
@@ -130,8 +132,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/productsAdderEditTextsHeight"
             android:background="@drawable/products_adder_edit_texts_background"
-            android:inputType="number"
-            android:maxLines="1" />
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -152,7 +155,9 @@
             android:layout_height="@dimen/productsAdderEditTextsHeight"
             android:background="@drawable/products_adder_edit_texts_background"
             android:inputType="numberDecimal"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart"
+            android:importantForAutofill="no" />
 
         <View
             android:layout_width="0dp"
@@ -172,12 +177,13 @@
             android:layout_height="@dimen/productsAdderSpaceHeight" />
 
         <EditText
-            android:id="@+id/sizesEditTextProductsAdder"
+            android:id="@+id/sizeEditTextProductsAdder"
             android:layout_width="match_parent"
             android:layout_height="@dimen/productsAdderEditTextsHeight"
             android:background="@drawable/products_adder_edit_texts_background"
             android:inputType="text"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart" />
 
     </LinearLayout>
 

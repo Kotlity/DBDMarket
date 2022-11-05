@@ -99,4 +99,5 @@
     <dimen name="productsAdderSetImagesButtonBackgroundStrokeWidth">3dp</dimen>
     <dimen name="productsAdderEditTextsBackgroundCornersRadius">10dp</dimen>
     <dimen name="productsAdderEditTextsBackgroundStrokeWidth">2dp</dimen>
+    <dimen name="productAdderTextInEditTextsPaddingStart">10dp</dimen>
 </resources>
