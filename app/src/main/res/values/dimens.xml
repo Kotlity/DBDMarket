@@ -44,7 +44,7 @@
     <dimen name="appResetPasswordTitleDialogTextSize">25sp</dimen>
     <dimen name="appResetPasswordDescriptionDialogTextSize">15sp</dimen>
     <dimen name="appLoginRegisterButtonStrokeWidth">1dp</dimen>
-    <dimen name="appCancelSendButtonsDialogStrokeWidth">2dp</dimen>
+    <dimen name="appCancelAndApplyButtonsDialogStrokeWidth">2dp</dimen>
     <dimen name="appCancelSendButtonsDialogTextSize">18sp</dimen>
     <dimen name="appCancelSendDialogButtonsLinearLayoutPaddingHorizontal">30dp</dimen>
     <dimen name="horizontalSpaceBetweenCancelAndSendDialogButtons">20dp</dimen>
@@ -94,10 +94,12 @@
     <dimen name="productsAdderSizeTextViewTextSize">15sp</dimen>
     <dimen name="productsAdderSelectedImagesCountTextViewSize">16sp</dimen>
     <dimen name="productsAdderSelectedImagesCountTextViewMarginBottom">10dp</dimen>
-    <dimen name="productsAdderImagesButtonTextSize">16sp</dimen>
-    <dimen name="productsAdderImagesButtonBackgroundCornersRadius">10dp</dimen>
-    <dimen name="productsAdderImagesButtonBackgroundStrokeWidth">3dp</dimen>
+    <dimen name="productsAdderImagesButtonsTextSize">16sp</dimen>
+    <dimen name="productsAdderImagesButtonsBackgroundCornersRadius">10dp</dimen>
+    <dimen name="productsAdderImagesButtonsBackgroundStrokeWidth">3dp</dimen>
     <dimen name="productsAdderEditTextsBackgroundCornersRadius">10dp</dimen>
     <dimen name="productsAdderEditTextsBackgroundStrokeWidth">2dp</dimen>
     <dimen name="productAdderTextInEditTextsPaddingStart">10dp</dimen>
+    <dimen name="customAlertDialogTitleTextSize">25sp</dimen>
+    <dimen name="customAlertDialogMessageTextSize">18sp</dimen>
 </resources>

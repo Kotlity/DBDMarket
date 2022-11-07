@@ -206,33 +206,64 @@
             android:layout_height="0dp"
             android:text="@string/productsAdderAddImagesButtonTextString"
             android:textStyle="bold"
-            android:textSize="@dimen/productsAdderImagesButtonTextSize"
+            android:textSize="@dimen/productsAdderImagesButtonsTextSize"
             android:textAllCaps="false"
             android:background="@drawable/products_adder_add_images_button_background"
             app:layout_constraintEnd_toEndOf="@+id/productsAdderEditTextsLinearLayout"
             app:layout_constraintStart_toStartOf="@+id/productsAdderEditTextsLinearLayout"
-            app:layout_constraintTop_toTopOf="@+id/productsAdderAddButtonsTopHorizontalGuideline"
-            app:layout_constraintBottom_toBottomOf="@+id/productsAdderAddButtonsBottomHorizontalGuideline"/>
+            app:layout_constraintTop_toTopOf="@+id/productsAdderAddImagesButtonTopHorizontalGuideline"
+            app:layout_constraintBottom_toBottomOf="@+id/productsAdderAddImagesButtonBottomHorizontalGuideline"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/productsDeleteAllImagesButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/productsAdderDeleteAllImagesButtonTextString"
+            android:textStyle="bold"
+            android:textSize="@dimen/productsAdderImagesButtonsTextSize"
+            android:textAllCaps="false"
+            android:background="@drawable/products_adder_delete_all_images_button_background"
+            app:layout_constraintStart_toStartOf="@+id/productsAdderAddImagesButton"
+            app:layout_constraintTop_toTopOf="@+id/productsAdderDeleteAllImagesButtonTopHorizontalGuideline"
+            app:layout_constraintEnd_toEndOf="@+id/productsAdderAddImagesButton"
+            app:layout_constraintBottom_toBottomOf="@+id/productsAdderDeleteAllImagesButtonBottomHorizontalGuideline"/>
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/productsAdderEditTextsHorizontalGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.18" />
+        app:layout_constraintGuide_percent="0.16" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/productsAdderAddButtonsTopHorizontalGuideline"
+        android:id="@+id/productsAdderAddImagesButtonTopHorizontalGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.85" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/productsAdderAddButtonsBottomHorizontalGuideline"
+        android:id="@+id/productsAdderAddImagesButtonBottomHorizontalGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderDeleteAllImagesButtonTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderDeleteAllImagesButtonBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.97" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

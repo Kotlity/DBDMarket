@@ -106,7 +106,7 @@ class LoginFragment : Fragment() {
 
     private fun resetPasswordViaEmail() {
         binding.forgotPasswordLinkTextView.setOnClickListener {
-            showDialog(
+            showDialogForResettingPassword(
                 requireActivity(),
                 getString(R.string.resetPasswordTitleDialogTextViewString),
                 getString(R.string.resetPasswordDescriptionDialogTextViewString),

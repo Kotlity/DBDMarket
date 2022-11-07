@@ -24,12 +24,17 @@ import com.dbd.market.databinding.ActivityProductsAdderBinding
 import com.dbd.market.helpers.products_adder.data.Product
 import com.dbd.market.helpers.products_adder.viewmodel.ProductsAdderViewModel
 import com.dbd.market.utils.Constants.ALERT_DIALOG_PERMISSION_RATIONALE_TITLE
+import com.dbd.market.utils.Constants.DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_MESSAGE
+import com.dbd.market.utils.Constants.DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_TITLE
+import com.dbd.market.utils.Constants.IMAGES_ARE_NOT_SELECTED
 import com.dbd.market.utils.Constants.PERMISSION_HAS_DENIED
 import com.dbd.market.utils.Constants.PERMISSION_TITLE
 import com.dbd.market.utils.Constants.PRODUCT_SUCCESSFULLY_ADDED
 import com.dbd.market.utils.Constants.REQUEST_CODE_SELECT_IMAGES
 import com.dbd.market.utils.Constants.REQUEST_CODE_STORAGE_PERMISSION
+import com.dbd.market.utils.Constants.SUCCESSFULLY_DELETED_ALL_TAKEN_IMAGES
 import com.dbd.market.utils.ValidationStatus
+import com.dbd.market.utils.showCustomAlertDialog
 import com.dbd.market.utils.showToast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,6 +54,7 @@ class ProductsAdderActivity : AppCompatActivity() {
         setContentView(binding.root)
         initializationToolbar()
         takeImagesFromGallery(Manifest.permission.READ_EXTERNAL_STORAGE)
+        deleteAllImages()
         observeRegisterValidationEditTextsStateAndProductsAdderToastState()
     }
 
@@ -74,7 +80,7 @@ class ProductsAdderActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 when {
                     ContextCompat.checkSelfPermission(applicationContext, permission) == PackageManager.PERMISSION_GRANTED -> launchIntentForTakingImagesFromGallery()
-                    shouldShowRequestPermissionRationale(permission) -> showDialog(permission)
+                    shouldShowRequestPermissionRationale(permission) -> { showDialog(permission) }
                     else -> ActivityCompat.requestPermissions(this, arrayOf(permission), REQUEST_CODE_STORAGE_PERMISSION)
                 }
             }
@@ -92,8 +98,9 @@ class ProductsAdderActivity : AppCompatActivity() {
     private fun showDialog(permission: String) {
         val builder = AlertDialog.Builder(this)
         builder.apply {
-            setMessage("Permission to access your $PERMISSION_TITLE is required to take photos for the product")
+            setCancelable(false)
             setTitle(ALERT_DIALOG_PERMISSION_RATIONALE_TITLE)
+            setMessage("Permission to access your $PERMISSION_TITLE is required to take photos for the product")
             setPositiveButton("OK") { _, _ ->
                 ActivityCompat.requestPermissions(this@ProductsAdderActivity, arrayOf(permission), REQUEST_CODE_STORAGE_PERMISSION)
             }
@@ -139,6 +146,23 @@ class ProductsAdderActivity : AppCompatActivity() {
 
     private fun updateImagesSelectedCountTextView() {
         binding.productAdderImagesSelectedCountTextView.text = "Images selected: ${selectedImagesListFromGallery.size}"
+    }
+
+    private fun deleteAllImages() {
+        binding.productsDeleteAllImagesButton.setOnClickListener {
+            if (selectedImagesListFromGallery.isNotEmpty()) {
+                requestUserToDeleteAllTakenImages()
+            }
+            else showToast(this, binding.root, R.drawable.ic_error_icon, IMAGES_ARE_NOT_SELECTED)
+        }
+    }
+
+    private fun requestUserToDeleteAllTakenImages() {
+        showCustomAlertDialog(this, DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_TITLE, DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_MESSAGE) {
+            selectedImagesListFromGallery.clear()
+            updateImagesSelectedCountTextView()
+            showToast(this, binding.root, R.drawable.ic_done_icon, SUCCESSFULLY_DELETED_ALL_TAKEN_IMAGES)
+        }
     }
 
     private fun addNewProduct() {

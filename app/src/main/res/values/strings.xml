@@ -60,6 +60,9 @@
     <string name="productsAdderSizeTextViewString">The product\'s size(can be several sizes, ex: L,XL,XXL</string>
     <string name="productsAdderSelectedImagesCountTextViewString">Images selected:</string>
     <string name="productsAdderAddImagesButtonTextString">Add products images</string>
+    <string name="productsAdderDeleteAllImagesButtonTextString">Delete all products images</string>
     <string name="productsAdderToolbarIconTitleString">Add product</string>
     <string name="productsAdderToolbarTitleString">Products adder helper</string>
+    <string name="customAlertDialogCancelButtonTextString">Cancel</string>
+    <string name="customAlertDialogApplyButtonTextString">Apply</string>
 </resources>

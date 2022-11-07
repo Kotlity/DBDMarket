@@ -14,6 +14,12 @@ object Constants {
 
     const val PRODUCT_SUCCESSFULLY_ADDED = "Product successfully added"
 
+    const val DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_TITLE = "Delete all taken images"
+    const val DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_MESSAGE = "Are you sure you want to delete all taken images?"
+    const val SUCCESSFULLY_DELETED_ALL_TAKEN_IMAGES = "All taken images have successfully deleted"
+
+    const val IMAGES_ARE_NOT_SELECTED = "Images are not selected"
+
     const val FIRSTNAME_IS_EMPTY= "Firstname cannot be empty"
     const val FIRSTNAME_STARTS_WITH_LOWERCASE = "Firstname cannot starts with lowercase"
     const val FIRSTNAME_STARTS_WITH_DIGIT = "Firstname cannot starts with a digit"

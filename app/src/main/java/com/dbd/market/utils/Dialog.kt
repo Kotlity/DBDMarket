@@ -1,9 +1,11 @@
 package com.dbd.market.utils
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.view.LayoutInflater
 import android.view.Window
 import android.widget.EditText
 import android.widget.TextView
@@ -11,7 +13,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import com.dbd.market.R
 
-fun Fragment.showDialog(
+fun Fragment.showDialogForResettingPassword(
     context: Context,
     title: String,
     description: String,
@@ -59,4 +61,26 @@ fun Fragment.showDialog(
         setContentView(view)
         show()
     }
+}
+
+fun showCustomAlertDialog(
+    context: Context,
+    title: String,
+    message: String,
+    onPositiveButtonClick:() -> Unit
+) {
+    val alertDialog = AlertDialog.Builder(context).create()
+    val alertDialogView = LayoutInflater.from(context).inflate(R.layout.custom_alert_dialog_layout, null)
+    alertDialog.apply {
+        setView(alertDialogView)
+        setCancelable(false)
+    }
+    alertDialogView.findViewById<TextView>(R.id.customAlertDialogTitleTextView).text = title
+    alertDialogView.findViewById<TextView>(R.id.customAlertDialogMessageTextView).text = message
+    alertDialogView.findViewById<AppCompatButton>(R.id.customAlertDialogCancelButton).setOnClickListener { alertDialog.dismiss() }
+    alertDialogView.findViewById<AppCompatButton>(R.id.customAlertDialogApplyButton).setOnClickListener {
+        onPositiveButtonClick()
+        alertDialog.dismiss()
+    }
+    alertDialog.show()
 }
