@@ -188,6 +188,7 @@
     </LinearLayout>
 
         <TextView
+            android:id="@+id/productAdderImagesSelectedCountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/productsAdderSelectedImagesCountTextViewString"
@@ -203,11 +204,11 @@
             android:id="@+id/productsAdderAddImagesButton"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="@string/productsAdderSetImagesButtonTextString"
+            android:text="@string/productsAdderAddImagesButtonTextString"
             android:textStyle="bold"
-            android:textSize="@dimen/productsAdderSetImagesButtonTextSize"
+            android:textSize="@dimen/productsAdderImagesButtonTextSize"
             android:textAllCaps="false"
-            android:background="@drawable/products_adder_set_images_button_background"
+            android:background="@drawable/products_adder_add_images_button_background"
             app:layout_constraintEnd_toEndOf="@+id/productsAdderEditTextsLinearLayout"
             app:layout_constraintStart_toStartOf="@+id/productsAdderEditTextsLinearLayout"
             app:layout_constraintTop_toTopOf="@+id/productsAdderAddButtonsTopHorizontalGuideline"

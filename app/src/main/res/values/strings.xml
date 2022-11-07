@@ -59,7 +59,7 @@
     <string name="productsAdderDiscountTextViewString">The product\'s discount(optional, ex: 0.20)</string>
     <string name="productsAdderSizeTextViewString">The product\'s size(can be several sizes, ex: L,XL,XXL</string>
     <string name="productsAdderSelectedImagesCountTextViewString">Images selected:</string>
-    <string name="productsAdderSetImagesButtonTextString">Set product\'s images</string>
+    <string name="productsAdderAddImagesButtonTextString">Add products images</string>
     <string name="productsAdderToolbarIconTitleString">Add product</string>
     <string name="productsAdderToolbarTitleString">Products adder helper</string>
 </resources>

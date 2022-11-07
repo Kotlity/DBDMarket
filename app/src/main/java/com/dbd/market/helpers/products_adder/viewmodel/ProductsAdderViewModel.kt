@@ -1,5 +1,6 @@
 package com.dbd.market.helpers.products_adder.viewmodel
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbd.market.helpers.products_adder.data.Product
@@ -19,8 +20,8 @@ class ProductsAdderViewModel: ViewModel() {
     private val _productsAdderToastState = MutableSharedFlow<Boolean>()
     val productsAdderToastState = _productsAdderToastState.asSharedFlow()
 
-    fun addProduct(product: Product) {
-        if (correctEditTextsInput(product)) {
+    fun addProduct(product: Product, imageList: List<Uri>) {
+        if (correctEditTextsInput(product, imageList)) {
             viewModelScope.launch(Dispatchers.IO) {
                 _productsAdderToastState.emit(true)
             }
@@ -30,7 +31,8 @@ class ProductsAdderViewModel: ViewModel() {
             val description = checkDescriptionEditTextInputValidation(product.description)
             val price = checkPriceEditTextInputValidation(product.price.toString())
             val size = checkSizeEditTextInputValidation(product.size)
-            val productsAdderState = AddProductFieldsState(name, category, description, price, size)
+            val imagesList = checkSelectedImageValidation(imageList)
+            val productsAdderState = AddProductFieldsState(name, category, description, price, size, imagesList)
             viewModelScope.launch(Dispatchers.IO) {
                 _productsAdderToastState.emit(false)
                 _productsAdderValidationState.emit(productsAdderState)
@@ -38,12 +40,13 @@ class ProductsAdderViewModel: ViewModel() {
         }
     }
 
-    private fun correctEditTextsInput(product: Product): Boolean {
+    private fun correctEditTextsInput(product: Product, imageList: List<Uri>): Boolean {
         return (checkNameEditTextInputValidation(product.name) is ValidationStatus.Success &&
                 checkCategoryEditTextInputValidation(product.category) is ValidationStatus.Success &&
                 checkDescriptionEditTextInputValidation(product.description) is ValidationStatus.Success &&
                 checkPriceEditTextInputValidation(product.price.toString()) is ValidationStatus.Success &&
-                checkSizeEditTextInputValidation(product.size) is ValidationStatus.Success)
+                checkSizeEditTextInputValidation(product.size) is ValidationStatus.Success &&
+                checkSelectedImageValidation(imageList) is ValidationStatus.Success)
     }
 
 }

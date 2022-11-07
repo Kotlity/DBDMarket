@@ -94,9 +94,9 @@
     <dimen name="productsAdderSizeTextViewTextSize">15sp</dimen>
     <dimen name="productsAdderSelectedImagesCountTextViewSize">16sp</dimen>
     <dimen name="productsAdderSelectedImagesCountTextViewMarginBottom">10dp</dimen>
-    <dimen name="productsAdderSetImagesButtonTextSize">16sp</dimen>
-    <dimen name="productsAdderSetImagesButtonBackgroundCornersRadius">10dp</dimen>
-    <dimen name="productsAdderSetImagesButtonBackgroundStrokeWidth">3dp</dimen>
+    <dimen name="productsAdderImagesButtonTextSize">16sp</dimen>
+    <dimen name="productsAdderImagesButtonBackgroundCornersRadius">10dp</dimen>
+    <dimen name="productsAdderImagesButtonBackgroundStrokeWidth">3dp</dimen>
     <dimen name="productsAdderEditTextsBackgroundCornersRadius">10dp</dimen>
     <dimen name="productsAdderEditTextsBackgroundStrokeWidth">2dp</dimen>
     <dimen name="productAdderTextInEditTextsPaddingStart">10dp</dimen>

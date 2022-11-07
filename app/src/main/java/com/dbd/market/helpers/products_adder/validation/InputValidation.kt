@@ -1,5 +1,6 @@
 package com.dbd.market.helpers.products_adder.validation
 
+import android.net.Uri
 import androidx.core.text.isDigitsOnly
 import com.dbd.market.utils.Constants.PRODUCT_CATEGORY_CONTAINS_DIGITS
 import com.dbd.market.utils.Constants.PRODUCT_CATEGORY_IS_EMPTY
@@ -10,13 +11,7 @@ import com.dbd.market.utils.Constants.PRODUCT_DESCRIPTION_MAX_LENGTH
 import com.dbd.market.utils.Constants.PRODUCT_DESCRIPTION_STARTS_WITH_DIGIT
 import com.dbd.market.utils.Constants.PRODUCT_DESCRIPTION_STARTS_WITH_LOWERCASE
 import com.dbd.market.utils.Constants.PRODUCT_DESCRIPTION_WRONG_LENGTH
-import com.dbd.market.utils.Constants.PRODUCT_DISCOUNT_CONTAINS_SPACE
-import com.dbd.market.utils.Constants.PRODUCT_DISCOUNT_MAX_LENGTH
-import com.dbd.market.utils.Constants.PRODUCT_DISCOUNT_MAX_VALUE
-import com.dbd.market.utils.Constants.PRODUCT_DISCOUNT_WRONG_FIRST_CHAR
-import com.dbd.market.utils.Constants.PRODUCT_DISCOUNT_WRONG_LENGTH
-import com.dbd.market.utils.Constants.PRODUCT_DISCOUNT_WRONG_MAX_VALUE
-import com.dbd.market.utils.Constants.PRODUCT_DISCOUNT_WRONG_SECOND_CHAR
+import com.dbd.market.utils.Constants.PRODUCT_IMAGE_IS_EMPTY
 import com.dbd.market.utils.Constants.PRODUCT_NAME_IS_EMPTY
 import com.dbd.market.utils.Constants.PRODUCT_NAME_MAX_LENGTH
 import com.dbd.market.utils.Constants.PRODUCT_NAME_STARTS_WITH_DIGIT
@@ -78,5 +73,10 @@ fun checkSizeEditTextInputValidation(input: List<String>): ValidationStatus {
         if (size.length > PRODUCT_SIZE_MAX_LENGTH) return ValidationStatus.Error(PRODUCT_SIZE_WRONG_LENGTH)
     }
     return if (input.isEmpty()) ValidationStatus.Error(PRODUCT_SIZE_IS_EMPTY)
+    else ValidationStatus.Success
+}
+
+fun checkSelectedImageValidation(imagesList: List<Uri>): ValidationStatus {
+    return if (imagesList.isEmpty()) ValidationStatus.Error(PRODUCT_IMAGE_IS_EMPTY)
     else ValidationStatus.Success
 }
