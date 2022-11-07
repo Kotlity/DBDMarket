@@ -5,10 +5,10 @@ object Constants {
     const val LOGCAT_TAG = "MyTag"
 
     const val REQUEST_CODE_STORAGE_PERMISSION = 1
+    const val REQUEST_CODE_SELECT_IMAGES = 2
 
     const val PERMISSION_TITLE = "Storage"
 
-    const val PERMISSION_HAS_GRANTED = "Permission has granted"
     const val PERMISSION_HAS_DENIED = "You have not allowed the app to access your storage. Please do it manually in the app settings"
     const val ALERT_DIALOG_PERMISSION_RATIONALE_TITLE = "Storage permission required"
 

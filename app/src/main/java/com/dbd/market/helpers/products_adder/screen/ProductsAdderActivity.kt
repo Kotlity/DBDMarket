@@ -1,6 +1,9 @@
 package com.dbd.market.helpers.products_adder.screen
 
 import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -22,9 +25,9 @@ import com.dbd.market.helpers.products_adder.data.Product
 import com.dbd.market.helpers.products_adder.viewmodel.ProductsAdderViewModel
 import com.dbd.market.utils.Constants.ALERT_DIALOG_PERMISSION_RATIONALE_TITLE
 import com.dbd.market.utils.Constants.PERMISSION_HAS_DENIED
-import com.dbd.market.utils.Constants.PERMISSION_HAS_GRANTED
 import com.dbd.market.utils.Constants.PERMISSION_TITLE
 import com.dbd.market.utils.Constants.PRODUCT_SUCCESSFULLY_ADDED
+import com.dbd.market.utils.Constants.REQUEST_CODE_SELECT_IMAGES
 import com.dbd.market.utils.Constants.REQUEST_CODE_STORAGE_PERMISSION
 import com.dbd.market.utils.ValidationStatus
 import com.dbd.market.utils.showToast
@@ -70,7 +73,7 @@ class ProductsAdderActivity : AppCompatActivity() {
         binding.productsAdderAddImagesButton.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 when {
-                    ContextCompat.checkSelfPermission(applicationContext, permission) == PackageManager.PERMISSION_GRANTED -> showToast(this@ProductsAdderActivity, binding.root, R.drawable.ic_done_icon, PERMISSION_HAS_GRANTED)
+                    ContextCompat.checkSelfPermission(applicationContext, permission) == PackageManager.PERMISSION_GRANTED -> launchIntentForTakingImagesFromGallery()
                     shouldShowRequestPermissionRationale(permission) -> showDialog(permission)
                     else -> ActivityCompat.requestPermissions(this, arrayOf(permission), REQUEST_CODE_STORAGE_PERMISSION)
                 }
@@ -81,7 +84,7 @@ class ProductsAdderActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_STORAGE_PERMISSION && grantResults.isNotEmpty()) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) showToast(this@ProductsAdderActivity, binding.root, R.drawable.ic_done_icon, PERMISSION_HAS_GRANTED)
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) launchIntentForTakingImagesFromGallery()
             else if (grantResults[0] == PackageManager.PERMISSION_DENIED) showToast(this@ProductsAdderActivity, binding.root, R.drawable.ic_error_icon, PERMISSION_HAS_DENIED)
         }
     }
@@ -97,6 +100,45 @@ class ProductsAdderActivity : AppCompatActivity() {
         }
         val alertDialog = builder.create()
         alertDialog.show()
+    }
+
+    @SuppressLint("QueryPermissionsNeeded")
+    private fun launchIntentForTakingImagesFromGallery() {
+        val intent = Intent()
+        intent.action = ACTION_GET_CONTENT
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGES)
+    }
+
+    @Deprecated("Deprecated in Java", ReplaceWith(
+        "super.onActivityResult(requestCode, resultCode, data)",
+        "androidx.appcompat.app.AppCompatActivity"
+    )
+    )
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_SELECT_IMAGES && resultCode == RESULT_OK) {
+            if (data?.clipData != null) {
+                val totalSelectedImagesCount = data.clipData?.itemCount ?: 0
+                (0 until totalSelectedImagesCount).forEach { imageCount ->
+                    val imageUri = data.clipData?.getItemAt(imageCount)?.uri
+                    imageUri?.let { uriOfImage ->
+                        selectedImagesListFromGallery.add(uriOfImage)
+                    }
+                }
+            } else {
+                val imageUri = data?.data
+                imageUri?.let { uri ->
+                    selectedImagesListFromGallery.add(uri)
+                }
+            }
+            updateImagesSelectedCountTextView()
+        }
+    }
+
+    private fun updateImagesSelectedCountTextView() {
+        binding.productAdderImagesSelectedCountTextView.text = "Images selected: ${selectedImagesListFromGallery.size}"
     }
 
     private fun addNewProduct() {
