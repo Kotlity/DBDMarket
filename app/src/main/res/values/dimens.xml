@@ -102,4 +102,5 @@
     <dimen name="productAdderTextInEditTextsPaddingStart">10dp</dimen>
     <dimen name="customAlertDialogTitleTextSize">25sp</dimen>
     <dimen name="customAlertDialogMessageTextSize">18sp</dimen>
+    <dimen name="selectedImagesRecyclerViewMarginVertical">5dp</dimen>
 </resources>

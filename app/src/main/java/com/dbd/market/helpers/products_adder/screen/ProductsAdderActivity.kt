@@ -19,9 +19,12 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dbd.market.R
 import com.dbd.market.databinding.ActivityProductsAdderBinding
+import com.dbd.market.helpers.products_adder.adapter.ProductsAdderAdapter
 import com.dbd.market.helpers.products_adder.data.Product
+import com.dbd.market.helpers.products_adder.data.SelectedImage
 import com.dbd.market.helpers.products_adder.viewmodel.ProductsAdderViewModel
 import com.dbd.market.utils.Constants.ALERT_DIALOG_PERMISSION_RATIONALE_TITLE
 import com.dbd.market.utils.Constants.DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_MESSAGE
@@ -47,6 +50,8 @@ class ProductsAdderActivity : AppCompatActivity() {
     private lateinit var product: Product
     private val productsAdderViewModel by viewModels<ProductsAdderViewModel>()
     private var selectedImagesListFromGallery = mutableListOf<Uri>()
+    private var selectedImagesList = mutableListOf<SelectedImage>()
+    private lateinit var productsAdderAdapter: ProductsAdderAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +59,7 @@ class ProductsAdderActivity : AppCompatActivity() {
         setContentView(binding.root)
         initializationToolbar()
         takeImagesFromGallery(Manifest.permission.READ_EXTERNAL_STORAGE)
+        setupSelectedImagesRecyclerView()
         deleteAllImages()
         observeRegisterValidationEditTextsStateAndProductsAdderToastState()
     }
@@ -127,20 +133,41 @@ class ProductsAdderActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_SELECT_IMAGES && resultCode == RESULT_OK) {
             if (data?.clipData != null) {
-                val totalSelectedImagesCount = data.clipData?.itemCount ?: 0
-                (0 until totalSelectedImagesCount).forEach { imageCount ->
+                val listOfSelectedImages = data.clipData?.itemCount ?: 0
+                (0 until listOfSelectedImages).forEach { imageCount ->
                     val imageUri = data.clipData?.getItemAt(imageCount)?.uri
                     imageUri?.let { uriOfImage ->
                         selectedImagesListFromGallery.add(uriOfImage)
+                        selectedImagesList.add(SelectedImage(imageCount, uriOfImage))
                     }
+                    updateDataFromAdapter()
                 }
             } else {
                 val imageUri = data?.data
                 imageUri?.let { uri ->
                     selectedImagesListFromGallery.add(uri)
+                    selectedImagesList.add(SelectedImage(0, uri))
                 }
+                updateDataFromAdapter()
             }
             updateImagesSelectedCountTextView()
+        }
+    }
+
+    private fun setupSelectedImagesRecyclerView() {
+        productsAdderAdapter = ProductsAdderAdapter()
+        binding.apply {
+            selectedImagesRecyclerView.apply {
+                adapter = productsAdderAdapter
+                layoutManager = LinearLayoutManager(this@ProductsAdderActivity, LinearLayoutManager.HORIZONTAL, false)
+            }
+        }
+    }
+
+    private fun updateDataFromAdapter() {
+        productsAdderAdapter.apply {
+            differ.submitList(selectedImagesList)
+            notifyDataSetChanged()
         }
     }
 
@@ -160,6 +187,8 @@ class ProductsAdderActivity : AppCompatActivity() {
     private fun requestUserToDeleteAllTakenImages() {
         showCustomAlertDialog(this, DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_TITLE, DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_MESSAGE) {
             selectedImagesListFromGallery.clear()
+            selectedImagesList.clear()
+            updateDataFromAdapter()
             updateImagesSelectedCountTextView()
             showToast(this, binding.root, R.drawable.ic_done_icon, SUCCESSFULLY_DELETED_ALL_TAKEN_IMAGES)
         }

@@ -12,11 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/light_red"
-        app:title="@string/productsAdderToolbarTitleString"
-        app:titleTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:title="@string/productsAdderToolbarTitleString"
+        app:titleTextColor="@color/white" />
 
     <TextView
         android:id="@+id/productsAdderTitleTextView"
@@ -29,7 +29,7 @@
         android:textSize="@dimen/productsAdderTitleTextViewSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productsAdderToolbar"/>
+        app:layout_constraintTop_toBottomOf="@+id/productsAdderToolbar" />
 
     <LinearLayout
         android:id="@+id/productsAdderEditTextsLinearLayout"
@@ -60,7 +60,7 @@
             android:background="@drawable/products_adder_edit_texts_background"
             android:inputType="text"
             android:maxLines="1"
-            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart"/>
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart" />
 
         <View
             android:layout_width="0dp"
@@ -86,7 +86,7 @@
             android:background="@drawable/products_adder_edit_texts_background"
             android:inputType="text"
             android:maxLines="1"
-            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart"/>
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -108,7 +108,7 @@
             android:background="@drawable/products_adder_edit_texts_background"
             android:inputType="text"
             android:maxLines="1"
-            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart"/>
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart" />
 
         <View
             android:layout_width="0dp"
@@ -134,7 +134,7 @@
             android:background="@drawable/products_adder_edit_texts_background"
             android:inputType="numberDecimal"
             android:maxLines="1"
-            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart"/>
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -154,10 +154,10 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/productsAdderEditTextsHeight"
             android:background="@drawable/products_adder_edit_texts_background"
+            android:importantForAutofill="no"
             android:inputType="numberDecimal"
             android:maxLines="1"
-            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart"
-            android:importantForAutofill="no" />
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart" />
 
         <View
             android:layout_width="0dp"
@@ -187,46 +187,56 @@
 
     </LinearLayout>
 
-        <TextView
-            android:id="@+id/productAdderImagesSelectedCountTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/productsAdderSelectedImagesCountTextViewString"
-            android:textSize="@dimen/productsAdderSelectedImagesCountTextViewSize"
-            android:textColor="@color/white"
-            android:textStyle="italic"
-            android:layout_marginBottom="@dimen/productsAdderSelectedImagesCountTextViewMarginBottom"
-            app:layout_constraintStart_toStartOf="@+id/productsAdderAddImagesButton"
-            app:layout_constraintEnd_toEndOf="@+id/productsAdderAddImagesButton"
-            app:layout_constraintBottom_toTopOf="@+id/productsAdderAddImagesButton"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/selectedImagesRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/selectedImagesRecyclerViewMarginVertical"
+        app:layout_constraintStart_toStartOf="@+id/productsAdderSelectedImagesRecyclerViewLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/productsAdderEditTextsLinearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/productsAdderSelectedImagesRecyclerViewRightGuideline"
+        app:layout_constraintBottom_toTopOf="@+id/productAdderImagesSelectedCountTextView"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/productsAdderAddImagesButton"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@string/productsAdderAddImagesButtonTextString"
-            android:textStyle="bold"
-            android:textSize="@dimen/productsAdderImagesButtonsTextSize"
-            android:textAllCaps="false"
-            android:background="@drawable/products_adder_add_images_button_background"
-            app:layout_constraintEnd_toEndOf="@+id/productsAdderEditTextsLinearLayout"
-            app:layout_constraintStart_toStartOf="@+id/productsAdderEditTextsLinearLayout"
-            app:layout_constraintTop_toTopOf="@+id/productsAdderAddImagesButtonTopHorizontalGuideline"
-            app:layout_constraintBottom_toBottomOf="@+id/productsAdderAddImagesButtonBottomHorizontalGuideline"/>
+    <TextView
+        android:id="@+id/productAdderImagesSelectedCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/productsAdderSelectedImagesCountTextViewMarginBottom"
+        android:text="@string/productsAdderSelectedImagesCountTextViewString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/productsAdderSelectedImagesCountTextViewSize"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/productsAdderAddImagesButton"
+        app:layout_constraintEnd_toEndOf="@+id/productsAdderAddImagesButton"
+        app:layout_constraintStart_toStartOf="@+id/productsAdderAddImagesButton" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/productsDeleteAllImagesButton"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@string/productsAdderDeleteAllImagesButtonTextString"
-            android:textStyle="bold"
-            android:textSize="@dimen/productsAdderImagesButtonsTextSize"
-            android:textAllCaps="false"
-            android:background="@drawable/products_adder_delete_all_images_button_background"
-            app:layout_constraintStart_toStartOf="@+id/productsAdderAddImagesButton"
-            app:layout_constraintTop_toTopOf="@+id/productsAdderDeleteAllImagesButtonTopHorizontalGuideline"
-            app:layout_constraintEnd_toEndOf="@+id/productsAdderAddImagesButton"
-            app:layout_constraintBottom_toBottomOf="@+id/productsAdderDeleteAllImagesButtonBottomHorizontalGuideline"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/productsAdderAddImagesButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/products_adder_add_images_button_background"
+        android:text="@string/productsAdderAddImagesButtonTextString"
+        android:textAllCaps="false"
+        android:textSize="@dimen/productsAdderImagesButtonsTextSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/productsAdderAddImagesButtonBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/productsAdderEditTextsLinearLayout"
+        app:layout_constraintStart_toStartOf="@+id/productsAdderEditTextsLinearLayout"
+        app:layout_constraintTop_toTopOf="@+id/productsAdderAddImagesButtonTopHorizontalGuideline" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/productsDeleteAllImagesButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/products_adder_delete_all_images_button_background"
+        android:text="@string/productsAdderDeleteAllImagesButtonTextString"
+        android:textAllCaps="false"
+        android:textSize="@dimen/productsAdderImagesButtonsTextSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/productsAdderDeleteAllImagesButtonBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/productsAdderAddImagesButton"
+        app:layout_constraintStart_toStartOf="@+id/productsAdderAddImagesButton"
+        app:layout_constraintTop_toTopOf="@+id/productsAdderDeleteAllImagesButtonTopHorizontalGuideline" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -264,6 +274,19 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.97" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderSelectedImagesRecyclerViewLeftGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderSelectedImagesRecyclerViewRightGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.80" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
