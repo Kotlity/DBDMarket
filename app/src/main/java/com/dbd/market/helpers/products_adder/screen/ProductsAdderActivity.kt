@@ -5,12 +5,15 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
@@ -39,19 +42,30 @@ import com.dbd.market.utils.Constants.SUCCESSFULLY_DELETED_ALL_TAKEN_IMAGES
 import com.dbd.market.utils.ValidationStatus
 import com.dbd.market.utils.showCustomAlertDialog
 import com.dbd.market.utils.showToast
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.StorageReference
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.io.ByteArrayOutputStream
+import java.lang.Exception
 import java.util.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ProductsAdderActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProductsAdderBinding
     private lateinit var productsAdderToolbar: Toolbar
-    private lateinit var product: Product
     private val productsAdderViewModel by viewModels<ProductsAdderViewModel>()
     private var selectedImagesListFromGallery = mutableListOf<Uri>()
-    private var selectedImagesList = mutableListOf<SelectedImage>()
+    private var selectedImagesListForRecyclerView = mutableListOf<SelectedImage>()
     private lateinit var productsAdderAdapter: ProductsAdderAdapter
+
+    @Inject lateinit var firebaseStorage: StorageReference
+    @Inject lateinit var firebaseFirestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -138,7 +152,7 @@ class ProductsAdderActivity : AppCompatActivity() {
                     val imageUri = data.clipData?.getItemAt(imageCount)?.uri
                     imageUri?.let { uriOfImage ->
                         selectedImagesListFromGallery.add(uriOfImage)
-                        selectedImagesList.add(SelectedImage(imageCount, uriOfImage))
+                        selectedImagesListForRecyclerView.add(SelectedImage(imageCount, uriOfImage))
                     }
                     updateDataFromAdapter()
                 }
@@ -146,7 +160,7 @@ class ProductsAdderActivity : AppCompatActivity() {
                 val imageUri = data?.data
                 imageUri?.let { uri ->
                     selectedImagesListFromGallery.add(uri)
-                    selectedImagesList.add(SelectedImage(0, uri))
+                    selectedImagesListForRecyclerView.add(SelectedImage(0, uri))
                 }
                 updateDataFromAdapter()
             }
@@ -166,7 +180,7 @@ class ProductsAdderActivity : AppCompatActivity() {
 
     private fun updateDataFromAdapter() {
         productsAdderAdapter.apply {
-            differ.submitList(selectedImagesList)
+            differ.submitList(selectedImagesListForRecyclerView)
             notifyDataSetChanged()
         }
     }
@@ -187,7 +201,7 @@ class ProductsAdderActivity : AppCompatActivity() {
     private fun requestUserToDeleteAllTakenImages() {
         showCustomAlertDialog(this, DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_TITLE, DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_MESSAGE) {
             selectedImagesListFromGallery.clear()
-            selectedImagesList.clear()
+            selectedImagesListForRecyclerView.clear()
             updateDataFromAdapter()
             updateImagesSelectedCountTextView()
             showToast(this, binding.root, R.drawable.ic_done_icon, SUCCESSFULLY_DELETED_ALL_TAKEN_IMAGES)
@@ -195,16 +209,70 @@ class ProductsAdderActivity : AppCompatActivity() {
     }
 
     private fun addNewProduct() {
-        binding.apply {
-            val name = nameEditTextProductsAdder.text.toString().trim()
-            val category = categoryEditTextProductsAdder.text.toString().trim()
-            val description = descriptionEditTextProductsAdder.text.toString().trim()
-            val price = priceEditTextProductsAdder.text.toString().trim()
-            val discount = discountEditTextProductsAdder.text.toString().trim()
-            val size = getProductSizesList(sizeEditTextProductsAdder.text.toString())
-            product = Product(UUID.randomUUID().toString(), name, category, description, price.toInt(), if (discount.isEmpty()) null else discount.toFloat(), size)
+        val name = binding.nameEditTextProductsAdder.text.toString().trim()
+        val category = binding.categoryEditTextProductsAdder.text.toString().trim()
+        val description = binding.descriptionEditTextProductsAdder.text.toString().trim()
+        val price = binding.priceEditTextProductsAdder.text.toString().trim()
+        val discount = binding.discountEditTextProductsAdder.text.toString().trim()
+        val size = getProductSizesList(binding.sizeEditTextProductsAdder.text.toString())
+        val selectedImagesByteArrayList = convertSelectedImagesToByteArrayList()
+        val imagesListToSaveItToFirebaseFirestore = mutableListOf<String>()
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
+                showProgressBar()
+            }
+            try {
+                async {
+                    selectedImagesByteArrayList.forEach { byteArray ->
+                        val id = UUID.randomUUID().toString()
+                        launch {
+                            val imagePath = firebaseStorage.child("products/images/$id")
+                            val uploadResult = imagePath.putBytes(byteArray).await()
+                            val downloadImageUrl = uploadResult.storage.downloadUrl.await().toString()
+                            imagesListToSaveItToFirebaseFirestore.add(downloadImageUrl)
+                        }
+                    }
+                }.await()
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    hideProgressBar()
+                    showToast(this@ProductsAdderActivity, binding.root, R.drawable.ic_error_icon, e.stackTraceToString())
+                }
+            }
+            val product = Product(UUID.randomUUID().toString(), name, category, description, price.toInt(), if (discount.isEmpty()) null else discount.toFloat(), size, imagesListToSaveItToFirebaseFirestore)
+            firebaseFirestore.collection("Products").add(product).addOnSuccessListener {
+                hideProgressBar()
+            }.addOnFailureListener { exception ->
+                hideProgressBar()
+                showToast(this@ProductsAdderActivity, binding.root, R.drawable.ic_error_icon, exception.message.toString())
+            }
+            productsAdderViewModel.addProduct(product, imagesListToSaveItToFirebaseFirestore)
         }
-        productsAdderViewModel.addProduct(product, selectedImagesListFromGallery)
+    }
+
+    private fun getProductSizesList(size: String): List<String> {
+        return size.split(",")
+    }
+
+    private fun convertSelectedImagesToByteArrayList(): List<ByteArray> {
+        val listOfByteArrayImages = mutableListOf<ByteArray>()
+        selectedImagesListFromGallery.forEach { uri ->
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            val imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+            if (imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)) {
+                listOfByteArrayImages.add(byteArrayOutputStream.toByteArray())
+            }
+        }
+        return listOfByteArrayImages
+    }
+
+    private fun showProgressBar() {
+        binding.productsAdderProgressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        binding.productsAdderProgressBar.visibility = View.GONE
     }
 
     private fun observeRegisterValidationEditTextsStateAndProductsAdderToastState() {
@@ -273,10 +341,6 @@ class ProductsAdderActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun getProductSizesList(size: String): List<String> {
-        return size.split(",")
     }
 
 }

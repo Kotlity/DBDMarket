@@ -7,5 +7,6 @@ data class Product(
     val description: String,
     val price: Int,
     val discount: Float? = null,
-    val size: List<String>
+    val size: List<String>,
+    val images: List<String>
 )

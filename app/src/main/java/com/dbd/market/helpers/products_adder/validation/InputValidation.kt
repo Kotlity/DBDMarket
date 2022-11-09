@@ -76,7 +76,7 @@ fun checkSizeEditTextInputValidation(input: List<String>): ValidationStatus {
     else ValidationStatus.Success
 }
 
-fun checkSelectedImageValidation(imagesList: List<Uri>): ValidationStatus {
+fun checkSelectedImageValidation(imagesList: List<String>): ValidationStatus {
     return if (imagesList.isEmpty()) ValidationStatus.Error(PRODUCT_IMAGE_IS_EMPTY)
     else ValidationStatus.Success
 }

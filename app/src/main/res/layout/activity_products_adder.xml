@@ -238,6 +238,19 @@
         app:layout_constraintStart_toStartOf="@+id/productsAdderAddImagesButton"
         app:layout_constraintTop_toTopOf="@+id/productsAdderDeleteAllImagesButtonTopHorizontalGuideline" />
 
+    <ProgressBar
+        android:id="@+id/productsAdderProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/red"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/productsAdderEditTextsHorizontalGuideline"

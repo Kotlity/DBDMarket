@@ -20,7 +20,7 @@ class ProductsAdderViewModel: ViewModel() {
     private val _productsAdderToastState = MutableSharedFlow<Boolean>()
     val productsAdderToastState = _productsAdderToastState.asSharedFlow()
 
-    fun addProduct(product: Product, imageList: List<Uri>) {
+    fun addProduct(product: Product, imageList: List<String>) {
         if (correctEditTextsInput(product, imageList)) {
             viewModelScope.launch(Dispatchers.IO) {
                 _productsAdderToastState.emit(true)
@@ -40,7 +40,7 @@ class ProductsAdderViewModel: ViewModel() {
         }
     }
 
-    private fun correctEditTextsInput(product: Product, imageList: List<Uri>): Boolean {
+    private fun correctEditTextsInput(product: Product, imageList: List<String>): Boolean {
         return (checkNameEditTextInputValidation(product.name) is ValidationStatus.Success &&
                 checkCategoryEditTextInputValidation(product.category) is ValidationStatus.Success &&
                 checkDescriptionEditTextInputValidation(product.description) is ValidationStatus.Success &&
