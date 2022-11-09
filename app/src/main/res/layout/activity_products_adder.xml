@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    tools:context=".helpers.products_adder.screen.ProductsAdderActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/productsAdderToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/light_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/productsAdderToolbarTitleString"
+        app:titleTextColor="@color/white" />
+
+    <TextView
+        android:id="@+id/productsAdderTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/productsAdderTitleTextViewMarginTop"
+        android:fontFamily="@font/app_title_font"
+        android:text="@string/productsAdderTitleTextViewString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/productsAdderTitleTextViewSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productsAdderToolbar" />
+
+    <LinearLayout
+        android:id="@+id/productsAdderEditTextsLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/productsAdderTitleTextView"
+        app:layout_constraintStart_toStartOf="@+id/productsAdderTitleTextView"
+        app:layout_constraintTop_toTopOf="@+id/productsAdderEditTextsHorizontalGuideline">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/productsAdderTextViewsMarginStart"
+            android:text="@string/productsAdderNameTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productsAdderMostTextViewsSize"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <EditText
+            android:id="@+id/nameEditTextProductsAdder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productsAdderEditTextsHeight"
+            android:background="@drawable/products_adder_edit_texts_background"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/productsAdderTextViewsMarginStart"
+            android:text="@string/productsAdderCategoriesTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productsAdderCategoriesTextViewSize"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <EditText
+            android:id="@+id/categoryEditTextProductsAdder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productsAdderEditTextsHeight"
+            android:background="@drawable/products_adder_edit_texts_background"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/productsAdderTextViewsMarginStart"
+            android:text="@string/productsAdderDescriptionTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productsAdderMostTextViewsSize"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <EditText
+            android:id="@+id/descriptionEditTextProductsAdder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productsAdderEditTextsHeight"
+            android:background="@drawable/products_adder_edit_texts_background"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/productsAdderTextViewsMarginStart"
+            android:text="@string/productsAdderPriceTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productsAdderMostTextViewsSize"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <EditText
+            android:id="@+id/priceEditTextProductsAdder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productsAdderEditTextsHeight"
+            android:background="@drawable/products_adder_edit_texts_background"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/productsAdderTextViewsMarginStart"
+            android:text="@string/productsAdderDiscountTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productsAdderMostTextViewsSize"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <EditText
+            android:id="@+id/discountEditTextProductsAdder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productsAdderEditTextsHeight"
+            android:background="@drawable/products_adder_edit_texts_background"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/productsAdderTextViewsMarginStart"
+            android:text="@string/productsAdderSizeTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productsAdderSizeTextViewTextSize"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/productsAdderSpaceHeight" />
+
+        <EditText
+            android:id="@+id/sizeEditTextProductsAdder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productsAdderEditTextsHeight"
+            android:background="@drawable/products_adder_edit_texts_background"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="@dimen/productAdderTextInEditTextsPaddingStart" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/selectedImagesRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/selectedImagesRecyclerViewMarginVertical"
+        app:layout_constraintStart_toStartOf="@+id/productsAdderSelectedImagesRecyclerViewLeftGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/productsAdderEditTextsLinearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/productsAdderSelectedImagesRecyclerViewRightGuideline"
+        app:layout_constraintBottom_toTopOf="@+id/productAdderImagesSelectedCountTextView"/>
+
+    <TextView
+        android:id="@+id/productAdderImagesSelectedCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/productsAdderSelectedImagesCountTextViewMarginBottom"
+        android:text="@string/productsAdderSelectedImagesCountTextViewString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/productsAdderSelectedImagesCountTextViewSize"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/productsAdderAddImagesButton"
+        app:layout_constraintEnd_toEndOf="@+id/productsAdderAddImagesButton"
+        app:layout_constraintStart_toStartOf="@+id/productsAdderAddImagesButton" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/productsAdderAddImagesButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/products_adder_add_images_button_background"
+        android:text="@string/productsAdderAddImagesButtonTextString"
+        android:textAllCaps="false"
+        android:textSize="@dimen/productsAdderImagesButtonsTextSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/productsAdderAddImagesButtonBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/productsAdderEditTextsLinearLayout"
+        app:layout_constraintStart_toStartOf="@+id/productsAdderEditTextsLinearLayout"
+        app:layout_constraintTop_toTopOf="@+id/productsAdderAddImagesButtonTopHorizontalGuideline" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/productsDeleteAllImagesButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/products_adder_delete_all_images_button_background"
+        android:text="@string/productsAdderDeleteAllImagesButtonTextString"
+        android:textAllCaps="false"
+        android:textSize="@dimen/productsAdderImagesButtonsTextSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/productsAdderDeleteAllImagesButtonBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/productsAdderAddImagesButton"
+        app:layout_constraintStart_toStartOf="@+id/productsAdderAddImagesButton"
+        app:layout_constraintTop_toTopOf="@+id/productsAdderDeleteAllImagesButtonTopHorizontalGuideline" />
+
+    <ProgressBar
+        android:id="@+id/productsAdderProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/red"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderEditTextsHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderAddImagesButtonTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderAddImagesButtonBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderDeleteAllImagesButtonTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderDeleteAllImagesButtonBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderSelectedImagesRecyclerViewLeftGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productsAdderSelectedImagesRecyclerViewRightGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.80" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

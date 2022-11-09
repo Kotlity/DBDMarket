@@ -2,6 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <solid android:color="@color/red"/>
-    <stroke android:color="@color/white" android:width="@dimen/appCancelSendButtonsDialogStrokeWidth"/>
+    <stroke android:color="@color/white" android:width="@dimen/appCancelAndApplyButtonsDialogStrokeWidth"/>
 
 </shape>

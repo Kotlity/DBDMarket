@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardElevation="@dimen/cardViewDialogElevation"
+        app:cardCornerRadius="@dimen/cardViewDialogCornerRadius">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/dialog_custom_background">
+
+            <TextView
+                android:id="@+id/customAlertDialogTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/appDialogViewsMarginTop"
+                android:fontFamily="@font/app_description_font"
+                android:textColor="@color/white"
+                android:textSize="@dimen/customAlertDialogTitleTextSize"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/customAlertDialogMessageTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/appDialogViewsMarginTop"
+                android:fontFamily="@font/app_buttons_font"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/customAlertDialogMessageTextSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customAlertDialogTitleTextView" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@+id/appCustomAlertDialogButtonsBottomHorizontalGuideline"
+                app:layout_constraintEnd_toEndOf="@+id/appCustomAlertDialogButtonsRightGuideline"
+                app:layout_constraintStart_toStartOf="@+id/appCustomAlertDialogButtonsLeftGuideline"
+                app:layout_constraintTop_toTopOf="@+id/appCustomAlertDialogButtonsTopHorizontalGuideline">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/customAlertDialogCancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/app_cancel_dialog_button_background"
+                    android:text="@string/customAlertDialogCancelButtonTextString"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/appCancelSendButtonsDialogTextSize"
+                    android:textStyle="italic" />
+
+                <View
+                    android:layout_width="@dimen/horizontalSpaceBetweenCancelAndSendDialogButtons"
+                    android:layout_height="0dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/customAlertDialogApplyButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/app_apply_dialog_button_background"
+                    android:text="@string/customAlertDialogApplyButtonTextString"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/appCancelSendButtonsDialogTextSize"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/appCustomAlertDialogButtonsTopHorizontalGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.65" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/appCustomAlertDialogButtonsBottomHorizontalGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.95" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/appCustomAlertDialogButtonsLeftGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.20" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/appCustomAlertDialogButtonsRightGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.80" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

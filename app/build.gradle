@@ -61,6 +61,12 @@ dependencies {
     // Firebase Firestore
     implementation 'com.google.firebase:firebase-firestore-ktx:24.4.0'
 
+    //Firebase Cloud Storage
+    implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
+
+    //Coroutines for Firebase
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4'
+
     // Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'

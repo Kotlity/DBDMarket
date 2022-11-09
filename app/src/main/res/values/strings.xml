@@ -51,4 +51,18 @@
     <string name="appSpecialProductTitleTextView">Special products</string>
     <string name="appBeneficialProductTitleTextView">Beneficial products</string>
     <string name="appMightBeInterestingProductTitleTextView">Might be interesting…</string>
+    <string name="productsAdderTitleTextViewString">Add a new product to Firebase Firestore</string>
+    <string name="productsAdderNameTextViewString">The product\'s name</string>
+    <string name="productsAdderCategoriesTextViewString">The product\'s category(Suits, Headdress, Torso, Weapon, Legs)</string>
+    <string name="productsAdderDescriptionTextViewString">The product\'s description</string>
+    <string name="productsAdderPriceTextViewString">The product\'s price(in \'$\')</string>
+    <string name="productsAdderDiscountTextViewString">The product\'s discount(optional, ex: 0.20)</string>
+    <string name="productsAdderSizeTextViewString">The product\'s size(can be several sizes, ex: L,XL,XXL</string>
+    <string name="productsAdderSelectedImagesCountTextViewString">Images selected:</string>
+    <string name="productsAdderAddImagesButtonTextString">Add products images</string>
+    <string name="productsAdderDeleteAllImagesButtonTextString">Delete all products images</string>
+    <string name="productsAdderToolbarIconTitleString">Add product</string>
+    <string name="productsAdderToolbarTitleString">Products adder helper</string>
+    <string name="customAlertDialogCancelButtonTextString">Cancel</string>
+    <string name="customAlertDialogApplyButtonTextString">Apply</string>
 </resources>
