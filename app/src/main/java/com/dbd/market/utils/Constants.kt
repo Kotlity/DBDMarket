@@ -9,6 +9,10 @@ object Constants {
 
     const val PERMISSION_TITLE = "Storage"
 
+    const val FIREBASE_FIRESTORE_PRODUCTS_COLLECTION_PATH = "Products"
+    const val FIREBASE_FIRESTORE_SPECIAL_PRODUCTS_CATEGORY_FIELD = "category"
+    const val FIREBASE_FIRESTORE_SPECIAL_PRODUCTS_CATEGORY_FIELD_VALUE = "Special products"
+
     const val PERMISSION_HAS_DENIED = "You have not allowed the app to access your storage. Please do it manually in the app settings"
     const val ALERT_DIALOG_PERMISSION_RATIONALE_TITLE = "Storage permission required"
 
@@ -48,15 +52,13 @@ object Constants {
     const val PRODUCT_IMAGE_IS_EMPTY = "At least 1 product photo is required"
 
     const val PRODUCT_NAME_MAX_LENGTH = 50
-    const val PRODUCT_CATEGORY_MAX_LENGTH = 40
-    const val PRODUCT_DESCRIPTION_MAX_LENGTH = 200
-    const val PRODUCT_PRICE_MAX_LENGTH = 5
+    const val PRODUCT_DESCRIPTION_MAX_LENGTH = 300
+    const val PRODUCT_PRICE_MAX_LENGTH = 3
     const val PRODUCT_SIZE_MAX_LENGTH = 4
 
     const val PRODUCT_NAME_WRONG_LENGTH = "The product's name cannot be more than 50 characters"
-    const val PRODUCT_CATEGORY_WRONG_LENGTH = "The product's category cannot be more than 40 characters"
-    const val PRODUCT_DESCRIPTION_WRONG_LENGTH = "The product's description cannot be more than 200 characters"
-    const val PRODUCT_PRICE_WRONG_LENGTH = "The product's price cannot be more than 99999$"
+    const val PRODUCT_DESCRIPTION_WRONG_LENGTH = "The product's description cannot be more than 300 characters"
+    const val PRODUCT_PRICE_WRONG_LENGTH = "The product's price cannot be more than 999$"
     const val PRODUCT_SIZE_WRONG_LENGTH = "The product's size cannot be more than 15 characters"
 
     const val WRONG_PRODUCT_CATEGORY_FORMAT = "Wrong format of the product's category"

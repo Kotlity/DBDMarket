@@ -1,8 +1,8 @@
-package com.dbd.market.viewmodels
+package com.dbd.market.viewmodels.introduction
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dbd.market.repositories.login.LoginRepository
+import com.dbd.market.repositories.introduction.login.LoginRepository
 import com.dbd.market.utils.*
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel

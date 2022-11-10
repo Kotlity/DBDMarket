@@ -85,6 +85,7 @@
                 android:indeterminate="true"
                 android:indeterminateTint="@color/red"
                 android:indeterminateTintMode="src_atop"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.30" />
+                app:layout_constraintGuide_percent="0.33" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/appSpecialProductsTitleHorizontalGuideline"
@@ -130,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.635" />
+                app:layout_constraintGuide_percent="0.665" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/appMightBeInterestingProductsTitleHorizontalGuideline"

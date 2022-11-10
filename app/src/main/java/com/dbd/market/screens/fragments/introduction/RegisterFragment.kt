@@ -15,7 +15,7 @@ import com.dbd.market.data.User
 import com.dbd.market.databinding.FragmentRegisterBinding
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.SUCCESSFULLY_CREATED_A_NEW_ACCOUNT_TOAST_MESSAGE
-import com.dbd.market.viewmodels.RegisterViewModel
+import com.dbd.market.viewmodels.introduction.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

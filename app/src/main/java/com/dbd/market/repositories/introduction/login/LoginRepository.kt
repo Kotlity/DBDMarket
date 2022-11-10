@@ -1,4 +1,4 @@
-package com.dbd.market.repositories.login
+package com.dbd.market.repositories.introduction.login
 
 import com.google.firebase.auth.AuthResult
 import java.lang.Exception

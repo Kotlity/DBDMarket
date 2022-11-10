@@ -1,9 +1,9 @@
-package com.dbd.market.viewmodels
+package com.dbd.market.viewmodels.introduction
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbd.market.data.User
-import com.dbd.market.repositories.register.RegisterRepository
+import com.dbd.market.repositories.introduction.register.RegisterRepository
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.USER_COLLECTION_PATH
 import dagger.hilt.android.lifecycle.HiltViewModel

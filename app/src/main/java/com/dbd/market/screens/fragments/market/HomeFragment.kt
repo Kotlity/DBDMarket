@@ -60,8 +60,8 @@ class HomeFragment : Fragment() {
                     tab.setIcon(R.drawable.ic_torso_tab_layout_icon)
                 }
                 5 -> {
-                    tab.text = getString(R.string.shoesCategoryTabLayoutTitleString)
-                    tab.setIcon(R.drawable.ic_shoes_tab_layout_icon)
+                    tab.text = getString(R.string.legsCategoryTabLayoutTitleString)
+                    tab.setIcon(R.drawable.ic_legs_tab_layout_icon)
                 }
             }
         }.attach()

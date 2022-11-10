@@ -1,9 +1,11 @@
 package com.dbd.market.di.modules
 
-import com.dbd.market.repositories.login.LoginRepository
-import com.dbd.market.repositories.login.LoginRepositoryImplementation
-import com.dbd.market.repositories.register.RegisterRepository
-import com.dbd.market.repositories.register.RegisterRepositoryImplementation
+import com.dbd.market.repositories.introduction.login.LoginRepository
+import com.dbd.market.repositories.introduction.login.LoginRepositoryImplementation
+import com.dbd.market.repositories.introduction.register.RegisterRepository
+import com.dbd.market.repositories.introduction.register.RegisterRepositoryImplementation
+import com.dbd.market.repositories.market.categories.main_category.MainCategoryRepository
+import com.dbd.market.repositories.market.categories.main_category.MainCategoryRepositoryImplementation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -38,4 +40,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFirebaseFirestoreStorage() = Firebase.storage.reference
+
+    @Provides
+    @Singleton
+    fun provideMainCategoryRepository(firebaseFirestore: FirebaseFirestore): MainCategoryRepository = MainCategoryRepositoryImplementation(firebaseFirestore)
 }

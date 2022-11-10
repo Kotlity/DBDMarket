@@ -1,11 +1,8 @@
 package com.dbd.market.helpers.products_adder.validation
 
-import android.net.Uri
 import androidx.core.text.isDigitsOnly
 import com.dbd.market.utils.Constants.PRODUCT_CATEGORY_CONTAINS_DIGITS
 import com.dbd.market.utils.Constants.PRODUCT_CATEGORY_IS_EMPTY
-import com.dbd.market.utils.Constants.PRODUCT_CATEGORY_MAX_LENGTH
-import com.dbd.market.utils.Constants.PRODUCT_CATEGORY_WRONG_LENGTH
 import com.dbd.market.utils.Constants.PRODUCT_DESCRIPTION_IS_EMPTY
 import com.dbd.market.utils.Constants.PRODUCT_DESCRIPTION_MAX_LENGTH
 import com.dbd.market.utils.Constants.PRODUCT_DESCRIPTION_STARTS_WITH_DIGIT
@@ -40,9 +37,8 @@ fun checkNameEditTextInputValidation(input: String): ValidationStatus {
 
 fun checkCategoryEditTextInputValidation(input: String): ValidationStatus {
     return if (input.trim().isEmpty()) ValidationStatus.Error(PRODUCT_CATEGORY_IS_EMPTY)
-    else if (input.length > PRODUCT_CATEGORY_MAX_LENGTH) ValidationStatus.Error(PRODUCT_CATEGORY_WRONG_LENGTH)
     else if (input.trim().contains("[0-9]".toRegex())) ValidationStatus.Error(PRODUCT_CATEGORY_CONTAINS_DIGITS)
-    else if (!((input == "Suits") or (input == "Headdress") or (input == "Torso") or (input == "Weapon") or (input == "Legs"))) ValidationStatus.Error(WRONG_PRODUCT_CATEGORY_FORMAT)
+    else if (!((input == "Special products") or (input == "Beneficial products") or (input == "Interesting products") or (input == "Suits") or (input == "Headdress") or (input == "Torso") or (input == "Weapon") or (input == "Legs"))) ValidationStatus.Error(WRONG_PRODUCT_CATEGORY_FORMAT)
     else ValidationStatus.Success
 }
 

@@ -7,7 +7,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.dbd.market.R
 import com.dbd.market.databinding.ActivityMarketBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MarketActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMarketBinding
     private lateinit var navHostFragment: NavHostFragment

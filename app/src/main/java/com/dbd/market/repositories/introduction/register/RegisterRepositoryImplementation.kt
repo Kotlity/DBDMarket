@@ -1,4 +1,4 @@
-package com.dbd.market.repositories.register
+package com.dbd.market.repositories.introduction.register
 
 import com.dbd.market.data.User
 import com.google.firebase.auth.AuthResult

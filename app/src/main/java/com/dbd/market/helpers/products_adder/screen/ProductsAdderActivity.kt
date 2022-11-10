@@ -32,6 +32,7 @@ import com.dbd.market.helpers.products_adder.viewmodel.ProductsAdderViewModel
 import com.dbd.market.utils.Constants.ALERT_DIALOG_PERMISSION_RATIONALE_TITLE
 import com.dbd.market.utils.Constants.DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_MESSAGE
 import com.dbd.market.utils.Constants.DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_TITLE
+import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_PRODUCTS_COLLECTION_PATH
 import com.dbd.market.utils.Constants.IMAGES_ARE_NOT_SELECTED
 import com.dbd.market.utils.Constants.PERMISSION_HAS_DENIED
 import com.dbd.market.utils.Constants.PERMISSION_TITLE
@@ -226,12 +227,10 @@ class ProductsAdderActivity : AppCompatActivity() {
                 async {
                     selectedImagesByteArrayList.forEach { byteArray ->
                         val id = UUID.randomUUID().toString()
-                        launch {
                             val imagePath = firebaseStorage.child("products/images/$id")
                             val uploadResult = imagePath.putBytes(byteArray).await()
                             val downloadImageUrl = uploadResult.storage.downloadUrl.await().toString()
                             imagesListToSaveItToFirebaseFirestore.add(downloadImageUrl)
-                        }
                     }
                 }.await()
             } catch (e: Exception) {
@@ -241,7 +240,7 @@ class ProductsAdderActivity : AppCompatActivity() {
                 }
             }
             val product = Product(UUID.randomUUID().toString(), name, category, description, price.toInt(), if (discount.isEmpty()) null else discount.toFloat(), size, imagesListToSaveItToFirebaseFirestore)
-            firebaseFirestore.collection("Products").add(product).addOnSuccessListener {
+            firebaseFirestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION_PATH).add(product).addOnSuccessListener {
                 hideProgressBar()
             }.addOnFailureListener { exception ->
                 hideProgressBar()
@@ -260,7 +259,7 @@ class ProductsAdderActivity : AppCompatActivity() {
         selectedImagesListFromGallery.forEach { uri ->
             val byteArrayOutputStream = ByteArrayOutputStream()
             val imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
-            if (imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)) {
+            if (imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)) {
                 listOfByteArrayImages.add(byteArrayOutputStream.toByteArray())
             }
         }

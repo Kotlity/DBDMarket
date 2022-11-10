@@ -15,7 +15,7 @@ import com.dbd.market.databinding.FragmentLoginBinding
 import com.dbd.market.screens.activities.MarketActivity
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.SUCCESSFULLY_ACCOUNT_LOGIN_TOAST_MESSAGE
-import com.dbd.market.viewmodels.LoginViewModel
+import com.dbd.market.viewmodels.introduction.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

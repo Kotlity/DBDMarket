@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,10 +25,12 @@
                 android:id="@+id/specialProductImageView"
                 android:layout_width="@dimen/appSpecialProductImageViewWidth"
                 android:layout_height="@dimen/appSpecialProductImageViewHeight"
-                android:layout_marginTop="@dimen/appSpecialProductImageViewMarginTop"
                 android:layout_marginStart="@dimen/appSpecialProductImageViewMarginStart"
+                android:background="@android:color/transparent"
+                android:layout_marginVertical="@dimen/appSpecialProductImageViewMarginVertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -74,9 +76,7 @@
                 android:layout_width="@dimen/appSpecialProductFavoriteImageViewWidthAndHeight"
                 android:layout_height="@dimen/appSpecialProductFavoriteImageViewWidthAndHeight"
                 android:src="@drawable/ic_favorite_icon"
-                android:layout_marginTop="@dimen/appSpecialProductFavoriteImageViewMarginTop"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/specialProductImageView"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/specialItemAddToCartButton"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:tint="@color/red"
