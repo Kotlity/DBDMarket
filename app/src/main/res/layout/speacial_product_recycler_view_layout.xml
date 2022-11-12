@@ -35,12 +35,13 @@
 
             <TextView
                 android:id="@+id/specialItemProductNameTextView"
-                style="@style/special_item_name_textview_style"
+                style="@style/recycler_views_item_name_textview_style"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/appSpecialProductNameMarginTop"
                 android:paddingHorizontal="@dimen/appSpecialProductNamePaddingHorizontal"
                 android:textSize="@dimen/appSpecialProductNameTextViewSize"
+                android:maxLines="2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/specialProductImageView"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -59,13 +60,13 @@
             <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
                 android:id="@+id/specialItemAddToCartButton"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/appSpecialItemAddToCartButtonHeight"
+                android:layout_height="@dimen/appMainCategoryItemButtonHeight"
                 android:layout_marginEnd="@dimen/appSpecialItemAddToCartButtonMarginEnd"
                 android:layout_marginBottom="@dimen/appSpecialItemAddToCartButtonMarginBottom"
                 android:background="@drawable/special_item_button_background"
                 android:fontFamily="@font/app_title_font"
                 android:text="@string/appSpecialProductButtonTextString"
-                android:textSize="@dimen/appSpecialItemAddToCartButtonTextSize"
+                android:textSize="@dimen/appMainCategoryItemButtonTextSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:spinning_bar_color="@color/red"

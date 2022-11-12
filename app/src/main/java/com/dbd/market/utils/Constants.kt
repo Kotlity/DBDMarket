@@ -9,9 +9,10 @@ object Constants {
 
     const val PERMISSION_TITLE = "Storage"
 
-    const val FIREBASE_FIRESTORE_PRODUCTS_COLLECTION_PATH = "Products"
-    const val FIREBASE_FIRESTORE_SPECIAL_PRODUCTS_CATEGORY_FIELD = "category"
+    const val FIREBASE_FIRESTORE_PRODUCTS_COLLECTION = "Products"
+    const val FIREBASE_FIRESTORE_PRODUCTS_CATEGORY_FIELD = "category"
     const val FIREBASE_FIRESTORE_SPECIAL_PRODUCTS_CATEGORY_FIELD_VALUE = "Special products"
+    const val FIREBASE_FIRESTORE_BENEFICIAL_PRODUCTS_CATEGORY_FIELD_VALUE = "Beneficial products"
 
     const val PERMISSION_HAS_DENIED = "You have not allowed the app to access your storage. Please do it manually in the app settings"
     const val ALERT_DIALOG_PERMISSION_RATIONALE_TITLE = "Storage permission required"

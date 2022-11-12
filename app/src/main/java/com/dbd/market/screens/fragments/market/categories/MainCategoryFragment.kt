@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dbd.market.R
+import com.dbd.market.adapters.main_category.BeneficialProductsAdapter
 import com.dbd.market.adapters.main_category.SpecialProductsAdapter
 import com.dbd.market.databinding.FragmentMainCategoryBinding
 import com.dbd.market.utils.Resource
@@ -23,6 +24,7 @@ import kotlinx.coroutines.launch
 class MainCategoryFragment : Fragment() {
     private lateinit var binding: FragmentMainCategoryBinding
     private lateinit var specialProductsAdapter: SpecialProductsAdapter
+    private lateinit var beneficialProductsAdapter: BeneficialProductsAdapter
     private val mainCategoryViewModel by viewModels<MainCategoryViewModel>()
 
     override fun onCreateView(
@@ -36,7 +38,8 @@ class MainCategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupSpecialProductsRecyclerView()
-        observeSpecialProductsState()
+        setupBeneficialProductsRecyclerView()
+        observeMainCategoryProductsState()
     }
 
     private fun setupSpecialProductsRecyclerView() {
@@ -47,32 +50,70 @@ class MainCategoryFragment : Fragment() {
         }
     }
 
-    private fun observeSpecialProductsState() {
+    private fun setupBeneficialProductsRecyclerView() {
+        beneficialProductsAdapter = BeneficialProductsAdapter()
+        binding.beneficialProductsRecyclerView.apply {
+            adapter = beneficialProductsAdapter
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+    }
+
+    private fun observeMainCategoryProductsState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            mainCategoryViewModel.specialProducts.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
-                when (it) {
-                    is Resource.Loading -> {
-                        showProgressBar()
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    mainCategoryViewModel.specialProducts.collect {
+                        when (it) {
+                            is Resource.Loading -> {
+                                showSpecialProductsProgressBar()
+                            }
+                            is Resource.Success -> {
+                                hideSpecialProductsProgressBar()
+                                specialProductsAdapter.differ.submitList(it.data)
+                            }
+                            is Resource.Error -> {
+                                hideSpecialProductsProgressBar()
+                                showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                            }
+                            is Resource.Undefined -> Unit
+                        }
                     }
-                    is Resource.Success -> {
-                        hideProgressBar()
-                        specialProductsAdapter.differ.submitList(it.data)
+                }
+                launch {
+                    mainCategoryViewModel.beneficialProducts.collect {
+                        when (it) {
+                            is Resource.Loading -> {
+                                showBeneficialProductsProgressBar()
+                            }
+                            is Resource.Success -> {
+                                hideBeneficialProductsProgressBar()
+                                beneficialProductsAdapter.differ.submitList(it.data)
+                            }
+                            is Resource.Error -> {
+                                hideBeneficialProductsProgressBar()
+                                showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                            }
+                            is Resource.Undefined -> Unit
+                        }
                     }
-                    is Resource.Error -> {
-                        hideProgressBar()
-                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
-                    }
-                    is Resource.Undefined -> Unit
                 }
             }
         }
     }
 
-    private fun showProgressBar() {
-        binding.mainCategoryProgressBar.visibility = View.VISIBLE
+    private fun showSpecialProductsProgressBar() {
+        binding.specialProductsProgressBar.visibility = View.VISIBLE
     }
 
-    private fun hideProgressBar() {
-        binding.mainCategoryProgressBar.visibility = View.GONE
+    private fun hideSpecialProductsProgressBar() {
+        binding.specialProductsProgressBar.visibility = View.GONE
+    }
+
+    private fun showBeneficialProductsProgressBar() {
+        binding.beneficialProductsProgressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideBeneficialProductsProgressBar() {
+        binding.beneficialProductsProgressBar.visibility = View.GONE
     }
 }

@@ -18,20 +18,39 @@ class MainCategoryViewModel @Inject constructor(private val mainCategoryReposito
     private val _specialProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val specialProducts = _specialProducts.asStateFlow()
 
+    private val _beneficialProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    val beneficialProducts = _beneficialProducts.asStateFlow()
+
     init {
         fetchSpecialProductsFromFirebaseFirestore()
+        fetchBeneficialProductsFromFirebaseFirestore()
     }
 
     private fun fetchSpecialProductsFromFirebaseFirestore() {
         viewModelScope.launch(Dispatchers.IO) {
-            mainCategoryRepository.getSpecialProductsFromFirebaseFirestore(onSuccess = { querySnapshot ->
-                val convertQuerySnapshotToSpecialProductsList = querySnapshot.toObjects(Product::class.java)
+            mainCategoryRepository.getSpecialProductsFromFirebaseFirestore(onSuccess = { specialProductsQuerySnapshot ->
+                val convertQuerySnapshotToSpecialProductsList = specialProductsQuerySnapshot.toObjects(Product::class.java)
                 viewModelScope.launch(Dispatchers.IO) {
                     _specialProducts.emit(Resource.Success(convertQuerySnapshotToSpecialProductsList))
                 }
-            }, onFailure = { fetchingFromFirebaseFirestoreException ->
+            }, onFailure = { fetchingSpecialProductsException ->
                 viewModelScope.launch(Dispatchers.IO) {
-                    _specialProducts.emit(Resource.Error(fetchingFromFirebaseFirestoreException.message.toString()))
+                    _specialProducts.emit(Resource.Error(fetchingSpecialProductsException.message.toString()))
+                }
+            })
+        }
+    }
+
+    private fun fetchBeneficialProductsFromFirebaseFirestore() {
+        viewModelScope.launch(Dispatchers.IO) {
+            mainCategoryRepository.getBeneficialProductsFromFirebaseFirestore(onSuccess = { beneficialProductsQuerySnapshot ->
+                val convertQuerySnapshotToBeneficialProductsList = beneficialProductsQuerySnapshot.toObjects(Product::class.java)
+                viewModelScope.launch(Dispatchers.IO) {
+                    _beneficialProducts.emit(Resource.Success(convertQuerySnapshotToBeneficialProductsList))
+                }
+            }, onFailure = { fetchingBeneficialProductsException ->
+                viewModelScope.launch(Dispatchers.IO) {
+                    _beneficialProducts.emit(Resource.Error(fetchingBeneficialProductsException.message.toString()))
                 }
             })
         }

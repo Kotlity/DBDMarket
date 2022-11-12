@@ -32,7 +32,7 @@ import com.dbd.market.helpers.products_adder.viewmodel.ProductsAdderViewModel
 import com.dbd.market.utils.Constants.ALERT_DIALOG_PERMISSION_RATIONALE_TITLE
 import com.dbd.market.utils.Constants.DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_MESSAGE
 import com.dbd.market.utils.Constants.DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_TITLE
-import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_PRODUCTS_COLLECTION_PATH
+import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_PRODUCTS_COLLECTION
 import com.dbd.market.utils.Constants.IMAGES_ARE_NOT_SELECTED
 import com.dbd.market.utils.Constants.PERMISSION_HAS_DENIED
 import com.dbd.market.utils.Constants.PERMISSION_TITLE
@@ -240,7 +240,7 @@ class ProductsAdderActivity : AppCompatActivity() {
                 }
             }
             val product = Product(UUID.randomUUID().toString(), name, category, description, price.toInt(), if (discount.isEmpty()) null else discount.toFloat(), size, imagesListToSaveItToFirebaseFirestore)
-            firebaseFirestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION_PATH).add(product).addOnSuccessListener {
+            firebaseFirestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION).add(product).addOnSuccessListener {
                 hideProgressBar()
             }.addOnFailureListener { exception ->
                 hideProgressBar()

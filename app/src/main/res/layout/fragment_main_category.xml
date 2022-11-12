@@ -79,17 +79,30 @@
                 app:layout_constraintTop_toTopOf="@+id/appMightBeInterestingProductsRecyclerViewTopHorizontalGuideline" />
 
             <ProgressBar
-                android:id="@+id/mainCategoryProgressBar"
+                android:id="@+id/specialProductsProgressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
                 android:indeterminateTint="@color/red"
                 android:indeterminateTintMode="src_atop"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/specialProductsRecyclerView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/specialProductsRecyclerView" />
+
+            <ProgressBar
+                android:id="@+id/beneficialProductsProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/red"
+                android:indeterminateTintMode="src_atop"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/beneficialProductsRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/beneficialProductsRecyclerView" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/appSpecialProductsRecyclerViewBottomHorizontalGuideline"

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <solid android:color="@color/light_red"/>
+    <stroke android:color="@color/white" android:width="@dimen/beneficialItemCardViewBackgroundStrokeWidth"/>
     <corners android:radius="@dimen/appSpecialBeneficialItemCardViewBackgroundRadius"/>
-    <gradient android:startColor="@color/light_red" android:endColor="@color/light_purple"/>
 
 </shape>

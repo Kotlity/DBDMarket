@@ -94,7 +94,7 @@
         <item name="textAllCaps">false</item>
     </style>
 
-    <style name="special_item_name_textview_style" parent="TextAppearance.AppCompat">
+    <style name="recycler_views_item_name_textview_style" parent="TextAppearance.AppCompat">
         <item name="android:textAlignment">center</item>
         <item name="android:textStyle">bold</item>
         <item name="textAllCaps">false</item>

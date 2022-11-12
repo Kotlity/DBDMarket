@@ -70,10 +70,10 @@
     <dimen name="appSpecialProductNameTextViewSize">18sp</dimen>
     <dimen name="appSpecialProductPriceTextViewSize">18sp</dimen>
     <dimen name="appSpecialProductPriceTextViewMarginBottom">13dp</dimen>
-    <dimen name="appSpecialItemAddToCartButtonHeight">35dp</dimen>
+    <dimen name="appMainCategoryItemButtonHeight">35dp</dimen>
     <dimen name="appSpecialItemAddToCartButtonMarginEnd">1dp</dimen>
     <dimen name="appSpecialItemAddToCartButtonMarginBottom">1dp</dimen>
-    <dimen name="appSpecialItemAddToCartButtonTextSize">14sp</dimen>
+    <dimen name="appMainCategoryItemButtonTextSize">14sp</dimen>
     <dimen name="appSpecialProductFavoriteImageViewWidthAndHeight">30dp</dimen>
     <dimen name="appSpecialProductFavoriteImageViewMarginTop">5dp</dimen>
     <dimen name="appSpecialProductButtonBackgroundCornersRadius">5dp</dimen>
@@ -103,4 +103,15 @@
     <dimen name="customAlertDialogTitleTextSize">25sp</dimen>
     <dimen name="customAlertDialogMessageTextSize">18sp</dimen>
     <dimen name="selectedImagesRecyclerViewMarginVertical">5dp</dimen>
+    <dimen name="appBeneficialProductItemLayoutWidth">330dp</dimen>
+    <dimen name="appSpecialBeneficialItemCardViewBackgroundRadius">15dp</dimen>
+    <dimen name="beneficialItemCardViewBackgroundStrokeWidth">2dp</dimen>
+    <dimen name="appBeneficialProductImageViewSize">130dp</dimen>
+    <dimen name="appBeneficialProductNameTextViewSize">20sp</dimen>
+    <dimen name="appBeneficialProductPriceTextViewSize">22sp</dimen>
+    <dimen name="appBeneficialProductNameMarginTop">5dp</dimen>
+    <dimen name="appBeneficialProductPriceAfterDiscountMarginBottom">5dp</dimen>
+    <dimen name="appBeneficialItemGoToProductButtonMarginStart">15dp</dimen>
+    <dimen name="appBeneficialItemGoToProductButtonMarginEnd">2dp</dimen>
+    <dimen name="appBeneficialItemGoToProductButtonMarginBottom">2dp</dimen>
 </resources>

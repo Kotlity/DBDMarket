@@ -29,6 +29,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupTabLayoutAndViewPager2() {
+        binding.homeViewPager2.isUserInputEnabled = false
         homeViewPager2Adapter = HomeViewPager2Adapter(childFragmentManager, lifecycle)
         homeViewPager2Adapter.addFragmentToTabLayout(MainCategoryFragment())
         homeViewPager2Adapter.addFragmentToTabLayout(SuitsFragment())
