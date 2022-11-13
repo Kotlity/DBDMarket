@@ -7,7 +7,9 @@ import com.dbd.market.repositories.market.categories.main_category.MainCategoryR
 import com.dbd.market.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,17 +23,36 @@ class MainCategoryViewModel @Inject constructor(private val mainCategoryReposito
     private val _beneficialProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val beneficialProducts = _beneficialProducts.asStateFlow()
 
+    private val _interestingProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    val interestingProducts = _interestingProducts.asStateFlow()
+
+    private val _specialProductsError = MutableSharedFlow<Boolean>()
+    val specialProductsError = _specialProductsError.asSharedFlow()
+
+    private val _beneficialProductsError = MutableSharedFlow<Boolean>()
+    val beneficialProductsError = _beneficialProductsError.asSharedFlow()
+
+    private val _interestingProductsError = MutableSharedFlow<Boolean>()
+    val interestingProductsError = _interestingProductsError.asSharedFlow()
+
     init {
         fetchSpecialProductsFromFirebaseFirestore()
         fetchBeneficialProductsFromFirebaseFirestore()
+        fetchInterestingProductsFromFirebaseFirestore()
     }
 
     private fun fetchSpecialProductsFromFirebaseFirestore() {
         viewModelScope.launch(Dispatchers.IO) {
             mainCategoryRepository.getSpecialProductsFromFirebaseFirestore(onSuccess = { specialProductsQuerySnapshot ->
-                val convertQuerySnapshotToSpecialProductsList = specialProductsQuerySnapshot.toObjects(Product::class.java)
-                viewModelScope.launch(Dispatchers.IO) {
-                    _specialProducts.emit(Resource.Success(convertQuerySnapshotToSpecialProductsList))
+                if (specialProductsQuerySnapshot.isEmpty) {
+                    viewModelScope.launch(Dispatchers.IO) {
+                        _specialProductsError.emit(true)
+                    }
+                } else {
+                    val convertQuerySnapshotToSpecialProductsList = specialProductsQuerySnapshot.toObjects(Product::class.java)
+                    viewModelScope.launch(Dispatchers.IO) {
+                        _specialProducts.emit(Resource.Success(convertQuerySnapshotToSpecialProductsList))
+                    }
                 }
             }, onFailure = { fetchingSpecialProductsException ->
                 viewModelScope.launch(Dispatchers.IO) {
@@ -44,13 +65,40 @@ class MainCategoryViewModel @Inject constructor(private val mainCategoryReposito
     private fun fetchBeneficialProductsFromFirebaseFirestore() {
         viewModelScope.launch(Dispatchers.IO) {
             mainCategoryRepository.getBeneficialProductsFromFirebaseFirestore(onSuccess = { beneficialProductsQuerySnapshot ->
-                val convertQuerySnapshotToBeneficialProductsList = beneficialProductsQuerySnapshot.toObjects(Product::class.java)
-                viewModelScope.launch(Dispatchers.IO) {
-                    _beneficialProducts.emit(Resource.Success(convertQuerySnapshotToBeneficialProductsList))
+                if (beneficialProductsQuerySnapshot.isEmpty) {
+                    viewModelScope.launch(Dispatchers.IO) {
+                        _beneficialProductsError.emit(true)
+                    }
+                } else {
+                    val convertQuerySnapshotToBeneficialProductsList = beneficialProductsQuerySnapshot.toObjects(Product::class.java)
+                    viewModelScope.launch(Dispatchers.IO) {
+                        _beneficialProducts.emit(Resource.Success(convertQuerySnapshotToBeneficialProductsList))
+                    }
                 }
             }, onFailure = { fetchingBeneficialProductsException ->
                 viewModelScope.launch(Dispatchers.IO) {
                     _beneficialProducts.emit(Resource.Error(fetchingBeneficialProductsException.message.toString()))
+                }
+            })
+        }
+    }
+
+    private fun fetchInterestingProductsFromFirebaseFirestore() {
+        viewModelScope.launch(Dispatchers.IO) {
+            mainCategoryRepository.getInterestingProductsFromFirebaseFirestore(onSuccess = { interestingProductsQuerySnapshot ->
+                if (interestingProductsQuerySnapshot.isEmpty) {
+                    viewModelScope.launch(Dispatchers.IO) {
+                        _interestingProductsError.emit(true)
+                    }
+                } else {
+                    val convertQuerySnapshotToInterestingProductsList = interestingProductsQuerySnapshot.toObjects(Product::class.java)
+                    viewModelScope.launch(Dispatchers.IO) {
+                        _interestingProducts.emit(Resource.Success(convertQuerySnapshotToInterestingProductsList))
+                    }
+                }
+            }, onFailure = { fetchingInterestingProductsException ->
+                viewModelScope.launch(Dispatchers.IO) {
+                    _interestingProducts.emit(Resource.Error(fetchingInterestingProductsException.message.toString()))
                 }
             })
         }

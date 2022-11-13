@@ -114,4 +114,20 @@
     <dimen name="appBeneficialItemGoToProductButtonMarginStart">15dp</dimen>
     <dimen name="appBeneficialItemGoToProductButtonMarginEnd">2dp</dimen>
     <dimen name="appBeneficialItemGoToProductButtonMarginBottom">2dp</dimen>
+    <dimen name="spaceBetweenEachItemInInterestingProductsRecyclerView">10dp</dimen>
+    <dimen name="mainCategoryViewsMarginTop">10dp</dimen>
+    <dimen name="appInterestingProductItemLayoutWidth">180dp</dimen>
+    <dimen name="appInterestingProductImageViewWidth">100dp</dimen>
+    <dimen name="appInterestingProductImageViewHeight">130dp</dimen>
+    <dimen name="appInterestingProductImageViewMarginTop">5dp</dimen>
+    <dimen name="appInterestingProductPriceTextViewSize">15sp</dimen>
+    <dimen name="appInterestingProductPriceAfterDiscountTextViewMarginHorizontal">5dp</dimen>
+    <dimen name="appInterestingProductFavoriteImageViewSize">25dp</dimen>
+    <dimen name="appInterestingProductFavoriteImageViewMargin">5dp</dimen>
+    <dimen name="appInterestingItemProductNameTextViewSize">17sp</dimen>
+    <dimen name="appInterestingItemProductNameTextViewMarginStart">5dp</dimen>
+    <dimen name="appInterestingItemGoToProductButtonWidth">110dp</dimen>
+    <dimen name="appInterestingItemGoToProductButtonHeight">35dp</dimen>
+    <dimen name="appInterestingItemGoToProductButtonTextSize">14sp</dimen>
+    <dimen name="appInterestingItemGoToProductButtonMarginTop">5dp</dimen>
 </resources>

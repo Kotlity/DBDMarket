@@ -66,4 +66,8 @@
     <string name="customAlertDialogCancelButtonTextString">Cancel</string>
     <string name="customAlertDialogApplyButtonTextString">Apply</string>
     <string name="appBeneficialProductButtonTextString">Go to product</string>
+    <string name="specialProductsListIsEmptyError">Special products list is empty</string>
+    <string name="beneficialProductsListIsEmptyError">Beneficial products list is empty</string>
+    <string name="interestingProductsListIsEmptyError">Interesting products list is empty</string>
+    <string name="appInterestingProductButtonTextString">Go to product</string>
 </resources>

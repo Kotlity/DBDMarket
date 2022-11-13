@@ -24,18 +24,20 @@
                 android:text="@string/appSpecialProductTitleTextView"
                 android:textColor="@color/white"
                 android:textSize="@dimen/appMainCategoryFragmentTitleTextViewSize"
+                android:layout_marginTop="@dimen/mainCategoryViewsMarginTop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/appSpecialProductsTitleHorizontalGuideline" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/specialProductsRecyclerView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/appSpecialProductsRecyclerViewBottomHorizontalGuideline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mainCategoryViewsMarginTop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/appSpecialProductsRecyclerViewTopHorizontalGuideline" />
+                app:layout_constraintTop_toBottomOf="@+id/specialProductsTitleTextView"
+                app:layout_constraintBottom_toTopOf="@+id/beneficialProductsTitleTextView"/>
 
             <TextView
                 android:id="@+id/beneficialProductsTitleTextView"
@@ -45,18 +47,20 @@
                 android:text="@string/appBeneficialProductTitleTextView"
                 android:textColor="@color/white"
                 android:textSize="@dimen/appMainCategoryFragmentTitleTextViewSize"
+                android:layout_marginTop="@dimen/mainCategoryViewsMarginTop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/appBeneficialProductsTitleHorizontalGuideline" />
+                app:layout_constraintTop_toBottomOf="@+id/specialProductsRecyclerView" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/beneficialProductsRecyclerView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/appBeneficialProductsRecyclerViewBottomHorizontalGuideline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mainCategoryViewsMarginTop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/appBeneficialProductsRecyclerViewTopHorizontalGuideline" />
+                app:layout_constraintTop_toBottomOf="@+id/beneficialProductsTitleTextView"
+                app:layout_constraintBottom_toTopOf="@+id/mightBeInterestingProductsTitleTextView"/>
 
             <TextView
                 android:id="@+id/mightBeInterestingProductsTitleTextView"
@@ -66,17 +70,19 @@
                 android:text="@string/appMightBeInterestingProductTitleTextView"
                 android:textColor="@color/white"
                 android:textSize="@dimen/appMainCategoryFragmentTitleTextViewSize"
+                android:layout_marginTop="@dimen/mainCategoryViewsMarginTop"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/appMightBeInterestingProductsTitleHorizontalGuideline" />
+                app:layout_constraintTop_toBottomOf="@+id/beneficialProductsRecyclerView"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mightBeInterestingProductsRecyclerView"
-                android:layout_width="0dp"
+                android:id="@+id/interestingProductsRecyclerView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:overScrollMode="never"
+                android:layout_marginTop="@dimen/mainCategoryViewsMarginTop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/appMightBeInterestingProductsRecyclerViewTopHorizontalGuideline" />
+                app:layout_constraintTop_toBottomOf="@+id/mightBeInterestingProductsTitleTextView" />
 
             <ProgressBar
                 android:id="@+id/specialProductsProgressBar"
@@ -85,11 +91,11 @@
                 android:indeterminate="true"
                 android:indeterminateTint="@color/red"
                 android:indeterminateTintMode="src_atop"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/specialProductsRecyclerView"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/beneficialProductsTitleTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/specialProductsRecyclerView" />
+                app:layout_constraintTop_toBottomOf="@+id/specialProductsTitleTextView"/>
 
             <ProgressBar
                 android:id="@+id/beneficialProductsProgressBar"
@@ -98,67 +104,24 @@
                 android:indeterminate="true"
                 android:indeterminateTint="@color/red"
                 android:indeterminateTintMode="src_atop"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/beneficialProductsRecyclerView"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/mightBeInterestingProductsTitleTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/beneficialProductsRecyclerView" />
+                app:layout_constraintTop_toBottomOf="@+id/beneficialProductsTitleTextView"/>
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/appSpecialProductsRecyclerViewBottomHorizontalGuideline"
+            <ProgressBar
+                android:id="@+id/interestingProductsProgressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.33" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/appSpecialProductsTitleHorizontalGuideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.02" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/appSpecialProductsRecyclerViewTopHorizontalGuideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.065" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/appBeneficialProductsTitleHorizontalGuideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.35" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/appBeneficialProductsRecyclerViewTopHorizontalGuideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.40" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/appBeneficialProductsRecyclerViewBottomHorizontalGuideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.665" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/appMightBeInterestingProductsTitleHorizontalGuideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.685" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/appMightBeInterestingProductsRecyclerViewTopHorizontalGuideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.74" />
+                android:indeterminate="true"
+                android:indeterminateTint="@color/red"
+                android:indeterminateTintMode="src_atop"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mightBeInterestingProductsTitleTextView"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
