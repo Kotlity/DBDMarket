@@ -15,6 +15,8 @@ object Constants {
     const val FIREBASE_FIRESTORE_BENEFICIAL_PRODUCTS_CATEGORY_FIELD_VALUE = "Beneficial products"
     const val FIREBASE_FIRESTORE_INTERESTING_PRODUCTS_CATEGORY_FIELD_VALUE = "Interesting products"
 
+    const val SPECIAL_PRODUCTS_AUTO_SCROLL_PERIOD = 3000L
+
     const val PERMISSION_HAS_DENIED = "You have not allowed the app to access your storage. Please do it manually in the app settings"
     const val ALERT_DIALOG_PERMISSION_RATIONALE_TITLE = "Storage permission required"
 

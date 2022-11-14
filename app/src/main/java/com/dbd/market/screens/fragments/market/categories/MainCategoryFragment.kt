@@ -9,19 +9,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.*
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.BeneficialProductsAdapter
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.MarginItemDecoration
 import com.dbd.market.adapters.main_category.SpecialProductsAdapter
 import com.dbd.market.databinding.FragmentMainCategoryBinding
+import com.dbd.market.utils.Constants.SPECIAL_PRODUCTS_AUTO_SCROLL_PERIOD
 import com.dbd.market.utils.Resource
 import com.dbd.market.utils.showToast
 import com.dbd.market.viewmodels.market.categories.MainCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.util.*
 
 @AndroidEntryPoint
 class MainCategoryFragment : Fragment() {
@@ -29,6 +30,9 @@ class MainCategoryFragment : Fragment() {
     private lateinit var specialProductsAdapter: SpecialProductsAdapter
     private lateinit var beneficialProductsAdapter: BeneficialProductsAdapter
     private lateinit var interestingProductsAdapter: InterestingProductsAdapter
+    lateinit var specialProductsLayoutManager: LinearLayoutManager
+    private lateinit var timer: Timer
+    private lateinit var timerTask: TimerTask
     private val mainCategoryViewModel by viewModels<MainCategoryViewModel>()
 
     override fun onCreateView(
@@ -50,10 +54,28 @@ class MainCategoryFragment : Fragment() {
 
     private fun setupSpecialProductsRecyclerView() {
         specialProductsAdapter = SpecialProductsAdapter()
+        specialProductsLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.specialProductsRecyclerView.apply {
             adapter = specialProductsAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = specialProductsLayoutManager
         }
+        autoScrollSpecialProductsRecyclerViewLogic()
+    }
+
+    private fun autoScrollSpecialProductsRecyclerViewLogic() {
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(binding.specialProductsRecyclerView)
+        timer = Timer()
+        timerTask = object : TimerTask() {
+            override fun run() {
+                if (specialProductsLayoutManager.findLastCompletelyVisibleItemPosition() < specialProductsAdapter.itemCount - 1) {
+                    specialProductsLayoutManager.smoothScrollToPosition(binding.specialProductsRecyclerView, RecyclerView.State(), specialProductsLayoutManager.findLastCompletelyVisibleItemPosition() + 1)
+                } else if (specialProductsLayoutManager.findLastCompletelyVisibleItemPosition() == specialProductsAdapter.itemCount - 1) {
+                    specialProductsLayoutManager.smoothScrollToPosition(binding.specialProductsRecyclerView, RecyclerView.State(), 0)
+                }
+            }
+        }
+        timer.schedule(timerTask, 0, SPECIAL_PRODUCTS_AUTO_SCROLL_PERIOD)
     }
 
     private fun setupBeneficialProductsRecyclerView() {
