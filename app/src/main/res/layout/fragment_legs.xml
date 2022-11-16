@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/legsProfitableProductsTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/title_profitable_products"
+                android:text="@string/appProfitablePropositionProductTitleTextView"
+                android:textColor="@color/white"
+                android:textSize="@dimen/appProfitableProductsCategoryFragmentTitleTextViewSize"
+                android:layout_marginTop="@dimen/productsCategoriesViewsMarginTop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/legsProfitableProductsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/productsCategoriesViewsMarginTop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/legsProfitableProductsTitleTextView"/>
+
+            <TextView
+                android:id="@+id/legsOtherProductsTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/title_other_products"
+                android:text="@string/appOtherProductTitleTextView"
+                android:textColor="@color/white"
+                android:textSize="@dimen/appOtherProductsCategoryFragmentTitleTextViewSize"
+                android:layout_marginTop="@dimen/productsCategoriesViewsMarginTop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/legsProfitableProductsRecyclerView"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/legsOtherProductsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:layout_marginTop="@dimen/productsCategoriesViewsMarginTop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/legsOtherProductsTitleTextView" />
+
+            <ProgressBar
+                android:id="@+id/legsProfitableProductsProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/red"
+                android:indeterminateTintMode="src_atop"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/legsProfitableProductsTitleTextView"
+                app:layout_constraintBottom_toTopOf="@+id/legsOtherProductsTitleTextView"/>
+
+            <ProgressBar
+                android:id="@+id/legsOtherProductsProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/red"
+                android:indeterminateTintMode="src_atop"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/legsOtherProductsTitleTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/legsOtherProductsRecyclerView"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

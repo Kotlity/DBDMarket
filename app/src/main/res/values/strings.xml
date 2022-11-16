@@ -70,4 +70,6 @@
     <string name="beneficialProductsListIsEmptyError">Beneficial products list is empty</string>
     <string name="interestingProductsListIsEmptyError">Interesting products list is empty</string>
     <string name="appInterestingProductButtonTextString">Go to product</string>
+    <string name="appProfitablePropositionProductTitleTextView">Profitable proposition</string>
+    <string name="appOtherProductTitleTextView">Other</string>
 </resources>

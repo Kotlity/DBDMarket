@@ -83,7 +83,9 @@
     <fraction name="animationPointMinus100percent">-100%</fraction>
     <integer name="animationDuration300milliseconds">300</integer>
     <integer name="animationDuration400milliseconds">400</integer>
-    <dimen name="appMainCategoryFragmentTitleTextViewSize">27sp</dimen>
+    <dimen name="appSpecialProductsCategoryFragmentTitleTextViewSize">33sp</dimen>
+    <dimen name="appBeneficialProductsCategoryFragmentTitleTextViewSize">30sp</dimen>
+    <dimen name="appInterestingProductsCategoryFragmentTitleTextViewSize">28sp</dimen>
     <dimen name="productsAdderTitleTextViewSize">18sp</dimen>
     <dimen name="productsAdderTitleTextViewMarginTop">20dp</dimen>
     <dimen name="productsAdderTextViewsMarginStart">5dp</dimen>
@@ -115,7 +117,7 @@
     <dimen name="appBeneficialItemGoToProductButtonMarginEnd">2dp</dimen>
     <dimen name="appBeneficialItemGoToProductButtonMarginBottom">2dp</dimen>
     <dimen name="spaceBetweenEachItemInInterestingProductsRecyclerView">10dp</dimen>
-    <dimen name="mainCategoryViewsMarginTop">10dp</dimen>
+    <dimen name="productsCategoriesViewsMarginTop">10dp</dimen>
     <dimen name="appInterestingProductItemLayoutWidth">180dp</dimen>
     <dimen name="appInterestingProductImageViewWidth">100dp</dimen>
     <dimen name="appInterestingProductImageViewHeight">130dp</dimen>
@@ -130,4 +132,6 @@
     <dimen name="appInterestingItemGoToProductButtonHeight">35dp</dimen>
     <dimen name="appInterestingItemGoToProductButtonTextSize">14sp</dimen>
     <dimen name="appInterestingItemGoToProductButtonMarginTop">5dp</dimen>
+    <dimen name="appProfitableProductsCategoryFragmentTitleTextViewSize">30sp</dimen>
+    <dimen name="appOtherProductsCategoryFragmentTitleTextViewSize">34sp</dimen>
 </resources>
