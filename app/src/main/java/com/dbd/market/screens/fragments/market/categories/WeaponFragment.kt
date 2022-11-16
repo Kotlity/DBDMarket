@@ -1,4 +1,5 @@
 package com.dbd.market.screens.fragments.market.categories
 
-class WeaponFragment: BaseCategoryFragment() {
-}
+import com.dbd.market.databinding.FragmentWeaponBinding
+
+class WeaponFragment: BaseCategoryFragment<FragmentWeaponBinding>(FragmentWeaponBinding::inflate)

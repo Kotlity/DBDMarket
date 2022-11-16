@@ -83,6 +83,7 @@ class MainCategoryFragment : Fragment() {
         binding.beneficialProductsRecyclerView.apply {
             adapter = beneficialProductsAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            beneficialProductsAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         }
     }
 
@@ -91,6 +92,7 @@ class MainCategoryFragment : Fragment() {
         binding.interestingProductsRecyclerView.apply {
             adapter = interestingProductsAdapter
             layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+            interestingProductsAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
             addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInInterestingProductsRecyclerView)))
         }
     }

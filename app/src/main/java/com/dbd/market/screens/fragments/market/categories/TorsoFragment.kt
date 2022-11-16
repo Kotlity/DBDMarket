@@ -1,4 +1,5 @@
 package com.dbd.market.screens.fragments.market.categories
 
-class TorsoFragment: BaseCategoryFragment() {
-}
+import com.dbd.market.databinding.FragmentTorsoBinding
+
+class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBinding::inflate)

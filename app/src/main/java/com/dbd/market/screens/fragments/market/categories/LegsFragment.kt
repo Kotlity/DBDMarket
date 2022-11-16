@@ -1,4 +1,5 @@
 package com.dbd.market.screens.fragments.market.categories
 
-class LegsFragment: BaseCategoryFragment() {
-}
+import com.dbd.market.databinding.FragmentLegsBinding
+
+class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBinding::inflate)
