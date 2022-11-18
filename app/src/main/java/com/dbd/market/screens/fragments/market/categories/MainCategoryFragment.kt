@@ -212,9 +212,4 @@ class MainCategoryFragment : Fragment() {
         binding.interestingProductsProgressBar.visibility = View.GONE
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d("MyTag", "MainCategoryFragment onCreate")
-    }
-
 }

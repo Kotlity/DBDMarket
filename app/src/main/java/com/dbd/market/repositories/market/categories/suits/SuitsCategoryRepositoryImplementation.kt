@@ -14,14 +14,26 @@ import javax.inject.Inject
 
 class SuitsCategoryRepositoryImplementation @Inject constructor(private val firebaseFirestore: FirebaseFirestore): SuitsCategoryRepository {
 
-    override suspend fun getSuitsCategoryFromFirebaseFirestore(onSuccess: suspend (QuerySnapshot) -> Unit, onFailure: suspend (Exception) -> Unit) {
+    override suspend fun getSuitsProfitableCategoryFromFirebaseFirestore(onSuccess: suspend (QuerySnapshot) -> Unit, onFailure: suspend (Exception) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val suitsQuerySnapshot = firebaseFirestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION)
+                val suitsProfitableQuerySnapshot = firebaseFirestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION)
                     .whereEqualTo(FIREBASE_FIRESTORE_PRODUCTS_CATEGORY_FIELD, FIREBASE_FIRESTORE_SUITS_PRODUCTS_CATEGORY_FIELD_VALUE)
                     .whereNotEqualTo(FIREBASE_FIRESTORE_SUITS_PRODUCTS_DISCOUNT_FIELD, null)
                     .get().await()
-                if (!suitsQuerySnapshot.isEmpty) onSuccess(suitsQuerySnapshot)
+                if (!suitsProfitableQuerySnapshot.isEmpty) onSuccess(suitsProfitableQuerySnapshot)
+            } catch (e: Exception) { onFailure(e) }
+        }
+    }
+
+    override suspend fun getSuitsOtherCategoryFromFirebaseFirestore(onSuccess: suspend (QuerySnapshot) -> Unit, onFailure: suspend (Exception) -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val suitsOtherQuerySnapshot = firebaseFirestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION)
+                    .whereEqualTo(FIREBASE_FIRESTORE_PRODUCTS_CATEGORY_FIELD, FIREBASE_FIRESTORE_SUITS_PRODUCTS_CATEGORY_FIELD_VALUE)
+                    .whereEqualTo(FIREBASE_FIRESTORE_SUITS_PRODUCTS_DISCOUNT_FIELD, null)
+                    .get().await()
+                if (!suitsOtherQuerySnapshot.isEmpty) onSuccess(suitsOtherQuerySnapshot)
             } catch (e: Exception) { onFailure(e) }
         }
     }

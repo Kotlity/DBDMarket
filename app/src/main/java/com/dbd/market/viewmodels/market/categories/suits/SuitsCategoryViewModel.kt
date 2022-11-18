@@ -19,18 +19,34 @@ class SuitsCategoryViewModel @Inject constructor(private val suitsCategoryReposi
     private var _suitsProfitableProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val suitsProfitableProducts = _suitsProfitableProducts.asStateFlow()
 
+    private var _suitsOtherProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    val suitsOtherProducts = _suitsOtherProducts.asStateFlow()
+
     init {
         getSuitsDiscountProducts()
+        getSuitsOtherProducts()
     }
 
     private fun getSuitsDiscountProducts() {
         viewModelScope.launch(Dispatchers.IO) {
-            suitsCategoryRepository.getSuitsCategoryFromFirebaseFirestore(onSuccess = { querySnapshot ->
-                val convertSuitsQuerySnapshotToSuitsProductObject = querySnapshot.toObjects<Product>()
-                _suitsProfitableProducts.emit(Resource.Success(convertSuitsQuerySnapshotToSuitsProductObject))
+            suitsCategoryRepository.getSuitsProfitableCategoryFromFirebaseFirestore(onSuccess = { suitsProfitableQuerySnapshot ->
+                val convertSuitsProfitableQuerySnapshotToSuitsProductObject = suitsProfitableQuerySnapshot.toObjects<Product>()
+                _suitsProfitableProducts.emit(Resource.Success(convertSuitsProfitableQuerySnapshotToSuitsProductObject))
             },
             onFailure = { exception ->
                 _suitsProfitableProducts.emit(Resource.Error(exception.message.toString()))
+            })
+        }
+    }
+
+    private fun getSuitsOtherProducts() {
+        viewModelScope.launch(Dispatchers.IO) {
+            suitsCategoryRepository.getSuitsOtherCategoryFromFirebaseFirestore(onSuccess = { suitsOtherQuerySnapshot ->
+                val convertSuitsOtherSnapshotToSuitsProductObject = suitsOtherQuerySnapshot.toObjects<Product>()
+                _suitsOtherProducts.emit(Resource.Success(convertSuitsOtherSnapshotToSuitsProductObject))
+            },
+            onFailure = { exception ->
+                _suitsOtherProducts.emit(Resource.Error(exception.message.toString()))
             })
         }
     }

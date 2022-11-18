@@ -6,15 +6,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
-import com.dbd.market.adapters.suits.SuitsProfitableProductsAdapter
+import com.dbd.market.adapters.main_category.InterestingProductsAdapter
+import com.dbd.market.adapters.suits.ProfitableCategoryProductsAdapter
 import com.dbd.market.databinding.FragmentSuitsBinding
-import com.dbd.market.utils.Constants
-import com.dbd.market.utils.Resource
-import com.dbd.market.utils.autoScrollRecyclerViewLogic
-import com.dbd.market.utils.showToast
+import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.market.categories.suits.SuitsCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -24,7 +25,8 @@ import java.util.*
 class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBinding::inflate) {
 
     private val suitsCategoryViewModel by viewModels<SuitsCategoryViewModel>()
-    private lateinit var suitsProfitableProductsAdapter: SuitsProfitableProductsAdapter
+    private lateinit var suitsProfitableProductsAdapter: ProfitableCategoryProductsAdapter
+    private lateinit var suitsOtherProductsAdapter: InterestingProductsAdapter
     private lateinit var suitsProfitableProductsLinearLayoutManager: LinearLayoutManager
     private lateinit var timer: Timer
     private lateinit var timerTask: TimerTask
@@ -32,17 +34,28 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupSuitsProfitableProductsRecyclerView()
+        setupSuitsOtherProductsRecyclerView()
         observeSuitsCategoryState()
     }
 
     private fun setupSuitsProfitableProductsRecyclerView() {
-        suitsProfitableProductsAdapter = SuitsProfitableProductsAdapter()
+        suitsProfitableProductsAdapter = ProfitableCategoryProductsAdapter()
         suitsProfitableProductsLinearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.suitsProfitableProductsRecyclerView.apply {
             adapter = suitsProfitableProductsAdapter
             layoutManager = suitsProfitableProductsLinearLayoutManager
         }
         autoScrollSuitsProfitableProductsRecyclerViewLogic()
+    }
+
+    private fun setupSuitsOtherProductsRecyclerView() {
+        suitsOtherProductsAdapter = InterestingProductsAdapter()
+        binding.suitsOtherProductsRecyclerView.apply {
+            adapter = suitsOtherProductsAdapter
+            layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+            suitsOtherProductsAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+            addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInInterestingProductsRecyclerView)))
+        }
     }
 
     private fun autoScrollSuitsProfitableProductsRecyclerViewLogic() {
@@ -57,22 +70,44 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
 
     private fun observeSuitsCategoryState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            suitsCategoryViewModel.suitsProfitableProducts.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
-                when (it) {
-                    is Resource.Success -> {
-                        hideSuitsProfitableProductsProgressBar()
-                        suitsProfitableProductsAdapter.differ.submitList(it.data)
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    suitsCategoryViewModel.suitsProfitableProducts.collect {
+                        when (it) {
+                            is Resource.Success -> {
+                                hideSuitsProfitableProductsProgressBar()
+                                suitsProfitableProductsAdapter.differ.submitList(it.data)
+                            }
+                            is Resource.Loading -> showSuitsProfitableProductsProgressBar()
+                            is Resource.Error -> {
+                                hideSuitsProfitableProductsProgressBar()
+                                showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                            }
+                            is Resource.Undefined -> Unit
+                        }
                     }
-                    is Resource.Loading -> showSuitsProfitableProductsProgressBar()
-                    is Resource.Error -> {
-                        hideSuitsProfitableProductsProgressBar()
-                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                }
+                launch {
+                    suitsCategoryViewModel.suitsOtherProducts.collect {
+                        when (it) {
+                            is Resource.Success -> {
+                                hideSuitsOtherProductsProgressBar()
+                                suitsOtherProductsAdapter.differ.submitList(it.data)
+                            }
+                            is Resource.Loading -> showSuitsOtherProductsProgressBar()
+                            is Resource.Error -> {
+                                hideSuitsOtherProductsProgressBar()
+                                showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                            }
+                            is Resource.Undefined -> Unit
+                        }
                     }
-                    is Resource.Undefined -> Unit
                 }
             }
         }
     }
+
+
 
     private fun showSuitsProfitableProductsProgressBar() {
         binding.suitsProfitableProductsProgressBar.visibility = View.VISIBLE
@@ -80,6 +115,14 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
 
     private fun hideSuitsProfitableProductsProgressBar() {
         binding.suitsProfitableProductsProgressBar.visibility = View.GONE
+    }
+
+    private fun showSuitsOtherProductsProgressBar() {
+        binding.suitsOtherProductsProgressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideSuitsOtherProductsProgressBar() {
+        binding.suitsOtherProductsProgressBar.visibility = View.GONE
     }
 
 }

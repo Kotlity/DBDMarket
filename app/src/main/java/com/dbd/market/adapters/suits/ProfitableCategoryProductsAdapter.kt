@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.dbd.market.R
 import com.dbd.market.helpers.products_adder.data.Product
 
-class SuitsProfitableProductsAdapter: RecyclerView.Adapter<SuitsProfitableProductsAdapter.SuitsProfitableProductsViewHolder>() {
+class ProfitableCategoryProductsAdapter: RecyclerView.Adapter<ProfitableCategoryProductsAdapter.SuitsProfitableProductsViewHolder>() {
 
     inner class SuitsProfitableProductsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(product: Product) {
