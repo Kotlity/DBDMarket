@@ -1,6 +1,7 @@
 package com.dbd.market.screens.fragments.market.categories
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +14,14 @@ import androidx.recyclerview.widget.*
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.BeneficialProductsAdapter
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
-import com.dbd.market.adapters.main_category.MarginItemDecoration
+import com.dbd.market.utils.MarginItemDecoration
 import com.dbd.market.adapters.main_category.SpecialProductsAdapter
 import com.dbd.market.databinding.FragmentMainCategoryBinding
-import com.dbd.market.utils.Constants.SPECIAL_PRODUCTS_AUTO_SCROLL_PERIOD
+import com.dbd.market.utils.Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD
 import com.dbd.market.utils.Resource
+import com.dbd.market.utils.autoScrollRecyclerViewLogic
 import com.dbd.market.utils.showToast
-import com.dbd.market.viewmodels.market.categories.MainCategoryViewModel
+import com.dbd.market.viewmodels.market.categories.main_category.MainCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.*
@@ -67,15 +69,9 @@ class MainCategoryFragment : Fragment() {
         snapHelper.attachToRecyclerView(binding.specialProductsRecyclerView)
         timer = Timer()
         timerTask = object : TimerTask() {
-            override fun run() {
-                if (specialProductsLayoutManager.findLastCompletelyVisibleItemPosition() < specialProductsAdapter.itemCount - 1) {
-                    specialProductsLayoutManager.smoothScrollToPosition(binding.specialProductsRecyclerView, RecyclerView.State(), specialProductsLayoutManager.findLastCompletelyVisibleItemPosition() + 1)
-                } else if (specialProductsLayoutManager.findLastCompletelyVisibleItemPosition() == specialProductsAdapter.itemCount - 1) {
-                    specialProductsLayoutManager.smoothScrollToPosition(binding.specialProductsRecyclerView, RecyclerView.State(), 0)
-                }
-            }
+            override fun run() { autoScrollRecyclerViewLogic(binding.specialProductsRecyclerView, specialProductsAdapter, specialProductsLayoutManager) }
         }
-        timer.schedule(timerTask, 0, SPECIAL_PRODUCTS_AUTO_SCROLL_PERIOD)
+        timer.schedule(timerTask, 0, RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
     }
 
     private fun setupBeneficialProductsRecyclerView() {
@@ -215,4 +211,10 @@ class MainCategoryFragment : Fragment() {
     private fun hideInterestingProductsProgressBar() {
         binding.interestingProductsProgressBar.visibility = View.GONE
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d("MyTag", "MainCategoryFragment onCreate")
+    }
+
 }

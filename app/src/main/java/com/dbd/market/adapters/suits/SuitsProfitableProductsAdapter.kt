@@ -1,9 +1,10 @@
-package com.dbd.market.adapters.main_category
+package com.dbd.market.adapters.suits
 
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -12,28 +13,29 @@ import com.bumptech.glide.Glide
 import com.dbd.market.R
 import com.dbd.market.helpers.products_adder.data.Product
 
-class BeneficialProductsAdapter: RecyclerView.Adapter<BeneficialProductsAdapter.BeneficialProductsViewHolder>() {
+class SuitsProfitableProductsAdapter: RecyclerView.Adapter<SuitsProfitableProductsAdapter.SuitsProfitableProductsViewHolder>() {
 
-    inner class BeneficialProductsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class SuitsProfitableProductsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(product: Product) {
             val name = product.name
+            val price = product.price
+            val discount = product.discount
             val image = product.images[0]
-            val priceBeforeDiscount = product.price
-            val discountValue = product.discount
+            val nameTextView = itemView.findViewById<TextView>(R.id.beneficialItemProductNameTextView)
             val priceBeforeDiscountTextView = itemView.findViewById<TextView>(R.id.beneficialItemProductPriceBeforeDiscount)
             val priceAfterDiscountTextView = itemView.findViewById<TextView>(R.id.beneficialItemProductPriceAfterDiscount)
-            discountValue?.let { discount ->
+            val imageView = itemView.findViewById<ImageView>(R.id.beneficialProductImageView)
+            discount?.let { discountValue ->
                 val remainingPricePercentage = 1f - discountValue
-                val priceAfterDiscountWithoutRounding = priceBeforeDiscount * remainingPricePercentage
-                val priceAfterDiscountWithRounding = String.format("%.0f", priceAfterDiscountWithoutRounding)
+                val priceAfterDiscountWithRounding = String.format("%.0f", (price * remainingPricePercentage))
                 priceAfterDiscountTextView.text = priceAfterDiscountWithRounding.plus("$")
             }
+            nameTextView.text = name
             priceBeforeDiscountTextView.apply {
-                text = priceBeforeDiscount.toString().plus("$")
+                text = price.toString().plus("$")
                 paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             }
-            itemView.findViewById<TextView>(R.id.beneficialItemProductNameTextView).text = name
-            Glide.with(itemView).load(image).centerCrop().into(itemView.findViewById(R.id.beneficialProductImageView))
+            Glide.with(itemView).load(image).into(imageView)
         }
     }
 
@@ -51,17 +53,13 @@ class BeneficialProductsAdapter: RecyclerView.Adapter<BeneficialProductsAdapter.
 
     val differ = AsyncListDiffer(this, differCallback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BeneficialProductsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.beneficial_product_recycler_view_layout, parent, false)
-        return BeneficialProductsViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuitsProfitableProductsViewHolder =
+        SuitsProfitableProductsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.beneficial_product_recycler_view_layout, parent, false))
+
+    override fun onBindViewHolder(holder: SuitsProfitableProductsViewHolder, position: Int) {
+        val currentSuit = differ.currentList[position]
+        holder.bind(currentSuit)
     }
 
-    override fun onBindViewHolder(holder: BeneficialProductsViewHolder, position: Int) {
-        val currentBeneficialProduct = differ.currentList[position]
-        holder.bind(currentBeneficialProduct)
-    }
-
-    override fun getItemCount(): Int {
-        return differ.currentList.size
-    }
+    override fun getItemCount(): Int = differ.currentList.size
 }

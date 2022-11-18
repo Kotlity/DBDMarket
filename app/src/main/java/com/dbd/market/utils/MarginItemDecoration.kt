@@ -1,4 +1,4 @@
-package com.dbd.market.adapters.main_category
+package com.dbd.market.utils
 
 import android.graphics.Rect
 import android.view.View

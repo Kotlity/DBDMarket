@@ -23,9 +23,4 @@ abstract class BaseCategoryFragment<VB: ViewBinding>(private val bindingInflater
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

@@ -6,6 +6,8 @@ import com.dbd.market.repositories.introduction.register.RegisterRepository
 import com.dbd.market.repositories.introduction.register.RegisterRepositoryImplementation
 import com.dbd.market.repositories.market.categories.main_category.MainCategoryRepository
 import com.dbd.market.repositories.market.categories.main_category.MainCategoryRepositoryImplementation
+import com.dbd.market.repositories.market.categories.suits.SuitsCategoryRepository
+import com.dbd.market.repositories.market.categories.suits.SuitsCategoryRepositoryImplementation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -44,4 +46,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideMainCategoryRepository(firebaseFirestore: FirebaseFirestore): MainCategoryRepository = MainCategoryRepositoryImplementation(firebaseFirestore)
+
+    @Provides
+    @Singleton
+    fun provideSuitsCategoryRepository(firebaseFirestore: FirebaseFirestore): SuitsCategoryRepository = SuitsCategoryRepositoryImplementation(firebaseFirestore)
 }
