@@ -2,6 +2,7 @@ package com.dbd.market.viewmodels.market.categories.suits
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dbd.market.data.PagingInfo
 import com.dbd.market.helpers.products_adder.data.Product
 import com.dbd.market.repositories.market.categories.suits.SuitsCategoryRepository
 import com.dbd.market.utils.Resource
@@ -22,6 +23,8 @@ class SuitsCategoryViewModel @Inject constructor(private val suitsCategoryReposi
     private var _suitsOtherProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val suitsOtherProducts = _suitsOtherProducts.asStateFlow()
 
+    private var suitsOtherProductsPagingInfoState = MutableStateFlow(PagingInfo())
+
     init {
         getSuitsDiscountProducts()
         getSuitsOtherProducts()
@@ -39,15 +42,21 @@ class SuitsCategoryViewModel @Inject constructor(private val suitsCategoryReposi
         }
     }
 
-    private fun getSuitsOtherProducts() {
-        viewModelScope.launch(Dispatchers.IO) {
-            suitsCategoryRepository.getSuitsOtherCategoryFromFirebaseFirestore(onSuccess = { suitsOtherQuerySnapshot ->
-                val convertSuitsOtherSnapshotToSuitsProductObject = suitsOtherQuerySnapshot.toObjects<Product>()
-                _suitsOtherProducts.emit(Resource.Success(convertSuitsOtherSnapshotToSuitsProductObject))
-            },
-            onFailure = { exception ->
-                _suitsOtherProducts.emit(Resource.Error(exception.message.toString()))
-            })
+    fun getSuitsOtherProducts() {
+        if (!suitsOtherProductsPagingInfoState.value.isEndOfPaging) {
+            viewModelScope.launch(Dispatchers.IO) {
+                suitsCategoryRepository.getSuitsOtherCategoryFromFirebaseFirestore(onSuccess = { suitsOtherQuerySnapshot ->
+                    val convertSuitsOtherSnapshotToSuitsProductObject = suitsOtherQuerySnapshot.toObjects<Product>()
+                    _suitsOtherProducts.emit(Resource.Success(convertSuitsOtherSnapshotToSuitsProductObject))
+                    suitsOtherProductsPagingInfoState.value.isEndOfPaging = convertSuitsOtherSnapshotToSuitsProductObject == suitsOtherProductsPagingInfoState.value.oldProducts
+                    suitsOtherProductsPagingInfoState.value.oldProducts = convertSuitsOtherSnapshotToSuitsProductObject
+                    suitsOtherProductsPagingInfoState.value.pageNumber++
+                },
+                onFailure = { exception ->
+                    _suitsOtherProducts.emit(Resource.Error(exception.message.toString()))
+                },
+                pageNumber = suitsOtherProductsPagingInfoState.value.pageNumber)
+            }
         }
     }
 }

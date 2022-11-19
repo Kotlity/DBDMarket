@@ -2,9 +2,9 @@ package com.dbd.market.screens.fragments.market.categories
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -36,6 +36,7 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
         setupSuitsProfitableProductsRecyclerView()
         setupSuitsOtherProductsRecyclerView()
         observeSuitsCategoryState()
+        suitsOtherProductsRecyclerViewReachedBottomLogic()
     }
 
     private fun setupSuitsProfitableProductsRecyclerView() {
@@ -66,6 +67,12 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
             override fun run() { autoScrollRecyclerViewLogic(binding.suitsProfitableProductsRecyclerView, suitsProfitableProductsAdapter, suitsProfitableProductsLinearLayoutManager) }
         }
         timer.schedule(timerTask, 0, Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
+    }
+
+    private fun suitsOtherProductsRecyclerViewReachedBottomLogic() {
+        productRecyclerViewReachedBottomLogic(binding.suitsNestedScrollView) {
+            suitsCategoryViewModel.getSuitsOtherProducts()
+        }
     }
 
     private fun observeSuitsCategoryState() {

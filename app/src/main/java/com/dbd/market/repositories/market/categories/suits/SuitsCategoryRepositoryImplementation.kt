@@ -26,12 +26,13 @@ class SuitsCategoryRepositoryImplementation @Inject constructor(private val fire
         }
     }
 
-    override suspend fun getSuitsOtherCategoryFromFirebaseFirestore(onSuccess: suspend (QuerySnapshot) -> Unit, onFailure: suspend (Exception) -> Unit) {
+    override suspend fun getSuitsOtherCategoryFromFirebaseFirestore(onSuccess: suspend (QuerySnapshot) -> Unit, onFailure: suspend (Exception) -> Unit, pageNumber: Long) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val suitsOtherQuerySnapshot = firebaseFirestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION)
                     .whereEqualTo(FIREBASE_FIRESTORE_PRODUCTS_CATEGORY_FIELD, FIREBASE_FIRESTORE_SUITS_PRODUCTS_CATEGORY_FIELD_VALUE)
                     .whereEqualTo(FIREBASE_FIRESTORE_SUITS_PRODUCTS_DISCOUNT_FIELD, null)
+                    .limit(pageNumber * 4)
                     .get().await()
                 if (!suitsOtherQuerySnapshot.isEmpty) onSuccess(suitsOtherQuerySnapshot)
             } catch (e: Exception) { onFailure(e) }

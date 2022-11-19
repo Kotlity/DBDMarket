@@ -134,4 +134,5 @@
     <dimen name="appInterestingItemGoToProductButtonMarginTop">5dp</dimen>
     <dimen name="appProfitableProductsCategoryFragmentTitleTextViewSize">30sp</dimen>
     <dimen name="appOtherProductsCategoryFragmentTitleTextViewSize">34sp</dimen>
+    <dimen name="appProductsProgressBarMargin">20dp</dimen>
 </resources>

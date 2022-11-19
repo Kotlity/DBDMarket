@@ -7,6 +7,7 @@
     tools:context=".screens.fragments.market.categories.MainCategoryFragment">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/mainCategoryNestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -90,7 +91,7 @@
                 android:indeterminate="true"
                 android:indeterminateTint="@color/red"
                 android:indeterminateTintMode="src_atop"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/beneficialProductsTitleTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -104,9 +105,9 @@
                 android:indeterminateTint="@color/red"
                 android:indeterminateTintMode="src_atop"
                 android:visibility="visible"
+                android:layout_marginEnd="@dimen/appProductsProgressBarMargin"
                 app:layout_constraintBottom_toTopOf="@+id/mightBeInterestingProductsTitleTextView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/beneficialProductsTitleTextView"/>
 
             <ProgressBar
@@ -116,11 +117,11 @@
                 android:indeterminate="true"
                 android:indeterminateTint="@color/red"
                 android:indeterminateTintMode="src_atop"
-                android:visibility="visible"
+                android:visibility="gone"
+                android:layout_marginBottom="@dimen/appProductsProgressBarMargin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mightBeInterestingProductsTitleTextView"/>
+                app:layout_constraintStart_toStartOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

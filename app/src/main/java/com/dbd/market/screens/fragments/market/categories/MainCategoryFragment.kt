@@ -1,7 +1,6 @@
 package com.dbd.market.screens.fragments.market.categories
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,13 +13,10 @@ import androidx.recyclerview.widget.*
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.BeneficialProductsAdapter
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
-import com.dbd.market.utils.MarginItemDecoration
 import com.dbd.market.adapters.main_category.SpecialProductsAdapter
 import com.dbd.market.databinding.FragmentMainCategoryBinding
+import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD
-import com.dbd.market.utils.Resource
-import com.dbd.market.utils.autoScrollRecyclerViewLogic
-import com.dbd.market.utils.showToast
 import com.dbd.market.viewmodels.market.categories.main_category.MainCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -33,6 +29,7 @@ class MainCategoryFragment : Fragment() {
     private lateinit var beneficialProductsAdapter: BeneficialProductsAdapter
     private lateinit var interestingProductsAdapter: InterestingProductsAdapter
     lateinit var specialProductsLayoutManager: LinearLayoutManager
+    lateinit var beneficialProductsLayoutManager: LinearLayoutManager
     private lateinit var timer: Timer
     private lateinit var timerTask: TimerTask
     private val mainCategoryViewModel by viewModels<MainCategoryViewModel>()
@@ -52,6 +49,8 @@ class MainCategoryFragment : Fragment() {
         setupInterestingProductsRecyclerView()
         observeMainCategoryProductsState()
         observeMainCategoryProductsErrorState()
+        interestingProductsRecyclerViewReachedBottom()
+        beneficialProductsRecyclerViewReachedLeft()
     }
 
     private fun setupSpecialProductsRecyclerView() {
@@ -76,9 +75,10 @@ class MainCategoryFragment : Fragment() {
 
     private fun setupBeneficialProductsRecyclerView() {
         beneficialProductsAdapter = BeneficialProductsAdapter()
+        beneficialProductsLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.beneficialProductsRecyclerView.apply {
             adapter = beneficialProductsAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = beneficialProductsLayoutManager
             beneficialProductsAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         }
     }
@@ -185,6 +185,18 @@ class MainCategoryFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun interestingProductsRecyclerViewReachedBottom() {
+        productRecyclerViewReachedBottomLogic(binding.mainCategoryNestedScrollView) {
+            mainCategoryViewModel.fetchInterestingProductsFromFirebaseFirestore()
+        }
+    }
+
+    private fun beneficialProductsRecyclerViewReachedLeft() {
+        productRecyclerViewReachedRightLogic(binding.beneficialProductsRecyclerView) {
+            mainCategoryViewModel.fetchBeneficialProductsFromFirebaseFirestore()
         }
     }
 

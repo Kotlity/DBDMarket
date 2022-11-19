@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/suitsNestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -81,10 +82,10 @@
                 android:indeterminateTint="@color/red"
                 android:indeterminateTintMode="src_atop"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@+id/suitsOtherProductsTitleTextView"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="30dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="@+id/suitsOtherProductsRecyclerView"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
