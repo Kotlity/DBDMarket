@@ -26,11 +26,11 @@ class SuitsCategoryViewModel @Inject constructor(private val suitsCategoryReposi
     private var suitsOtherProductsPagingInfoState = MutableStateFlow(PagingInfo())
 
     init {
-        getSuitsDiscountProducts()
+        getSuitsProfitableProducts()
         getSuitsOtherProducts()
     }
 
-    private fun getSuitsDiscountProducts() {
+    private fun getSuitsProfitableProducts() {
         viewModelScope.launch(Dispatchers.IO) {
             suitsCategoryRepository.getSuitsProfitableCategoryFromFirebaseFirestore(onSuccess = { suitsProfitableQuerySnapshot ->
                 val convertSuitsProfitableQuerySnapshotToSuitsProductObject = suitsProfitableQuerySnapshot.toObjects<Product>()

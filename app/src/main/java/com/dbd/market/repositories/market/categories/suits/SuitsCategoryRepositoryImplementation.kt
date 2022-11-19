@@ -3,7 +3,7 @@ package com.dbd.market.repositories.market.categories.suits
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_PRODUCTS_CATEGORY_FIELD
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_PRODUCTS_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_SUITS_PRODUCTS_CATEGORY_FIELD_VALUE
-import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_SUITS_PRODUCTS_DISCOUNT_FIELD
+import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_PRODUCTS_DISCOUNT_FIELD
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.CoroutineScope
@@ -19,7 +19,7 @@ class SuitsCategoryRepositoryImplementation @Inject constructor(private val fire
             try {
                 val suitsProfitableQuerySnapshot = firebaseFirestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION)
                     .whereEqualTo(FIREBASE_FIRESTORE_PRODUCTS_CATEGORY_FIELD, FIREBASE_FIRESTORE_SUITS_PRODUCTS_CATEGORY_FIELD_VALUE)
-                    .whereNotEqualTo(FIREBASE_FIRESTORE_SUITS_PRODUCTS_DISCOUNT_FIELD, null)
+                    .whereNotEqualTo(FIREBASE_FIRESTORE_PRODUCTS_DISCOUNT_FIELD, null)
                     .get().await()
                 if (!suitsProfitableQuerySnapshot.isEmpty) onSuccess(suitsProfitableQuerySnapshot)
             } catch (e: Exception) { onFailure(e) }
@@ -31,7 +31,7 @@ class SuitsCategoryRepositoryImplementation @Inject constructor(private val fire
             try {
                 val suitsOtherQuerySnapshot = firebaseFirestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION)
                     .whereEqualTo(FIREBASE_FIRESTORE_PRODUCTS_CATEGORY_FIELD, FIREBASE_FIRESTORE_SUITS_PRODUCTS_CATEGORY_FIELD_VALUE)
-                    .whereEqualTo(FIREBASE_FIRESTORE_SUITS_PRODUCTS_DISCOUNT_FIELD, null)
+                    .whereEqualTo(FIREBASE_FIRESTORE_PRODUCTS_DISCOUNT_FIELD, null)
                     .limit(pageNumber * 4)
                     .get().await()
                 if (!suitsOtherQuerySnapshot.isEmpty) onSuccess(suitsOtherQuerySnapshot)
