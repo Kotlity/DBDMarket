@@ -1,4 +1,4 @@
-package com.dbd.market.adapters.suits
+package com.dbd.market.adapters.main_category
 
 import android.graphics.Paint
 import android.view.LayoutInflater

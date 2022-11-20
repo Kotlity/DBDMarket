@@ -2,7 +2,6 @@ package com.dbd.market.screens.fragments.market.categories
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
-import com.dbd.market.adapters.suits.ProfitableCategoryProductsAdapter
+import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
 import com.dbd.market.databinding.FragmentSuitsBinding
 import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.market.categories.suits.SuitsCategoryViewModel
@@ -55,7 +54,7 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
             adapter = suitsOtherProductsAdapter
             layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
             suitsOtherProductsAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-            addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInInterestingProductsRecyclerView)))
+            addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
         }
     }
 

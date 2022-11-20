@@ -116,7 +116,7 @@
     <dimen name="appBeneficialItemGoToProductButtonMarginStart">15dp</dimen>
     <dimen name="appBeneficialItemGoToProductButtonMarginEnd">2dp</dimen>
     <dimen name="appBeneficialItemGoToProductButtonMarginBottom">2dp</dimen>
-    <dimen name="spaceBetweenEachItemInInterestingProductsRecyclerView">10dp</dimen>
+    <dimen name="spaceBetweenEachItemInProductsRecyclerView">10dp</dimen>
     <dimen name="productsCategoriesViewsMarginTop">10dp</dimen>
     <dimen name="appInterestingProductItemLayoutWidth">180dp</dimen>
     <dimen name="appInterestingProductImageViewWidth">100dp</dimen>

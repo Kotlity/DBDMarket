@@ -2,6 +2,7 @@ package com.dbd.market.viewmodels.market.categories.weapons
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dbd.market.data.PagingInfo
 import com.dbd.market.helpers.products_adder.data.Product
 import com.dbd.market.repositories.market.categories.weapons.WeaponsCategoryRepository
 import com.dbd.market.utils.Resource
@@ -19,8 +20,14 @@ class WeaponsCategoryViewModel @Inject constructor(private val weaponsCategoryRe
     private var _weaponsProfitableProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val weaponsProfitableProducts = _weaponsProfitableProducts.asStateFlow()
 
+    private var _weaponsOtherProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    val weaponsOtherProducts = _weaponsOtherProducts.asStateFlow()
+
+    private var weaponsOtherPagingInfo = MutableStateFlow(PagingInfo())
+
     init {
         getWeaponsProfitableProducts()
+        getWeaponsOtherProducts()
     }
 
     private fun getWeaponsProfitableProducts() {
@@ -29,9 +36,27 @@ class WeaponsCategoryViewModel @Inject constructor(private val weaponsCategoryRe
                 val convertWeaponsProfitableQuerySnapshotToWeaponProductObject = weaponsProfitableQuerySnapshot.toObjects<Product>()
                 _weaponsProfitableProducts.emit(Resource.Success(convertWeaponsProfitableQuerySnapshotToWeaponProductObject))
             },
-            onFailure = { weaponsException ->
-                _weaponsProfitableProducts.emit(Resource.Error(weaponsException.message.toString()))
+            onFailure = { weaponsProfitableException ->
+                _weaponsProfitableProducts.emit(Resource.Error(weaponsProfitableException.message.toString()))
             })
+        }
+    }
+
+    fun getWeaponsOtherProducts() {
+        if (!weaponsOtherPagingInfo.value.isEndOfPaging) {
+            viewModelScope.launch(Dispatchers.IO) {
+                weaponsCategoryRepository.getWeaponsOtherCategoryFromFirebaseFirestore(onSuccess = { weaponsOtherQuerySnapshot ->
+                    val convertWeaponsOtherQuerySnapshotToWeaponProductObject = weaponsOtherQuerySnapshot.toObjects<Product>()
+                    _weaponsOtherProducts.emit(Resource.Success(convertWeaponsOtherQuerySnapshotToWeaponProductObject))
+                    weaponsOtherPagingInfo.value.isEndOfPaging = convertWeaponsOtherQuerySnapshotToWeaponProductObject == weaponsOtherPagingInfo.value.oldProducts
+                    weaponsOtherPagingInfo.value.oldProducts = convertWeaponsOtherQuerySnapshotToWeaponProductObject
+                    weaponsOtherPagingInfo.value.pageNumber++
+                },
+                onFailure = { weaponsOtherException ->
+                    _weaponsOtherProducts.emit(Resource.Error(weaponsOtherException.message.toString()))
+              },
+              pageNumber = weaponsOtherPagingInfo.value.pageNumber)
+            }
         }
     }
 }
