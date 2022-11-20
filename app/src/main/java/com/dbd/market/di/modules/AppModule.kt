@@ -4,6 +4,8 @@ import com.dbd.market.repositories.introduction.login.LoginRepository
 import com.dbd.market.repositories.introduction.login.LoginRepositoryImplementation
 import com.dbd.market.repositories.introduction.register.RegisterRepository
 import com.dbd.market.repositories.introduction.register.RegisterRepositoryImplementation
+import com.dbd.market.repositories.market.categories.headdress.HeaddressCategoryRepository
+import com.dbd.market.repositories.market.categories.headdress.HeaddressCategoryRepositoryImplementation
 import com.dbd.market.repositories.market.categories.main_category.MainCategoryRepository
 import com.dbd.market.repositories.market.categories.main_category.MainCategoryRepositoryImplementation
 import com.dbd.market.repositories.market.categories.suits.SuitsCategoryRepository
@@ -56,4 +58,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideWeaponsCategoryRepository(firebaseFirestore: FirebaseFirestore): WeaponsCategoryRepository = WeaponsCategoryRepositoryImplementation(firebaseFirestore)
+
+    @Provides
+    @Singleton
+    fun provideHeaddressCategoryRepository(firebaseFirestore: FirebaseFirestore): HeaddressCategoryRepository = HeaddressCategoryRepositoryImplementation(firebaseFirestore)
 }
