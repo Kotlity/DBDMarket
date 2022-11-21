@@ -104,7 +104,7 @@
                 android:indeterminate="true"
                 android:indeterminateTint="@color/red"
                 android:indeterminateTintMode="src_atop"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_marginEnd="@dimen/appProductsProgressBarMargin"
                 app:layout_constraintBottom_toTopOf="@+id/mightBeInterestingProductsTitleTextView"
                 app:layout_constraintEnd_toEndOf="parent"

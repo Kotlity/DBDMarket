@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/headdressNestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -67,7 +68,7 @@
                 android:indeterminate="true"
                 android:indeterminateTint="@color/red"
                 android:indeterminateTintMode="src_atop"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/headdressProfitableProductsTitleTextView"
@@ -80,8 +81,8 @@
                 android:indeterminate="true"
                 android:indeterminateTint="@color/red"
                 android:indeterminateTintMode="src_atop"
-                android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@+id/headdressOtherProductsTitleTextView"
+                android:visibility="gone"
+                android:layout_marginBottom="@dimen/appProductsProgressBarMargin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/headdressOtherProductsRecyclerView"/>

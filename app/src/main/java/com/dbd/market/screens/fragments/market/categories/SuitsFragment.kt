@@ -68,11 +68,7 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
         timer.schedule(timerTask, 0, Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
     }
 
-    private fun suitsOtherProductsRecyclerViewReachedBottomLogic() {
-        productRecyclerViewReachedBottomLogic(binding.suitsNestedScrollView) {
-            suitsCategoryViewModel.getSuitsOtherProducts()
-        }
-    }
+    private fun suitsOtherProductsRecyclerViewReachedBottomLogic() { productRecyclerViewReachedBottomLogic(binding.suitsNestedScrollView) { suitsCategoryViewModel.getSuitsOtherProducts() } }
 
     private fun observeSuitsCategoryState() {
         viewLifecycleOwner.lifecycleScope.launch {

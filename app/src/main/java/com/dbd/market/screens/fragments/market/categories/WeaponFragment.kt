@@ -72,6 +72,8 @@ class WeaponFragment: BaseCategoryFragment<FragmentWeaponBinding>(FragmentWeapon
         timer.schedule(timerTask, 0, RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
     }
 
+    private fun weaponsOtherProductsRecyclerViewReachedBottom() { productRecyclerViewReachedBottomLogic(binding.weaponsNestedScrollView) { weaponsCategoryViewModel.getWeaponsOtherProducts() } }
+
     private fun observeWeaponsCategoryState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -109,10 +111,6 @@ class WeaponFragment: BaseCategoryFragment<FragmentWeaponBinding>(FragmentWeapon
                 }
             }
         }
-    }
-
-    private fun weaponsOtherProductsRecyclerViewReachedBottom() {
-        productRecyclerViewReachedBottomLogic(binding.weaponsNestedScrollView) { weaponsCategoryViewModel.getWeaponsOtherProducts() }
     }
 
     private fun showWeaponsProfitableProductsProgressbar() {

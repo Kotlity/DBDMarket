@@ -1,7 +1,8 @@
-package com.dbd.market.viewmodels.market.categories
+package com.dbd.market.viewmodels.market.categories.headdress
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dbd.market.data.PagingInfo
 import com.dbd.market.helpers.products_adder.data.Product
 import com.dbd.market.repositories.market.categories.headdress.HeaddressCategoryRepository
 import com.dbd.market.utils.Resource
@@ -19,8 +20,14 @@ class HeaddressCategoryViewModel @Inject constructor(private val headdressCatego
     private var _headdressProfitableProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val headdressProfitableProducts = _headdressProfitableProducts.asStateFlow()
 
+    private var _headdressOtherProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    val headdressOtherProducts = _headdressOtherProducts.asStateFlow()
+
+    private var headdressOtherPagingInfo = MutableStateFlow(PagingInfo())
+
     init {
         getHeaddressProfitableProducts()
+        getHeaddressOtherProducts()
     }
 
     private fun getHeaddressProfitableProducts() {
@@ -32,6 +39,24 @@ class HeaddressCategoryViewModel @Inject constructor(private val headdressCatego
             onFailure = { headdressProfitableException ->
                 _headdressProfitableProducts.emit(Resource.Error(headdressProfitableException.message.toString()))
             })
+        }
+    }
+
+    fun getHeaddressOtherProducts() {
+        if (!headdressOtherPagingInfo.value.isEndOfPaging) {
+            viewModelScope.launch(Dispatchers.IO) {
+                headdressCategoryRepository.getHeaddressOtherProductsFromFirebaseFirestore(onSucces = { headdressOtherQuerySnapshot ->
+                    val convertHeaddressOtherQuerySnapshotToHeaddressProductObject = headdressOtherQuerySnapshot.toObjects<Product>()
+                    _headdressOtherProducts.emit(Resource.Success(convertHeaddressOtherQuerySnapshotToHeaddressProductObject))
+                    headdressOtherPagingInfo.value.isEndOfPaging = convertHeaddressOtherQuerySnapshotToHeaddressProductObject == headdressOtherPagingInfo.value.oldProducts
+                    headdressOtherPagingInfo.value.oldProducts = convertHeaddressOtherQuerySnapshotToHeaddressProductObject
+                    headdressOtherPagingInfo.value.pageNumber++
+                },
+                onFailure = { headdressOtherException ->
+                    _headdressOtherProducts.emit(Resource.Error(headdressOtherException.message.toString()))
+                },
+                pageNumber = headdressOtherPagingInfo.value.pageNumber)
+            }
         }
     }
 }

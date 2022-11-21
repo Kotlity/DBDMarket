@@ -227,9 +227,9 @@ class ProductsAdderActivity : AppCompatActivity() {
                 async {
                     selectedImagesByteArrayList.forEach { byteArray ->
                         val id = UUID.randomUUID().toString()
-                            val imagePath = firebaseStorage.child("products/images/$id")
-                            val uploadResult = imagePath.putBytes(byteArray).await()
-                            val downloadImageUrl = uploadResult.storage.downloadUrl.await().toString()
+                            val imageFirebaseStorageReference = firebaseStorage.child("products/images/$id")
+                            val uploadTask = imageFirebaseStorageReference.putBytes(byteArray).await()
+                            val downloadImageUrl = uploadTask.storage.downloadUrl.await().toString()
                             imagesListToSaveItToFirebaseFirestore.add(downloadImageUrl)
                     }
                 }.await()
