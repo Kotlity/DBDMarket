@@ -6,15 +6,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
+import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
 import com.dbd.market.databinding.FragmentTorsoBinding
+import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD
-import com.dbd.market.utils.Resource
-import com.dbd.market.utils.autoScrollRecyclerViewLogic
-import com.dbd.market.utils.showToast
 import com.dbd.market.viewmodels.market.categories.torso.TorsoCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,6 +26,7 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
 
     private val torsoCategoryViewModel by viewModels<TorsoCategoryViewModel>()
     private lateinit var torsoProfitableAdapter: ProfitableCategoryProductsAdapter
+    private lateinit var torsoOtherAdapter: InterestingProductsAdapter
     private lateinit var torsoProfitableLinearLayoutManager: LinearLayoutManager
     private lateinit var timer: Timer
     private lateinit var timerTask: TimerTask
@@ -32,7 +34,9 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupTorsoProfitableAdapter()
+        setupTorsoOtherAdapter()
         observeTorsoCategoryState()
+        torsoOtherProductsRecyclerViewReachedBottom()
     }
 
     private fun setupTorsoProfitableAdapter() {
@@ -43,6 +47,16 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
             layoutManager = torsoProfitableLinearLayoutManager
         }
         autoScrollTorsoProfitableProductsRecyclerViewLogic()
+    }
+
+    private fun setupTorsoOtherAdapter() {
+        torsoOtherAdapter = InterestingProductsAdapter()
+        binding.torsoOtherProductsRecyclerView.apply {
+            adapter = torsoOtherAdapter
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            torsoOtherAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+            addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
+        }
     }
 
     private fun autoScrollTorsoProfitableProductsRecyclerViewLogic() {
@@ -56,6 +70,8 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
         }
         timer.schedule(timerTask, 0, RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
     }
+
+    private fun torsoOtherProductsRecyclerViewReachedBottom() { productRecyclerViewReachedBottomLogic(binding.torsoNestedScrollView) { torsoCategoryViewModel.getTorsoOtherProducts() } }
 
     private fun observeTorsoCategoryState() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -76,6 +92,22 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
                         }
                     }
                 }
+                launch {
+                    torsoCategoryViewModel.torsoOtherProducts.collect {
+                        when (it) {
+                            is Resource.Success -> {
+                                hideTorsoOtherProductsProgressBar()
+                                torsoOtherAdapter.differ.submitList(it.data)
+                            }
+                            is Resource.Loading -> showTorsoOtherProductsProgressBar()
+                            is Resource.Error -> {
+                                hideTorsoOtherProductsProgressBar()
+                                showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                            }
+                            is Resource.Undefined -> Unit
+                        }
+                    }
+                }
             }
         }
     }
@@ -86,5 +118,13 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
 
     private fun hideTorsoProfitableProductsProgressBar() {
         binding.torsoProfitableProductsProgressBar.visibility = View.GONE
+    }
+
+    private fun showTorsoOtherProductsProgressBar() {
+        binding.torsoOtherProductsProgressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideTorsoOtherProductsProgressBar() {
+        binding.torsoOtherProductsProgressBar.visibility = View.GONE
     }
 }

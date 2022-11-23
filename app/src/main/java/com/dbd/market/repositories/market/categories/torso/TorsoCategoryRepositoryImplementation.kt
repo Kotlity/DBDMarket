@@ -25,4 +25,17 @@ class TorsoCategoryRepositoryImplementation @Inject constructor(private val fire
             } catch (e: Exception) { onFailure(e) }
         }
     }
+
+    override suspend fun getTorsoOtherProductsFromFirebaseFirestore(onSuccess: suspend (QuerySnapshot) -> Unit, onFailure: suspend (Exception) -> Unit, pageNumber: Long) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val torsoOtherProductsQuerySnapshot = firebaseFirestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION)
+                    .whereEqualTo(FIREBASE_FIRESTORE_PRODUCTS_CATEGORY_FIELD, FIREBASE_FIRESTORE_TORSO_PRODUCTS_CATEGORY_FIELD_VALUE)
+                    .whereEqualTo(FIREBASE_FIRESTORE_PRODUCTS_DISCOUNT_FIELD, null)
+                    .limit(pageNumber * 4)
+                    .get().await()
+                if (!torsoOtherProductsQuerySnapshot.isEmpty) onSuccess(torsoOtherProductsQuerySnapshot)
+            } catch (e: Exception) { onFailure(e) }
+        }
+    }
 }

@@ -2,6 +2,7 @@ package com.dbd.market.viewmodels.market.categories.torso
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dbd.market.data.PagingInfo
 import com.dbd.market.helpers.products_adder.data.Product
 import com.dbd.market.repositories.market.categories.torso.TorsoCategoryRepository
 import com.dbd.market.utils.Resource
@@ -19,8 +20,14 @@ class TorsoCategoryViewModel @Inject constructor(private val torsoCategoryReposi
     private var _torsoProfitableProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val torsoProfitableProducts = _torsoProfitableProducts.asStateFlow()
 
+    private var _torsoOtherProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    val torsoOtherProducts = _torsoOtherProducts.asStateFlow()
+
+    private var torsoOtherProductsPagingInfo = MutableStateFlow(PagingInfo())
+
     init {
         getTorsoProfitableProducts()
+        getTorsoOtherProducts()
     }
 
     private fun getTorsoProfitableProducts() {
@@ -32,6 +39,24 @@ class TorsoCategoryViewModel @Inject constructor(private val torsoCategoryReposi
             onFailure = { torsoProfitableException ->
                 _torsoProfitableProducts.emit(Resource.Error(torsoProfitableException.message.toString()))
             })
+        }
+    }
+
+    fun getTorsoOtherProducts() {
+        if (!torsoOtherProductsPagingInfo.value.isEndOfPaging) {
+            viewModelScope.launch(Dispatchers.IO) {
+                torsoCategoryRepository.getTorsoOtherProductsFromFirebaseFirestore(onSuccess = { torsoOtherQuerySnapshot ->
+                    val convertTorsoOtherQuerySnapshotToTorsoProductObject = torsoOtherQuerySnapshot.toObjects<Product>()
+                    _torsoOtherProducts.emit(Resource.Success(convertTorsoOtherQuerySnapshotToTorsoProductObject))
+                    torsoOtherProductsPagingInfo.value.isEndOfPaging = convertTorsoOtherQuerySnapshotToTorsoProductObject == torsoOtherProductsPagingInfo.value.oldProducts
+                    torsoOtherProductsPagingInfo.value.oldProducts = convertTorsoOtherQuerySnapshotToTorsoProductObject
+                    torsoOtherProductsPagingInfo.value.pageNumber++
+                },
+                onFailure = { torsoOtherException ->
+                    _torsoOtherProducts.emit(Resource.Error(torsoOtherException.message.toString()))
+              },
+              pageNumber = torsoOtherProductsPagingInfo.value.pageNumber)
+            }
         }
     }
 }
