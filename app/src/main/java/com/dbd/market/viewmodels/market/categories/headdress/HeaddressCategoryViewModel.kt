@@ -17,13 +17,13 @@ import javax.inject.Inject
 @HiltViewModel
 class HeaddressCategoryViewModel @Inject constructor(private val headdressCategoryRepository: HeaddressCategoryRepository): ViewModel() {
 
-    private var _headdressProfitableProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    private val _headdressProfitableProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val headdressProfitableProducts = _headdressProfitableProducts.asStateFlow()
 
-    private var _headdressOtherProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    private val _headdressOtherProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val headdressOtherProducts = _headdressOtherProducts.asStateFlow()
 
-    private var headdressOtherPagingInfo = MutableStateFlow(PagingInfo())
+    private val headdressOtherPagingInfo = MutableStateFlow(PagingInfo())
 
     init {
         getHeaddressProfitableProducts()

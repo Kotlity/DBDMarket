@@ -17,13 +17,13 @@ import javax.inject.Inject
 @HiltViewModel
 class WeaponsCategoryViewModel @Inject constructor(private val weaponsCategoryRepository: WeaponsCategoryRepository): ViewModel() {
 
-    private var _weaponsProfitableProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    private val _weaponsProfitableProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val weaponsProfitableProducts = _weaponsProfitableProducts.asStateFlow()
 
-    private var _weaponsOtherProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    private val _weaponsOtherProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val weaponsOtherProducts = _weaponsOtherProducts.asStateFlow()
 
-    private var weaponsOtherPagingInfo = MutableStateFlow(PagingInfo())
+    private val weaponsOtherPagingInfo = MutableStateFlow(PagingInfo())
 
     init {
         getWeaponsProfitableProducts()

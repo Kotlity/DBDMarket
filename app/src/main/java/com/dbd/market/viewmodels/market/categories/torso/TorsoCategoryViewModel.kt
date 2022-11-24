@@ -17,10 +17,10 @@ import javax.inject.Inject
 @HiltViewModel
 class TorsoCategoryViewModel @Inject constructor(private val torsoCategoryRepository: TorsoCategoryRepository): ViewModel() {
 
-    private var _torsoProfitableProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    private val _torsoProfitableProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val torsoProfitableProducts = _torsoProfitableProducts.asStateFlow()
 
-    private var _torsoOtherProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    private val _torsoOtherProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val torsoOtherProducts = _torsoOtherProducts.asStateFlow()
 
     private var torsoOtherProductsPagingInfo = MutableStateFlow(PagingInfo())
