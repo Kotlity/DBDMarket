@@ -25,4 +25,17 @@ class LegsCategoryRepositoryImplementation @Inject constructor(private val fireb
             } catch (e: Exception) { onFailure(e) }
         }
     }
+
+    override suspend fun getLegsOtherProductsFromFirebaseFirestore(onSuccess: suspend (QuerySnapshot) -> Unit, onFailure: suspend (Exception) -> Unit, pageNumber: Long) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val legsOtherProductsQuerySnapshot = firebaseFirestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION)
+                    .whereEqualTo(FIREBASE_FIRESTORE_PRODUCTS_CATEGORY_FIELD, FIREBASE_FIRESTORE_LEGS_PRODUCTS_CATEGORY_FIELD_VALUE)
+                    .whereEqualTo(FIREBASE_FIRESTORE_PRODUCTS_DISCOUNT_FIELD, null)
+                    .limit(pageNumber * 4)
+                    .get().await()
+                if (!legsOtherProductsQuerySnapshot.isEmpty) onSuccess(legsOtherProductsQuerySnapshot)
+            } catch (e: Exception) { onFailure(e) }
+        }
+    }
 }

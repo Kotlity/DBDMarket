@@ -2,6 +2,7 @@ package com.dbd.market.viewmodels.market.categories.legs
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dbd.market.data.PagingInfo
 import com.dbd.market.helpers.products_adder.data.Product
 import com.dbd.market.repositories.market.categories.legs.LegsCategoryRepository
 import com.dbd.market.utils.Resource
@@ -19,8 +20,14 @@ class LegsCategoryViewModel @Inject constructor(private val legsCategoryReposito
     private val _legsProfitableProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
     val legsProfitableProducts = _legsProfitableProducts.asStateFlow()
 
+    private val _legsOtherProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Loading())
+    val legsOtherProducts = _legsOtherProducts.asStateFlow()
+
+    private val legsOtherProductsPagingInfoState = MutableStateFlow(PagingInfo())
+
     init {
         getLegsProfitableProducts()
+        getLegsOtherProducts()
     }
 
     private fun getLegsProfitableProducts() {
@@ -32,6 +39,23 @@ class LegsCategoryViewModel @Inject constructor(private val legsCategoryReposito
             onFailure = { legsProfitableException ->
                 _legsProfitableProducts.value = Resource.Error(legsProfitableException.message.toString())
             })
+        }
+    }
+
+    fun getLegsOtherProducts() {
+        if (!legsOtherProductsPagingInfoState.value.isEndOfPaging) {
+            viewModelScope.launch(Dispatchers.IO) {
+                legsCategoryRepository.getLegsOtherProductsFromFirebaseFirestore(onSuccess = { legsOtherQuerySnapshot ->
+                    val convertLegsOtherQuerySnapshotToLegsProductObject = legsOtherQuerySnapshot.toObjects<Product>()
+                    _legsOtherProducts.emit(Resource.Success(convertLegsOtherQuerySnapshotToLegsProductObject))
+                    legsOtherProductsPagingInfoState.value.isEndOfPaging = convertLegsOtherQuerySnapshotToLegsProductObject == legsOtherProductsPagingInfoState.value.oldProducts
+                    legsOtherProductsPagingInfoState.value.oldProducts = convertLegsOtherQuerySnapshotToLegsProductObject
+                    legsOtherProductsPagingInfoState.value.pageNumber++
+                },
+                onFailure = { legsOtherException ->
+                    _legsOtherProducts.emit(Resource.Error(legsOtherException.message.toString()))
+                }, pageNumber = legsOtherProductsPagingInfoState.value.pageNumber)
+            }
         }
     }
 }

@@ -6,15 +6,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
+import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
 import com.dbd.market.databinding.FragmentLegsBinding
-import com.dbd.market.utils.Constants
-import com.dbd.market.utils.Resource
-import com.dbd.market.utils.autoScrollRecyclerViewLogic
-import com.dbd.market.utils.showToast
+import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.market.categories.legs.LegsCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,6 +25,7 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
 
     private val legsCategoryViewModel by viewModels<LegsCategoryViewModel>()
     private lateinit var legsProfitableAdapter: ProfitableCategoryProductsAdapter
+    private lateinit var legsOtherAdapter: InterestingProductsAdapter
     private lateinit var legsProfitableLinearLayoutManager: LinearLayoutManager
     private lateinit var timer: Timer
     private lateinit var timerTask: TimerTask
@@ -32,7 +33,9 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupLegsProfitableAdapter()
+        setupLegsOtherAdapter()
         observeLegsCategoryState()
+        legsOtherProductsRecyclerViewReachedBottom()
     }
 
     private fun setupLegsProfitableAdapter() {
@@ -43,6 +46,16 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
             layoutManager = legsProfitableLinearLayoutManager
         }
         autoScrollLegsProfitableProductsRecyclerViewLogic()
+    }
+
+    private fun setupLegsOtherAdapter() {
+        legsOtherAdapter = InterestingProductsAdapter()
+        binding.legsOtherProductsRecyclerView.apply {
+            adapter = legsOtherAdapter
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            legsOtherAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+            addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
+        }
     }
 
     private fun autoScrollLegsProfitableProductsRecyclerViewLogic() {
@@ -56,6 +69,8 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
         }
         timer.schedule(timerTask, 0, Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
     }
+
+    private fun legsOtherProductsRecyclerViewReachedBottom() { productRecyclerViewReachedBottomLogic(binding.legsNestedScrollView) { legsCategoryViewModel.getLegsOtherProducts() } }
 
     private fun observeLegsCategoryState() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -76,6 +91,22 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
                         }
                     }
                 }
+                launch {
+                    legsCategoryViewModel.legsOtherProducts.collect {
+                        when (it) {
+                            is Resource.Success -> {
+                                hideLegsOtherProductsProgressBar()
+                                legsOtherAdapter.differ.submitList(it.data)
+                            }
+                            is Resource.Loading -> showLegsOtherProductsProgressBar()
+                            is Resource.Error -> {
+                                hideLegsOtherProductsProgressBar()
+                                showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                            }
+                            is Resource.Undefined -> Unit
+                        }
+                    }
+                }
             }
         }
     }
@@ -86,5 +117,13 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
 
     private fun hideLegsProfitableProductsProgressBar() {
         binding.legsProfitableProductsProgressBar.visibility = View.GONE
+    }
+
+    private fun showLegsOtherProductsProgressBar() {
+        binding.legsOtherProductsProgressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideLegsOtherProductsProgressBar() {
+        binding.legsOtherProductsProgressBar.visibility = View.GONE
     }
 }
