@@ -45,7 +45,7 @@ class HeaddressCategoryViewModel @Inject constructor(private val headdressCatego
     fun getHeaddressOtherProducts() {
         if (!headdressOtherPagingInfo.value.isEndOfPaging) {
             viewModelScope.launch(Dispatchers.IO) {
-                headdressCategoryRepository.getHeaddressOtherProductsFromFirebaseFirestore(onSucces = { headdressOtherQuerySnapshot ->
+                headdressCategoryRepository.getHeaddressOtherProductsFromFirebaseFirestore(onSuccess = { headdressOtherQuerySnapshot ->
                     val convertHeaddressOtherQuerySnapshotToHeaddressProductObject = headdressOtherQuerySnapshot.toObjects<Product>()
                     _headdressOtherProducts.emit(Resource.Success(convertHeaddressOtherQuerySnapshotToHeaddressProductObject))
                     headdressOtherPagingInfo.value.isEndOfPaging = convertHeaddressOtherQuerySnapshotToHeaddressProductObject == headdressOtherPagingInfo.value.oldProducts

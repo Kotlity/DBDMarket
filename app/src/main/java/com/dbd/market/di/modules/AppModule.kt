@@ -16,7 +16,9 @@ import com.dbd.market.repositories.market.categories.torso.TorsoCategoryReposito
 import com.dbd.market.repositories.market.categories.torso.TorsoCategoryRepositoryImplementation
 import com.dbd.market.repositories.market.categories.weapons.WeaponsCategoryRepository
 import com.dbd.market.repositories.market.categories.weapons.WeaponsCategoryRepositoryImplementation
+import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_PRODUCTS_COLLECTION
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -45,6 +47,10 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideProductsCollectionReference() = Firebase.firestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION)
+
+    @Provides
+    @Singleton
     fun provideLoginRepository(firebaseAuth: FirebaseAuth): LoginRepository = LoginRepositoryImplementation(firebaseAuth)
 
     @Provides
@@ -57,21 +63,21 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSuitsCategoryRepository(firebaseFirestore: FirebaseFirestore): SuitsCategoryRepository = SuitsCategoryRepositoryImplementation(firebaseFirestore)
+    fun provideSuitsCategoryRepository(productsCollectionReference: CollectionReference): SuitsCategoryRepository = SuitsCategoryRepositoryImplementation(productsCollectionReference)
 
     @Provides
     @Singleton
-    fun provideWeaponsCategoryRepository(firebaseFirestore: FirebaseFirestore): WeaponsCategoryRepository = WeaponsCategoryRepositoryImplementation(firebaseFirestore)
+    fun provideWeaponsCategoryRepository(productsCollectionReference: CollectionReference): WeaponsCategoryRepository = WeaponsCategoryRepositoryImplementation(productsCollectionReference)
 
     @Provides
     @Singleton
-    fun provideHeaddressCategoryRepository(firebaseFirestore: FirebaseFirestore): HeaddressCategoryRepository = HeaddressCategoryRepositoryImplementation(firebaseFirestore)
+    fun provideHeaddressCategoryRepository(productsCollectionReference: CollectionReference): HeaddressCategoryRepository = HeaddressCategoryRepositoryImplementation(productsCollectionReference)
 
     @Provides
     @Singleton
-    fun provideTorsoCategoryRepository(firebaseFirestore: FirebaseFirestore): TorsoCategoryRepository = TorsoCategoryRepositoryImplementation(firebaseFirestore)
+    fun provideTorsoCategoryRepository(productsCollectionReference: CollectionReference): TorsoCategoryRepository = TorsoCategoryRepositoryImplementation(productsCollectionReference)
 
     @Provides
     @Singleton
-    fun provideLegsCategoryRepository(firebaseFirestore: FirebaseFirestore): LegsCategoryRepository = LegsCategoryRepositoryImplementation(firebaseFirestore)
+    fun provideLegsCategoryRepository(productsCollectionReference: CollectionReference): LegsCategoryRepository = LegsCategoryRepositoryImplementation(productsCollectionReference)
 }
