@@ -72,4 +72,6 @@
     <string name="appInterestingProductButtonTextString">Go to product</string>
     <string name="appProfitablePropositionProductTitleTextView">Profitable proposition</string>
     <string name="appOtherProductTitleTextView">Other</string>
+    <string name="productDescriptionSizesTextViewWarningString">Please, choose at least 1 size !</string>
+    <string name="productDescriptionAddToCartButtonString">Add to cart</string>
 </resources>

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    tools:context=".screens.fragments.market.ProductDescriptionFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/productDescriptionCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="@color/dark_grey"
+        app:cardCornerRadius="@dimen/appProductDescriptionCardViewCornerRadius"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="@+id/productDescriptionViewPager2BottomGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/productDescriptionEndVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/productDescriptionViewPager2TopGuideline">
+
+        <ImageView
+            android:id="@+id/closeProductDescriptionScreen"
+            android:layout_width="@dimen/productDescriptionCloseProductImageViewSize"
+            android:layout_height="@dimen/productDescriptionCloseProductImageViewSize"
+            android:src="@drawable/ic_close_icon"
+            tools:ignore="ContentDescription" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/productDescriptionViewPager2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.cardview.widget.CardView>
+
+    <io.github.vejei.viewpagerindicator.indicator.RectIndicator
+        android:id="@+id/circleViewPager2Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/productDescriptionViewsMarginTop"
+        app:indicatorColor="@color/white"
+        app:indicatorCornerRadius="@dimen/productDescriptionViewPager2IndicatorCornerRadius"
+        app:indicatorGap="@dimen/productDescriptionViewPager2IndicatorGap"
+        app:indicatorHeight="@dimen/productDescriptionViewPager2IndicatorHeight"
+        app:indicatorItemCount="4"
+        app:indicatorSelectedColor="@color/red"
+        app:indicatorWidth="@dimen/productDescriptionViewPager2IndicatorWidth"
+        app:layout_constraintEnd_toEndOf="@+id/productDescriptionCardView"
+        app:layout_constraintStart_toStartOf="@+id/productDescriptionCardView"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionCardView" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/productDescriptionSeparatorHeight"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/productDescriptionEndVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionProductTitleTopGuideline" />
+
+    <LinearLayout
+        android:id="@+id/productDescriptionTitleAndDescriptionTextViewsLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/productDescriptionViewsMarginTop"
+        app:layout_constraintEnd_toEndOf="@+id/productDescriptionEndVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionProductTitleTopGuideline">
+
+        <TextView
+            android:id="@+id/productDescriptionTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productDescriptionTitleTextViewTextSize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/productDescriptionCategoryTextViewTextSize" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/productDescriptionTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/productDescriptionViewsMarginTop"
+        android:textColor="@color/white"
+        android:textSize="@dimen/productDescriptionTextViewTextSize"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/productDescriptionEndVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionTitleAndDescriptionTextViewsLinearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/productDescriptionPricesTopSeparator"/>
+
+    <View
+        android:id="@+id/productDescriptionPricesTopSeparator"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/productDescriptionSeparatorHeight"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/productDescriptionViewsMarginTop"
+        app:layout_constraintBottom_toTopOf="@+id/productDescriptionPricesLinearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/productDescriptionEndVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionTextView" />
+
+    <LinearLayout
+        android:id="@+id/productDescriptionPricesLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="@dimen/productDescriptionViewsMarginTop"
+        app:layout_constraintEnd_toEndOf="@+id/productDescriptionEndVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionPricesTopSeparator"
+        app:layout_constraintBottom_toTopOf="@+id/productDescriptionPricesBottomSeparator">
+
+        <TextView
+            android:id="@+id/productDescriptionNewPriceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productDescriptionNewPriceTextViewTextSize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/productDescriptionOldPriceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/productDescriptionOldPriceTextViewMarginStart"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productDescriptionOldPriceTextViewTextSize"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/productDescriptionPricesBottomSeparator"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/productDescriptionSeparatorHeight"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/productDescriptionViewsMarginTop"
+        app:layout_constraintEnd_toEndOf="@+id/productDescriptionEndVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionPricesLinearLayout" />
+
+    <LinearLayout
+        android:id="@+id/productDescriptionSizesLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/productDescriptionViewsMarginTop"
+        app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionPricesBottomSeparator"
+        app:layout_constraintBottom_toTopOf="@+id/productDescriptionSizesBottomSeparator">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/productDescriptionSizesTextViewTextSize"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/productDescriptionSizesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/productDescriptionSizesRecyclerViewMarginTop"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <TextView
+            android:id="@+id/productDescriptionSizesWarningTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/productDescriptionSizesWarningTextViewMarginTop"
+            android:text="@string/productDescriptionSizesTextViewWarningString"
+            android:textColor="@color/red"
+            android:textSize="@dimen/productDescriptionSizesWarningTextViewTextSize"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/productDescriptionSizesBottomSeparator"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/productDescriptionSeparatorHeight"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/productDescriptionViewsMarginTop"
+        app:layout_constraintEnd_toEndOf="@+id/productDescriptionEndVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionSizesLinearLayout" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/productDescriptionAddToCartButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/productDescriptionViewsMarginTop"
+        android:text="@string/productDescriptionAddToCartButtonString"
+        android:textSize="@dimen/productDescriptionAddToCartButtonTextSize"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:background="@drawable/app_add_to_cart_button_background"
+        app:layout_constraintEnd_toEndOf="@+id/productDescriptionEndVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionSizesBottomSeparator" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productDescriptionStartVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productDescriptionEndVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productDescriptionViewPager2TopGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productDescriptionViewPager2BottomGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.40" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productDescriptionProductTitleTopGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.44" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

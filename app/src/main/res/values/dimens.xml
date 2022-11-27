@@ -135,4 +135,24 @@
     <dimen name="appProfitableProductsCategoryFragmentTitleTextViewSize">30sp</dimen>
     <dimen name="appOtherProductsCategoryFragmentTitleTextViewSize">34sp</dimen>
     <dimen name="appProductsProgressBarMargin">20dp</dimen>
+    <dimen name="appAddToCartButtonStrokeWidth">2dp</dimen>
+    <dimen name="appProductDescriptionCardViewCornerRadius">10dp</dimen>
+    <dimen name="productDescriptionCloseProductImageViewSize">40dp</dimen>
+    <dimen name="productDescriptionViewsMarginTop">10dp</dimen>
+    <dimen name="productDescriptionViewPager2IndicatorGap">10dp</dimen>
+    <dimen name="productDescriptionViewPager2IndicatorHeight">8dp</dimen>
+    <dimen name="productDescriptionViewPager2IndicatorWidth">30dp</dimen>
+    <dimen name="productDescriptionSeparatorHeight">1dp</dimen>
+    <dimen name="productDescriptionViewPager2IndicatorCornerRadius">5dp</dimen>
+    <dimen name="productDescriptionTitleTextViewTextSize">28sp</dimen>
+    <dimen name="productDescriptionCategoryTextViewTextSize">16sp</dimen>
+    <dimen name="productDescriptionTextViewTextSize">18sp</dimen>
+    <dimen name="productDescriptionNewPriceTextViewTextSize">25sp</dimen>
+    <dimen name="productDescriptionOldPriceTextViewTextSize">25sp</dimen>
+    <dimen name="productDescriptionOldPriceTextViewMarginStart">5dp</dimen>
+    <dimen name="productDescriptionSizesTextViewTextSize">23sp</dimen>
+    <dimen name="productDescriptionSizesRecyclerViewMarginTop">5dp</dimen>
+    <dimen name="productDescriptionSizesWarningTextViewTextSize">15sp</dimen>
+    <dimen name="productDescriptionAddToCartButtonTextSize">25sp</dimen>
+    <dimen name="productDescriptionSizesWarningTextViewMarginTop">5dp</dimen>
 </resources>
