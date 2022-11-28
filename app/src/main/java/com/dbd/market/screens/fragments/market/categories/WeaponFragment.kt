@@ -37,7 +37,17 @@ class WeaponFragment: BaseCategoryFragment<FragmentWeaponBinding>(FragmentWeapon
         setupWeaponsOtherProductsRecyclerView()
         observeWeaponsCategoryState()
         weaponsOtherProductsRecyclerViewReachedBottom()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        autoScrollWeaponsProfitableProductsRecyclerViewLogic()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        timer.cancel()
+        timerTask.cancel()
     }
 
     private fun setupWeaponsProfitableProductsRecyclerView() {
@@ -47,7 +57,7 @@ class WeaponFragment: BaseCategoryFragment<FragmentWeaponBinding>(FragmentWeapon
             adapter = weaponsProfitableProductsAdapter
             layoutManager = weaponsProfitableProductsLinearLayoutManager
         }
-        autoScrollWeaponsProfitableProductsRecyclerViewLogic()
+//        autoScrollWeaponsProfitableProductsRecyclerViewLogic()
     }
 
     private fun setupWeaponsOtherProductsRecyclerView() {
@@ -61,8 +71,8 @@ class WeaponFragment: BaseCategoryFragment<FragmentWeaponBinding>(FragmentWeapon
     }
 
     private fun autoScrollWeaponsProfitableProductsRecyclerViewLogic() {
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.weaponProfitableProductsRecyclerView)
+//        val snapHelper = LinearSnapHelper()
+//        snapHelper.attachToRecyclerView(binding.weaponProfitableProductsRecyclerView)
         timer = Timer()
         timerTask = object: TimerTask() {
             override fun run() {

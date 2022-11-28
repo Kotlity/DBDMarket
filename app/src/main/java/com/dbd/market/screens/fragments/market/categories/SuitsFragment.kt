@@ -38,6 +38,17 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
         suitsOtherProductsRecyclerViewReachedBottomLogic()
     }
 
+    override fun onResume() {
+        super.onResume()
+        autoScrollSuitsProfitableProductsRecyclerViewLogic()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        timer.cancel()
+        timerTask.cancel()
+    }
+
     private fun setupSuitsProfitableProductsRecyclerView() {
         suitsProfitableProductsAdapter = ProfitableCategoryProductsAdapter()
         suitsProfitableProductsLinearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -45,7 +56,7 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
             adapter = suitsProfitableProductsAdapter
             layoutManager = suitsProfitableProductsLinearLayoutManager
         }
-        autoScrollSuitsProfitableProductsRecyclerViewLogic()
+//        autoScrollSuitsProfitableProductsRecyclerViewLogic()
     }
 
     private fun setupSuitsOtherProductsRecyclerView() {
@@ -59,8 +70,8 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
     }
 
     private fun autoScrollSuitsProfitableProductsRecyclerViewLogic() {
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.suitsOtherProductsRecyclerView)
+//        val snapHelper = LinearSnapHelper()
+//        snapHelper.attachToRecyclerView(binding.suitsOtherProductsRecyclerView)
         timer = Timer()
         timerTask = object : TimerTask() {
             override fun run() { autoScrollRecyclerViewLogic(binding.suitsProfitableProductsRecyclerView, suitsProfitableProductsAdapter, suitsProfitableProductsLinearLayoutManager) }

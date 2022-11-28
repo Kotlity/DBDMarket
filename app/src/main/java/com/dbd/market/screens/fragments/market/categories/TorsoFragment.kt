@@ -1,6 +1,7 @@
 package com.dbd.market.screens.fragments.market.categories
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -39,6 +40,17 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
         torsoOtherProductsRecyclerViewReachedBottom()
     }
 
+    override fun onResume() {
+        super.onResume()
+        autoScrollTorsoProfitableProductsRecyclerViewLogic()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        timer.cancel()
+        timerTask.cancel()
+    }
+
     private fun setupTorsoProfitableAdapter() {
         torsoProfitableAdapter = ProfitableCategoryProductsAdapter()
         torsoProfitableLinearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -46,7 +58,7 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
             adapter = torsoProfitableAdapter
             layoutManager = torsoProfitableLinearLayoutManager
         }
-        autoScrollTorsoProfitableProductsRecyclerViewLogic()
+//        autoScrollTorsoProfitableProductsRecyclerViewLogic()
     }
 
     private fun setupTorsoOtherAdapter() {
@@ -60,8 +72,8 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
     }
 
     private fun autoScrollTorsoProfitableProductsRecyclerViewLogic() {
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.torsoProfitableProductsRecyclerView)
+//        val snapHelper = LinearSnapHelper()
+//        snapHelper.attachToRecyclerView(binding.torsoProfitableProductsRecyclerView)
         timer = Timer()
         timerTask = object: TimerTask() {
             override fun run() {

@@ -53,6 +53,17 @@ class MainCategoryFragment : Fragment() {
         beneficialProductsRecyclerViewReachedLeft()
     }
 
+    override fun onResume() {
+        super.onResume()
+        autoScrollSpecialProductsRecyclerViewLogic()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        timer.cancel()
+        timerTask.cancel()
+    }
+
     private fun setupSpecialProductsRecyclerView() {
         specialProductsAdapter = SpecialProductsAdapter()
         specialProductsLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -60,12 +71,12 @@ class MainCategoryFragment : Fragment() {
             adapter = specialProductsAdapter
             layoutManager = specialProductsLayoutManager
         }
-        autoScrollSpecialProductsRecyclerViewLogic()
+//        autoScrollSpecialProductsRecyclerViewLogic()
     }
 
     private fun autoScrollSpecialProductsRecyclerViewLogic() {
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.specialProductsRecyclerView)
+//        val snapHelper = LinearSnapHelper()
+//        snapHelper.attachToRecyclerView(binding.specialProductsRecyclerView)
         timer = Timer()
         timerTask = object : TimerTask() {
             override fun run() { autoScrollRecyclerViewLogic(binding.specialProductsRecyclerView, specialProductsAdapter, specialProductsLayoutManager) }

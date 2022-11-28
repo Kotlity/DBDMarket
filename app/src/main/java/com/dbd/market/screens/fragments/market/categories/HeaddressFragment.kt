@@ -39,6 +39,17 @@ class HeaddressFragment: BaseCategoryFragment<FragmentHeaddressBinding>(Fragment
         headdressOtherProductsRecyclerViewReachedBottom()
     }
 
+    override fun onResume() {
+        super.onResume()
+        autoScrollHeaddressProfitableProductsRecyclerViewLogic()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        timer.cancel()
+        timerTask.cancel()
+    }
+
     private fun setupHeaddressProfitableRecyclerView() {
         headdressProfitableAdapter = ProfitableCategoryProductsAdapter()
         headdressProfitableLinearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -46,7 +57,7 @@ class HeaddressFragment: BaseCategoryFragment<FragmentHeaddressBinding>(Fragment
             adapter = headdressProfitableAdapter
             layoutManager = headdressProfitableLinearLayoutManager
         }
-        autoScrollHeaddressProfitableProductsRecyclerViewLogic()
+//        autoScrollHeaddressProfitableProductsRecyclerViewLogic()
     }
 
     private fun setupHeaddressOtherRecyclerView() {
@@ -60,8 +71,8 @@ class HeaddressFragment: BaseCategoryFragment<FragmentHeaddressBinding>(Fragment
     }
 
     private fun autoScrollHeaddressProfitableProductsRecyclerViewLogic() {
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.headdressProfitableProductsRecyclerView)
+//        val snapHelper = LinearSnapHelper()
+//        snapHelper.attachToRecyclerView(binding.headdressProfitableProductsRecyclerView)
         timer = Timer()
         timerTask = object: TimerTask() {
             override fun run() {

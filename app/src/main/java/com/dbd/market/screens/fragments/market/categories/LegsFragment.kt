@@ -38,6 +38,17 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
         legsOtherProductsRecyclerViewReachedBottom()
     }
 
+    override fun onResume() {
+        super.onResume()
+        autoScrollLegsProfitableProductsRecyclerViewLogic()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        timer.cancel()
+        timerTask.cancel()
+    }
+
     private fun setupLegsProfitableAdapter() {
         legsProfitableAdapter = ProfitableCategoryProductsAdapter()
         legsProfitableLinearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -45,7 +56,7 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
             adapter = legsProfitableAdapter
             layoutManager = legsProfitableLinearLayoutManager
         }
-        autoScrollLegsProfitableProductsRecyclerViewLogic()
+//        autoScrollLegsProfitableProductsRecyclerViewLogic()
     }
 
     private fun setupLegsOtherAdapter() {
@@ -59,8 +70,8 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
     }
 
     private fun autoScrollLegsProfitableProductsRecyclerViewLogic() {
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.legsProfitableProductsRecyclerView)
+//        val snapHelper = LinearSnapHelper()
+//        snapHelper.attachToRecyclerView(binding.legsProfitableProductsRecyclerView)
         timer = Timer()
         timerTask = object: TimerTask() {
             override fun run() {
