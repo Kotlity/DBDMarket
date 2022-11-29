@@ -117,7 +117,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun navigateToLoginFragment() {
-        navigateToAnotherFragment(binding.loginLinkTextView, R.id.action_registerFragment_to_loginFragment)
+        navigateToAnotherFragmentWithoutArguments(binding.loginLinkTextView, R.id.action_registerFragment_to_loginFragment)
     }
 
     private fun navigateToLoginFragmentAfterRegisteringANewAccount() {

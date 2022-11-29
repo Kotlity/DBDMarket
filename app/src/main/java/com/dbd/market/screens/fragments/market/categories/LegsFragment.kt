@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -14,6 +15,7 @@ import com.dbd.market.R
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
 import com.dbd.market.databinding.FragmentLegsBinding
+import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.market.categories.legs.LegsCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +38,8 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
         setupLegsOtherAdapter()
         observeLegsCategoryState()
         legsOtherProductsRecyclerViewReachedBottom()
+        onLegsProfitableProductClick()
+        onLegsOtherProductClick()
     }
 
     override fun onResume() {
@@ -59,16 +63,6 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
 //        autoScrollLegsProfitableProductsRecyclerViewLogic()
     }
 
-    private fun setupLegsOtherAdapter() {
-        legsOtherAdapter = InterestingProductsAdapter()
-        binding.legsOtherProductsRecyclerView.apply {
-            adapter = legsOtherAdapter
-            layoutManager = GridLayoutManager(requireContext(), 2)
-            legsOtherAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-            addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
-        }
-    }
-
     private fun autoScrollLegsProfitableProductsRecyclerViewLogic() {
 //        val snapHelper = LinearSnapHelper()
 //        snapHelper.attachToRecyclerView(binding.legsProfitableProductsRecyclerView)
@@ -81,7 +75,31 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
         timer.schedule(timerTask, 0, Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
     }
 
+    private fun setupLegsOtherAdapter() {
+        legsOtherAdapter = InterestingProductsAdapter()
+        binding.legsOtherProductsRecyclerView.apply {
+            adapter = legsOtherAdapter
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            legsOtherAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+            addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
+        }
+    }
+
     private fun legsOtherProductsRecyclerViewReachedBottom() { productRecyclerViewReachedBottomLogic(binding.legsNestedScrollView) { legsCategoryViewModel.getLegsOtherProducts() } }
+
+    private fun onLegsProfitableProductClick() {
+        legsProfitableAdapter.onProductClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun onLegsOtherProductClick() {
+        legsOtherAdapter.onProductClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+            findNavController().navigate(action)
+        }
+    }
 
     private fun observeLegsCategoryState() {
         viewLifecycleOwner.lifecycleScope.launch {

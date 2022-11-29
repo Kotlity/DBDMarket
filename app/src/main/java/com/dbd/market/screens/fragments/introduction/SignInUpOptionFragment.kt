@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.dbd.market.R
 import com.dbd.market.databinding.FragmentSignInUpOptionBinding
-import com.dbd.market.utils.navigateToAnotherFragment
+import com.dbd.market.utils.navigateToAnotherFragmentWithoutArguments
 
 class SignInUpOptionFragment : Fragment() {
     private lateinit var binding: FragmentSignInUpOptionBinding
@@ -27,11 +27,11 @@ class SignInUpOptionFragment : Fragment() {
     }
 
     private fun navigateToLoginFragment() {
-        navigateToAnotherFragment(binding.appButtonSignIn, R.id.action_signInUpOptionFragment_to_loginFragment)
+        navigateToAnotherFragmentWithoutArguments(binding.appButtonSignIn, R.id.action_signInUpOptionFragment_to_loginFragment)
     }
 
     private fun navigateToRegisterFragment() {
-        navigateToAnotherFragment(binding.appButtonSignUp, R.id.action_signInUpOptionFragment_to_registerFragment)
+        navigateToAnotherFragmentWithoutArguments(binding.appButtonSignUp, R.id.action_signInUpOptionFragment_to_registerFragment)
     }
 
 }

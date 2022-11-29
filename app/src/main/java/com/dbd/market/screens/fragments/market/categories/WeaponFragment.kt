@@ -6,14 +6,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
 import com.dbd.market.databinding.FragmentWeaponBinding
+import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD
 import com.dbd.market.viewmodels.market.categories.weapons.WeaponsCategoryViewModel
@@ -37,6 +38,8 @@ class WeaponFragment: BaseCategoryFragment<FragmentWeaponBinding>(FragmentWeapon
         setupWeaponsOtherProductsRecyclerView()
         observeWeaponsCategoryState()
         weaponsOtherProductsRecyclerViewReachedBottom()
+        onWeaponsProfitableProductClick()
+        onWeaponsOtherProductClick()
     }
 
     override fun onResume() {
@@ -57,7 +60,16 @@ class WeaponFragment: BaseCategoryFragment<FragmentWeaponBinding>(FragmentWeapon
             adapter = weaponsProfitableProductsAdapter
             layoutManager = weaponsProfitableProductsLinearLayoutManager
         }
-//        autoScrollWeaponsProfitableProductsRecyclerViewLogic()
+    }
+
+    private fun autoScrollWeaponsProfitableProductsRecyclerViewLogic() {
+        timer = Timer()
+        timerTask = object: TimerTask() {
+            override fun run() {
+                autoScrollRecyclerViewLogic(binding.weaponProfitableProductsRecyclerView, weaponsProfitableProductsAdapter, weaponsProfitableProductsLinearLayoutManager)
+            }
+        }
+        timer.schedule(timerTask, 0, RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
     }
 
     private fun setupWeaponsOtherProductsRecyclerView() {
@@ -70,19 +82,21 @@ class WeaponFragment: BaseCategoryFragment<FragmentWeaponBinding>(FragmentWeapon
         }
     }
 
-    private fun autoScrollWeaponsProfitableProductsRecyclerViewLogic() {
-//        val snapHelper = LinearSnapHelper()
-//        snapHelper.attachToRecyclerView(binding.weaponProfitableProductsRecyclerView)
-        timer = Timer()
-        timerTask = object: TimerTask() {
-            override fun run() {
-                autoScrollRecyclerViewLogic(binding.weaponProfitableProductsRecyclerView, weaponsProfitableProductsAdapter, weaponsProfitableProductsLinearLayoutManager)
-            }
+    private fun weaponsOtherProductsRecyclerViewReachedBottom() { productRecyclerViewReachedBottomLogic(binding.weaponsNestedScrollView) { weaponsCategoryViewModel.getWeaponsOtherProducts() } }
+
+    private fun onWeaponsProfitableProductClick() {
+        weaponsProfitableProductsAdapter.onProductClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+            findNavController().navigate(action)
         }
-        timer.schedule(timerTask, 0, RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
     }
 
-    private fun weaponsOtherProductsRecyclerViewReachedBottom() { productRecyclerViewReachedBottomLogic(binding.weaponsNestedScrollView) { weaponsCategoryViewModel.getWeaponsOtherProducts() } }
+    private fun onWeaponsOtherProductClick() {
+        weaponsOtherProductsAdapter.onProductClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+            findNavController().navigate(action)
+        }
+    }
 
     private fun observeWeaponsCategoryState() {
         viewLifecycleOwner.lifecycleScope.launch {

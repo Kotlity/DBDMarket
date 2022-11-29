@@ -34,21 +34,21 @@
 
     </androidx.cardview.widget.CardView>
 
-    <io.github.vejei.viewpagerindicator.indicator.RectIndicator
-        android:id="@+id/circleViewPager2Indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/productDescriptionViewsMarginTop"
-        app:indicatorColor="@color/white"
-        app:indicatorCornerRadius="@dimen/productDescriptionViewPager2IndicatorCornerRadius"
-        app:indicatorGap="@dimen/productDescriptionViewPager2IndicatorGap"
-        app:indicatorHeight="@dimen/productDescriptionViewPager2IndicatorHeight"
-        app:indicatorItemCount="4"
-        app:indicatorSelectedColor="@color/red"
-        app:indicatorWidth="@dimen/productDescriptionViewPager2IndicatorWidth"
-        app:layout_constraintEnd_toEndOf="@+id/productDescriptionCardView"
-        app:layout_constraintStart_toStartOf="@+id/productDescriptionCardView"
-        app:layout_constraintTop_toBottomOf="@+id/productDescriptionCardView" />
+<!--    <io.github.vejei.viewpagerindicator.indicator.RectIndicator-->
+<!--        android:id="@+id/circleViewPager2Indicator"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/productDescriptionViewsMarginTop"-->
+<!--        app:indicatorColor="@color/white"-->
+<!--        app:indicatorCornerRadius="@dimen/productDescriptionViewPager2IndicatorCornerRadius"-->
+<!--        app:indicatorGap="@dimen/productDescriptionViewPager2IndicatorGap"-->
+<!--        app:indicatorHeight="@dimen/productDescriptionViewPager2IndicatorHeight"-->
+<!--        app:indicatorItemCount="4"-->
+<!--        app:indicatorSelectedColor="@color/red"-->
+<!--        app:indicatorWidth="@dimen/productDescriptionViewPager2IndicatorWidth"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/productDescriptionCardView"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/productDescriptionCardView"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/productDescriptionCardView" />-->
 
     <View
         android:layout_width="0dp"

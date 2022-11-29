@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.dbd.market.R
 import com.dbd.market.databinding.FragmentIntroductionBinding
-import com.dbd.market.utils.navigateToAnotherFragment
+import com.dbd.market.utils.navigateToAnotherFragmentWithoutArguments
 
 
 class IntroductionFragment : Fragment() {
@@ -27,7 +27,7 @@ class IntroductionFragment : Fragment() {
     }
 
     private fun navigateToSignInUpOptionFragment() {
-        navigateToAnotherFragment(binding.appButtonStart, R.id.action_introductionFragment_to_signInUpOptionFragment)
+        navigateToAnotherFragmentWithoutArguments(binding.appButtonStart, R.id.action_introductionFragment_to_signInUpOptionFragment)
     }
 
 }

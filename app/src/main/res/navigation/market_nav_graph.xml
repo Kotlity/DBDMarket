@@ -9,7 +9,15 @@
         android:id="@+id/homeFragment"
         android:name="com.dbd.market.screens.fragments.market.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_productDescriptionFragment"
+            app:destination="@id/productDescriptionFragment"
+            app:enterAnim="@anim/from_right_screen_animation"
+            app:exitAnim="@anim/to_left_screen_animation"
+            app:popEnterAnim="@anim/from_left_screen_animation"
+            app:popExitAnim="@anim/to_right_screen_animation"/>
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.dbd.market.screens.fragments.market.CartFragment"
@@ -25,4 +33,13 @@
         android:name="com.dbd.market.screens.fragments.market.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/productDescriptionFragment"
+        android:name="com.dbd.market.screens.fragments.market.ProductDescriptionFragment"
+        android:label="fragment_product_description"
+        tools:layout="@layout/fragment_product_description" >
+        <argument
+            android:name="categoriesProduct"
+            app:argType="com.dbd.market.helpers.products_adder.data.Product" />
+    </fragment>
 </navigation>

@@ -101,7 +101,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun navigateToRegisterFragment() {
-        navigateToAnotherFragment(binding.registerLinkTextView, R.id.action_loginFragment_to_registerFragment)
+        navigateToAnotherFragmentWithoutArguments(binding.registerLinkTextView, R.id.action_loginFragment_to_registerFragment)
     }
 
     private fun resetPasswordViaEmail() {

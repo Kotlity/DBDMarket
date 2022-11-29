@@ -1,20 +1,20 @@
 package com.dbd.market.screens.fragments.market.categories
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
 import com.dbd.market.databinding.FragmentTorsoBinding
+import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD
 import com.dbd.market.viewmodels.market.categories.torso.TorsoCategoryViewModel
@@ -38,6 +38,8 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
         setupTorsoOtherAdapter()
         observeTorsoCategoryState()
         torsoOtherProductsRecyclerViewReachedBottom()
+        onTorsoProfitableProductClick()
+        onTorsoOtherProductClick()
     }
 
     override fun onResume() {
@@ -58,7 +60,16 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
             adapter = torsoProfitableAdapter
             layoutManager = torsoProfitableLinearLayoutManager
         }
-//        autoScrollTorsoProfitableProductsRecyclerViewLogic()
+    }
+
+    private fun autoScrollTorsoProfitableProductsRecyclerViewLogic() {
+        timer = Timer()
+        timerTask = object: TimerTask() {
+            override fun run() {
+                autoScrollRecyclerViewLogic(binding.torsoProfitableProductsRecyclerView, torsoProfitableAdapter, torsoProfitableLinearLayoutManager)
+            }
+        }
+        timer.schedule(timerTask, 0, RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
     }
 
     private fun setupTorsoOtherAdapter() {
@@ -71,19 +82,21 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
         }
     }
 
-    private fun autoScrollTorsoProfitableProductsRecyclerViewLogic() {
-//        val snapHelper = LinearSnapHelper()
-//        snapHelper.attachToRecyclerView(binding.torsoProfitableProductsRecyclerView)
-        timer = Timer()
-        timerTask = object: TimerTask() {
-            override fun run() {
-                autoScrollRecyclerViewLogic(binding.torsoProfitableProductsRecyclerView, torsoProfitableAdapter, torsoProfitableLinearLayoutManager)
-            }
+    private fun torsoOtherProductsRecyclerViewReachedBottom() { productRecyclerViewReachedBottomLogic(binding.torsoNestedScrollView) { torsoCategoryViewModel.getTorsoOtherProducts() } }
+
+    private fun onTorsoProfitableProductClick() {
+        torsoProfitableAdapter.onProductClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+            findNavController().navigate(action)
         }
-        timer.schedule(timerTask, 0, RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
     }
 
-    private fun torsoOtherProductsRecyclerViewReachedBottom() { productRecyclerViewReachedBottomLogic(binding.torsoNestedScrollView) { torsoCategoryViewModel.getTorsoOtherProducts() } }
+    private fun onTorsoOtherProductClick() {
+        torsoOtherAdapter.onProductClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+            findNavController().navigate(action)
+        }
+    }
 
     private fun observeTorsoCategoryState() {
         viewLifecycleOwner.lifecycleScope.launch {

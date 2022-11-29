@@ -9,13 +9,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.bumptech.glide.Glide
 import com.dbd.market.R
 import com.dbd.market.helpers.products_adder.data.Product
+import com.dbd.market.utils.OnProductClickInterface
 
-class ProfitableCategoryProductsAdapter: RecyclerView.Adapter<ProfitableCategoryProductsAdapter.SuitsProfitableProductsViewHolder>() {
+class ProfitableCategoryProductsAdapter: RecyclerView.Adapter<ProfitableCategoryProductsAdapter.SuitsProfitableProductsViewHolder>(), OnProductClickInterface {
 
     inner class SuitsProfitableProductsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val goToProductButton = itemView.findViewById<CircularProgressButton>(R.id.beneficialItemGoToProductButton)
+
         fun bind(product: Product) {
             val name = product.name
             val price = product.price
@@ -59,7 +63,13 @@ class ProfitableCategoryProductsAdapter: RecyclerView.Adapter<ProfitableCategory
     override fun onBindViewHolder(holder: SuitsProfitableProductsViewHolder, position: Int) {
         val currentSuit = differ.currentList[position]
         holder.bind(currentSuit)
+
+        holder.goToProductButton.setOnClickListener { onItemClick?.let { it(currentSuit) } }
     }
 
     override fun getItemCount(): Int = differ.currentList.size
+
+    private var onItemClick: ((Product) -> Unit)? = null
+
+    override fun onProductClick(onClick: (Product) -> Unit) { onItemClick = onClick }
 }

@@ -9,12 +9,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.BeneficialProductsAdapter
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.SpecialProductsAdapter
 import com.dbd.market.databinding.FragmentMainCategoryBinding
+import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD
 import com.dbd.market.viewmodels.market.categories.main_category.MainCategoryViewModel
@@ -51,6 +53,9 @@ class MainCategoryFragment : Fragment() {
         observeMainCategoryProductsErrorState()
         interestingProductsRecyclerViewReachedBottom()
         beneficialProductsRecyclerViewReachedLeft()
+        onSpecialProductClick()
+        onBeneficialProductClick()
+        onInterestingProductClick()
     }
 
     override fun onResume() {
@@ -71,12 +76,9 @@ class MainCategoryFragment : Fragment() {
             adapter = specialProductsAdapter
             layoutManager = specialProductsLayoutManager
         }
-//        autoScrollSpecialProductsRecyclerViewLogic()
     }
 
     private fun autoScrollSpecialProductsRecyclerViewLogic() {
-//        val snapHelper = LinearSnapHelper()
-//        snapHelper.attachToRecyclerView(binding.specialProductsRecyclerView)
         timer = Timer()
         timerTask = object : TimerTask() {
             override fun run() { autoScrollRecyclerViewLogic(binding.specialProductsRecyclerView, specialProductsAdapter, specialProductsLayoutManager) }
@@ -94,6 +96,12 @@ class MainCategoryFragment : Fragment() {
         }
     }
 
+    private fun beneficialProductsRecyclerViewReachedLeft() {
+        productRecyclerViewReachedRightLogic(binding.beneficialProductsRecyclerView) {
+            mainCategoryViewModel.fetchBeneficialProductsFromFirebaseFirestore()
+        }
+    }
+
     private fun setupInterestingProductsRecyclerView() {
         interestingProductsAdapter = InterestingProductsAdapter()
         binding.interestingProductsRecyclerView.apply {
@@ -101,6 +109,33 @@ class MainCategoryFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
             interestingProductsAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
             addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
+        }
+    }
+
+    private fun interestingProductsRecyclerViewReachedBottom() {
+        productRecyclerViewReachedBottomLogic(binding.mainCategoryNestedScrollView) {
+            mainCategoryViewModel.fetchInterestingProductsFromFirebaseFirestore()
+        }
+    }
+
+    private fun onSpecialProductClick() {
+        specialProductsAdapter.onProductClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun onBeneficialProductClick() {
+        beneficialProductsAdapter.onProductClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun onInterestingProductClick() {
+        interestingProductsAdapter.onProductClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+            findNavController().navigate(action)
         }
     }
 
@@ -196,18 +231,6 @@ class MainCategoryFragment : Fragment() {
                     }
                 }
             }
-        }
-    }
-
-    private fun interestingProductsRecyclerViewReachedBottom() {
-        productRecyclerViewReachedBottomLogic(binding.mainCategoryNestedScrollView) {
-            mainCategoryViewModel.fetchInterestingProductsFromFirebaseFirestore()
-        }
-    }
-
-    private fun beneficialProductsRecyclerViewReachedLeft() {
-        productRecyclerViewReachedRightLogic(binding.beneficialProductsRecyclerView) {
-            mainCategoryViewModel.fetchBeneficialProductsFromFirebaseFirestore()
         }
     }
 

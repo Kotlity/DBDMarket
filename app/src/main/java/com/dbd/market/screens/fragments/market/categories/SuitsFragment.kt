@@ -6,14 +6,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
 import com.dbd.market.databinding.FragmentSuitsBinding
+import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.market.categories.suits.SuitsCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +37,8 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
         setupSuitsOtherProductsRecyclerView()
         observeSuitsCategoryState()
         suitsOtherProductsRecyclerViewReachedBottomLogic()
+        onSuitsProfitableProductClick()
+        onSuitsOtherProductClick()
     }
 
     override fun onResume() {
@@ -56,7 +59,14 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
             adapter = suitsProfitableProductsAdapter
             layoutManager = suitsProfitableProductsLinearLayoutManager
         }
-//        autoScrollSuitsProfitableProductsRecyclerViewLogic()
+    }
+
+    private fun autoScrollSuitsProfitableProductsRecyclerViewLogic() {
+        timer = Timer()
+        timerTask = object : TimerTask() {
+            override fun run() { autoScrollRecyclerViewLogic(binding.suitsProfitableProductsRecyclerView, suitsProfitableProductsAdapter, suitsProfitableProductsLinearLayoutManager) }
+        }
+        timer.schedule(timerTask, 0, Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
     }
 
     private fun setupSuitsOtherProductsRecyclerView() {
@@ -69,17 +79,21 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
         }
     }
 
-    private fun autoScrollSuitsProfitableProductsRecyclerViewLogic() {
-//        val snapHelper = LinearSnapHelper()
-//        snapHelper.attachToRecyclerView(binding.suitsOtherProductsRecyclerView)
-        timer = Timer()
-        timerTask = object : TimerTask() {
-            override fun run() { autoScrollRecyclerViewLogic(binding.suitsProfitableProductsRecyclerView, suitsProfitableProductsAdapter, suitsProfitableProductsLinearLayoutManager) }
+    private fun suitsOtherProductsRecyclerViewReachedBottomLogic() { productRecyclerViewReachedBottomLogic(binding.suitsNestedScrollView) { suitsCategoryViewModel.getSuitsOtherProducts() } }
+
+    private fun onSuitsProfitableProductClick() {
+        suitsProfitableProductsAdapter.onProductClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+            findNavController().navigate(action)
         }
-        timer.schedule(timerTask, 0, Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD)
     }
 
-    private fun suitsOtherProductsRecyclerViewReachedBottomLogic() { productRecyclerViewReachedBottomLogic(binding.suitsNestedScrollView) { suitsCategoryViewModel.getSuitsOtherProducts() } }
+    private fun onSuitsOtherProductClick() {
+        suitsOtherProductsAdapter.onProductClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+            findNavController().navigate(action)
+        }
+    }
 
     private fun observeSuitsCategoryState() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -119,8 +133,6 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
             }
         }
     }
-
-
 
     private fun showSuitsProfitableProductsProgressBar() {
         binding.suitsProfitableProductsProgressBar.visibility = View.VISIBLE
