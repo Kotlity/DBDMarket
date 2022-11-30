@@ -9,11 +9,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
+import com.dbd.market.data.Product
 import com.dbd.market.databinding.FragmentLegsBinding
 import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
@@ -60,12 +60,9 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
             adapter = legsProfitableAdapter
             layoutManager = legsProfitableLinearLayoutManager
         }
-//        autoScrollLegsProfitableProductsRecyclerViewLogic()
     }
 
     private fun autoScrollLegsProfitableProductsRecyclerViewLogic() {
-//        val snapHelper = LinearSnapHelper()
-//        snapHelper.attachToRecyclerView(binding.legsProfitableProductsRecyclerView)
         timer = Timer()
         timerTask = object: TimerTask() {
             override fun run() {
@@ -88,15 +85,15 @@ class LegsFragment: BaseCategoryFragment<FragmentLegsBinding>(FragmentLegsBindin
     private fun legsOtherProductsRecyclerViewReachedBottom() { productRecyclerViewReachedBottomLogic(binding.legsNestedScrollView) { legsCategoryViewModel.getLegsOtherProducts() } }
 
     private fun onLegsProfitableProductClick() {
-        legsProfitableAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        legsProfitableAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product)
             findNavController().navigate(action)
         }
     }
 
     private fun onLegsOtherProductClick() {
-        legsOtherAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        legsOtherAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product)
             findNavController().navigate(action)
         }
     }

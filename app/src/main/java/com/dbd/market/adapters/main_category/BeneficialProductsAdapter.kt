@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.bumptech.glide.Glide
 import com.dbd.market.R
-import com.dbd.market.helpers.products_adder.data.Product
-import com.dbd.market.utils.OnProductClickInterface
+import com.dbd.market.data.Product
+import com.dbd.market.utils.OnRecyclerViewItemClickInterface
 
-class BeneficialProductsAdapter: RecyclerView.Adapter<BeneficialProductsAdapter.BeneficialProductsViewHolder>(), OnProductClickInterface {
+class BeneficialProductsAdapter: RecyclerView.Adapter<BeneficialProductsAdapter.BeneficialProductsViewHolder>(), OnRecyclerViewItemClickInterface {
 
     inner class BeneficialProductsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val goToProductButton = itemView.findViewById<CircularProgressButton>(R.id.beneficialItemGoToProductButton)
@@ -66,11 +66,9 @@ class BeneficialProductsAdapter: RecyclerView.Adapter<BeneficialProductsAdapter.
         holder.goToProductButton.setOnClickListener { onItemClick?.let { it(currentBeneficialProduct) } }
     }
 
-    override fun getItemCount(): Int {
-        return differ.currentList.size
-    }
+    override fun getItemCount() = differ.currentList.size
 
     private var onItemClick: ((Product) -> Unit)? = null
 
-    override fun onProductClick(onClick: (Product) -> Unit) { onItemClick = onClick }
+    override fun onRecyclerViewItemClick(onClick: (T: Any) -> Unit) { onItemClick = onClick }
 }

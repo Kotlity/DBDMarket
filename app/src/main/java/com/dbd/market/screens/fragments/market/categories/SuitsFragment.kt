@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
+import com.dbd.market.data.Product
 import com.dbd.market.databinding.FragmentSuitsBinding
 import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
@@ -82,15 +83,15 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
     private fun suitsOtherProductsRecyclerViewReachedBottomLogic() { productRecyclerViewReachedBottomLogic(binding.suitsNestedScrollView) { suitsCategoryViewModel.getSuitsOtherProducts() } }
 
     private fun onSuitsProfitableProductClick() {
-        suitsProfitableProductsAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        suitsProfitableProductsAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product)
             findNavController().navigate(action)
         }
     }
 
     private fun onSuitsOtherProductClick() {
-        suitsOtherProductsAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        suitsOtherProductsAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product)
             findNavController().navigate(action)
         }
     }

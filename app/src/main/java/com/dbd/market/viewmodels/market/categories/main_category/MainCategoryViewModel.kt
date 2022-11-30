@@ -3,7 +3,7 @@ package com.dbd.market.viewmodels.market.categories.main_category
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbd.market.data.PagingInfo
-import com.dbd.market.helpers.products_adder.data.Product
+import com.dbd.market.data.Product
 import com.dbd.market.repositories.market.categories.main_category.MainCategoryRepository
 import com.dbd.market.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -54,7 +54,8 @@ class MainCategoryViewModel @Inject constructor(private val mainCategoryReposito
                         _specialProductsError.emit(true)
                     }
                 } else {
-                    val convertQuerySnapshotToSpecialProductsList = specialProductsQuerySnapshot.toObjects(Product::class.java)
+                    val convertQuerySnapshotToSpecialProductsList = specialProductsQuerySnapshot.toObjects(
+                        Product::class.java)
                     viewModelScope.launch(Dispatchers.IO) {
                         _specialProducts.emit(Resource.Success(convertQuerySnapshotToSpecialProductsList))
                     }
@@ -76,7 +77,8 @@ class MainCategoryViewModel @Inject constructor(private val mainCategoryReposito
                             _beneficialProductsError.emit(true)
                         }
                     } else {
-                        val convertQuerySnapshotToBeneficialProductsList = beneficialProductsQuerySnapshot.toObjects(Product::class.java)
+                        val convertQuerySnapshotToBeneficialProductsList = beneficialProductsQuerySnapshot.toObjects(
+                            Product::class.java)
                         viewModelScope.launch(Dispatchers.IO) {
                             _beneficialProducts.emit(Resource.Success(convertQuerySnapshotToBeneficialProductsList))
                             beneficialOtherProductsPagingInfoState.value.isEndOfPaging = convertQuerySnapshotToBeneficialProductsList == beneficialOtherProductsPagingInfoState.value.oldProducts
@@ -102,7 +104,8 @@ class MainCategoryViewModel @Inject constructor(private val mainCategoryReposito
                             _interestingProductsError.emit(true)
                         }
                     } else {
-                        val convertQuerySnapshotToInterestingProductsList = interestingProductsQuerySnapshot.toObjects(Product::class.java)
+                        val convertQuerySnapshotToInterestingProductsList = interestingProductsQuerySnapshot.toObjects(
+                            Product::class.java)
                         viewModelScope.launch(Dispatchers.IO) {
                             _interestingProducts.emit(Resource.Success(convertQuerySnapshotToInterestingProductsList))
                             interestingOtherProductsPagingInfoState.value.isEndOfPaging = convertQuerySnapshotToInterestingProductsList == interestingOtherProductsPagingInfoState.value.oldProducts

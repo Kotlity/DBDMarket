@@ -15,6 +15,7 @@ import com.dbd.market.R
 import com.dbd.market.adapters.main_category.BeneficialProductsAdapter
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.SpecialProductsAdapter
+import com.dbd.market.data.Product
 import com.dbd.market.databinding.FragmentMainCategoryBinding
 import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
@@ -119,22 +120,22 @@ class MainCategoryFragment : Fragment() {
     }
 
     private fun onSpecialProductClick() {
-        specialProductsAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        specialProductsAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product )
             findNavController().navigate(action)
         }
     }
 
     private fun onBeneficialProductClick() {
-        beneficialProductsAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        beneficialProductsAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product)
             findNavController().navigate(action)
         }
     }
 
     private fun onInterestingProductClick() {
-        interestingProductsAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        interestingProductsAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product)
             findNavController().navigate(action)
         }
     }

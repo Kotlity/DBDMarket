@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
+import com.dbd.market.data.Product
 import com.dbd.market.databinding.FragmentTorsoBinding
 import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
@@ -85,15 +86,15 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
     private fun torsoOtherProductsRecyclerViewReachedBottom() { productRecyclerViewReachedBottomLogic(binding.torsoNestedScrollView) { torsoCategoryViewModel.getTorsoOtherProducts() } }
 
     private fun onTorsoProfitableProductClick() {
-        torsoProfitableAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        torsoProfitableAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product)
             findNavController().navigate(action)
         }
     }
 
     private fun onTorsoOtherProductClick() {
-        torsoOtherAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        torsoOtherAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product)
             findNavController().navigate(action)
         }
     }

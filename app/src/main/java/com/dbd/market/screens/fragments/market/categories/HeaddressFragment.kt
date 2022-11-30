@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
+import com.dbd.market.data.Product
 import com.dbd.market.databinding.FragmentHeaddressBinding
 import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
@@ -85,15 +86,15 @@ class HeaddressFragment: BaseCategoryFragment<FragmentHeaddressBinding>(Fragment
     private fun headdressOtherProductsRecyclerViewReachedBottom() { productRecyclerViewReachedBottomLogic(binding.headdressNestedScrollView) { headdressCategoryViewModel.getHeaddressOtherProducts() } }
 
     private fun onHeaddressProfitableProductClick() {
-        headdressProfitableAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        headdressProfitableAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product)
             findNavController().navigate(action)
         }
     }
 
     private fun onHeaddressOtherProductClick() {
-        headdressOtherAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        headdressOtherAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product)
             findNavController().navigate(action)
         }
     }

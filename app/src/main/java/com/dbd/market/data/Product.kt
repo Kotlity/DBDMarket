@@ -1,4 +1,4 @@
-package com.dbd.market.helpers.products_adder.data
+package com.dbd.market.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

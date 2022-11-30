@@ -155,4 +155,7 @@
     <dimen name="productDescriptionSizesWarningTextViewTextSize">15sp</dimen>
     <dimen name="productDescriptionAddToCartButtonTextSize">25sp</dimen>
     <dimen name="productDescriptionSizesWarningTextViewMarginTop">5dp</dimen>
+    <dimen name="productDescriptionSizeImageViewShadowSize">60dp</dimen>
+    <dimen name="productDescriptionSizeImageViewSize">50dp</dimen>
+    <dimen name="productDescriptionSizeTextViewSize">25sp</dimen>
 </resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/productDescriptionSizeImageViewShadow"
+        android:layout_width="@dimen/productDescriptionSizeImageViewShadowSize"
+        android:layout_height="@dimen/productDescriptionSizeImageViewShadowSize"
+        android:src="@color/green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/productDescriptionSizeImageView"
+        android:layout_width="@dimen/productDescriptionSizeImageViewSize"
+        android:layout_height="@dimen/productDescriptionSizeImageViewSize"
+        android:src="@color/red"
+        app:layout_constraintStart_toStartOf="@+id/productDescriptionSizeImageViewShadow"
+        app:layout_constraintTop_toTopOf="@+id/productDescriptionSizeImageViewShadow"
+        app:layout_constraintBottom_toBottomOf="@+id/productDescriptionSizeImageViewShadow"
+        app:layout_constraintEnd_toEndOf="@+id/productDescriptionSizeImageViewShadow"/>
+
+    <TextView
+        android:id="@+id/productDescriptionSizeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/productDescriptionSizeTextViewSize"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@id/productDescriptionSizeImageView"
+        app:layout_constraintTop_toTopOf="@id/productDescriptionSizeImageView"
+        app:layout_constraintBottom_toBottomOf="@id/productDescriptionSizeImageView"
+        app:layout_constraintEnd_toEndOf="@id/productDescriptionSizeImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

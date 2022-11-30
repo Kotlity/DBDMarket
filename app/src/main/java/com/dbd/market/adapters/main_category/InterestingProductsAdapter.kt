@@ -7,18 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.marginStart
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.bumptech.glide.Glide
 import com.dbd.market.R
-import com.dbd.market.helpers.products_adder.data.Product
-import com.dbd.market.utils.OnProductClickInterface
+import com.dbd.market.data.Product
+import com.dbd.market.utils.OnRecyclerViewItemClickInterface
 
-class InterestingProductsAdapter: RecyclerView.Adapter<InterestingProductsAdapter.InterestingProductsViewHolder>(), OnProductClickInterface {
+class InterestingProductsAdapter: RecyclerView.Adapter<InterestingProductsAdapter.InterestingProductsViewHolder>(), OnRecyclerViewItemClickInterface {
 
     inner class InterestingProductsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val goToProductButton = itemView.findViewById<CircularProgressButton>(R.id.interestingItemGoToProductButton)
@@ -57,13 +55,9 @@ class InterestingProductsAdapter: RecyclerView.Adapter<InterestingProductsAdapte
 
     private val differCallback = object : DiffUtil.ItemCallback<Product>() {
 
-        override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
-            return oldItem.id == newItem.id
-        }
+        override fun areItemsTheSame(oldItem: Product, newItem: Product) = oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
-            return oldItem == newItem
-        }
+        override fun areContentsTheSame(oldItem: Product, newItem: Product) = oldItem == newItem
 
     }
 
@@ -81,11 +75,9 @@ class InterestingProductsAdapter: RecyclerView.Adapter<InterestingProductsAdapte
         holder.goToProductButton.setOnClickListener { onItemClick?.let { it(currentInterestingProduct) } }
     }
 
-    override fun getItemCount(): Int {
-        return differ.currentList.size
-    }
+    override fun getItemCount() = differ.currentList.size
 
     private var onItemClick: ((Product) -> Unit)? = null
 
-    override fun onProductClick(onClick: (Product) -> Unit) { onItemClick = onClick }
+    override fun onRecyclerViewItemClick(onClick: (T: Any) -> Unit) { onItemClick = onClick }
 }

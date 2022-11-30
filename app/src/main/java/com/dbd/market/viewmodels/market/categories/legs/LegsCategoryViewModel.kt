@@ -3,7 +3,7 @@ package com.dbd.market.viewmodels.market.categories.legs
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbd.market.data.PagingInfo
-import com.dbd.market.helpers.products_adder.data.Product
+import com.dbd.market.data.Product
 import com.dbd.market.repositories.market.categories.legs.LegsCategoryRepository
 import com.dbd.market.utils.Resource
 import com.google.firebase.firestore.ktx.toObjects

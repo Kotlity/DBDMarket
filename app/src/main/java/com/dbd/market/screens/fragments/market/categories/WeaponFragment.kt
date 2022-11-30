@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
 import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
+import com.dbd.market.data.Product
 import com.dbd.market.databinding.FragmentWeaponBinding
 import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
@@ -85,15 +86,15 @@ class WeaponFragment: BaseCategoryFragment<FragmentWeaponBinding>(FragmentWeapon
     private fun weaponsOtherProductsRecyclerViewReachedBottom() { productRecyclerViewReachedBottomLogic(binding.weaponsNestedScrollView) { weaponsCategoryViewModel.getWeaponsOtherProducts() } }
 
     private fun onWeaponsProfitableProductClick() {
-        weaponsProfitableProductsAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        weaponsProfitableProductsAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product)
             findNavController().navigate(action)
         }
     }
 
     private fun onWeaponsOtherProductClick() {
-        weaponsOtherProductsAdapter.onProductClick { product ->
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product)
+        weaponsOtherProductsAdapter.onRecyclerViewItemClick { product ->
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDescriptionFragment(product as Product)
             findNavController().navigate(action)
         }
     }

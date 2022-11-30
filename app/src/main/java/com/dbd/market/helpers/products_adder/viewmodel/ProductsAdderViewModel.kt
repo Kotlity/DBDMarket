@@ -1,9 +1,8 @@
 package com.dbd.market.helpers.products_adder.viewmodel
 
-import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dbd.market.helpers.products_adder.data.Product
+import com.dbd.market.data.Product
 import com.dbd.market.helpers.products_adder.validation.*
 import com.dbd.market.utils.AddProductFieldsState
 import com.dbd.market.utils.ValidationStatus

@@ -40,6 +40,6 @@
         tools:layout="@layout/fragment_product_description" >
         <argument
             android:name="categoriesProduct"
-            app:argType="com.dbd.market.helpers.products_adder.data.Product" />
+            app:argType="com.dbd.market.data.Product" />
     </fragment>
 </navigation>
