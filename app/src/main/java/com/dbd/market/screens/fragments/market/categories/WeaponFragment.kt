@@ -79,7 +79,7 @@ class WeaponFragment: BaseCategoryFragment<FragmentWeaponBinding>(FragmentWeapon
             adapter = weaponsOtherProductsAdapter
             layoutManager = GridLayoutManager(requireContext(), 2)
             weaponsOtherProductsAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-            addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
+            addItemDecoration(MarginItemDecoration(Constants.MARGIN_ITEM_DECORATION_PRODUCT, resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
         }
     }
 

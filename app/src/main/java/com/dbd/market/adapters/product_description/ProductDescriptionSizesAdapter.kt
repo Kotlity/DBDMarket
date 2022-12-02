@@ -43,11 +43,9 @@ class ProductDescriptionSizesAdapter: RecyclerView.Adapter<ProductDescriptionSiz
         else holder.productDescriptionSizeImageViewShadow.visibility = View.INVISIBLE
 
         holder.itemView.setOnClickListener {
-            if (selectedSizePosition >= 0) notifyItemChanged(selectedSizePosition)
-            else {
-                selectedSizePosition = holder.adapterPosition
-                notifyItemChanged(selectedSizePosition)
-            }
+            if(selectedSizePosition >= 0) notifyItemChanged(selectedSizePosition)
+            selectedSizePosition = holder.adapterPosition
+            notifyItemChanged(selectedSizePosition)
             clickOnSize?.let { it(currentItem) }
         }
     }

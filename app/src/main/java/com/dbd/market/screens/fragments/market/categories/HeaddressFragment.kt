@@ -79,7 +79,7 @@ class HeaddressFragment: BaseCategoryFragment<FragmentHeaddressBinding>(Fragment
             adapter = headdressOtherAdapter
             layoutManager = GridLayoutManager(requireContext(), 2)
             headdressOtherAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-            addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
+            addItemDecoration(MarginItemDecoration(Constants.MARGIN_ITEM_DECORATION_PRODUCT, resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
         }
     }
 

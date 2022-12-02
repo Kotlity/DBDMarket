@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.dbd.market.R
 import com.dbd.market.data.Product
 import com.dbd.market.utils.OnRecyclerViewItemClickInterface
+import com.dbd.market.utils.getNewPriceAfterDiscount
 
 class ProfitableCategoryProductsAdapter: RecyclerView.Adapter<ProfitableCategoryProductsAdapter.SuitsProfitableProductsViewHolder>(), OnRecyclerViewItemClickInterface {
 
@@ -29,11 +30,7 @@ class ProfitableCategoryProductsAdapter: RecyclerView.Adapter<ProfitableCategory
             val priceBeforeDiscountTextView = itemView.findViewById<TextView>(R.id.beneficialItemProductPriceBeforeDiscount)
             val priceAfterDiscountTextView = itemView.findViewById<TextView>(R.id.beneficialItemProductPriceAfterDiscount)
             val imageView = itemView.findViewById<ImageView>(R.id.beneficialProductImageView)
-            discount?.let { discountValue ->
-                val remainingPricePercentage = 1f - discountValue
-                val priceAfterDiscountWithRounding = String.format("%.0f", (price * remainingPricePercentage))
-                priceAfterDiscountTextView.text = priceAfterDiscountWithRounding.plus("$")
-            }
+            discount?.let { discountValue -> priceAfterDiscountTextView.text = getNewPriceAfterDiscount(price, discountValue) }
             nameTextView.text = name
             priceBeforeDiscountTextView.apply {
                 text = price.toString().plus("$")

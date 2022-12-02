@@ -28,3 +28,8 @@ fun Fragment.productRecyclerViewReachedRightLogic(recyclerView: RecyclerView, lo
     })
 }
 
+fun getNewPriceAfterDiscount(initialPrice: Int, discount: Float): String {
+    val remainingPricePercentage = 1f - discount
+    return String.format("%.0f", initialPrice * remainingPricePercentage).plus("$")
+}
+

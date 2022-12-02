@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.dbd.market.R
 import com.dbd.market.data.Product
 import com.dbd.market.utils.OnRecyclerViewItemClickInterface
+import com.dbd.market.utils.getNewPriceAfterDiscount
 
 class InterestingProductsAdapter: RecyclerView.Adapter<InterestingProductsAdapter.InterestingProductsViewHolder>(), OnRecyclerViewItemClickInterface {
 
@@ -29,10 +30,7 @@ class InterestingProductsAdapter: RecyclerView.Adapter<InterestingProductsAdapte
             val priceBeforeDiscountTextView = itemView.findViewById<TextView>(R.id.interestingItemProductPriceBeforeDiscount)
             val priceAfterDiscountTextView = itemView.findViewById<TextView>(R.id.interestingItemProductPriceAfterDiscount)
             if (discountValue != null) {
-                val remainingPricePercentage = 1f - discountValue
-                val priceAfterDiscountWithoutRounding = priceBeforeDiscount * remainingPricePercentage
-                val priceAfterDiscountWithRounding = String.format("%.0f", priceAfterDiscountWithoutRounding)
-                priceAfterDiscountTextView.text = priceAfterDiscountWithRounding.plus("$")
+                priceAfterDiscountTextView.text = getNewPriceAfterDiscount(priceBeforeDiscount, discountValue)
                 priceBeforeDiscountTextView.apply {
                     text = priceBeforeDiscount.toString().plus("$")
                     paintFlags = Paint.STRIKE_THRU_TEXT_FLAG

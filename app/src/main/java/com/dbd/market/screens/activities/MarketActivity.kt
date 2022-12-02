@@ -2,7 +2,9 @@ package com.dbd.market.screens.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.dbd.market.R
@@ -21,6 +23,7 @@ class MarketActivity : AppCompatActivity() {
         setContentView(binding.root)
         findNavController()
         setupNavControllerWithBottomNavigationView()
+        handleBottomNavigationViewVisibility()
     }
 
     private fun findNavController() {
@@ -30,6 +33,13 @@ class MarketActivity : AppCompatActivity() {
 
     private fun setupNavControllerWithBottomNavigationView() {
         binding.bottomNavigationView.setupWithNavController(navController)
+    }
+
+    private fun handleBottomNavigationViewVisibility() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.productDescriptionFragment) binding.bottomNavigationView.visibility = View.GONE
+            else binding.bottomNavigationView.visibility = View.VISIBLE
+        }
     }
 
 }

@@ -79,7 +79,7 @@ class TorsoFragment: BaseCategoryFragment<FragmentTorsoBinding>(FragmentTorsoBin
             adapter = torsoOtherAdapter
             layoutManager = GridLayoutManager(requireContext(), 2)
             torsoOtherAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-            addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
+            addItemDecoration(MarginItemDecoration(Constants.MARGIN_ITEM_DECORATION_PRODUCT, resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
         }
     }
 
