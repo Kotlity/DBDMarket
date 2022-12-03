@@ -18,7 +18,7 @@ import com.dbd.market.databinding.FragmentTorsoBinding
 import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD
-import com.dbd.market.viewmodels.market.categories.torso.TorsoCategoryViewModel
+import com.dbd.market.viewmodels.market.categories.TorsoCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.*

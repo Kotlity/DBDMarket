@@ -200,7 +200,7 @@
         app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
         app:layout_constraintTop_toBottomOf="@+id/productDescriptionSizesLinearLayout" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
         android:id="@+id/productDescriptionAddToCartButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -210,6 +210,8 @@
         android:textStyle="bold"
         android:textAllCaps="false"
         android:background="@drawable/app_add_to_cart_button_background"
+        app:spinning_bar_color="@color/red"
+        app:spinning_bar_width="@dimen/appButtonSpinningBarWidth"
         app:layout_constraintEnd_toEndOf="@+id/productDescriptionEndVerticalGuideline"
         app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
         app:layout_constraintTop_toBottomOf="@+id/productDescriptionSizesBottomSeparator" />

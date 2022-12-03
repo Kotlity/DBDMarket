@@ -1,4 +1,4 @@
-package com.dbd.market.viewmodels.market.categories.main_category
+package com.dbd.market.viewmodels.market.categories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

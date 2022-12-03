@@ -1,5 +1,7 @@
 package com.dbd.market.di.modules
 
+import com.dbd.market.di.qualifiers.ProductsCollectionReference
+import com.dbd.market.di.qualifiers.UserCartProductsCollectionReference
 import com.dbd.market.repositories.introduction.login.LoginRepository
 import com.dbd.market.repositories.introduction.login.LoginRepositoryImplementation
 import com.dbd.market.repositories.introduction.register.RegisterRepository
@@ -16,7 +18,11 @@ import com.dbd.market.repositories.market.categories.torso.TorsoCategoryReposito
 import com.dbd.market.repositories.market.categories.torso.TorsoCategoryRepositoryImplementation
 import com.dbd.market.repositories.market.categories.weapons.WeaponsCategoryRepository
 import com.dbd.market.repositories.market.categories.weapons.WeaponsCategoryRepositoryImplementation
+import com.dbd.market.repositories.market.product_description.ProductDescriptionRepository
+import com.dbd.market.repositories.market.product_description.ProductDescriptionRepositoryImplementation
+import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_CART_PRODUCTS_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_PRODUCTS_COLLECTION
+import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_USER_COLLECTION
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -47,6 +53,20 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideUserUid() = FirebaseAuth.getInstance().currentUser?.uid
+
+    @UserCartProductsCollectionReference
+    @Provides
+    @Singleton
+    fun provideUserCartProductsCollectionReference(userUid: String?) = userUid?.let { Firebase.firestore.collection(FIREBASE_FIRESTORE_USER_COLLECTION).document(it).collection(FIREBASE_FIRESTORE_CART_PRODUCTS_COLLECTION) }
+
+    @Provides
+    @Singleton
+    fun provideProductDescriptionRepository(@UserCartProductsCollectionReference cartProductsCollectionReference: CollectionReference?): ProductDescriptionRepository = ProductDescriptionRepositoryImplementation(cartProductsCollectionReference)
+
+    @ProductsCollectionReference
+    @Provides
+    @Singleton
     fun provideProductsCollectionReference() = Firebase.firestore.collection(FIREBASE_FIRESTORE_PRODUCTS_COLLECTION)
 
     @Provides
@@ -63,21 +83,21 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSuitsCategoryRepository(productsCollectionReference: CollectionReference): SuitsCategoryRepository = SuitsCategoryRepositoryImplementation(productsCollectionReference)
+    fun provideSuitsCategoryRepository(@ProductsCollectionReference productsCollectionReference: CollectionReference): SuitsCategoryRepository = SuitsCategoryRepositoryImplementation(productsCollectionReference)
 
     @Provides
     @Singleton
-    fun provideWeaponsCategoryRepository(productsCollectionReference: CollectionReference): WeaponsCategoryRepository = WeaponsCategoryRepositoryImplementation(productsCollectionReference)
+    fun provideWeaponsCategoryRepository(@ProductsCollectionReference productsCollectionReference: CollectionReference): WeaponsCategoryRepository = WeaponsCategoryRepositoryImplementation(productsCollectionReference)
 
     @Provides
     @Singleton
-    fun provideHeaddressCategoryRepository(productsCollectionReference: CollectionReference): HeaddressCategoryRepository = HeaddressCategoryRepositoryImplementation(productsCollectionReference)
+    fun provideHeaddressCategoryRepository(@ProductsCollectionReference productsCollectionReference: CollectionReference): HeaddressCategoryRepository = HeaddressCategoryRepositoryImplementation(productsCollectionReference)
 
     @Provides
     @Singleton
-    fun provideTorsoCategoryRepository(productsCollectionReference: CollectionReference): TorsoCategoryRepository = TorsoCategoryRepositoryImplementation(productsCollectionReference)
+    fun provideTorsoCategoryRepository(@ProductsCollectionReference productsCollectionReference: CollectionReference): TorsoCategoryRepository = TorsoCategoryRepositoryImplementation(productsCollectionReference)
 
     @Provides
     @Singleton
-    fun provideLegsCategoryRepository(productsCollectionReference: CollectionReference): LegsCategoryRepository = LegsCategoryRepositoryImplementation(productsCollectionReference)
+    fun provideLegsCategoryRepository(@ProductsCollectionReference productsCollectionReference: CollectionReference): LegsCategoryRepository = LegsCategoryRepositoryImplementation(productsCollectionReference)
 }

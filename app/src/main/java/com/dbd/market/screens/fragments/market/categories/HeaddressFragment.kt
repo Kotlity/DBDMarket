@@ -18,7 +18,7 @@ import com.dbd.market.databinding.FragmentHeaddressBinding
 import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD
-import com.dbd.market.viewmodels.market.categories.headdress.HeaddressCategoryViewModel
+import com.dbd.market.viewmodels.market.categories.HeaddressCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.*

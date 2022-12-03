@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.dbd.market.data.User
 import com.dbd.market.repositories.introduction.register.RegisterRepository
 import com.dbd.market.utils.*
-import com.dbd.market.utils.Constants.USER_COLLECTION_PATH
+import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_USER_COLLECTION
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,7 +31,7 @@ class RegisterViewModel @Inject constructor(private val registerRepository: Regi
             registerRepository.createUserWithEmailAndPassword(user, password,
                 onSuccess = { authResult ->
                     authResult.user?.let { firebaseUser ->
-                        saveUserInfoToFirebaseFirestore(firebaseUser.uid, user, USER_COLLECTION_PATH)
+                        saveUserInfoToFirebaseFirestore(firebaseUser.uid, user, FIREBASE_FIRESTORE_USER_COLLECTION)
                     }
                 },
                 onFailure = { authException ->

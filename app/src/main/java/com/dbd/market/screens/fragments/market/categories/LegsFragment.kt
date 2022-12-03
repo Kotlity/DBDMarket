@@ -17,7 +17,7 @@ import com.dbd.market.data.Product
 import com.dbd.market.databinding.FragmentLegsBinding
 import com.dbd.market.screens.fragments.market.HomeFragmentDirections
 import com.dbd.market.utils.*
-import com.dbd.market.viewmodels.market.categories.legs.LegsCategoryViewModel
+import com.dbd.market.viewmodels.market.categories.LegsCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.*

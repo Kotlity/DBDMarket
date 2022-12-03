@@ -15,6 +15,9 @@ object Constants {
     const val PERMISSION_TITLE = "Storage"
 
     const val FIREBASE_FIRESTORE_PRODUCTS_COLLECTION = "Products"
+    const val FIREBASE_FIRESTORE_USER_COLLECTION = "user"
+    const val FIREBASE_FIRESTORE_CART_PRODUCTS_COLLECTION = "CartProducts"
+
     const val FIREBASE_FIRESTORE_PRODUCTS_CATEGORY_FIELD = "category"
     const val FIREBASE_FIRESTORE_SPECIAL_PRODUCTS_CATEGORY_FIELD_VALUE = "Special products"
     const val FIREBASE_FIRESTORE_BENEFICIAL_PRODUCTS_CATEGORY_FIELD_VALUE = "Beneficial products"
@@ -54,8 +57,6 @@ object Constants {
     const val WRONG_PASSWORD_FORMAT = "Password cannot starts with a digit"
     const val MINIMUM_PASSWORD_LENGTH = "Password must not be less than 6 characters"
     const val MIN_PASSWORD_LENGTH = 6
-
-    const val USER_COLLECTION_PATH = "user"
 
     const val SUCCESSFULLY_ACCOUNT_LOGIN_TOAST_MESSAGE = "You have successfully logged in"
     const val SUCCESSFULLY_CREATED_A_NEW_ACCOUNT_TOAST_MESSAGE = "You have successfully created a new account, now sign in"

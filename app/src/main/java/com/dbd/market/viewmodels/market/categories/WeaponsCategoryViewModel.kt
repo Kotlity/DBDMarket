@@ -1,4 +1,4 @@
-package com.dbd.market.viewmodels.market.categories.weapons
+package com.dbd.market.viewmodels.market.categories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
