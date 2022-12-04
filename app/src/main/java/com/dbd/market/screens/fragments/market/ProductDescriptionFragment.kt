@@ -100,7 +100,6 @@ class ProductDescriptionFragment : Fragment() {
         productDescriptionSizesAdapter.onRecyclerViewItemClick {
             val size = it as String
             productDescriptionViewModel.changeProductDescriptionSelectedSizeValue(size)
-//            selectedSize = size
         }
     }
 
@@ -111,7 +110,7 @@ class ProductDescriptionFragment : Fragment() {
             if (selectedSize.isNotEmpty()) {
                 val cartProduct = CartProduct(product.id, product.name, product.category, product.description, product.price, product.discount, selectedSize, product.images, 1)
                 productDescriptionViewModel.addProductToCart(cartProduct)
-            } else return@setOnClickListener
+            } else showToast(requireContext(), binding.root, R.drawable.ic_error_icon, resources.getString(R.string.productDescriptionPleaseChooseSizeString))
         }
     }
 
@@ -134,7 +133,7 @@ class ProductDescriptionFragment : Fragment() {
                         when (it) {
                             is Resource.Success -> {
                                 binding.productDescriptionAddToCartButton.revertAnimation()
-                                showToast(requireContext(), binding.root, R.drawable.ic_done_icon, "You have successfully added this product to the cart")
+                                showToast(requireContext(), binding.root, R.drawable.ic_done_icon, resources.getString(R.string.productDescriptionSuccessfullyAddedToTheCartString))
                             }
                             is Resource.Loading -> binding.productDescriptionAddToCartButton.startAnimation()
                             is Resource.Error -> {

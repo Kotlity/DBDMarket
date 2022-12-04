@@ -17,7 +17,7 @@ class ProductDescriptionImageViewPager2Adapter: RecyclerView.Adapter<ProductDesc
     inner class ProductDescriptionImageViewPager2ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(image: String) {
             val imageView = itemView.findViewById<ImageView>(R.id.productDescriptionViewPager2ImageView)
-            Glide.with(itemView).load(image).transition(DrawableTransitionOptions.withCrossFade(PRODUCT_DESCRIPTION_IMAGE_VIEW_ANIMATION_DURATION)).into(imageView)
+            Glide.with(itemView).load(image).error(R.drawable.ic_error_icon).transition(DrawableTransitionOptions.withCrossFade(PRODUCT_DESCRIPTION_IMAGE_VIEW_ANIMATION_DURATION)).into(imageView)
         }
     }
 

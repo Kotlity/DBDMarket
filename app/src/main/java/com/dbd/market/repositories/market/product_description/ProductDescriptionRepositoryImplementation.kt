@@ -2,20 +2,25 @@ package com.dbd.market.repositories.market.product_description
 
 import com.dbd.market.data.CartProduct
 import com.dbd.market.di.qualifiers.UserCartProductsCollectionReference
+import com.dbd.market.utils.Constants.ADD_TO_CART_DURATION_PERIOD
 import com.google.firebase.firestore.CollectionReference
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withTimeout
 import javax.inject.Inject
 
 class ProductDescriptionRepositoryImplementation @Inject constructor(@UserCartProductsCollectionReference private val userCartProductsCollectionReference: CollectionReference?): ProductDescriptionRepository {
 
-    override suspend fun addProductToCart(cartProduct: CartProduct, result: (Boolean, String?) -> Unit) {
+    override suspend fun addProductToCart(cartProduct: CartProduct, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                userCartProductsCollectionReference?.document()?.set(cartProduct)
-                result(true, "")
-            } catch (e: Exception) { result(false, e.message.toString()) }
+                withTimeout(ADD_TO_CART_DURATION_PERIOD) {
+                    userCartProductsCollectionReference?.document()?.set(cartProduct)?.await()
+                    onSuccess()
+                }
+            } catch (e: Exception) { onFailure(e) }
         }
     }
 }
