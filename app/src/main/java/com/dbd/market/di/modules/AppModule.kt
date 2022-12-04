@@ -6,6 +6,8 @@ import com.dbd.market.repositories.introduction.login.LoginRepository
 import com.dbd.market.repositories.introduction.login.LoginRepositoryImplementation
 import com.dbd.market.repositories.introduction.register.RegisterRepository
 import com.dbd.market.repositories.introduction.register.RegisterRepositoryImplementation
+import com.dbd.market.repositories.market.cart.CartProductsRepository
+import com.dbd.market.repositories.market.cart.CartProductsRepositoryImplementation
 import com.dbd.market.repositories.market.categories.headdress.HeaddressCategoryRepository
 import com.dbd.market.repositories.market.categories.headdress.HeaddressCategoryRepositoryImplementation
 import com.dbd.market.repositories.market.categories.legs.LegsCategoryRepository
@@ -59,6 +61,10 @@ object AppModule {
     @Provides
     @Singleton
     fun provideUserCartProductsCollectionReference(userUid: String?) = userUid?.let { Firebase.firestore.collection(FIREBASE_FIRESTORE_USER_COLLECTION).document(it).collection(FIREBASE_FIRESTORE_CART_PRODUCTS_COLLECTION) }
+
+    @Provides
+    @Singleton
+    fun provideCartProductsRepository(@UserCartProductsCollectionReference cartProductsCollectionReference: CollectionReference?): CartProductsRepository = CartProductsRepositoryImplementation(cartProductsCollectionReference)
 
     @Provides
     @Singleton

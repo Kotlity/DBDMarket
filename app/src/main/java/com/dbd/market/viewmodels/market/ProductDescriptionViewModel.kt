@@ -25,7 +25,7 @@ class ProductDescriptionViewModel @Inject constructor(private val productDescrip
         _productDescriptionProductAddedToCart.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
             productDescriptionRepository.addProductToCart(cartProduct, onSuccess = { _productDescriptionProductAddedToCart.value = Resource.Success(true) },
-            onFailure = { addingProductToCartException -> _productDescriptionProductAddedToCart.value = Resource.Error(addingProductToCartException.message.toString()) })
+            onFailure = { addingProductToCartException -> _productDescriptionProductAddedToCart.value = Resource.Error(addingProductToCartException) })
         }
     }
 
