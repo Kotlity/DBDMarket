@@ -4,5 +4,7 @@ import com.dbd.market.data.CartProduct
 
 interface ProductDescriptionRepository {
 
-    suspend fun addProductToCart(cartProduct: CartProduct, onSuccess: () -> Unit, onFailure: (String) -> Unit)
+    fun addProductToCart(cartProduct: CartProduct, onSuccess: () -> Unit, onFailure: (String) -> Unit)
+
+    fun checkIfProductIsAlreadyInCart(cartProduct: CartProduct, isAdded: (Boolean, String) -> Unit, onFailure: (String) -> Unit)
 }

@@ -8,24 +8,21 @@ enum class BottomNavigationViewBadgeState {
     NOTZERO, ZERO, ERROR
 }
 
-fun BottomNavigationView.updateBottomNavigationViewBadge(bottomNavigationViewBadgeState: BottomNavigationViewBadgeState, fragmentId: Int, badgeCount: Int = 0) {
+fun BottomNavigationView.updateBottomNavigationViewBadge(bottomNavigationViewBadgeState: BottomNavigationViewBadgeState, badgeCount: Int = 0) {
     when (bottomNavigationViewBadgeState) {
-        BottomNavigationViewBadgeState.NOTZERO -> {
-            getOrCreateBadge(fragmentId).apply {
-                backgroundColor = resources.getColor(R.color.dark_yellow)
-                number = badgeCount
-            }
-        }
-        BottomNavigationViewBadgeState.ZERO -> {
-            getOrCreateBadge(fragmentId).apply {
-                backgroundColor = resources.getColor(R.color.red)
-                number = badgeCount
-            }
-        }
+        BottomNavigationViewBadgeState.NOTZERO -> { createBadge(resources.getColor(R.color.dark_yellow), badgeCount) }
+        BottomNavigationViewBadgeState.ZERO -> { createBadge(resources.getColor(R.color.red), badgeCount) }
         BottomNavigationViewBadgeState.ERROR -> {
-            getOrCreateBadge(fragmentId).apply {
+            getOrCreateBadge(R.id.cartFragment).apply {
                 background = ResourcesCompat.getDrawable(resources, R.drawable.ic_error_icon, null)
             }
         }
+    }
+}
+
+private fun BottomNavigationView.createBadge(color: Int, badgeCount: Int) {
+    getOrCreateBadge(R.id.cartFragment).apply {
+        backgroundColor = color
+        number = badgeCount
     }
 }

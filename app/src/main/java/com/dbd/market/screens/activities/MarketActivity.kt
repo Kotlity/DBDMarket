@@ -58,11 +58,11 @@ class MarketActivity : AppCompatActivity() {
             cartViewModel.cartProductsSize.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED).collect {
                 when (it) {
                     is Resource.Success -> {
-                        if (it.data != 0) binding.bottomNavigationView.updateBottomNavigationViewBadge(BottomNavigationViewBadgeState.NOTZERO, R.id.cartFragment, it.data!!)
-                        else binding.bottomNavigationView.updateBottomNavigationViewBadge(BottomNavigationViewBadgeState.ZERO, R.id.cartFragment)
+                        if (it.data != 0) binding.bottomNavigationView.updateBottomNavigationViewBadge(BottomNavigationViewBadgeState.NOTZERO, it.data!!)
+                        else binding.bottomNavigationView.updateBottomNavigationViewBadge(BottomNavigationViewBadgeState.ZERO)
                     }
                     is Resource.Loading -> Unit
-                    is Resource.Error -> { binding.bottomNavigationView.updateBottomNavigationViewBadge(BottomNavigationViewBadgeState.ERROR, R.id.cartFragment) }
+                    is Resource.Error -> { binding.bottomNavigationView.updateBottomNavigationViewBadge(BottomNavigationViewBadgeState.ERROR) }
                     is Resource.Undefined -> Unit
                 }
             }

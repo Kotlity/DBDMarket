@@ -10,8 +10,8 @@ class CartProductsRepositoryImplementation @Inject constructor(@UserCartProducts
     override fun getCartProductsSize(cartProductsSize: (Int) -> Unit, onFailure: (FirebaseFirestoreException) -> Unit) {
         userCartProductsCollectionReference?.addSnapshotListener { value, error ->
             if (error != null) onFailure(error)
-            value?.let {
-                val querySnapshotSize = it.size()
+            value?.let { cartProductQuerySnapshot ->
+                val querySnapshotSize = cartProductQuerySnapshot.size()
                 cartProductsSize(querySnapshotSize)
             }
         }

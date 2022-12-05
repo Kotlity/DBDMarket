@@ -2,6 +2,7 @@ package com.dbd.market.di.modules
 
 import com.dbd.market.di.qualifiers.ProductsCollectionReference
 import com.dbd.market.di.qualifiers.UserCartProductsCollectionReference
+import com.dbd.market.helpers.operations.UserCartProductsFirestoreOperations
 import com.dbd.market.repositories.introduction.login.LoginRepository
 import com.dbd.market.repositories.introduction.login.LoginRepositoryImplementation
 import com.dbd.market.repositories.introduction.register.RegisterRepository
@@ -57,6 +58,10 @@ object AppModule {
     @Singleton
     fun provideUserUid() = FirebaseAuth.getInstance().currentUser?.uid
 
+    @Provides
+    @Singleton
+    fun provideCartProductsFirestoreOperations(@UserCartProductsCollectionReference cartProductsCollectionReference: CollectionReference?, firebaseFirestore: FirebaseFirestore) = UserCartProductsFirestoreOperations(cartProductsCollectionReference, firebaseFirestore)
+
     @UserCartProductsCollectionReference
     @Provides
     @Singleton
@@ -68,7 +73,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideProductDescriptionRepository(@UserCartProductsCollectionReference cartProductsCollectionReference: CollectionReference?): ProductDescriptionRepository = ProductDescriptionRepositoryImplementation(cartProductsCollectionReference)
+    fun provideProductDescriptionRepository(@UserCartProductsCollectionReference cartProductsCollectionReference: CollectionReference?, userCartProductsFirestoreOperations: UserCartProductsFirestoreOperations): ProductDescriptionRepository = ProductDescriptionRepositoryImplementation(cartProductsCollectionReference, userCartProductsFirestoreOperations)
 
     @ProductsCollectionReference
     @Provides

@@ -2,26 +2,27 @@ package com.dbd.market.repositories.market.product_description
 
 import com.dbd.market.data.CartProduct
 import com.dbd.market.di.qualifiers.UserCartProductsCollectionReference
-import com.dbd.market.utils.Constants.ADD_TO_CART_DURATION_PERIOD
-import com.dbd.market.utils.Constants.PLEASE_CHECK_INTERNET_CONNECTION
+import com.dbd.market.helpers.operations.UserCartProductsFirestoreOperations
 import com.google.firebase.firestore.CollectionReference
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withTimeout
 import javax.inject.Inject
 
-class ProductDescriptionRepositoryImplementation @Inject constructor(@UserCartProductsCollectionReference private val userCartProductsCollectionReference: CollectionReference?): ProductDescriptionRepository {
+class ProductDescriptionRepositoryImplementation @Inject constructor(
+    @UserCartProductsCollectionReference private val userCartProductsCollectionReference: CollectionReference?,
+    private val userCartProductsFirestoreOperations: UserCartProductsFirestoreOperations): ProductDescriptionRepository {
 
-    override suspend fun addProductToCart(cartProduct: CartProduct, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                withTimeout(ADD_TO_CART_DURATION_PERIOD) {
-                    userCartProductsCollectionReference?.document()?.set(cartProduct)?.await()
-                    onSuccess()
-                }
-            } catch (e: Exception) { onFailure(PLEASE_CHECK_INTERNET_CONNECTION) }
-        }
+    override fun addProductToCart(cartProduct: CartProduct, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
+        userCartProductsCollectionReference?.document()?.set(cartProduct)
+            ?.addOnSuccessListener { onSuccess() }
+            ?.addOnFailureListener { addingProductToCartException -> onFailure(addingProductToCartException.message.toString()) }
+    }
+
+    override fun checkIfProductIsAlreadyInCart(cartProduct: CartProduct, isAdded: (Boolean, String) -> Unit, onFailure: (String) -> Unit) {
+        userCartProductsFirestoreOperations.retrieveCartProductInCart(cartProduct, onSuccess = { cartProductInCartQuerySnapshot ->
+            if (!cartProductInCartQuerySnapshot.isEmpty) {
+                val cartProductDocumentId = cartProductInCartQuerySnapshot.documents[0].id
+                isAdded(true, cartProductDocumentId)
+            } else isAdded(false, "")
+        },
+        onFailure = { retrievingCartProductInCartException -> onFailure(retrievingCartProductInCartException) })
     }
 }
