@@ -23,8 +23,7 @@ class UserCartProductsFirestoreOperations @Inject constructor(
 
 
     fun increaseCartProductQuantity(cartProductId: String): Task<Transaction> {
-        val cartProductDocumentReference =
-            userCartProductsCollectionReference?.document(cartProductId)
+        val cartProductDocumentReference = userCartProductsCollectionReference?.document(cartProductId)
         return firebaseFirestore.runTransaction { transaction ->
             val cartProductSnapshot = transaction.get(cartProductDocumentReference!!)
             val newCartProductQuantity = cartProductSnapshot.getLong(FIREBASE_FIRESTORE_CART_PRODUCTS_AMOUNT_FIELD)!! + 1

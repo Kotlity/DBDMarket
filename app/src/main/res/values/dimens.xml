@@ -160,4 +160,7 @@
     <dimen name="productDescriptionSizeImageViewSize">40dp</dimen>
     <dimen name="productDescriptionSizeTextViewSize">18sp</dimen>
     <dimen name="productDescriptionCloseImageViewMargin">5dp</dimen>
+    <dimen name="productDescriptionAmountOperationsImageViewSize">50dp</dimen>
+    <dimen name="productDescriptionSpaceBetweenAmountOperationsImageViews">30dp</dimen>
+    <dimen name="productDescriptionAmountOperationsImageViewsBackgroundSize">70dp</dimen>
 </resources>

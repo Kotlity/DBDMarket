@@ -49,9 +49,8 @@ class ProductDescriptionFragment : Fragment() {
         bindDataFromNavArgsToTextViews(productArgs)
         setupProductDescriptionImageViewPager2Adapter(productArgs)
         setupProductDescriptionSizesAdapter(productArgs)
-        getSizeFromClick()
+        productDescriptionOperations(productArgs)
         onCloseImageViewClick()
-        addProductToCart(productArgs)
         observeProductDescriptionState()
     }
 
@@ -96,23 +95,28 @@ class ProductDescriptionFragment : Fragment() {
         productDescriptionSizesAdapter.differ.submitList(product.size)
     }
 
-    private fun getSizeFromClick() {
+    private fun productDescriptionOperations(product: Product) {
         productDescriptionSizesAdapter.onRecyclerViewItemClick {
             val size = it as String
             productDescriptionViewModel.changeProductDescriptionSelectedSizeValue(size)
+            if (selectedSize.isNotEmpty()) {
+                val cartProduct = CartProduct(product.id, product.name, product.category, product.description, product.price, product.discount, selectedSize, product.images, 1)
+                productDescriptionViewModel.checkIfProductIsAlreadyInCart(cartProduct) { takenCartProductId ->
+                    if (takenCartProductId.isNotEmpty()) {
+                        binding.productDescriptionIncreaseAmountImageView.setOnClickListener {
+                            productDescriptionViewModel.increaseCartProductQuantity(takenCartProductId)
+                        }
+                    } else {
+                        binding.productDescriptionAddToCartButton.setOnClickListener {
+                            productDescriptionViewModel.addProductToCart(cartProduct)
+                        }
+                    }
+                }
+            }
         }
     }
 
     private fun onCloseImageViewClick() { binding.closeProductDescriptionScreen.setOnClickListener { requireActivity().onBackPressed() } }
-
-    private fun addProductToCart(product: Product) {
-        binding.productDescriptionAddToCartButton.setOnClickListener {
-            if (selectedSize.isNotEmpty()) {
-                val cartProduct = CartProduct(product.id, product.name, product.category, product.description, product.price, product.discount, selectedSize, product.images, 1)
-                productDescriptionViewModel.addProductToCart(cartProduct)
-            } else showToast(requireContext(), binding.root, R.drawable.ic_error_icon, resources.getString(R.string.productDescriptionPleaseChooseSizeString))
-        }
-    }
 
     private fun observeProductDescriptionState() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -141,6 +145,26 @@ class ProductDescriptionFragment : Fragment() {
                                 showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
                             }
                             is Resource.Undefined -> Unit
+                        }
+                    }
+                }
+                launch {
+                    productDescriptionViewModel.productDescriptionIncreaseAndDecreaseVisibilityButtonsState.collect {
+                        when(it) {
+                            true -> {
+                                binding.apply {
+                                    productDescriptionAddToCartButton.visibility = View.INVISIBLE
+                                    productDescriptionIncreaseAmountImageView.visibility = View.VISIBLE
+                                    productDescriptionDecreaseAmountImageView.visibility = View.VISIBLE
+                                }
+                            }
+                            false -> {
+                                binding.apply {
+                                    productDescriptionAddToCartButton.visibility = View.VISIBLE
+                                    productDescriptionIncreaseAmountImageView.visibility = View.INVISIBLE
+                                    productDescriptionDecreaseAmountImageView.visibility = View.INVISIBLE
+                                }
+                            }
                         }
                     }
                 }

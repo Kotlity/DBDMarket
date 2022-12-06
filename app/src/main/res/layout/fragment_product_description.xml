@@ -209,12 +209,47 @@
         android:textSize="@dimen/productDescriptionAddToCartButtonTextSize"
         android:textStyle="bold"
         android:textAllCaps="false"
+        android:visibility="invisible"
         android:background="@drawable/app_add_to_cart_button_background"
         app:spinning_bar_color="@color/red"
         app:spinning_bar_width="@dimen/appButtonSpinningBarWidth"
         app:layout_constraintEnd_toEndOf="@+id/productDescriptionEndVerticalGuideline"
         app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
         app:layout_constraintTop_toBottomOf="@+id/productDescriptionSizesBottomSeparator" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/productDescriptionViewsMarginTop"
+        app:layout_constraintStart_toStartOf="@+id/productDescriptionStartVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/productDescriptionSizesBottomSeparator"
+        app:layout_constraintEnd_toEndOf="@+id/productDescriptionEndVerticalGuideline">
+
+        <ImageView
+            android:id="@+id/productDescriptionIncreaseAmountImageView"
+            android:layout_width="@dimen/productDescriptionAmountOperationsImageViewSize"
+            android:layout_height="@dimen/productDescriptionAmountOperationsImageViewSize"
+            android:src="@drawable/ic_plus_icon"
+            android:background="@drawable/product_description_increase_amount_icon_background"
+            android:visibility="visible"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:layout_width="@dimen/productDescriptionSpaceBetweenAmountOperationsImageViews"
+            android:layout_height="0dp"/>
+
+        <ImageView
+            android:id="@+id/productDescriptionDecreaseAmountImageView"
+            android:layout_width="@dimen/productDescriptionAmountOperationsImageViewSize"
+            android:layout_height="@dimen/productDescriptionAmountOperationsImageViewSize"
+            android:src="@drawable/ic_minus_icon"
+            android:background="@drawable/product_description_decrease_amount_icon_background"
+            android:visibility="visible"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/productDescriptionStartVerticalGuideline"
