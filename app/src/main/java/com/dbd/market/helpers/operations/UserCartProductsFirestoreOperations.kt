@@ -30,4 +30,16 @@ class UserCartProductsFirestoreOperations @Inject constructor(
             transaction.update(cartProductDocumentReference, FIREBASE_FIRESTORE_CART_PRODUCTS_AMOUNT_FIELD, newCartProductQuantity)
         }
     }
+
+    fun decreaseCartProductQuantity(cartProductId: String): Task<Transaction> {
+        val cartProductDocumentReference = userCartProductsCollectionReference?.document(cartProductId)
+        return firebaseFirestore.runTransaction { transaction ->
+            val cartProductSnapshot = transaction.get(cartProductDocumentReference!!)
+            val previousCartProductQuantity = cartProductSnapshot.getLong(FIREBASE_FIRESTORE_CART_PRODUCTS_AMOUNT_FIELD)!!.toInt()
+            val newCartProductQuantity = if (previousCartProductQuantity == 1) 1 else previousCartProductQuantity - 1
+            transaction.update(cartProductDocumentReference, FIREBASE_FIRESTORE_CART_PRODUCTS_AMOUNT_FIELD, newCartProductQuantity)
+        }
+    }
+
+    fun deleteCartProduct(cartProductId: String) = userCartProductsCollectionReference?.document(cartProductId)?.delete()
 }

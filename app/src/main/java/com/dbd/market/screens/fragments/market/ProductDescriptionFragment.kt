@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
@@ -95,6 +96,27 @@ class ProductDescriptionFragment : Fragment() {
         productDescriptionSizesAdapter.differ.submitList(product.size)
     }
 
+    private fun addToCart(cartProduct: CartProduct) {
+        binding.productDescriptionAddToCartButton.setOnClickListener {
+            productDescriptionViewModel.addProductToCart(cartProduct)
+            observeProductDescriptionProductAddedToCartState()
+        }
+    }
+
+    private fun increaseCartProductQuantity(cartProductId: String) {
+        binding.productDescriptionIncreaseAmountImageView.setOnClickListener {
+            productDescriptionViewModel.increaseCartProductQuantity(cartProductId)
+            observeProductDescriptionIncreaseAndDecreaseProgressBar()
+        }
+    }
+
+    private fun decreaseCartProductQuantity(cartProductId: String) {
+        binding.productDescriptionDecreaseAmountImageView.setOnClickListener {
+            productDescriptionViewModel.decreaseCartProductQuantity(cartProductId)
+            observeProductDescriptionIncreaseAndDecreaseProgressBar()
+        }
+    }
+
     private fun productDescriptionOperations(product: Product) {
         productDescriptionSizesAdapter.onRecyclerViewItemClick {
             val size = it as String
@@ -103,14 +125,9 @@ class ProductDescriptionFragment : Fragment() {
                 val cartProduct = CartProduct(product.id, product.name, product.category, product.description, product.price, product.discount, selectedSize, product.images, 1)
                 productDescriptionViewModel.checkIfProductIsAlreadyInCart(cartProduct) { takenCartProductId ->
                     if (takenCartProductId.isNotEmpty()) {
-                        binding.productDescriptionIncreaseAmountImageView.setOnClickListener {
-                            productDescriptionViewModel.increaseCartProductQuantity(takenCartProductId)
-                        }
-                    } else {
-                        binding.productDescriptionAddToCartButton.setOnClickListener {
-                            productDescriptionViewModel.addProductToCart(cartProduct)
-                        }
-                    }
+                        increaseCartProductQuantity(takenCartProductId)
+                        decreaseCartProductQuantity(takenCartProductId)
+                    } else { addToCart(cartProduct) }
                 }
             }
         }
@@ -133,22 +150,6 @@ class ProductDescriptionFragment : Fragment() {
                     }
                 }
                 launch {
-                    productDescriptionViewModel.productDescriptionProductAddedToCart.collect {
-                        when (it) {
-                            is Resource.Success -> {
-                                binding.productDescriptionAddToCartButton.revertAnimation()
-                                showToast(requireContext(), binding.root, R.drawable.ic_done_icon, resources.getString(R.string.productDescriptionSuccessfullyAddedToTheCartString))
-                            }
-                            is Resource.Loading -> binding.productDescriptionAddToCartButton.startAnimation()
-                            is Resource.Error -> {
-                                binding.productDescriptionAddToCartButton.revertAnimation()
-                                showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
-                            }
-                            is Resource.Undefined -> Unit
-                        }
-                    }
-                }
-                launch {
                     productDescriptionViewModel.productDescriptionIncreaseAndDecreaseVisibilityButtonsState.collect {
                         when(it) {
                             true -> {
@@ -167,6 +168,57 @@ class ProductDescriptionFragment : Fragment() {
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+
+    private fun observeProductDescriptionProductAddedToCartState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            productDescriptionViewModel.productDescriptionProductAddedToCart.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                when (it) {
+                    is Resource.Success -> {
+                        binding.productDescriptionAddToCartButton.revertAnimation()
+                        showToast(requireContext(), binding.root, R.drawable.ic_done_icon, resources.getString(R.string.productDescriptionSuccessfullyAddedToTheCartString))
+                    }
+                    is Resource.Loading -> binding.productDescriptionAddToCartButton.startAnimation()
+                    is Resource.Error -> {
+                        binding.productDescriptionAddToCartButton.revertAnimation()
+                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                    }
+                    is Resource.Undefined -> Unit
+                }
+            }
+        }
+    }
+
+    private fun observeProductDescriptionIncreaseAndDecreaseProgressBar() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            productDescriptionViewModel.productDescriptionIncreaseAndDecreaseProgressBar.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                when (it) {
+                    is Resource.Success -> {
+                        binding.apply {
+                            increaseAndDecreaseProgressBar.visibility = View.INVISIBLE
+                            productDescriptionIncreaseAmountImageView.visibility = View.VISIBLE
+                            productDescriptionDecreaseAmountImageView.visibility = View.VISIBLE
+                        }
+                    }
+                    is Resource.Loading -> {
+                        binding.apply {
+                            increaseAndDecreaseProgressBar.visibility = View.VISIBLE
+                            productDescriptionIncreaseAmountImageView.visibility = View.INVISIBLE
+                            productDescriptionDecreaseAmountImageView.visibility = View.INVISIBLE
+                        }
+                    }
+                    is Resource.Error -> {
+                        binding.apply {
+                            increaseAndDecreaseProgressBar.visibility = View.INVISIBLE
+                            productDescriptionIncreaseAmountImageView.visibility = View.VISIBLE
+                            productDescriptionDecreaseAmountImageView.visibility = View.VISIBLE
+                        }
+                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                    }
+                    is Resource.Undefined -> Unit
                 }
             }
         }

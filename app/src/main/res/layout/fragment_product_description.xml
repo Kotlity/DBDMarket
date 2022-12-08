@@ -218,6 +218,7 @@
         app:layout_constraintTop_toBottomOf="@+id/productDescriptionSizesBottomSeparator" />
 
     <LinearLayout
+        android:id="@+id/increaseAndDecreaseQuantityButtonsLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -250,6 +251,17 @@
             tools:ignore="ContentDescription" />
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/increaseAndDecreaseProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/increaseAndDecreaseQuantityButtonsLinearLayout"
+        app:layout_constraintTop_toTopOf="@+id/increaseAndDecreaseQuantityButtonsLinearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/increaseAndDecreaseQuantityButtonsLinearLayout"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/red"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/productDescriptionStartVerticalGuideline"

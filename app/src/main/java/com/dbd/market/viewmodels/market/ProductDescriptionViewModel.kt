@@ -25,6 +25,12 @@ class ProductDescriptionViewModel @Inject constructor(
     private val _productDescriptionProductAddedToCart = MutableStateFlow<Resource<Boolean>>(Resource.Undefined())
     val productDescriptionProductAddedToCart = _productDescriptionProductAddedToCart.asStateFlow()
 
+    private val _productDescriptionIncreaseAndDecreaseProgressBar = MutableStateFlow<Resource<Boolean>>(Resource.Undefined())
+    val productDescriptionIncreaseAndDecreaseProgressBar = _productDescriptionIncreaseAndDecreaseProgressBar.asStateFlow()
+
+    private val _productDescriptionDeleteCartProduct = MutableStateFlow<Resource<Boolean>>(Resource.Undefined())
+    val productDescriptionDeleteCartProduct = _productDescriptionDeleteCartProduct.asStateFlow()
+
     private val _productDescriptionIncreaseAndDecreaseVisibilityButtonsState = MutableStateFlow(false)
     val productDescriptionIncreaseAndDecreaseVisibilityButtonsState = _productDescriptionIncreaseAndDecreaseVisibilityButtonsState.asStateFlow()
 
@@ -51,10 +57,30 @@ class ProductDescriptionViewModel @Inject constructor(
 
     fun increaseCartProductQuantity(cartProductId: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            _productDescriptionProductAddedToCart.value = Resource.Loading()
+            _productDescriptionIncreaseAndDecreaseProgressBar.value = Resource.Loading()
             userCartProductsFirestoreOperations.increaseCartProductQuantity(cartProductId).addOnCompleteListener {
-                if (it.isSuccessful) _productDescriptionProductAddedToCart.value = Resource.Success(true)
-                else _productDescriptionProductAddedToCart.value = Resource.Error(it.exception.toString())
+                if (it.isSuccessful) _productDescriptionIncreaseAndDecreaseProgressBar.value = Resource.Success(true)
+                else _productDescriptionIncreaseAndDecreaseProgressBar.value = Resource.Error(it.exception.toString())
+            }
+        }
+    }
+
+    fun decreaseCartProductQuantity(cartProductId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _productDescriptionIncreaseAndDecreaseProgressBar.value = Resource.Loading()
+            userCartProductsFirestoreOperations.decreaseCartProductQuantity(cartProductId).addOnCompleteListener {
+                if (it.isSuccessful) _productDescriptionIncreaseAndDecreaseProgressBar.value = Resource.Success(true)
+                else _productDescriptionIncreaseAndDecreaseProgressBar.value = Resource.Error(it.exception.toString())
+            }
+        }
+    }
+
+    fun deleteCartProduct(cartProductId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _productDescriptionDeleteCartProduct.value = Resource.Loading()
+            userCartProductsFirestoreOperations.deleteCartProduct(cartProductId)?.addOnCompleteListener {
+                if (it.isSuccessful) _productDescriptionDeleteCartProduct.value = Resource.Success(true)
+                else _productDescriptionDeleteCartProduct.value = Resource.Error(it.exception.toString())
             }
         }
     }
