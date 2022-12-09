@@ -77,4 +77,8 @@
     <string name="productDescriptionSizesTitleString">Sizes:</string>
     <string name="productDescriptionSuccessfullyAddedToTheCartString">You have successfully added this product to your cart</string>
     <string name="productDescriptionPleaseChooseSizeString">Please choose the size for the product first</string>
+    <string name="cartScreenProductListTitleString">Cart products list</string>
+    <string name="cartScreenTotalPriceTextViewString">Total price:</string>
+    <string name="cartScreenPriceTextViewString">500$</string>
+    <string name="cartScreenNextButtonTextString">Next</string>
 </resources>

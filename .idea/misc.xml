@@ -26,6 +26,7 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/beneficial_item_cardview_background.xml" value="0.1725" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/bottom_navigation_item_selector.xml" value="0.3035" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/bottom_navigation_view_background.xml" value="0.3035" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/cart_total_price_linear_layout_background.xml" value="0.1395" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/dialog_custom_background.xml" value="0.1895" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/fghfgh.xml" value="0.21" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_add_icon.xml" value="0.238" />
@@ -81,7 +82,7 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/custom_alert_dialog_layout.xml" value="0.4" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_base_category.xml" value="0.3875" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_blank.xml" value="0.25" />
-        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_cart.xml" value="0.3875" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_cart.xml" value="0.264" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_headdress.xml" value="0.264" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_introduction.xml" value="0.3875" />

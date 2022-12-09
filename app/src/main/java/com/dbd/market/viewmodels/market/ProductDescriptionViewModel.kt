@@ -28,9 +28,6 @@ class ProductDescriptionViewModel @Inject constructor(
     private val _productDescriptionIncreaseAndDecreaseProgressBar = MutableStateFlow<Resource<Boolean>>(Resource.Undefined())
     val productDescriptionIncreaseAndDecreaseProgressBar = _productDescriptionIncreaseAndDecreaseProgressBar.asStateFlow()
 
-    private val _productDescriptionDeleteCartProduct = MutableStateFlow<Resource<Boolean>>(Resource.Undefined())
-    val productDescriptionDeleteCartProduct = _productDescriptionDeleteCartProduct.asStateFlow()
-
     private val _productDescriptionIncreaseAndDecreaseVisibilityButtonsState = MutableStateFlow(false)
     val productDescriptionIncreaseAndDecreaseVisibilityButtonsState = _productDescriptionIncreaseAndDecreaseVisibilityButtonsState.asStateFlow()
 
@@ -71,16 +68,6 @@ class ProductDescriptionViewModel @Inject constructor(
             userCartProductsFirestoreOperations.decreaseCartProductQuantity(cartProductId).addOnCompleteListener {
                 if (it.isSuccessful) _productDescriptionIncreaseAndDecreaseProgressBar.value = Resource.Success(true)
                 else _productDescriptionIncreaseAndDecreaseProgressBar.value = Resource.Error(it.exception.toString())
-            }
-        }
-    }
-
-    fun deleteCartProduct(cartProductId: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            _productDescriptionDeleteCartProduct.value = Resource.Loading()
-            userCartProductsFirestoreOperations.deleteCartProduct(cartProductId)?.addOnCompleteListener {
-                if (it.isSuccessful) _productDescriptionDeleteCartProduct.value = Resource.Success(true)
-                else _productDescriptionDeleteCartProduct.value = Resource.Error(it.exception.toString())
             }
         }
     }

@@ -1,14 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_grey"
     tools:context=".screens.fragments.market.CartFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/closeCartScreen"
+        android:layout_width="@dimen/closeCartScreenImageViewSize"
+        android:layout_height="@dimen/closeCartScreenImageViewSize"
+        android:src="@drawable/ic_close_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/cartToolbarBottomHorizontalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/cartLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/app_title_font"
+        android:text="@string/cartScreenProductListTitleString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/cartScreenProductListTitleTextViewSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/cartToolbarBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/cartRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/cartLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartProductsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/cartRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/cartLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/cartToolbarBottomHorizontalGuideline"
+        app:layout_constraintBottom_toTopOf="@+id/cartTotalPriceTopHorizontalGuideline"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/cart_total_price_constraint_layout_background"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/cartTotalPriceBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/cartRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/cartLeftVerticalGuideline"
+        app:layout_constraintTop_toTopOf="@+id/cartTotalPriceTopHorizontalGuideline">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/cartScreenTotalPriceTextViewMarginStart"
+            android:fontFamily="@font/app_buttons_font"
+            android:text="@string/cartScreenTotalPriceTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/cartScreenTotalPriceTextViewSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cartPriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/cartScreenPriceTextViewMarginEnd"
+            android:fontFamily="@font/app_buttons_font"
+            android:text="@string/cartScreenPriceTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/cartScreenPriceTextViewSize"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cartNextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/beneficial_item_button_background"
+        android:text="@string/cartScreenNextButtonTextString"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/cartScreenNextButtonTextSize"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/cartNextButtonLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/cartTotalPriceBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/cartNextButtonRightVerticalGuideline"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/cartLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/cartRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/cartToolbarBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/cartTotalPriceTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/cartTotalPriceBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/cartNextButtonLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/cartNextButtonRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.80" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -163,4 +163,14 @@
     <dimen name="productDescriptionAmountOperationsImageViewSize">50dp</dimen>
     <dimen name="productDescriptionSpaceBetweenAmountOperationsImageViews">30dp</dimen>
     <dimen name="productDescriptionAmountOperationsImageViewsBackgroundSize">70dp</dimen>
+    <dimen name="closeCartScreenImageViewSize">45dp</dimen>
+    <dimen name="cartScreenProductListTitleTextViewSize">25sp</dimen>
+    <dimen name="cartScreenTotalPriceTextViewMarginStart">10dp</dimen>
+    <dimen name="cartScreenTotalPriceTextViewSize">30sp</dimen>
+    <dimen name="cartScreenPriceTextViewMarginEnd">10dp</dimen>
+    <dimen name="cartScreenPriceTextViewSize">20sp</dimen>
+    <dimen name="cartScreenNextButtonTextSize">30sp</dimen>
+    <dimen name="cartTotalPriceConstraintLayoutBackgroundDashGap">10dp</dimen>
+    <dimen name="cartTotalPriceConstraintLayoutBackgroundDashWidth">10dp</dimen>
+    <dimen name="cartTotalPriceConstraintLayoutBackgroundWidth">2dp</dimen>
 </resources>
