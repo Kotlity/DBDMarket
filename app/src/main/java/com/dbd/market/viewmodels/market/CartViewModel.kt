@@ -2,6 +2,7 @@ package com.dbd.market.viewmodels.market
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dbd.market.data.CartProduct
 import com.dbd.market.repositories.market.cart.CartProductsRepository
 import com.dbd.market.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,14 +18,25 @@ class CartViewModel @Inject constructor(private val cartProductsRepository: Cart
     private val _cartProductsSize = MutableStateFlow<Resource<Int>>(Resource.Loading())
     val cartProductsSize = _cartProductsSize.asStateFlow()
 
+    private val _cartProducts = MutableStateFlow<Resource<List<CartProduct>>>(Resource.Undefined())
+    val cartProducts = _cartProducts.asStateFlow()
+
     init {
-        getCartProductsSize()
+        getCartProducts()
     }
 
-    private fun getCartProductsSize() {
+    private fun getCartProducts() {
         viewModelScope.launch(Dispatchers.IO) {
-            cartProductsRepository.getCartProductsSize(cartProductsSize = { _cartProductsSize.value = Resource.Success(it) },
-            onFailure = { _cartProductsSize.value = Resource.Error(it.message.toString()) })
+            _cartProducts.value = Resource.Loading()
+            cartProductsRepository.getCartProducts(cartProducts = { takenCartProducts ->
+                val takenCartProductsSize = takenCartProducts.size
+                _cartProductsSize.value = Resource.Success(takenCartProductsSize)
+                _cartProducts.value = Resource.Success(takenCartProducts)
+            },
+            onFailure = { gettingCartProductsError ->
+                _cartProductsSize.value = Resource.Error(gettingCartProductsError)
+                _cartProducts.value = Resource.Error(gettingCartProductsError)
+            })
         }
     }
 }

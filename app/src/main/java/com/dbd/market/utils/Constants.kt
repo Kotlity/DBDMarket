@@ -35,9 +35,7 @@ object Constants {
 
     const val RECYCLER_VIEW_AUTO_SCROLL_PERIOD = 3000L
     const val PRODUCT_DESCRIPTION_IMAGE_VIEW_ANIMATION_DURATION = 400
-    const val ADD_TO_CART_DURATION_PERIOD = 3000L
-
-    const val PLEASE_CHECK_INTERNET_CONNECTION = "Please check your Internet connection and try again"
+    const val CART_PRODUCT_IMAGE_VIEW_ANIMATION_DURATION = 300
 
     const val PERMISSION_HAS_DENIED = "You have not allowed the app to access your storage. Please do it manually in the app settings"
     const val ALERT_DIALOG_PERMISSION_RATIONALE_TITLE = "Storage permission required"

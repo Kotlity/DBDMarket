@@ -1,8 +1,8 @@
 package com.dbd.market.repositories.market.cart
 
-import com.google.firebase.firestore.FirebaseFirestoreException
+import com.dbd.market.data.CartProduct
 
 interface CartProductsRepository {
 
-    fun getCartProductsSize(cartProductsSize: (Int) -> Unit, onFailure: (FirebaseFirestoreException) -> Unit)
+    fun getCartProducts(cartProducts: (List<CartProduct>) -> Unit, onFailure: (String) -> Unit)
 }

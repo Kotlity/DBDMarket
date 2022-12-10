@@ -1,18 +1,19 @@
 package com.dbd.market.repositories.market.cart
 
+import com.dbd.market.data.CartProduct
 import com.dbd.market.di.qualifiers.UserCartProductsCollectionReference
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.ktx.toObjects
 import javax.inject.Inject
 
 class CartProductsRepositoryImplementation @Inject constructor(@UserCartProductsCollectionReference private val userCartProductsCollectionReference: CollectionReference?): CartProductsRepository {
 
-    override fun getCartProductsSize(cartProductsSize: (Int) -> Unit, onFailure: (FirebaseFirestoreException) -> Unit) {
+    override fun getCartProducts(cartProducts: (List<CartProduct>) -> Unit, onFailure: (String) -> Unit) {
         userCartProductsCollectionReference?.addSnapshotListener { value, error ->
-            if (error != null) onFailure(error)
-            value?.let { cartProductQuerySnapshot ->
-                val querySnapshotSize = cartProductQuerySnapshot.size()
-                cartProductsSize(querySnapshotSize)
+            if (error != null) onFailure(error.message.toString())
+            value?.let { querySnapshot ->
+                val takenCartProducts = querySnapshot.toObjects<CartProduct>()
+                cartProducts(takenCartProducts)
             }
         }
     }

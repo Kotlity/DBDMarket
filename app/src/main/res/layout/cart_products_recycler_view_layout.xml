@@ -16,21 +16,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/cartProductImageViewsViewPager2"
-            android:layout_width="@dimen/cartProductImageViewsViewPager2Size"
-            android:layout_height="@dimen/cartProductImageViewsViewPager2Size"
-            android:layout_marginTop="@dimen/cartProductImageViewsViewPager2MarginTop"/>
-
-        <io.github.vejei.viewpagerindicator.indicator.CircleIndicator
-            android:id="@+id/cartProductImageViewsViewPager2Indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/cartProductRecyclerViewLayoutItemMarginTop"
-            app:indicatorColor="@color/white"
-            app:indicatorRadius="@dimen/cartProductImageViewsViewPager2IndicatorRadiusAndGap"
-            app:indicatorGap="@dimen/cartProductImageViewsViewPager2IndicatorRadiusAndGap"
-            app:indicatorSelectedColor="@color/red"/>
+        <ImageView
+            android:id="@+id/cartProductImageView"
+            android:layout_width="@dimen/cartProductImageViewSize"
+            android:layout_height="@dimen/cartProductImageViewSize"
+            android:layout_marginTop="@dimen/cartProductImageViewMarginTop"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/cartProductTitleTextView"
