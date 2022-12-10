@@ -81,4 +81,5 @@
     <string name="cartScreenTotalPriceTextViewString">Total price:</string>
     <string name="cartScreenPriceTextViewString">500$</string>
     <string name="cartScreenNextButtonTextString">Next</string>
+    <string name="emptyCartTextViewString">Your cart list is empty</string>
 </resources>

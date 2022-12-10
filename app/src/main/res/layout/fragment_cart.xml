@@ -7,6 +7,31 @@
     android:background="@color/dark_grey"
     tools:context=".screens.fragments.market.CartFragment">
 
+        <ImageView
+            android:id="@+id/emptyCartImageView"
+            android:layout_width="@dimen/emptyCartImageViewSize"
+            android:layout_height="@dimen/emptyCartImageViewSize"
+            android:src="@drawable/ic_empty_cart_icon"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/emptyCartTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/emptyCartTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/emptyCartTextViewSize"
+            android:fontFamily="@font/app_description_font"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emptyCartImageView"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     <ImageView
         android:id="@+id/closeCartScreen"
         android:layout_width="@dimen/closeCartScreenImageViewSize"

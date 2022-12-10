@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dbd.market.R
-import com.dbd.market.adapters.HomeViewPager2Adapter
+import com.dbd.market.adapters.home.HomeViewPager2Adapter
 import com.dbd.market.databinding.FragmentHomeBinding
 import com.dbd.market.screens.fragments.market.categories.*
 import com.google.android.material.tabs.TabLayoutMediator

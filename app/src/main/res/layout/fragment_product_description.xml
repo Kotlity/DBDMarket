@@ -233,7 +233,7 @@
             android:layout_width="@dimen/productDescriptionAmountOperationsImageViewSize"
             android:layout_height="@dimen/productDescriptionAmountOperationsImageViewSize"
             android:src="@drawable/ic_plus_icon"
-            android:background="@drawable/product_description_increase_amount_icon_background"
+            android:background="@drawable/increase_quantity_icon_background"
             android:visibility="visible"
             tools:ignore="ContentDescription" />
 
@@ -246,7 +246,7 @@
             android:layout_width="@dimen/productDescriptionAmountOperationsImageViewSize"
             android:layout_height="@dimen/productDescriptionAmountOperationsImageViewSize"
             android:src="@drawable/ic_minus_icon"
-            android:background="@drawable/product_description_decrease_amount_icon_background"
+            android:background="@drawable/decrease_quantity_icon_background"
             android:visibility="visible"
             tools:ignore="ContentDescription" />
 

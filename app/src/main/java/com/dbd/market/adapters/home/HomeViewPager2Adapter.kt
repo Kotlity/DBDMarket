@@ -1,4 +1,4 @@
-package com.dbd.market.adapters
+package com.dbd.market.adapters.home
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

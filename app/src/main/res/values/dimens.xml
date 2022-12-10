@@ -173,4 +173,18 @@
     <dimen name="cartTotalPriceConstraintLayoutBackgroundDashGap">10dp</dimen>
     <dimen name="cartTotalPriceConstraintLayoutBackgroundDashWidth">10dp</dimen>
     <dimen name="cartTotalPriceConstraintLayoutBackgroundWidth">2dp</dimen>
+    <dimen name="emptyCartTextViewSize">25sp</dimen>
+    <dimen name="emptyCartImageViewSize">150dp</dimen>
+    <dimen name="cartProductRecyclerViewLayoutItemMarginTop">5dp</dimen>
+    <dimen name="cartProductImageViewsViewPager2MarginTop">3dp</dimen>
+    <dimen name="cartProductImageViewsViewPager2Size">80dp</dimen>
+    <dimen name="cartProductImageViewsViewPager2IndicatorRadiusAndGap">8dp</dimen>
+    <dimen name="cartProductTitleTextViewSize">25sp</dimen>
+    <dimen name="cartProductPricesTextViewsSize">20sp</dimen>
+    <dimen name="cartProductPricesMarginHorizontal">10dp</dimen>
+    <dimen name="cartProductSizeCircleImageViewSize">40dp</dimen>
+    <dimen name="cartProductSizeTextViewSize">20sp</dimen>
+    <dimen name="cartProductQuantityIncreaseAndDecreaseImageViewsSize">35dp</dimen>
+    <dimen name="cartProductQuantityTextViewSize">25sp</dimen>
+    <dimen name="cartProductQuantityTextViewMarginHorizontal">20dp</dimen>
 </resources>
