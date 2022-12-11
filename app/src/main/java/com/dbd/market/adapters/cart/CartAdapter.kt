@@ -18,7 +18,7 @@ import com.dbd.market.data.CartProduct
 import com.dbd.market.utils.Constants.CART_PRODUCT_IMAGE_VIEW_ANIMATION_DURATION
 import com.dbd.market.utils.getNewPriceAfterDiscount
 
-class CartAdapter(context: Context): RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
+class CartAdapter(private val thisContext: Context): RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     inner class CartViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val cartProductImageView = itemView.findViewById<ImageView>(R.id.cartProductImageView)
@@ -27,6 +27,9 @@ class CartAdapter(context: Context): RecyclerView.Adapter<CartAdapter.CartViewHo
         private val cartProductOldPriceTextView = itemView.findViewById<TextView>(R.id.cartProductOldPriceTextView)
         private val cartProductSizeTextView = itemView.findViewById<TextView>(R.id.cartProductSizeTextView)
         private val cartProductQuantityTextView = itemView.findViewById<TextView>(R.id.cartProductQuantityTextView)
+        val cartProductQuantityIncreaseImageView = itemView.findViewById<ImageView>(R.id.cartProductQuantityIncreaseImageView)
+        val cartProductQuantityDecreaseImageView = itemView.findViewById<ImageView>(R.id.cartProductQuantityDecreaseImageView)
+        val cartProductDeleteImageView = itemView.findViewById<ImageView>(R.id.cartProductDeleteImageView)
 
         fun bind(cartProduct: CartProduct) {
             Glide.with(itemView.context)
@@ -40,7 +43,7 @@ class CartAdapter(context: Context): RecyclerView.Adapter<CartAdapter.CartViewHo
                 cartProductOldPriceTextView.apply {
                     text = cartProduct.price.toString().plus("$")
                     paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                    setTextColor(ContextCompat.getColor(context, R.color.grey))
+                    setTextColor(ContextCompat.getColor(thisContext, R.color.grey))
                 }
             } else {
                 cartProductNewPriceTextView.visibility = View.GONE
@@ -67,8 +70,27 @@ class CartAdapter(context: Context): RecyclerView.Adapter<CartAdapter.CartViewHo
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         val currentCartProduct = differ.currentList[position]
-        holder.bind(currentCartProduct)
+        holder.apply {
+            bind(currentCartProduct)
+            cartProductQuantityIncreaseImageView.setOnClickListener { onPlusClickInternal?.let { it(currentCartProduct) } }
+            cartProductQuantityDecreaseImageView.setOnClickListener { onMinusClickInternal?.let { it(currentCartProduct) } }
+            cartProductDeleteImageView.setOnClickListener { onDeleteClickInternal?.let { it(currentCartProduct) } }
+        }
     }
 
     override fun getItemCount() = differ.currentList.size
+
+    private var onPlusClickInternal: ((CartProduct) -> Unit)? = null
+
+    private var onMinusClickInternal: ((CartProduct) -> Unit)? = null
+
+    private var onDeleteClickInternal: ((CartProduct) -> Unit)? = null
+
+    fun onRecyclerViewPlusClick(onPlusClick: (CartProduct) -> Unit) { onPlusClickInternal = onPlusClick }
+
+    fun onRecyclerViewMinusClick(onMinusClick: (CartProduct) -> Unit) { onMinusClickInternal = onMinusClick }
+
+    fun onRecyclerViewDeleteClick(onDeleteClick: (CartProduct) -> Unit) { onDeleteClickInternal = onDeleteClick }
+
+
 }

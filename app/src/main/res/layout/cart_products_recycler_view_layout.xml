@@ -126,4 +126,16 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/cartProductDeleteImageView"
+        android:layout_width="@dimen/cartProductDeleteImageViewSize"
+        android:layout_height="@dimen/cartProductDeleteImageViewSize"
+        android:src="@drawable/ic_delete_icon"
+        android:padding="@dimen/cartProductDeleteImageViewPadding"
+        android:background="@drawable/delete_cart_product_icon_background"
+        android:layout_margin="@dimen/cartProductDeleteImageViewMargin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ContentDescription" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
