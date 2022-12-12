@@ -91,7 +91,7 @@ class ProductDescriptionFragment : Fragment() {
         productDescriptionSizesAdapter = ProductDescriptionSizesAdapter()
         binding.productDescriptionSizesRecyclerView.apply {
             adapter = productDescriptionSizesAdapter
-            addItemDecoration(MarginItemDecoration(Constants.MARGIN_ITEM_DECORATION_SIZE, resources.getDimensionPixelSize(R.dimen.spaceBetweenEachSizeInSizesRecyclerView)))
+            addItemDecoration(MarginItemDecoration(MarginItemDecorationType.SIZE, resources.getDimensionPixelSize(R.dimen.spaceBetweenEachSizeInSizesRecyclerView)))
         }
         productDescriptionSizesAdapter.differ.submitList(product.size)
     }

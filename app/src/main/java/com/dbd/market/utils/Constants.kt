@@ -7,9 +7,6 @@ object Constants {
     const val REQUEST_CODE_STORAGE_PERMISSION = 1
     const val REQUEST_CODE_SELECT_IMAGES = 2
 
-    const val MARGIN_ITEM_DECORATION_SIZE = "Size"
-    const val MARGIN_ITEM_DECORATION_PRODUCT = "Product"
-
     const val MIN_AMOUNT_OF_IMAGES_TO_SHOW_RECT_VIEW_PAGER2_INDICATOR = 2
 
     const val PERMISSION_TITLE = "Storage"

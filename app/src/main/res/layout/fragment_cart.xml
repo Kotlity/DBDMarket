@@ -7,6 +7,19 @@
     android:background="@color/dark_grey"
     tools:context=".screens.fragments.market.CartFragment">
 
+    <ProgressBar
+        android:id="@+id/cartFragmentProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/totalPriceConstraintLayout"
+        app:layout_constraintTop_toTopOf="@+id/totalPriceConstraintLayout"
+        app:layout_constraintEnd_toEndOf="@+id/totalPriceConstraintLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/totalPriceConstraintLayout"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/red"
+        android:visibility="gone"/>
+
         <ImageView
             android:id="@+id/emptyCartImageView"
             android:layout_width="@dimen/emptyCartImageViewSize"
@@ -59,12 +72,14 @@
         android:id="@+id/cartProductsRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/cartProductsRecyclerViewMarginBottom"
         app:layout_constraintEnd_toEndOf="@+id/cartRightVerticalGuideline"
         app:layout_constraintStart_toStartOf="@+id/cartLeftVerticalGuideline"
         app:layout_constraintTop_toTopOf="@+id/cartToolbarBottomHorizontalGuideline"
         app:layout_constraintBottom_toTopOf="@+id/cartTotalPriceTopHorizontalGuideline"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/totalPriceConstraintLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/cart_total_price_constraint_layout_background"
@@ -87,12 +102,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/cartPriceTextView"
+            android:id="@+id/cartTotalPriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/cartScreenPriceTextViewMarginEnd"
             android:fontFamily="@font/app_buttons_font"
-            android:text="@string/cartScreenPriceTextViewString"
             android:textColor="@color/white"
             android:textSize="@dimen/cartScreenPriceTextViewSize"
             android:textStyle="bold"
@@ -143,14 +157,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.77" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/cartTotalPriceBottomHorizontalGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.87" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/cartNextButtonLeftVerticalGuideline"

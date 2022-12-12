@@ -50,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:layout_marginTop="@dimen/customAlertDialogButtonLayoutMarginTop"
                 app:layout_constraintBottom_toBottomOf="@+id/appCustomAlertDialogButtonsBottomHorizontalGuideline"
                 app:layout_constraintEnd_toEndOf="@+id/appCustomAlertDialogButtonsRightGuideline"
                 app:layout_constraintStart_toStartOf="@+id/appCustomAlertDialogButtonsLeftGuideline"

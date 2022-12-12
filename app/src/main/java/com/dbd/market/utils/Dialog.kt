@@ -66,7 +66,9 @@ fun Fragment.showDialogForResettingPassword(
 fun showCustomAlertDialog(
     context: Context,
     title: String,
+    titleSize: Float,
     message: String,
+    messageSize: Float,
     onPositiveButtonClick:() -> Unit
 ) {
     val alertDialog = AlertDialog.Builder(context).create()
@@ -75,8 +77,14 @@ fun showCustomAlertDialog(
         setView(alertDialogView)
         setCancelable(false)
     }
-    alertDialogView.findViewById<TextView>(R.id.customAlertDialogTitleTextView).text = title
-    alertDialogView.findViewById<TextView>(R.id.customAlertDialogMessageTextView).text = message
+    alertDialogView.findViewById<TextView>(R.id.customAlertDialogTitleTextView).apply {
+        text = title
+        textSize = titleSize
+    }
+    alertDialogView.findViewById<TextView>(R.id.customAlertDialogMessageTextView).apply {
+        text = message
+        textSize = messageSize
+    }
     alertDialogView.findViewById<AppCompatButton>(R.id.customAlertDialogCancelButton).setOnClickListener { alertDialog.dismiss() }
     alertDialogView.findViewById<AppCompatButton>(R.id.customAlertDialogApplyButton).setOnClickListener {
         onPositiveButtonClick()

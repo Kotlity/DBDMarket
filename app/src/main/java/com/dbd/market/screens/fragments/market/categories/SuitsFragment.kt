@@ -76,7 +76,7 @@ class SuitsFragment: BaseCategoryFragment<FragmentSuitsBinding>(FragmentSuitsBin
             adapter = suitsOtherProductsAdapter
             layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
             suitsOtherProductsAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-            addItemDecoration(MarginItemDecoration(Constants.MARGIN_ITEM_DECORATION_PRODUCT, resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
+            addItemDecoration(MarginItemDecoration(MarginItemDecorationType.PRODUCT, resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
         }
     }
 

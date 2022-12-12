@@ -118,6 +118,7 @@
     <dimen name="appBeneficialItemGoToProductButtonMarginBottom">2dp</dimen>
     <dimen name="spaceBetweenEachItemInProductsRecyclerView">10dp</dimen>
     <dimen name="spaceBetweenEachSizeInSizesRecyclerView">5dp</dimen>
+    <dimen name="spaceBetweenEachItemInCartProductRecyclerView">5dp</dimen>
     <dimen name="productsCategoriesViewsMarginTop">10dp</dimen>
     <dimen name="appInterestingProductItemLayoutWidth">180dp</dimen>
     <dimen name="appInterestingProductImageViewWidth">100dp</dimen>
@@ -192,4 +193,8 @@
     <dimen name="cartProductDeleteImageViewSize">40dp</dimen>
     <dimen name="cartProductDeleteImageViewPadding">2dp</dimen>
     <dimen name="cartProductDeleteImageViewMargin">15dp</dimen>
+    <dimen name="cartProductsRecyclerViewMarginBottom">7dp</dimen>
+    <dimen name="customAlertDialogButtonLayoutMarginTop">5dp</dimen>
+    <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
+    <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

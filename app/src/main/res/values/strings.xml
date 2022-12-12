@@ -79,7 +79,7 @@
     <string name="productDescriptionPleaseChooseSizeString">Please choose the size for the product first</string>
     <string name="cartScreenProductListTitleString">Cart products list</string>
     <string name="cartScreenTotalPriceTextViewString">Total price:</string>
-    <string name="cartScreenPriceTextViewString">500$</string>
     <string name="cartScreenNextButtonTextString">Next</string>
     <string name="emptyCartTextViewString">Your cart list is empty</string>
+    <string name="successfullyDeletedCartProductString">You have successfully deleted this cart product from your cart</string>
 </resources>
