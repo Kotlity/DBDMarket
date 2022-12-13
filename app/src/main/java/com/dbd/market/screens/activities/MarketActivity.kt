@@ -47,8 +47,11 @@ class MarketActivity : AppCompatActivity() {
 
     private fun handleBottomNavigationViewVisibility() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.productDescriptionFragment) binding.bottomNavigationView.visibility = View.GONE
-            else binding.bottomNavigationView.visibility = View.VISIBLE
+            when (destination.id) {
+                R.id.productDescriptionFragment -> binding.bottomNavigationView.visibility = View.GONE
+                R.id.setupOrderFragment -> binding.bottomNavigationView.visibility = View.GONE
+                else -> binding.bottomNavigationView.visibility = View.VISIBLE
+            }
         }
     }
 

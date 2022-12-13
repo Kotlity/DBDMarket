@@ -22,7 +22,16 @@
         android:id="@+id/cartFragment"
         android:name="com.dbd.market.screens.fragments.market.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_setupOrderFragment"
+            app:destination="@id/setupOrderFragment"
+            app:enterAnim="@anim/from_top_screen_animation"
+            app:exitAnim="@anim/to_bottom_screen_animation"
+            app:popEnterAnim="@anim/from_bottom_screen_animation"
+            app:popExitAnim="@anim/to_top_screen_animation"/>
+
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.dbd.market.screens.fragments.market.SearchFragment"
@@ -41,5 +50,14 @@
         <argument
             android:name="categoriesProduct"
             app:argType="com.dbd.market.data.Product" />
+    </fragment>
+    <fragment
+        android:id="@+id/setupOrderFragment"
+        android:name="com.dbd.market.screens.fragments.market.SetupOrderFragment"
+        android:label="fragment_setup_order"
+        tools:layout="@layout/fragment_setup_order" >
+        <argument
+            android:name="cartProductsSetupOrder"
+            app:argType="com.dbd.market.data.CartProductsSetupOrder" />
     </fragment>
 </navigation>

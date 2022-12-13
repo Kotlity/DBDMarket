@@ -28,6 +28,7 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/bottom_navigation_view_background.xml" value="0.3035" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/cart_products_recycler_view_item_background.xml" value="0.1395" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/cart_total_price_linear_layout_background.xml" value="0.1395" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/choose_address_image_view_background.xml" value="0.145" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/decrease_quantity_icon_background.xml" value="0.1765" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/delete_cart_product_icon_background.xml" value="0.1765" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/dialog_custom_background.xml" value="0.1895" />
@@ -74,6 +75,7 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/search_products_and_tab_layout_background.xml" value="0.21" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/search_products_home_header_background.xml" value="0.2475" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/search_products_home_header_selector.xml" value="0.2475" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/setup_order_button_background.xml" value="0.2" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/special_item_button_background.xml" value="0.247" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/special_item_card_view_background.xml" value="0.2475" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/toast_custom_background.xml" value="0.16" />
@@ -88,7 +90,7 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/custom_alert_dialog_layout.xml" value="0.264" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_base_category.xml" value="0.3875" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_blank.xml" value="0.25" />
-        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_cart.xml" value="0.264" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_cart.xml" value="0.2" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_headdress.xml" value="0.264" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_introduction.xml" value="0.3875" />
@@ -98,6 +100,7 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_product_description.xml" value="0.1" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_register.xml" value="0.264" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_search.xml" value="0.3734375" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_setup_order.xml" value="0.264" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_sign_in_up_option.xml" value="0.3875" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_suits.xml" value="0.2" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_torso.xml" value="0.264" />

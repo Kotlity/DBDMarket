@@ -193,8 +193,17 @@
     <dimen name="cartProductDeleteImageViewSize">40dp</dimen>
     <dimen name="cartProductDeleteImageViewPadding">2dp</dimen>
     <dimen name="cartProductDeleteImageViewMargin">15dp</dimen>
-    <dimen name="cartProductsRecyclerViewMarginBottom">7dp</dimen>
+    <dimen name="cartProductsRecyclerViewMarginVertical">7dp</dimen>
     <dimen name="customAlertDialogButtonLayoutMarginTop">5dp</dimen>
+    <dimen name="setupOrderTotalPriceTextViewSize">27sp</dimen>
+    <dimen name="setupOrderWidgetsMargin">10dp</dimen>
+    <dimen name="setupOrderChooseAddressImageViewSize">45dp</dimen>
+    <dimen name="addressesTitleTextViewSize">35sp</dimen>
+    <dimen name="chooseAddressWarningTextViewSize">22sp</dimen>
+    <dimen name="setupOrderButtonTextSize">25sp</dimen>
+    <dimen name="setupOrderButtonBackgroundRadius">10dp</dimen>
+    <dimen name="setupOrderButtonBackgroundStrokeWidth">2dp</dimen>
+    <dimen name="chooseAddressImageViewBackgroundStrokeWidth">3dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

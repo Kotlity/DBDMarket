@@ -82,4 +82,8 @@
     <string name="cartScreenNextButtonTextString">Next</string>
     <string name="emptyCartTextViewString">Your cart list is empty</string>
     <string name="successfullyDeletedCartProductString">You have successfully deleted this cart product from your cart</string>
+    <string name="setupOrderScreenTitleString">Setup order</string>
+    <string name="addressesTitleTextViewString">Addresses:</string>
+    <string name="chooseAddressWarningTextViewString">Please choose address for order</string>
+    <string name="setupOrderButtonString">Setup order</string>
 </resources>

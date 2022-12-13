@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    tools:context=".screens.fragments.market.SetupOrderFragment">
+
+    <ImageView
+        android:id="@+id/closeSetupOrder"
+        android:layout_width="@dimen/closeCartScreenImageViewSize"
+        android:layout_height="@dimen/closeCartScreenImageViewSize"
+        android:src="@drawable/ic_close_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/setupOrderToolbarBottomHorizontalGuideLine"
+        app:layout_constraintStart_toStartOf="@+id/setupOrderLeftVerticalGuideLine"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/app_title_font"
+        android:text="@string/setupOrderScreenTitleString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/cartScreenProductListTitleTextViewSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/setupOrderToolbarBottomHorizontalGuideLine"
+        app:layout_constraintEnd_toEndOf="@+id/setupOrderRightVerticalGuideLine"
+        app:layout_constraintStart_toStartOf="@+id/setupOrderLeftVerticalGuideLine"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/setupOrderProductsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/setupOrderWidgetsMargin"
+        app:layout_constraintBottom_toTopOf="@+id/setupOrderSetupOrderProductsRecyclerViewBottomHorizontalGuideLine"
+        app:layout_constraintEnd_toEndOf="@+id/setupOrderRightVerticalGuideLine"
+        app:layout_constraintStart_toStartOf="@+id/setupOrderLeftVerticalGuideLine"
+        app:layout_constraintTop_toTopOf="@+id/setupOrderToolbarBottomHorizontalGuideLine" />
+
+    <ImageView
+        android:id="@+id/chooseAddressImageView"
+        android:layout_width="@dimen/setupOrderChooseAddressImageViewSize"
+        android:layout_height="@dimen/setupOrderChooseAddressImageViewSize"
+        android:src="@drawable/ic_plus_icon"
+        android:background="@drawable/choose_address_image_view_background"
+        android:layout_margin="@dimen/setupOrderWidgetsMargin"
+        app:layout_constraintTop_toBottomOf="@+id/setupOrderSetupOrderProductsRecyclerViewBottomHorizontalGuideLine"
+        app:layout_constraintEnd_toEndOf="@+id/setupOrderRightVerticalGuideLine"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:id="@+id/setupOrderAddressesLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="start"
+        android:layout_margin="@dimen/setupOrderWidgetsMargin"
+        app:layout_constraintStart_toStartOf="@+id/setupOrderLeftVerticalGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/setupOrderSetupOrderProductsRecyclerViewBottomHorizontalGuideLine">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addressesTitleTextViewString"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/addressesTitleTextViewSize"
+            android:fontFamily="@font/title_beneficial_products" />
+
+        <TextView
+            android:id="@+id/chooseAddressWarningTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chooseAddressWarningTextViewString"
+            android:textColor="@color/red"
+            android:textSize="@dimen/chooseAddressWarningTextViewSize"
+            android:textStyle="italic"
+            android:fontFamily="@font/app_buttons_font"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/setupOrderAddressesRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@+id/setupOrderLeftVerticalGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/setupOrderAddressesLinearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/setupOrderRightVerticalGuideLine"
+        app:layout_constraintBottom_toTopOf="@+id/setupOrderProductsTotalPriceTopHorizontalGuideLine"/>
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/setupOrderLeftVerticalGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/setupOrderProductsTotalPriceTopHorizontalGuideLine"
+        app:layout_constraintEnd_toEndOf="@+id/setupOrderRightVerticalGuideLine"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/cartScreenTotalPriceTextViewMarginStart"
+        android:fontFamily="@font/app_buttons_font"
+        android:text="@string/cartScreenTotalPriceTextViewString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/cartScreenTotalPriceTextViewSize"
+        app:layout_constraintStart_toStartOf="@+id/setupOrderLeftVerticalGuideLine"
+        app:layout_constraintBottom_toTopOf="@+id/setupOrderTotalPriceBottomView"/>
+
+    <TextView
+        android:id="@+id/setupOrderTotalPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/cartScreenPriceTextViewMarginEnd"
+        android:fontFamily="@font/app_buttons_font"
+        android:textColor="@color/white"
+        android:textSize="@dimen/setupOrderTotalPriceTextViewSize"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/setupOrderRightVerticalGuideLine"
+        app:layout_constraintBottom_toTopOf="@+id/setupOrderTotalPriceBottomView"/>
+
+    <View
+        android:id="@+id/setupOrderTotalPriceBottomView"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/setupOrderLeftVerticalGuideLine"
+        app:layout_constraintBottom_toTopOf="@+id/setupOrderProductsTotalPriceBottomHorizontalGuideLine"
+        app:layout_constraintEnd_toEndOf="@+id/setupOrderRightVerticalGuideLine"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/setupOrderButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/setup_order_button_background"
+        android:text="@string/setupOrderButtonString"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/setupOrderButtonTextSize"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/setupOrderButtonLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/setupOrderProductsTotalPriceBottomHorizontalGuideLine"
+        app:layout_constraintEnd_toStartOf="@+id/setupOrderButtonRightVerticalGuideline"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/setupOrderLeftVerticalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/setupOrderRightVerticalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/setupOrderToolbarBottomHorizontalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/setupOrderSetupOrderProductsRecyclerViewBottomHorizontalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/setupOrderProductsTotalPriceTopHorizontalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.77" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/setupOrderProductsTotalPriceBottomHorizontalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.84" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/setupOrderButtonLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/setupOrderButtonRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.80" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

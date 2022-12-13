@@ -1,6 +1,7 @@
 package com.dbd.market.screens.fragments.market
 
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,10 +11,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dbd.market.R
 import com.dbd.market.adapters.cart.CartAdapter
 import com.dbd.market.data.CartProduct
+import com.dbd.market.data.CartProductsSetupOrder
 import com.dbd.market.databinding.FragmentCartBinding
 import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.market.CartViewModel
@@ -25,6 +28,7 @@ class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
     private val cartViewModel by activityViewModels<CartViewModel>()
     private lateinit var cartAdapter: CartAdapter
+    private var cartProductsToSetupOrderFragment: CartProductsSetupOrder? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +45,7 @@ class CartFragment : Fragment() {
         decreaseCartProductQuantity()
         deleteCartProduct()
         closeCartFragment()
+        navigateToSetupOrderFragment()
         observeCartProducts()
     }
 
@@ -94,7 +99,7 @@ class CartFragment : Fragment() {
             })
     }
 
-    private fun calculateTotalPrice(cartProductsList: List<CartProduct>) {
+    private fun calculateTotalPrice(cartProductsList: List<CartProduct>): Int {
         var totalPrice = 0
         cartProductsList.forEach { cartProduct ->
             totalPrice += if (cartProduct.discount != null) {
@@ -104,9 +109,17 @@ class CartFragment : Fragment() {
             } else cartProduct.price * cartProduct.amount
         }
         binding.cartTotalPriceTextView.text = totalPrice.toString().plus("$")
+        return totalPrice
     }
 
     private fun closeCartFragment() { binding.closeCartScreen.setOnClickListener { requireActivity().onBackPressed() } }
+
+    private fun navigateToSetupOrderFragment() {
+        binding.cartNextButton.setOnClickListener {
+            val action = CartFragmentDirections.actionCartFragmentToSetupOrderFragment(cartProductsToSetupOrderFragment!!)
+            findNavController().navigate(action)
+        }
+    }
 
     private fun observeCartProducts() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -117,7 +130,8 @@ class CartFragment : Fragment() {
                         it.data?.let { cartProducts ->
                             if (cartProducts.isNotEmpty()) {
                                 cartAdapter.differ.submitList(cartProducts)
-                                calculateTotalPrice(cartProducts)
+                                val totalPrice = calculateTotalPrice(cartProducts)
+                                cartProductsToSetupOrderFragment = CartProductsSetupOrder(cartProducts, totalPrice)
                             }
                             else {
                                 cartAdapter.differ.submitList(cartProducts)

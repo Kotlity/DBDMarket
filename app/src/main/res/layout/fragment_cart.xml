@@ -72,7 +72,7 @@
         android:id="@+id/cartProductsRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/cartProductsRecyclerViewMarginBottom"
+        android:layout_marginVertical="@dimen/cartProductsRecyclerViewMarginVertical"
         app:layout_constraintEnd_toEndOf="@+id/cartRightVerticalGuideline"
         app:layout_constraintStart_toStartOf="@+id/cartLeftVerticalGuideline"
         app:layout_constraintTop_toTopOf="@+id/cartToolbarBottomHorizontalGuideline"
