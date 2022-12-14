@@ -204,6 +204,13 @@
     <dimen name="setupOrderButtonBackgroundRadius">10dp</dimen>
     <dimen name="setupOrderButtonBackgroundStrokeWidth">2dp</dimen>
     <dimen name="chooseAddressImageViewBackgroundStrokeWidth">3dp</dimen>
+    <dimen name="setupOrderCartProductImageViewSize">80dp</dimen>
+    <dimen name="setupOrderCartProductParentLayoutWidth">220dp</dimen>
+    <dimen name="setupOrderCartProductTitleTextViewSize">17sp</dimen>
+    <dimen name="setupOrderCartProductWidgetsMargin">5dp</dimen>
+    <dimen name="setupOrderCartProductPricesTextViewsSize">17sp</dimen>
+    <dimen name="setupOrderCartProductQuantityTitleTextViewSize">15sp</dimen>
+    <dimen name="setupOrderCartProductQuantityTextViewSize">15sp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

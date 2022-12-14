@@ -62,7 +62,7 @@ class InterestingProductsAdapter: RecyclerView.Adapter<InterestingProductsAdapte
     val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterestingProductsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.interesting_product_recycler_vew_layout, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.interesting_product_recycler_view_layout, parent, false)
         return InterestingProductsViewHolder(view)
     }
 

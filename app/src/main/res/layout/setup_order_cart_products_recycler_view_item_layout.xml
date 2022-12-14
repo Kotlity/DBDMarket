@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/setupOrderCartProductParentLayoutWidth"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/turquoise">
+
+    <ImageView
+        android:id="@+id/setupOrderCartProductImageView"
+        android:layout_width="@dimen/setupOrderCartProductImageViewSize"
+        android:layout_height="@dimen/setupOrderCartProductImageViewSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/setupOrderCartProductTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/setupOrderCartProductTitleTextViewSize"
+            android:fontFamily="@font/login_register_title_font"
+            android:layout_margin="@dimen/setupOrderCartProductWidgetsMargin"
+            app:layout_constraintStart_toEndOf="@+id/setupOrderCartProductImageView"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/setupOrderCartProductPricesLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/setupOrderCartProductTitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/setupOrderCartProductTitleTextView">
+
+        <TextView
+            android:id="@+id/setupOrderCartProductNewPriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/setupOrderCartProductPricesTextViewsSize"
+            android:textStyle="italic"
+            android:textColor="@color/white"
+            android:layout_marginEnd="@dimen/setupOrderCartProductWidgetsMargin"/>
+
+        <TextView
+            android:id="@+id/setupOrderCartProductOldPriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/setupOrderCartProductPricesTextViewsSize"
+            android:textStyle="italic"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/setupOrderCartProductPricesLinearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/setupOrderCartProductPricesLinearLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/setupOrderCartProductQuantityTitleString"
+            android:textSize="@dimen/setupOrderCartProductQuantityTitleTextViewSize"
+            android:textColor="@color/white"
+            android:textStyle="italic"
+            android:layout_marginEnd="@dimen/setupOrderCartProductWidgetsMargin"/>
+
+        <TextView
+            android:id="@+id/setupOrderCartProductQuantityTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/setupOrderCartProductQuantityTextViewSize"/>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -86,4 +86,5 @@
     <string name="addressesTitleTextViewString">Addresses:</string>
     <string name="chooseAddressWarningTextViewString">Please choose address for order</string>
     <string name="setupOrderButtonString">Setup order</string>
+    <string name="setupOrderCartProductQuantityTitleString">Quantity:</string>
 </resources>
