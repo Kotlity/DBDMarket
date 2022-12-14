@@ -211,6 +211,11 @@
     <dimen name="setupOrderCartProductPricesTextViewsSize">17sp</dimen>
     <dimen name="setupOrderCartProductQuantityTitleTextViewSize">15sp</dimen>
     <dimen name="setupOrderCartProductQuantityTextViewSize">15sp</dimen>
+    <dimen name="setupOrderAddressesRecyclerViewLayoutWidth">150dp</dimen>
+    <dimen name="setupOrderAddressesRecyclerViewLayoutHeight">100dp</dimen>
+    <dimen name="setupOrderAddressesTypeTextViewSize">20sp</dimen>
+    <dimen name="setupOrderAddressesStreetTextViewSize">18sp</dimen>
+    <dimen name="setupOrderAddressesRecyclerViewItemBackgroundStrokeWidth">3dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/setupOrderAddressesRecyclerViewLayout"
+    android:layout_width="@dimen/setupOrderAddressesRecyclerViewLayoutWidth"
+    android:layout_height="@dimen/setupOrderAddressesRecyclerViewLayoutHeight"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/unselected_setup_order_addresses_recycler_view_item_background">
+
+    <TextView
+        android:id="@+id/setupOrderAddressesTypeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/setupOrderAddressesTypeTextViewSize"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:fontFamily="@font/app_description_font"/>
+
+    <TextView
+        android:id="@+id/setupOrderAddressesStreetTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/setupOrderAddressesStreetTextViewSize"
+        android:textColor="@color/black"
+        android:textStyle="italic"/>
+
+</LinearLayout>
