@@ -39,15 +39,23 @@ class ProductDescriptionSizesAdapter: RecyclerView.Adapter<ProductDescriptionSiz
         val currentItem = differ.currentList[position]
         holder.bind(currentItem)
 
-        if (selectedSizePosition == position) holder.productDescriptionSizeImageViewShadow.visibility = View.VISIBLE
-        else holder.productDescriptionSizeImageViewShadow.visibility = View.INVISIBLE
+        sizeIsSelected(position, holder)
 
         holder.itemView.setOnClickListener {
-            if(selectedSizePosition >= 0) notifyItemChanged(selectedSizePosition)
-            selectedSizePosition = holder.adapterPosition
-            notifyItemChanged(selectedSizePosition)
+            notifyAdapterToChangeSelectedSizePosition(holder)
             clickOnSize?.let { it(currentItem) }
         }
+    }
+
+    private fun sizeIsSelected(adapterPosition: Int, holder: ProductDescriptionSizesViewHolder) {
+        if (selectedSizePosition == adapterPosition) holder.productDescriptionSizeImageViewShadow.visibility = View.VISIBLE
+        else holder.productDescriptionSizeImageViewShadow.visibility = View.INVISIBLE
+    }
+
+    private fun notifyAdapterToChangeSelectedSizePosition(holder: ProductDescriptionSizesViewHolder) {
+        if(selectedSizePosition >= 0) notifyItemChanged(selectedSizePosition)
+        selectedSizePosition = holder.adapterPosition
+        notifyItemChanged(selectedSizePosition)
     }
 
     override fun getItemCount() = differ.currentList.size
