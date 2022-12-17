@@ -92,4 +92,20 @@ object Constants {
 
     const val PRODUCT_NAME_STARTS_WITH_DIGIT = "The product's name cannot starts with a digit"
     const val PRODUCT_DESCRIPTION_STARTS_WITH_DIGIT = "The product's description cannot starts with a digit"
+
+    const val COUNTRY_IS_EMPTY= "Country cannot be empty"
+    const val COUNTRY_STARTS_WITH_LOWERCASE = "Country cannot starts with lowercase"
+    const val COUNTRY_STARTS_WITH_DIGIT = "Country cannot starts with a digit"
+    const val CITY_IS_EMPTY= "City cannot be empty"
+    const val CITY_STARTS_WITH_LOWERCASE = "City cannot starts with lowercase"
+    const val CITY_STARTS_WITH_DIGIT = "City cannot starts with a digit"
+    const val STREET_IS_EMPTY= "Street cannot be empty"
+    const val STREET_STARTS_WITH_LOWERCASE = "Street cannot starts with lowercase"
+    const val STREET_STARTS_WITH_DIGIT = "Street cannot starts with a digit"
+    const val WRONG_STREET_FORMAT = "Wrong format of the street"
+    const val TYPE_IS_EMPTY= "Type cannot be empty"
+    const val TYPE_STARTS_WITH_LOWERCASE = "City cannot starts with lowercase"
+    const val TYPE_CONTAINS_DIGITS = "Type cannot contains digits"
+    const val PHONE_NUMBER_IS_EMPTY= "Phone number cannot be empty"
+    const val WRONG_PHONE_NUMBER_FORMAT = "Wrong format of the phone number"
 }

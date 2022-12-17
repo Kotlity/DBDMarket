@@ -87,4 +87,13 @@
     <string name="chooseAddressWarningTextViewString">Please choose address for order</string>
     <string name="setupOrderButtonString">Setup order</string>
     <string name="setupOrderCartProductQuantityTitleString">Quantity:</string>
+    <string name="addingAddressTitleTextViewString">Adding an address</string>
+    <string name="firstNameAddressEditTextHintString">FirstName</string>
+    <string name="lastNameAddressEditTextHintString">LastName</string>
+    <string name="countryAddressEditTextHintString">Country</string>
+    <string name="cityAddressEditTextHintString">City</string>
+    <string name="streetAddressEditTextHintString">Street</string>
+    <string name="typeAddressEditTextHintString">Type (For example: Work)</string>
+    <string name="phoneNumberAddressEditTextHintString">Phone number</string>
+    <string name="addAddressButtonTextString">Add address</string>
 </resources>

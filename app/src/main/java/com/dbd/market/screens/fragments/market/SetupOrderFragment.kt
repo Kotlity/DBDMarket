@@ -1,6 +1,7 @@
 package com.dbd.market.screens.fragments.market
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,6 +43,7 @@ class SetupOrderFragment : Fragment() {
         setupOrderCartProductsRecyclerView()
         setTotalPriceTextView()
         closeSetupOrderFragment()
+        showCustomBottomSheetDialog()
         observeSetupOrderCartProductsState()
     }
 
@@ -51,13 +53,20 @@ class SetupOrderFragment : Fragment() {
             adapter = setupOrderCartProductsAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             addItemDecoration(MarginItemDecoration(MarginItemDecorationType.CARTPRODUCT, resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
-            setHasFixedSize(true)
         }
     }
 
     private fun setTotalPriceTextView() { binding.setupOrderTotalPriceTextView.text = args.cartProductsSetupOrder.totalPrice.toString().plus("$") }
 
     private fun closeSetupOrderFragment() { binding.closeSetupOrder.setOnClickListener { requireActivity().onBackPressed() } }
+
+    private fun showCustomBottomSheetDialog() {
+        binding.chooseAddressImageView.setOnClickListener {
+            showBottomSheetDialog(requireContext(), onSuccess = {
+                Log.d("MyTag", "first name: ${it.firstName}, last name: ${it.lastName}, phone number: ${it.phoneNumber}")
+            })
+        }
+    }
 
     private fun observeSetupOrderCartProductsState() {
         viewLifecycleOwner.lifecycleScope.launch {

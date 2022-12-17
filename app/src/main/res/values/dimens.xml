@@ -216,6 +216,20 @@
     <dimen name="setupOrderAddressesTypeTextViewSize">20sp</dimen>
     <dimen name="setupOrderAddressesStreetTextViewSize">18sp</dimen>
     <dimen name="setupOrderAddressesRecyclerViewItemBackgroundStrokeWidth">3dp</dimen>
+    <dimen name="addingAddressTitleTextViewSize">30sp</dimen>
+    <dimen name="addingAddressTitleTextViewMarginTop">10dp</dimen>
+    <dimen name="addingAddressTitleBottomViewHeight">2dp</dimen>
+    <dimen name="addingAddressWidgetsMarginTop">20dp</dimen>
+    <dimen name="addingAddressWidgetsMarginHorizontal">10dp</dimen>
+    <dimen name="addingAddressEditTextsHeight">50dp</dimen>
+    <dimen name="addingAddressEditTextsPaddingStart">10dp</dimen>
+    <dimen name="addingAddressEditTextsViewWidth">15dp</dimen>
+    <dimen name="addAddressButtonMarginTop">40dp</dimen>
+    <dimen name="addAddressButtonTextSize">20sp</dimen>
+    <dimen name="bottomSheetAddressDialogBackgroundStrokeWidth">5dp</dimen>
+    <dimen name="bottomSheetAddressDialogBackgroundCornersRadius">30dp</dimen>
+    <dimen name="bottomSheetAddressEditTextBackgroundStrokeWidth">2dp</dimen>
+    <dimen name="bottomSheetAddressEditTextBackgroundCornersRadius">5dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

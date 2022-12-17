@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dark_grey">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addingAddressConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@drawable/bottom_sheet_address_dialog_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/addingAddressTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addingAddressTitleTextViewString"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/addingAddressTitleTextViewSize"
+            android:layout_marginTop="@dimen/addingAddressTitleTextViewMarginTop"
+            app:layout_constraintStart_toStartOf="@+id/addingAddressConstraintLayout"
+            app:layout_constraintTop_toTopOf="@+id/addingAddressConstraintLayout"
+            app:layout_constraintEnd_toEndOf="@+id/addingAddressConstraintLayout"/>
+
+        <View
+            android:id="@+id/addingAddressTitleBottomView"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/addingAddressTitleBottomViewHeight"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/addingAddressWidgetsMarginTop"
+            app:layout_constraintStart_toStartOf="@+id/firstLastNameAddressLinearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/addingAddressTitleTextView"
+            app:layout_constraintEnd_toEndOf="@+id/firstLastNameAddressLinearLayout"/>
+
+        <LinearLayout
+            android:id="@+id/firstLastNameAddressLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/addingAddressWidgetsMarginTop"
+            android:layout_marginHorizontal="@dimen/addingAddressWidgetsMarginHorizontal"
+            app:layout_constraintStart_toStartOf="@+id/addingAddressConstraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/addingAddressTitleBottomView"
+            app:layout_constraintEnd_toEndOf="@+id/addingAddressConstraintLayout">
+
+            <EditText
+                android:id="@+id/firstNameAddressEditText"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/addingAddressEditTextsHeight"
+                android:layout_weight="0.5"
+                android:hint="@string/firstNameAddressEditTextHintString"
+                android:inputType="textPersonName"
+                android:paddingStart="@dimen/addingAddressEditTextsPaddingStart"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/white"
+                android:background="@drawable/bottom_sheet_address_edit_text_background"
+                tools:ignore="Autofill" />
+
+            <View
+                android:layout_width="@dimen/addingAddressEditTextsViewWidth"
+                android:layout_height="@dimen/addingAddressEditTextsHeight"/>
+
+            <EditText
+                android:id="@+id/lastNameAddressEditText"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/addingAddressEditTextsHeight"
+                android:layout_weight="0.5"
+                android:hint="@string/lastNameAddressEditTextHintString"
+                android:inputType="textPersonName"
+                android:paddingStart="@dimen/addingAddressEditTextsPaddingStart"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/white"
+                android:background="@drawable/bottom_sheet_address_edit_text_background"
+                tools:ignore="Autofill" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/firstLastNameAddressLinearLayoutBottomView"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/addingAddressWidgetsMarginTop"
+            app:layout_constraintStart_toStartOf="@+id/firstLastNameAddressLinearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/firstLastNameAddressLinearLayout"
+            app:layout_constraintEnd_toEndOf="@+id/firstLastNameAddressLinearLayout"/>
+
+        <LinearLayout
+            android:id="@+id/countryCityAddressLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/addingAddressWidgetsMarginTop"
+            android:layout_marginHorizontal="@dimen/addingAddressWidgetsMarginHorizontal"
+            app:layout_constraintStart_toStartOf="@+id/addingAddressConstraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/firstLastNameAddressLinearLayoutBottomView"
+            app:layout_constraintEnd_toEndOf="@+id/addingAddressConstraintLayout">
+
+            <EditText
+                android:id="@+id/countryAddressEditText"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/addingAddressEditTextsHeight"
+                android:layout_weight="0.5"
+                android:hint="@string/countryAddressEditTextHintString"
+                android:inputType="textPersonName"
+                android:paddingStart="@dimen/addingAddressEditTextsPaddingStart"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/white"
+                android:background="@drawable/bottom_sheet_address_edit_text_background"
+                tools:ignore="Autofill" />
+
+            <View
+                android:layout_width="@dimen/addingAddressEditTextsViewWidth"
+                android:layout_height="@dimen/addingAddressEditTextsHeight"/>
+
+            <EditText
+                android:id="@+id/cityAddressEditText"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/addingAddressEditTextsHeight"
+                android:layout_weight="0.5"
+                android:hint="@string/cityAddressEditTextHintString"
+                android:inputType="textPersonName"
+                android:paddingStart="@dimen/addingAddressEditTextsPaddingStart"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/white"
+                android:background="@drawable/bottom_sheet_address_edit_text_background"
+                tools:ignore="Autofill" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/countryCityAddressLinearLayoutBottomView"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/addingAddressWidgetsMarginTop"
+            app:layout_constraintStart_toStartOf="@+id/countryCityAddressLinearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/countryCityAddressLinearLayout"
+            app:layout_constraintEnd_toEndOf="@+id/countryCityAddressLinearLayout"/>
+
+            <EditText
+                android:id="@+id/streetAddressEditText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/addingAddressEditTextsHeight"
+                android:hint="@string/streetAddressEditTextHintString"
+                android:inputType="textPersonName"
+                android:paddingStart="@dimen/addingAddressEditTextsPaddingStart"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/white"
+                android:background="@drawable/bottom_sheet_address_edit_text_background"
+                android:layout_marginTop="@dimen/addingAddressWidgetsMarginTop"
+                android:layout_marginHorizontal="@dimen/addingAddressWidgetsMarginHorizontal"
+                app:layout_constraintStart_toStartOf="@+id/addingAddressConstraintLayout"
+                app:layout_constraintTop_toBottomOf="@+id/countryCityAddressLinearLayoutBottomView"
+                app:layout_constraintEnd_toEndOf="@+id/addingAddressConstraintLayout"
+                tools:ignore="Autofill" />
+
+        <View
+            android:id="@+id/streetAddressEditTextBottomView"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/addingAddressWidgetsMarginTop"
+            app:layout_constraintStart_toStartOf="@+id/streetAddressEditText"
+            app:layout_constraintTop_toBottomOf="@+id/streetAddressEditText"
+            app:layout_constraintEnd_toEndOf="@+id/streetAddressEditText"/>
+
+            <EditText
+                android:id="@+id/typeAddressEditText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/addingAddressEditTextsHeight"
+                android:hint="@string/typeAddressEditTextHintString"
+                android:inputType="textPersonName"
+                android:paddingStart="@dimen/addingAddressEditTextsPaddingStart"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/white"
+                android:background="@drawable/bottom_sheet_address_edit_text_background"
+                android:layout_marginTop="@dimen/addingAddressWidgetsMarginTop"
+                android:layout_marginHorizontal="10dp"
+                app:layout_constraintStart_toStartOf="@+id/addingAddressConstraintLayout"
+                app:layout_constraintTop_toBottomOf="@+id/streetAddressEditTextBottomView"
+                app:layout_constraintEnd_toEndOf="@+id/addingAddressConstraintLayout"
+                tools:ignore="Autofill" />
+
+        <View
+            android:id="@+id/typeAddressEditTextBottomView"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/addingAddressWidgetsMarginTop"
+            app:layout_constraintStart_toStartOf="@+id/streetAddressEditText"
+            app:layout_constraintTop_toBottomOf="@+id/typeAddressEditText"
+            app:layout_constraintEnd_toEndOf="@+id/streetAddressEditText"/>
+
+        <EditText
+            android:id="@+id/phoneNumberAddressEditText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/addingAddressEditTextsHeight"
+            android:hint="@string/phoneNumberAddressEditTextHintString"
+            android:inputType="phone"
+            android:paddingStart="@dimen/addingAddressEditTextsPaddingStart"
+            android:textColorHint="@color/grey"
+            android:textColor="@color/white"
+            android:background="@drawable/bottom_sheet_address_edit_text_background"
+            android:layout_marginTop="@dimen/addingAddressWidgetsMarginTop"
+            android:layout_marginHorizontal="@dimen/addingAddressWidgetsMarginHorizontal"
+            app:layout_constraintStart_toStartOf="@+id/addingAddressConstraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/typeAddressEditTextBottomView"
+            app:layout_constraintEnd_toEndOf="@+id/addingAddressConstraintLayout"
+            tools:ignore="Autofill" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/addAddressButtonMarginTop"
+            android:layout_marginHorizontal="@dimen/addingAddressWidgetsMarginHorizontal"
+            android:layout_marginBottom="@dimen/addingAddressWidgetsMarginTop"
+            app:layout_constraintStart_toStartOf="@+id/addingAddressConstraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/phoneNumberAddressEditText"
+            app:layout_constraintEnd_toEndOf="@+id/addingAddressConstraintLayout"
+            app:layout_constraintBottom_toBottomOf="@+id/addingAddressConstraintLayout"
+            android:weightSum="1">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/addAddressButton"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/addingAddressEditTextsHeight"
+                android:layout_weight="0.5"
+                android:text="@string/addAddressButtonTextString"
+                android:textAllCaps="false"
+                android:textSize="@dimen/addAddressButtonTextSize"
+                android:background="@drawable/special_item_button_background"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
