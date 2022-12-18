@@ -8,17 +8,42 @@
     tools:context=".screens.fragments.market.SetupOrderFragment">
 
     <ProgressBar
-        android:id="@+id/setupOrderProgressBar"
+        android:id="@+id/setupOrderCartProductsProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
         android:indeterminateTintMode="src_atop"
         android:indeterminateTint="@color/red"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="@+id/setupOrderLeftVerticalGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/setupOrderToolbarBottomHorizontalGuideLine"
+        app:layout_constraintEnd_toEndOf="@+id/setupOrderRightVerticalGuideLine"
+        app:layout_constraintBottom_toTopOf="@+id/setupOrderSetupOrderProductsRecyclerViewBottomHorizontalGuideLine"/>
+
+    <ProgressBar
+        android:id="@+id/setupOrderAddressesProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/red"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/setupOrderLeftVerticalGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/setupOrderAddressesLinearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/setupOrderRightVerticalGuideLine"
+        app:layout_constraintBottom_toTopOf="@+id/setupOrderProductsTotalPriceTopHorizontalGuideLine"/>
+
+    <ProgressBar
+        android:id="@+id/setupOrderAddingDeletingProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/red"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@+id/setupOrderAddressesLinearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/setupOrderAddressesLinearLayout"/>
+
 
     <ImageView
         android:id="@+id/closeSetupOrder"
@@ -103,7 +128,6 @@
         app:layout_constraintTop_toBottomOf="@+id/setupOrderAddressesLinearLayout"
         app:layout_constraintEnd_toEndOf="@+id/setupOrderRightVerticalGuideLine"
         app:layout_constraintBottom_toTopOf="@+id/setupOrderProductsTotalPriceTopHorizontalGuideLine"/>
-
 
     <View
         android:layout_width="0dp"

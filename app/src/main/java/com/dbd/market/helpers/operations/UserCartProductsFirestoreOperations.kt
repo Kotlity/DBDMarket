@@ -21,7 +21,6 @@ class UserCartProductsFirestoreOperations @Inject constructor(
             ?.addOnFailureListener { retrievingCartProductInCartException -> onFailure(retrievingCartProductInCartException.message.toString())}
     }
 
-
     fun increaseCartProductQuantity(cartProductId: String): Task<Transaction> {
         val cartProductDocumentReference = userCartProductsCollectionReference?.document(cartProductId)
         return firebaseFirestore.runTransaction { transaction ->

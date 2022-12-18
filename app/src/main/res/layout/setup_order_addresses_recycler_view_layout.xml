@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/setupOrderAddressesRecyclerViewLayout"
     android:layout_width="@dimen/setupOrderAddressesRecyclerViewLayoutWidth"
-    android:layout_height="@dimen/setupOrderAddressesRecyclerViewLayoutHeight"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/unselected_setup_order_addresses_recycler_view_item_background">
