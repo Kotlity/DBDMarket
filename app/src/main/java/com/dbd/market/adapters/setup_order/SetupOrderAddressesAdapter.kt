@@ -17,10 +17,9 @@ import com.dbd.market.utils.OnRecyclerViewItemClickInterface
 class SetupOrderAddressesAdapter: RecyclerView.Adapter<SetupOrderAddressesAdapter.SetupOrderAddressesViewHolder>(), OnRecyclerViewItemClickInterface {
 
     inner class SetupOrderAddressesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val setupOrderAddressesTypeTextView = itemView.findViewById<TextView>(R.id.setupOrderAddressesTypeTextView)
+        val setupOrderAddressesTypeTextView = itemView.findViewById<TextView>(R.id.setupOrderAddressesTypeTextView)
         private val setupOrderAddressesStreetTextView = itemView.findViewById<TextView>(R.id.setupOrderAddressesStreetTextView)
         val setupOrderAddressesRecyclerViewLayout = itemView.findViewById<ConstraintLayout>(R.id.setupOrderAddressesRecyclerViewLayout)
-        val setupOrderAddressesTextViewsLinearLayout = itemView.findViewById<LinearLayout>(R.id.setupOrderAddressesTextViewsLinearLayout)
         val setupOrderAddressesDeleteImageView = itemView.findViewById<ImageView>(R.id.setupOrderAddressesDeleteImageView)
 
         fun bind(address: Address) {
@@ -50,7 +49,7 @@ class SetupOrderAddressesAdapter: RecyclerView.Adapter<SetupOrderAddressesAdapte
 
         addressIsSelected(position, holder)
 
-        holder.setupOrderAddressesTextViewsLinearLayout.setOnClickListener {
+        holder.setupOrderAddressesTypeTextView.setOnClickListener {
             notifyAdapterToChangeSelectedAddressPosition(holder)
             clickOnAddress?.let { it(currentAddress) }
         }

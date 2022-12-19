@@ -233,6 +233,14 @@
     <dimen name="setupOrderAddressesTextViewsLinearLayoutMarginStart">3dp</dimen>
     <dimen name="setupOrderAddressesDeleteImageViewSize">30dp</dimen>
     <dimen name="setupOrderAddressesDeleteImageViewMargin">8dp</dimen>
+    <dimen name="completeOrderTitleTextViewTextSize">30sp</dimen>
+    <dimen name="completeOrderMarginVerticalCompleteOrderWidgets">8dp</dimen>
+    <dimen name="completeOrderMarginVerticalCompleteOrderPathWidget">5dp</dimen>
+    <dimen name="completeOrderIdTitleTextViewTextSize">22sp</dimen>
+    <dimen name="completeOrderIdTextViewTextSize">20sp</dimen>
+    <dimen name="completeOrderPathTitleTextViewTextSize">17sp</dimen>
+    <dimen name="completeOrderPathTextViewTextSize">20sp</dimen>
+    <dimen name="orderDetailsButtonTextSize">23sp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

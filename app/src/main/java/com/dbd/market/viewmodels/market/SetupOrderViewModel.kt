@@ -62,7 +62,7 @@ class SetupOrderViewModel @Inject constructor(
         }
     }
 
-    fun changeSetupOrderSelectedAddressValue(address: Address) = viewModelScope.launch(Dispatchers.IO) { _setupOrderSelectedAddress.value = address }
+    fun changeSetupOrderSelectedAddressValue(address: Address?) = viewModelScope.launch(Dispatchers.IO) { _setupOrderSelectedAddress.value = address }
 
     fun addAddress(address: Address) {
         viewModelScope.launch(Dispatchers.IO) {

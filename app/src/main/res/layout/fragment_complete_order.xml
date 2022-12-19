@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    tools:context=".screens.fragments.market.CompleteOrderFragment">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_done_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/completeOrderImageViewBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/completeOrderRightVerticalGuideLine"
+        app:layout_constraintStart_toStartOf="@+id/completeOrderLeftVerticalGuideLine"
+        app:layout_constraintTop_toTopOf="@+id/completeOrderImageViewTopHorizontalGuideline"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/completeOrderRightVerticalGuideLine"
+        app:layout_constraintStart_toStartOf="@+id/completeOrderLeftVerticalGuideLine"
+        app:layout_constraintTop_toTopOf="@+id/completeOrderTextViewsLinearLayoutTopHorizontalGuideline">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/app_title_font"
+            android:text="@string/completeOrderTitleTextViewString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/completeOrderTitleTextViewTextSize" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/completeOrderMarginVerticalCompleteOrderWidgets" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/completeOrderIdTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/completeOrderIdTitleTextViewString"
+                android:textColor="@color/white"
+                android:textSize="@dimen/completeOrderIdTitleTextViewTextSize"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/completeOrderIdTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/completeOrderIdTextViewTextSize"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/completeOrderMarginVerticalCompleteOrderWidgets" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/completeOrderPathTitleTextViewString"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/completeOrderPathTitleTextViewTextSize"
+            android:textStyle="italic" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/completeOrderMarginVerticalCompleteOrderPathWidget" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/completeOrderPathTextViewString"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/completeOrderPathTextViewTextSize" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="1"
+        app:layout_constraintStart_toStartOf="@+id/completeOrderLeftVerticalGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/completeOrderOrderDetailsButtonTopHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/completeOrderRightVerticalGuideLine"
+        app:layout_constraintBottom_toTopOf="@+id/completeOrderOrderDetailsButtonBottomHorizontalGuideline">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/orderDetailsButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/orderDetailsButtonTextString"
+            android:textAllCaps="false"
+            android:textSize="@dimen/orderDetailsButtonTextSize"
+            android:layout_weight="0.5"
+            android:background="@drawable/setup_order_button_background"/>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/completeOrderImageViewTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/completeOrderImageViewBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/completeOrderLeftVerticalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/completeOrderRightVerticalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/completeOrderTextViewsLinearLayoutTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.57" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/completeOrderOrderDetailsButtonTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.86" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/completeOrderOrderDetailsButtonBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.94" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

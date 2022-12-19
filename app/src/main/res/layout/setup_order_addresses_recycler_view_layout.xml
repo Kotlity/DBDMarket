@@ -10,7 +10,6 @@
     android:background="@drawable/unselected_setup_order_addresses_recycler_view_item_background">
 
     <LinearLayout
-        android:id="@+id/setupOrderAddressesTextViewsLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

@@ -99,6 +99,8 @@ class SetupOrderFragment : Fragment() {
             typedMessageFloatValue,
             onPositiveButtonClick = {
                 setupOrderViewModel.deleteAddress(address)
+                setupOrderViewModel.changeSetupOrderSelectedAddressValue(null)
+                Log.d("MyTag", "setupOrderSelectedAddress: ${setupOrderSelectedAddress?.id}")
                 observeDeleteAddressState()
             })
     }
@@ -115,6 +117,7 @@ class SetupOrderFragment : Fragment() {
         setupOrderAddressesAdapter.onRecyclerViewItemClick { address ->
             val takenAddress = address as Address
             setupOrderViewModel.changeSetupOrderSelectedAddressValue(takenAddress)
+            Log.d("MyTag", "setupOrderSelectedAddress: ${setupOrderSelectedAddress?.id}")
         }
     }
 
@@ -168,11 +171,18 @@ class SetupOrderFragment : Fragment() {
                     }
                 }
                 launch {
-                    setupOrderViewModel.setupOrderSelectedAddress.collect {
-                        it?.let { address ->
+                    setupOrderViewModel.setupOrderSelectedAddress.collect { takenAddress ->
+                        if (takenAddress != null) {
                             withContext(Dispatchers.Main) {
                                 hideChooseAddressWarningTextView()
-                                setupOrderSelectedAddress = address
+                                setupOrderSelectedAddress = takenAddress
+                                showSetupOrderButton()
+                            }
+                        } else {
+                            withContext(Dispatchers.Main) {
+                                showChooseAddressWarningTextView()
+                                setupOrderSelectedAddress = takenAddress
+                                hideSetupOrderButton()
                             }
                         }
                     }
@@ -238,4 +248,8 @@ class SetupOrderFragment : Fragment() {
     private fun showSetupOrderAddingDeletingProgressBar() { binding.setupOrderAddingDeletingProgressBar.visibility = View.VISIBLE }
 
     private fun hideSetupOrderAddingDeletingProgressBar() { binding.setupOrderAddingDeletingProgressBar.visibility = View.GONE }
+
+    private fun showSetupOrderButton() { binding.setupOrderButton.visibility = View.VISIBLE }
+
+    private fun hideSetupOrderButton() { binding.setupOrderButton.visibility = View.INVISIBLE }
 }
