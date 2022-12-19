@@ -230,10 +230,24 @@
             android:weightSum="1">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/closeBottomSheetDialogButton"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/addingAddressEditTextsHeight"
+                android:layout_weight="0.4"
+                android:text="@string/closeBottomSheetDialogButtonTextString"
+                android:textAllCaps="false"
+                android:textSize="@dimen/addAddressButtonTextSize"
+                android:background="@drawable/app_start_button_background"/>
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="match_parent"/>
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/addAddressButton"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/addingAddressEditTextsHeight"
-                android:layout_weight="0.5"
+                android:layout_weight="0.4"
                 android:text="@string/addAddressButtonTextString"
                 android:textAllCaps="false"
                 android:textSize="@dimen/addAddressButtonTextSize"

@@ -30,6 +30,9 @@ class SetupOrderViewModel @Inject constructor(
     private val _setupOrderAddresses = MutableStateFlow<Resource<List<Address>>>(Resource.Undefined())
     val setupOrderAddresses = _setupOrderAddresses.asStateFlow()
 
+    private val _setupOrderSelectedAddress = MutableStateFlow<Address?>(null)
+    val setupOrderSelectedAddress = _setupOrderSelectedAddress.asStateFlow()
+
     private val _setupOrderAddAddress = MutableSharedFlow<Resource<Boolean>>()
     val setupOrderAddedAddress = _setupOrderAddAddress.asSharedFlow()
 
@@ -58,6 +61,8 @@ class SetupOrderViewModel @Inject constructor(
             onFailure = { gettingAddressesError -> _setupOrderAddresses.value = Resource.Error(gettingAddressesError) })
         }
     }
+
+    fun changeSetupOrderSelectedAddressValue(address: Address) = viewModelScope.launch(Dispatchers.IO) { _setupOrderSelectedAddress.value = address }
 
     fun addAddress(address: Address) {
         viewModelScope.launch(Dispatchers.IO) {

@@ -1,27 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/setupOrderAddressesRecyclerViewLayout"
     android:layout_width="@dimen/setupOrderAddressesRecyclerViewLayoutWidth"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/setupOrderAddressesRecyclerViewLayoutHeight"
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/unselected_setup_order_addresses_recycler_view_item_background">
 
-    <TextView
-        android:id="@+id/setupOrderAddressesTypeTextView"
+    <LinearLayout
+        android:id="@+id/setupOrderAddressesTextViewsLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/setupOrderAddressesTypeTextViewSize"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:fontFamily="@font/app_description_font"/>
+        android:orientation="vertical"
+        android:gravity="start"
+        android:layout_marginStart="@dimen/setupOrderAddressesTextViewsLinearLayoutMarginStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/setupOrderAddressesDeleteImageView"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <TextView
-        android:id="@+id/setupOrderAddressesStreetTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/setupOrderAddressesStreetTextViewSize"
-        android:textColor="@color/black"
-        android:textStyle="italic"/>
+        <TextView
+            android:id="@+id/setupOrderAddressesTypeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/setupOrderAddressesTypeTextViewSize"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="@font/app_description_font" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/setupOrderAddressesStreetTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/setupOrderAddressesStreetTextViewSize"
+            android:textColor="@color/black"
+            android:textStyle="italic"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/setupOrderAddressesDeleteImageView"
+        android:layout_width="@dimen/setupOrderAddressesDeleteImageViewSize"
+        android:layout_height="@dimen/setupOrderAddressesDeleteImageViewSize"
+        android:src="@drawable/ic_delete_icon"
+        android:padding="@dimen/cartProductDeleteImageViewPadding"
+        android:background="@drawable/delete_cart_product_icon_background"
+        android:layout_margin="@dimen/setupOrderAddressesDeleteImageViewMargin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

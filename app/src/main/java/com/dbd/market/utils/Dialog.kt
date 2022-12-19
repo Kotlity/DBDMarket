@@ -240,4 +240,6 @@ fun showBottomSheetDialog(
             bottomSheetDialog.dismiss()
         } else showErrorMessagesInAddressesEditTexts()
     }
+
+    bottomSheetDialogView.findViewById<AppCompatButton>(R.id.closeBottomSheetDialogButton).setOnClickListener { bottomSheetDialog.dismiss() }
 }

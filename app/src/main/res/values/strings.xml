@@ -96,4 +96,9 @@
     <string name="typeAddressEditTextHintString">Type (For example: Work)</string>
     <string name="phoneNumberAddressEditTextHintString">Phone number</string>
     <string name="addAddressButtonTextString">Add address</string>
+    <string name="successfullyAddedAddressString">You have successfully added the address</string>
+    <string name="successfullyDeletedAddressString">You have successfully deleted the address</string>
+    <string name="closeBottomSheetDialogButtonTextString">Close</string>
+    <string name="deletingAddressAlertDialogTitleString">Deleting address</string>
+    <string name="deletingAddressAlertDialogMessageString">Are you sure you want to delete this address ?</string>
 </resources>

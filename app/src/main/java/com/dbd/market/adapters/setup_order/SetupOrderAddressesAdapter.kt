@@ -3,8 +3,10 @@ package com.dbd.market.adapters.setup_order
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +19,9 @@ class SetupOrderAddressesAdapter: RecyclerView.Adapter<SetupOrderAddressesAdapte
     inner class SetupOrderAddressesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val setupOrderAddressesTypeTextView = itemView.findViewById<TextView>(R.id.setupOrderAddressesTypeTextView)
         private val setupOrderAddressesStreetTextView = itemView.findViewById<TextView>(R.id.setupOrderAddressesStreetTextView)
-        val setupOrderAddressesRecyclerViewLayout = itemView.findViewById<LinearLayout>(R.id.setupOrderAddressesRecyclerViewLayout)
+        val setupOrderAddressesRecyclerViewLayout = itemView.findViewById<ConstraintLayout>(R.id.setupOrderAddressesRecyclerViewLayout)
+        val setupOrderAddressesTextViewsLinearLayout = itemView.findViewById<LinearLayout>(R.id.setupOrderAddressesTextViewsLinearLayout)
+        val setupOrderAddressesDeleteImageView = itemView.findViewById<ImageView>(R.id.setupOrderAddressesDeleteImageView)
 
         fun bind(address: Address) {
             setupOrderAddressesTypeTextView.text = address.type
@@ -42,11 +46,16 @@ class SetupOrderAddressesAdapter: RecyclerView.Adapter<SetupOrderAddressesAdapte
     override fun onBindViewHolder(holder: SetupOrderAddressesViewHolder, position: Int) {
         val currentAddress = differ.currentList[position]
 
+        holder.bind(currentAddress)
+
         addressIsSelected(position, holder)
 
-        holder.itemView.setOnClickListener {
+        holder.setupOrderAddressesTextViewsLinearLayout.setOnClickListener {
             notifyAdapterToChangeSelectedAddressPosition(holder)
             clickOnAddress?.let { it(currentAddress) }
+        }
+        holder.setupOrderAddressesDeleteImageView.setOnClickListener {
+            clickOnDeleteImageView?.let { it(currentAddress) }
         }
     }
 
@@ -67,5 +76,9 @@ class SetupOrderAddressesAdapter: RecyclerView.Adapter<SetupOrderAddressesAdapte
 
     private var clickOnAddress: ((Address) -> Unit)? = null
 
+    private var clickOnDeleteImageView: ((Address) -> Unit)? = null
+
     override fun onRecyclerViewItemClick(onClick: (T: Any) -> Unit) { clickOnAddress = onClick }
+
+    fun onDeleteImageViewClick(onClick: (Address) -> Unit) { clickOnDeleteImageView = onClick }
 }

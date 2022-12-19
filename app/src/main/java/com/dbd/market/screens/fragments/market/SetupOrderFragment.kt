@@ -1,6 +1,8 @@
 package com.dbd.market.screens.fragments.market
 
 import android.os.Bundle
+import android.util.Log
+import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +22,9 @@ import com.dbd.market.databinding.FragmentSetupOrderBinding
 import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.market.SetupOrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class SetupOrderFragment : Fragment() {
@@ -29,6 +33,7 @@ class SetupOrderFragment : Fragment() {
     private val setupOrderViewModel by viewModels<SetupOrderViewModel>()
     private lateinit var setupOrderCartProductsAdapter: SetupOrderCartProductsAdapter
     private lateinit var setupOrderAddressesAdapter: SetupOrderAddressesAdapter
+    private var setupOrderSelectedAddress: Address? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +49,9 @@ class SetupOrderFragment : Fragment() {
         setupOrderAddressesRecyclerView()
         setTotalPriceTextView()
         closeSetupOrderFragment()
-        showCustomBottomSheetDialog()
+        showCustomBottomSheetDialogAndSaveAddress()
+        onAddressRecyclerViewClick()
+        deleteAddress()
         observeSetupOrderStates()
     }
 
@@ -71,12 +78,44 @@ class SetupOrderFragment : Fragment() {
         observeAddAddressState()
     }
 
+    private fun deleteAddress() {
+        setupOrderAddressesAdapter.onDeleteImageViewClick { takenAddress ->
+            showAlertDialogToDeleteAddress(takenAddress)
+        }
+    }
+
+    private fun showAlertDialogToDeleteAddress(address: Address) {
+        val typedTitleFloatValue = TypedValue().also {
+            requireContext().resources.getValue(R.dimen.customAlertDialogTitleTextViewSize, it, false)
+        }.float
+        val typedMessageFloatValue = TypedValue().also {
+            requireContext().resources.getValue(R.dimen.customAlertDialogMessageTextViewSize, it, false)
+        }.float
+
+        showCustomAlertDialog(requireContext(),
+            getString(R.string.deletingAddressAlertDialogTitleString),
+            typedTitleFloatValue,
+            getString(R.string.deletingAddressAlertDialogMessageString),
+            typedMessageFloatValue,
+            onPositiveButtonClick = {
+                setupOrderViewModel.deleteAddress(address)
+                observeDeleteAddressState()
+            })
+    }
+
     private fun setTotalPriceTextView() { binding.setupOrderTotalPriceTextView.text = args.cartProductsSetupOrder.totalPrice.toString().plus("$") }
 
     private fun closeSetupOrderFragment() { binding.closeSetupOrder.setOnClickListener { requireActivity().onBackPressed() } }
 
-    private fun showCustomBottomSheetDialog() {
+    private fun showCustomBottomSheetDialogAndSaveAddress() {
         binding.chooseAddressImageView.setOnClickListener { showBottomSheetDialog(requireContext(), onSuccess = { addedAddress -> addAddress(addedAddress) }) }
+    }
+
+    private fun onAddressRecyclerViewClick() {
+        setupOrderAddressesAdapter.onRecyclerViewItemClick { address ->
+            val takenAddress = address as Address
+            setupOrderViewModel.changeSetupOrderSelectedAddressValue(takenAddress)
+        }
     }
 
     private fun observeSetupOrderStates() {
@@ -128,21 +167,17 @@ class SetupOrderFragment : Fragment() {
                         }
                     }
                 }
+                launch {
+                    setupOrderViewModel.setupOrderSelectedAddress.collect {
+                        it?.let { address ->
+                            withContext(Dispatchers.Main) {
+                                hideChooseAddressWarningTextView()
+                                setupOrderSelectedAddress = address
+                            }
+                        }
+                    }
+                }
             }
-//            setupOrderViewModel.setupOrderCartProducts.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
-//                when (it) {
-//                    is Resource.Success -> {
-//                        hideSetupOrderProgressBar()
-//                        setupOrderCartProductsAdapter.differ.submitList(args.cartProductsSetupOrder.cartProductList)
-//                    }
-//                    is Resource.Loading -> showSetupOrderProgressBar()
-//                    is Resource.Error -> {
-//                        hideSetupOrderProgressBar()
-//                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
-//                    }
-//                    is Resource.Undefined -> Unit
-//                }
-//            }
         }
     }
 
@@ -152,7 +187,26 @@ class SetupOrderFragment : Fragment() {
                 when (it) {
                     is Resource.Success -> {
                         hideSetupOrderAddingDeletingProgressBar()
-                        showToast(requireContext(), binding.root, R.drawable.ic_done_icon, "You have successfully added the address")
+                        showToast(requireContext(), binding.root, R.drawable.ic_done_icon, getString(R.string.successfullyAddedAddressString))
+                    }
+                    is Resource.Loading -> showSetupOrderAddingDeletingProgressBar()
+                    is Resource.Error -> {
+                        hideSetupOrderAddingDeletingProgressBar()
+                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                    }
+                    is Resource.Undefined -> Unit
+                }
+            }
+        }
+    }
+
+    private fun observeDeleteAddressState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            setupOrderViewModel.setupOrderDeleteAddress.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                when (it) {
+                    is Resource.Success -> {
+                        hideSetupOrderAddingDeletingProgressBar()
+                        showToast(requireContext(), binding.root, R.drawable.ic_done_icon, getString(R.string.successfullyDeletedAddressString))
                     }
                     is Resource.Loading -> showSetupOrderAddingDeletingProgressBar()
                     is Resource.Error -> {
@@ -175,7 +229,7 @@ class SetupOrderFragment : Fragment() {
 
     private fun showChooseAddressWarningTextView() { binding.chooseAddressWarningTextView.visibility = View.VISIBLE }
 
-    private fun hideChooseAddressWarningTextView() { binding.chooseAddressWarningTextView.visibility = View.GONE }
+    private fun hideChooseAddressWarningTextView() { binding.chooseAddressWarningTextView.visibility = View.INVISIBLE }
 
     private fun showSetupOrderAddressesRecyclerView() { binding.setupOrderAddressesRecyclerView.visibility = View.VISIBLE }
 

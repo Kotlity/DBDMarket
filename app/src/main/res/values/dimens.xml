@@ -212,7 +212,7 @@
     <dimen name="setupOrderCartProductQuantityTitleTextViewSize">18sp</dimen>
     <dimen name="setupOrderCartProductQuantityTextViewSize">18sp</dimen>
     <dimen name="setupOrderAddressesRecyclerViewLayoutWidth">150dp</dimen>
-    <dimen name="setupOrderAddressesRecyclerViewLayoutHeight">100dp</dimen>
+    <dimen name="setupOrderAddressesRecyclerViewLayoutHeight">80dp</dimen>
     <dimen name="setupOrderAddressesTypeTextViewSize">20sp</dimen>
     <dimen name="setupOrderAddressesStreetTextViewSize">18sp</dimen>
     <dimen name="setupOrderAddressesRecyclerViewItemBackgroundStrokeWidth">3dp</dimen>
@@ -230,6 +230,9 @@
     <dimen name="bottomSheetAddressDialogBackgroundCornersRadius">30dp</dimen>
     <dimen name="bottomSheetAddressEditTextBackgroundStrokeWidth">2dp</dimen>
     <dimen name="bottomSheetAddressEditTextBackgroundCornersRadius">5dp</dimen>
+    <dimen name="setupOrderAddressesTextViewsLinearLayoutMarginStart">3dp</dimen>
+    <dimen name="setupOrderAddressesDeleteImageViewSize">30dp</dimen>
+    <dimen name="setupOrderAddressesDeleteImageViewMargin">8dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>
