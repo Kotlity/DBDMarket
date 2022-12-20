@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbd.market.data.Address
 import com.dbd.market.data.CartProduct
+import com.dbd.market.data.Order
 import com.dbd.market.helpers.operations.UserAddressesFirestoreOperations
 import com.dbd.market.repositories.market.cart.CartProductsRepository
 import com.dbd.market.repositories.market.setup_order.SetupOrderRepository
@@ -38,6 +39,12 @@ class SetupOrderViewModel @Inject constructor(
 
     private val _setupOrderDeleteAddress = MutableSharedFlow<Resource<Boolean>>()
     val setupOrderDeleteAddress = _setupOrderDeleteAddress.asSharedFlow()
+
+    private val _setupOrderDeleteCartProductsFromCollection = MutableStateFlow<Resource<Boolean>>(Resource.Undefined())
+    val setupOrderDeleteCartProductsFromCollection = _setupOrderDeleteCartProductsFromCollection.asStateFlow()
+
+    private val _setupOrderAddToOrderCollection = MutableStateFlow<Resource<Boolean>>(Resource.Undefined())
+    val setupOrderAddToOrderCollection= _setupOrderAddToOrderCollection.asStateFlow()
 
     init {
         getSetupOrderCartProducts()
@@ -83,6 +90,24 @@ class SetupOrderViewModel @Inject constructor(
                 }
             },
             onFailure = { retrievingAddressesError -> viewModelScope.launch(Dispatchers.IO) { _setupOrderDeleteAddress.emit(Resource.Error(retrievingAddressesError)) } })
+        }
+    }
+
+    fun deleteAllCartProductsFromCollectionAndAddSetupOrderToOrderCollection(order: Order) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val deletingAllCartProductsFromCollectionJob = launch {
+                _setupOrderDeleteCartProductsFromCollection.value = Resource.Loading()
+                setupOrderRepository.deleteAllCartProductsFromCollection(onSuccess = { _setupOrderDeleteCartProductsFromCollection.value = Resource.Success(true) },
+                    onFailure = { deletingCartProductsError -> _setupOrderDeleteCartProductsFromCollection.value = Resource.Error(deletingCartProductsError) })
+            }
+            deletingAllCartProductsFromCollectionJob.join()
+
+            launch {
+                _setupOrderAddToOrderCollection.value = Resource.Loading()
+                setupOrderRepository.addSetupOrderToOrderCollection(order, onSuccess = { _setupOrderAddToOrderCollection.value = Resource.Success(true) },
+                    onFailure = { addingOrderError -> _setupOrderAddToOrderCollection.value = Resource.Error(addingOrderError) }
+                )
+            }
         }
     }
 }

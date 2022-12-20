@@ -169,7 +169,7 @@
         app:layout_constraintBottom_toTopOf="@+id/setupOrderProductsTotalPriceBottomHorizontalGuideLine"
         app:layout_constraintEnd_toEndOf="@+id/setupOrderRightVerticalGuideLine"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
         android:id="@+id/setupOrderButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -179,6 +179,8 @@
         android:textColor="@color/white"
         android:textSize="@dimen/setupOrderButtonTextSize"
         android:textStyle="bold"
+        app:spinning_bar_color="@color/red"
+        app:spinning_bar_width="@dimen/appButtonSpinningBarWidth"
         app:layout_constraintStart_toEndOf="@+id/setupOrderButtonLeftVerticalGuideline"
         app:layout_constraintTop_toBottomOf="@+id/setupOrderProductsTotalPriceBottomHorizontalGuideLine"
         app:layout_constraintEnd_toStartOf="@+id/setupOrderButtonRightVerticalGuideline"

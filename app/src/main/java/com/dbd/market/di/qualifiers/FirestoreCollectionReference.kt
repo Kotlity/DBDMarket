@@ -17,3 +17,7 @@ annotation class UserCartProductsCollectionReference
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class UserAddressesCollectionReference
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class UserOrderCollectionReference

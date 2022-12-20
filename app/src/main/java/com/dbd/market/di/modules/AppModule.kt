@@ -1,9 +1,6 @@
 package com.dbd.market.di.modules
 
-import com.dbd.market.di.qualifiers.ProductsCollectionReference
-import com.dbd.market.di.qualifiers.UserAddressesCollectionReference
-import com.dbd.market.di.qualifiers.UserCartProductsCollectionReference
-import com.dbd.market.di.qualifiers.UserCollectionReference
+import com.dbd.market.di.qualifiers.*
 import com.dbd.market.helpers.operations.UserAddressesFirestoreOperations
 import com.dbd.market.helpers.operations.UserCartProductsFirestoreOperations
 import com.dbd.market.repositories.introduction.login.LoginRepository
@@ -30,6 +27,7 @@ import com.dbd.market.repositories.market.setup_order.SetupOrderRepository
 import com.dbd.market.repositories.market.setup_order.SetupOrderRepositoryImplementation
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_ADDRESSES_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_CART_PRODUCTS_COLLECTION
+import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_ORDERS_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_PRODUCTS_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_USER_COLLECTION
 import com.google.firebase.auth.FirebaseAuth
@@ -87,6 +85,10 @@ object AppModule {
     @Singleton
     fun provideUserAddressesCollectionReference(userUid: String?, @UserCollectionReference userCollectionReference: CollectionReference) = userUid?.let { userCollectionReference.document(it).collection(FIREBASE_FIRESTORE_ADDRESSES_COLLECTION) }
 
+    @UserOrderCollectionReference
+    @Provides
+    @Singleton
+    fun provideUserOrderCollectionReference(userId: String?, @UserCollectionReference userCollectionReference: CollectionReference) = userId?.let { userCollectionReference.document(it).collection(FIREBASE_FIRESTORE_ORDERS_COLLECTION) }
 
     @Provides
     @Singleton
@@ -98,7 +100,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSetupOrderRepository(@UserAddressesCollectionReference userAddressesCollectionReference: CollectionReference?): SetupOrderRepository = SetupOrderRepositoryImplementation(userAddressesCollectionReference)
+    fun provideSetupOrderRepository(@UserAddressesCollectionReference userAddressesCollectionReference: CollectionReference?, @UserCartProductsCollectionReference userCartProductsCollectionReference: CollectionReference?, @UserOrderCollectionReference userOrderCollectionReference: CollectionReference?, firebaseFirestore: FirebaseFirestore): SetupOrderRepository = SetupOrderRepositoryImplementation(userAddressesCollectionReference, userCartProductsCollectionReference, userOrderCollectionReference, firebaseFirestore)
 
     @ProductsCollectionReference
     @Provides

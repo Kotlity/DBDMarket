@@ -1,7 +1,7 @@
 package com.dbd.market.screens.fragments.market
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +18,8 @@ import com.dbd.market.R
 import com.dbd.market.adapters.setup_order.SetupOrderAddressesAdapter
 import com.dbd.market.adapters.setup_order.SetupOrderCartProductsAdapter
 import com.dbd.market.data.Address
+import com.dbd.market.data.CartProductsSetupOrder
+import com.dbd.market.data.Order
 import com.dbd.market.databinding.FragmentSetupOrderBinding
 import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.market.SetupOrderViewModel
@@ -25,6 +27,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class SetupOrderFragment : Fragment() {
@@ -53,6 +57,7 @@ class SetupOrderFragment : Fragment() {
         onAddressRecyclerViewClick()
         deleteAddress()
         observeSetupOrderStates()
+        onSetupOrderButtonClick()
     }
 
     private fun setupOrderCartProductsRecyclerView() {
@@ -100,7 +105,6 @@ class SetupOrderFragment : Fragment() {
             onPositiveButtonClick = {
                 setupOrderViewModel.deleteAddress(address)
                 setupOrderViewModel.changeSetupOrderSelectedAddressValue(null)
-                Log.d("MyTag", "setupOrderSelectedAddress: ${setupOrderSelectedAddress?.id}")
                 observeDeleteAddressState()
             })
     }
@@ -117,7 +121,27 @@ class SetupOrderFragment : Fragment() {
         setupOrderAddressesAdapter.onRecyclerViewItemClick { address ->
             val takenAddress = address as Address
             setupOrderViewModel.changeSetupOrderSelectedAddressValue(takenAddress)
-            Log.d("MyTag", "setupOrderSelectedAddress: ${setupOrderSelectedAddress?.id}")
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun getCurrentTime(): String {
+        val currentTime = Calendar.getInstance().time
+        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        return formatter.format(currentTime)
+    }
+
+    private fun deleteCartProductsFromCollectionAndAddSetupOrderToOrderCollection(order: Order) {
+        setupOrderViewModel.deleteAllCartProductsFromCollectionAndAddSetupOrderToOrderCollection(order)
+    }
+
+    private fun onSetupOrderButtonClick() {
+        setupOrderSelectedAddress?.let { selectedAddress ->
+            binding.setupOrderButton.setOnClickListener {
+                val time = getCurrentTime()
+                val order = Order(CartProductsSetupOrder(args.cartProductsSetupOrder.cartProductList, args.cartProductsSetupOrder.totalPrice), selectedAddress, time)
+                deleteCartProductsFromCollectionAndAddSetupOrderToOrderCollection(order)
+            }
         }
     }
 
@@ -252,4 +276,9 @@ class SetupOrderFragment : Fragment() {
     private fun showSetupOrderButton() { binding.setupOrderButton.visibility = View.VISIBLE }
 
     private fun hideSetupOrderButton() { binding.setupOrderButton.visibility = View.INVISIBLE }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.setupOrderButton.dispose()
+    }
 }
