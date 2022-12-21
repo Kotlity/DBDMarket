@@ -50,6 +50,7 @@ class MarketActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.productDescriptionFragment -> binding.bottomNavigationView.visibility = View.GONE
                 R.id.setupOrderFragment -> binding.bottomNavigationView.visibility = View.GONE
+                R.id.completeOrderFragment -> binding.bottomNavigationView.visibility = View.GONE
                 else -> binding.bottomNavigationView.visibility = View.VISIBLE
             }
         }
@@ -64,7 +65,7 @@ class MarketActivity : AppCompatActivity() {
                         else binding.bottomNavigationView.updateBottomNavigationViewBadge(BottomNavigationViewBadgeState.ZERO)
                     }
                     is Resource.Loading -> Unit
-                    is Resource.Error -> { binding.bottomNavigationView.updateBottomNavigationViewBadge(BottomNavigationViewBadgeState.ERROR) }
+                    is Resource.Error -> binding.bottomNavigationView.updateBottomNavigationViewBadge(BottomNavigationViewBadgeState.ERROR)
                     is Resource.Undefined -> Unit
                 }
             }

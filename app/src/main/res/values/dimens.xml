@@ -163,7 +163,7 @@
     <dimen name="productDescriptionCloseImageViewMargin">5dp</dimen>
     <dimen name="productDescriptionAmountOperationsImageViewSize">50dp</dimen>
     <dimen name="productDescriptionSpaceBetweenAmountOperationsImageViews">30dp</dimen>
-    <dimen name="closeCartScreenImageViewSize">45dp</dimen>
+    <dimen name="closeFragmentImageViewSize">45dp</dimen>
     <dimen name="cartScreenProductListTitleTextViewSize">25sp</dimen>
     <dimen name="cartScreenTotalPriceTextViewMarginStart">10dp</dimen>
     <dimen name="cartScreenTotalPriceTextViewSize">30sp</dimen>

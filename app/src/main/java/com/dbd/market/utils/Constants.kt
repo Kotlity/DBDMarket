@@ -38,6 +38,9 @@ object Constants {
     const val PRODUCT_DESCRIPTION_IMAGE_VIEW_ANIMATION_DURATION = 400
     const val CART_PRODUCT_IMAGE_VIEW_ANIMATION_DURATION = 300
 
+    const val BOUND_OF_ORDER_ID = 100
+    const val BOUND_OF_ADDRESS_ID = 100
+
     const val PERMISSION_HAS_DENIED = "You have not allowed the app to access your storage. Please do it manually in the app settings"
     const val ALERT_DIALOG_PERMISSION_RATIONALE_TITLE = "Storage permission required"
 

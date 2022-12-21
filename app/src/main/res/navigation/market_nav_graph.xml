@@ -59,5 +59,26 @@
         <argument
             android:name="cartProductsSetupOrder"
             app:argType="com.dbd.market.data.CartProductsSetupOrder" />
+        <action
+            android:id="@+id/action_setupOrderFragment_to_completeOrderFragment"
+            app:destination="@id/completeOrderFragment"
+            app:enterAnim="@anim/from_right_screen_animation"
+            app:exitAnim="@anim/to_left_screen_animation"/>
+    </fragment>
+    <fragment
+        android:id="@+id/completeOrderFragment"
+        android:name="com.dbd.market.screens.fragments.market.CompleteOrderFragment"
+        android:label="fragment_complete_order"
+        tools:layout="@layout/fragment_complete_order" >
+        <argument
+            android:name="completeOrderId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_completeOrderFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/from_left_screen_animation"
+            app:exitAnim="@anim/to_right_screen_animation"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/homeFragment"/>
     </fragment>
 </navigation>

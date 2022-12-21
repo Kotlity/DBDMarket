@@ -5,10 +5,11 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Order(
+    val id: Int,
     val cartProductsSetupOrder: CartProductsSetupOrder,
     val address: Address,
     val time: String
 ): Parcelable {
 
-    constructor(): this(CartProductsSetupOrder(emptyList(), 0), Address(0, "", "", "", "", "", "", ""), "")
+    constructor(): this(0, CartProductsSetupOrder(emptyList(), 0), Address(0, "", "", "", "", "", "", ""), "")
 }

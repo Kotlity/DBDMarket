@@ -227,7 +227,7 @@ fun showBottomSheetDialog(
             val phoneNumberAddress = phoneNumberAddressEditText.text.toString()
 
             val newAddress = Address(
-                Random.nextInt(),
+                Random.nextInt(Constants.BOUND_OF_ADDRESS_ID),
                 firstNameAddress,
                 lastNameAddress,
                 countryAddress,

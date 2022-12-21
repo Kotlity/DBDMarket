@@ -8,6 +8,15 @@
     tools:context=".screens.fragments.market.CompleteOrderFragment">
 
     <ImageView
+        android:id="@+id/closeCompleteOrder"
+        android:layout_width="@dimen/closeFragmentImageViewSize"
+        android:layout_height="@dimen/closeFragmentImageViewSize"
+        android:src="@drawable/ic_close_icon"
+        app:layout_constraintStart_toEndOf="@+id/completeOrderLeftVerticalGuideLine"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"

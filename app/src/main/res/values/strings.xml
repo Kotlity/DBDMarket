@@ -106,4 +106,6 @@
     <string name="completeOrderPathTitleTextViewString">To track your order follow the path:</string>
     <string name="completeOrderPathTextViewString"><![CDATA[Profile -> All orders -> Recent order]]></string>
     <string name="orderDetailsButtonTextString">Order details</string>
+    <string name="setupOrderLoadingTextViewDeletingCartProductsString">Deleting cart products...</string>
+    <string name="setupOrderLoadingTextViewAddingOrderToCollectionString">Adding order to collection...</string>
 </resources>

@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dbd.market.R
@@ -24,9 +25,7 @@ import com.dbd.market.databinding.FragmentSetupOrderBinding
 import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.market.SetupOrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -57,7 +56,6 @@ class SetupOrderFragment : Fragment() {
         onAddressRecyclerViewClick()
         deleteAddress()
         observeSetupOrderStates()
-        onSetupOrderButtonClick()
     }
 
     private fun setupOrderCartProductsRecyclerView() {
@@ -121,6 +119,15 @@ class SetupOrderFragment : Fragment() {
         setupOrderAddressesAdapter.onRecyclerViewItemClick { address ->
             val takenAddress = address as Address
             setupOrderViewModel.changeSetupOrderSelectedAddressValue(takenAddress)
+            setupOrderSelectedAddress?.let {
+                binding.setupOrderButton.setOnClickListener {
+                    val time = getCurrentTime()
+                    val order = Order(Random().nextInt(Constants.BOUND_OF_ORDER_ID), CartProductsSetupOrder(args.cartProductsSetupOrder.cartProductList, args.cartProductsSetupOrder.totalPrice), setupOrderSelectedAddress!!, time)
+                    deleteCartProductsFromCollectionAndAddSetupOrderToOrderCollection(order)
+                    observeDeleteCartProductsFromCollectionAndAddSetupOrderToOrderCollection()
+                    navigateToCompleteOrderFragment(order.id)
+                }
+            }
         }
     }
 
@@ -135,14 +142,9 @@ class SetupOrderFragment : Fragment() {
         setupOrderViewModel.deleteAllCartProductsFromCollectionAndAddSetupOrderToOrderCollection(order)
     }
 
-    private fun onSetupOrderButtonClick() {
-        setupOrderSelectedAddress?.let { selectedAddress ->
-            binding.setupOrderButton.setOnClickListener {
-                val time = getCurrentTime()
-                val order = Order(CartProductsSetupOrder(args.cartProductsSetupOrder.cartProductList, args.cartProductsSetupOrder.totalPrice), selectedAddress, time)
-                deleteCartProductsFromCollectionAndAddSetupOrderToOrderCollection(order)
-            }
-        }
+    private fun navigateToCompleteOrderFragment(orderId: Int) {
+        val action = SetupOrderFragmentDirections.actionSetupOrderFragmentToCompleteOrderFragment(orderId)
+        findNavController().navigate(action)
     }
 
     private fun observeSetupOrderStates() {
@@ -197,17 +199,13 @@ class SetupOrderFragment : Fragment() {
                 launch {
                     setupOrderViewModel.setupOrderSelectedAddress.collect { takenAddress ->
                         if (takenAddress != null) {
-                            withContext(Dispatchers.Main) {
-                                hideChooseAddressWarningTextView()
-                                setupOrderSelectedAddress = takenAddress
-                                showSetupOrderButton()
-                            }
+                            hideChooseAddressWarningTextView()
+                            setupOrderSelectedAddress = takenAddress
+                            showSetupOrderButton()
+
                         } else {
-                            withContext(Dispatchers.Main) {
-                                showChooseAddressWarningTextView()
-                                setupOrderSelectedAddress = takenAddress
-                                hideSetupOrderButton()
-                            }
+                            showChooseAddressWarningTextView()
+                            hideSetupOrderButton()
                         }
                     }
                 }
@@ -253,6 +251,47 @@ class SetupOrderFragment : Fragment() {
         }
     }
 
+    private fun observeDeleteCartProductsFromCollectionAndAddSetupOrderToOrderCollection() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    setupOrderViewModel.setupOrderDeleteCartProductsFromCollection.collect {
+                        when (it) {
+                            is Resource.Success -> {
+                                setSetupOrderButtonStopAnimationParentViewClickableAndDarkGreyAndHideLoadingTextView()
+                            }
+                            is Resource.Loading -> {
+                                setSetupOrderButtonStartAnimationParentViewNotClickableAndGreyAndShowLoadingTextView(getString(R.string.setupOrderLoadingTextViewDeletingCartProductsString))
+                            }
+                            is Resource.Error -> {
+                                setSetupOrderButtonStopAnimationParentViewClickableAndDarkGreyAndHideLoadingTextView()
+                                showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                            }
+                            is Resource.Undefined -> Unit
+                        }
+                    }
+                }
+                launch {
+                    setupOrderViewModel.setupOrderAddToOrderCollection.collect {
+                        when (it) {
+                            is Resource.Success -> {
+                                setSetupOrderButtonStopAnimationParentViewClickableAndDarkGreyAndHideLoadingTextView()
+                            }
+                            is Resource.Loading -> {
+                                setSetupOrderButtonStartAnimationParentViewNotClickableAndGreyAndShowLoadingTextView(getString(R.string.setupOrderLoadingTextViewAddingOrderToCollectionString))
+                            }
+                            is Resource.Error -> {
+                                setSetupOrderButtonStopAnimationParentViewClickableAndDarkGreyAndHideLoadingTextView()
+                                showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                            }
+                            is Resource.Undefined -> Unit
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private fun showSetupOrderCartProductsProgressBar() { binding.setupOrderCartProductsProgressBar.visibility = View.VISIBLE }
 
     private fun hideSetupOrderCartProductsProgressBar() { binding.setupOrderCartProductsProgressBar.visibility = View.GONE }
@@ -276,6 +315,27 @@ class SetupOrderFragment : Fragment() {
     private fun showSetupOrderButton() { binding.setupOrderButton.visibility = View.VISIBLE }
 
     private fun hideSetupOrderButton() { binding.setupOrderButton.visibility = View.INVISIBLE }
+
+    private fun setSetupOrderButtonStartAnimationParentViewNotClickableAndGreyAndShowLoadingTextView(loadingText: String) {
+        binding.setupOrderParentView.apply {
+            isClickable = false
+            setBackgroundColor(resources.getColor(R.color.grey))
+        }
+        binding.setupOrderLoadingTextView.apply {
+            visibility = View.VISIBLE
+            text = loadingText
+        }
+        binding.setupOrderButton.startAnimation()
+    }
+
+    private fun setSetupOrderButtonStopAnimationParentViewClickableAndDarkGreyAndHideLoadingTextView() {
+        binding.setupOrderParentView.apply {
+            isClickable = true
+            setBackgroundColor(resources.getColor(R.color.dark_grey))
+        }
+        binding.setupOrderLoadingTextView.visibility = View.GONE
+        binding.setupOrderButton.revertAnimation()
+    }
 
     override fun onDestroy() {
         super.onDestroy()

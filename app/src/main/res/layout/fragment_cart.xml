@@ -47,8 +47,8 @@
 
     <ImageView
         android:id="@+id/closeCartScreen"
-        android:layout_width="@dimen/closeCartScreenImageViewSize"
-        android:layout_height="@dimen/closeCartScreenImageViewSize"
+        android:layout_width="@dimen/closeFragmentImageViewSize"
+        android:layout_height="@dimen/closeFragmentImageViewSize"
         android:src="@drawable/ic_close_icon"
         app:layout_constraintBottom_toBottomOf="@+id/cartToolbarBottomHorizontalGuideline"
         app:layout_constraintStart_toStartOf="@+id/cartLeftVerticalGuideline"
