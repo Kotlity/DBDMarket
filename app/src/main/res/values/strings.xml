@@ -108,4 +108,8 @@
     <string name="orderDetailsButtonTextString">Order details</string>
     <string name="setupOrderLoadingTextViewDeletingCartProductsString">Deleting cart products...</string>
     <string name="setupOrderLoadingTextViewAddingOrderToCollectionString">Adding order to collection...</string>
+    <string name="initialLoadingTextViewStateString">Loading</string>
+    <string name="firstLoadingTextViewStateString">Loading.</string>
+    <string name="secondLoadingTextViewStateString">Loading..</string>
+    <string name="thirdLoadingTextViewStateString">Loading...</string>
 </resources>

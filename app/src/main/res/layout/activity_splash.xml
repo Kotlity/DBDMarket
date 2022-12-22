@@ -6,4 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".screens.activities.SplashActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splash_screen_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/appTitleString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/splashScreenTitleTextViewTextSize"
+        android:fontFamily="@font/app_title_font"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splashScreenTitleTextViewHorizontalGuideline"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/loadingBottomHorizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/splashScreenRightVerticalGuideline"
+        app:layout_constraintStart_toStartOf="@+id/splashScreenLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/loadingTopHorizontalGuideline">
+
+        <TextView
+            android:id="@+id/loadingTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/app_description_font"
+            android:text="@string/initialLoadingTextViewStateString"
+            android:textColor="@color/white"
+            android:textSize="@dimen/LoadingTextViewTextSize" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/loadingHeightSpaceBetweenTextViewAndProgressBar" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:scaleY="1.5"
+            app:indicatorColor="@color/dark_yellow"
+            app:trackColor="@color/red" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/loadingTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/loadingBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.94" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/splashScreenLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/splashScreenRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/splashScreenTitleTextViewHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.13" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

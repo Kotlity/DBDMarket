@@ -241,6 +241,9 @@
     <dimen name="completeOrderPathTitleTextViewTextSize">17sp</dimen>
     <dimen name="completeOrderPathTextViewTextSize">20sp</dimen>
     <dimen name="orderDetailsButtonTextSize">23sp</dimen>
+    <dimen name="LoadingTextViewTextSize">25sp</dimen>
+    <dimen name="loadingHeightSpaceBetweenTextViewAndProgressBar">10dp</dimen>
+    <dimen name="splashScreenTitleTextViewTextSize">48sp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

@@ -2,7 +2,8 @@ package com.dbd.market.utils
 
 object Constants {
 
-    const val LOGCAT_TAG = "MyTag"
+    const val LOADING_SPLASH_SCREEN_TICK_PERIOD = 1000L
+    const val LOADING_SPLASH_SCREEN_PERIOD = 3100L
 
     const val REQUEST_CODE_STORAGE_PERMISSION = 1
     const val REQUEST_CODE_SELECT_IMAGES = 2
