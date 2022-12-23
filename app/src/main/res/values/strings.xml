@@ -112,4 +112,8 @@
     <string name="firstLoadingTextViewStateString">Loading.</string>
     <string name="secondLoadingTextViewStateString">Loading..</string>
     <string name="thirdLoadingTextViewStateString">Loading...</string>
+    <string name="ordersTitleTextViewString">Your orders</string>
+    <string name="ordersEmptyTextViewString">Your orders list is empty</string>
+    <string name="ordersIdTitleTextViewString">Order: #</string>
+    <string name="ordersRecyclerViewDateTitleTextViewString">Date:&#160;</string>
 </resources>

@@ -21,6 +21,8 @@ import com.dbd.market.repositories.market.categories.torso.TorsoCategoryReposito
 import com.dbd.market.repositories.market.categories.torso.TorsoCategoryRepositoryImplementation
 import com.dbd.market.repositories.market.categories.weapons.WeaponsCategoryRepository
 import com.dbd.market.repositories.market.categories.weapons.WeaponsCategoryRepositoryImplementation
+import com.dbd.market.repositories.market.orders.OrdersRepository
+import com.dbd.market.repositories.market.orders.OrdersRepositoryImplementation
 import com.dbd.market.repositories.market.product_description.ProductDescriptionRepository
 import com.dbd.market.repositories.market.product_description.ProductDescriptionRepositoryImplementation
 import com.dbd.market.repositories.market.setup_order.SetupOrderRepository
@@ -101,6 +103,10 @@ object AppModule {
     @Provides
     @Singleton
     fun provideSetupOrderRepository(@UserAddressesCollectionReference userAddressesCollectionReference: CollectionReference?, @UserCartProductsCollectionReference userCartProductsCollectionReference: CollectionReference?, @UserOrderCollectionReference userOrderCollectionReference: CollectionReference?, firebaseFirestore: FirebaseFirestore): SetupOrderRepository = SetupOrderRepositoryImplementation(userAddressesCollectionReference, userCartProductsCollectionReference, userOrderCollectionReference, firebaseFirestore)
+
+    @Provides
+    @Singleton
+    fun provideOrdersRepository(@UserOrderCollectionReference userOrderCollectionReference: CollectionReference?): OrdersRepository = OrdersRepositoryImplementation(userOrderCollectionReference)
 
     @ProductsCollectionReference
     @Provides

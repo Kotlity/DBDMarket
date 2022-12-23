@@ -1,6 +1,5 @@
 package com.dbd.market.screens.fragments.market
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
@@ -26,7 +25,6 @@ import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.market.SetupOrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -121,7 +119,7 @@ class SetupOrderFragment : Fragment() {
             setupOrderViewModel.changeSetupOrderSelectedAddressValue(takenAddress)
             setupOrderSelectedAddress?.let {
                 binding.setupOrderButton.setOnClickListener {
-                    val time = getCurrentTime()
+                    val time = Calendar.getInstance().time
                     val order = Order(Random().nextInt(Constants.BOUND_OF_ORDER_ID), CartProductsSetupOrder(args.cartProductsSetupOrder.cartProductList, args.cartProductsSetupOrder.totalPrice), setupOrderSelectedAddress!!, time)
                     deleteCartProductsFromCollectionAndAddSetupOrderToOrderCollection(order)
                     observeDeleteCartProductsFromCollectionAndAddSetupOrderToOrderCollection()
@@ -129,13 +127,6 @@ class SetupOrderFragment : Fragment() {
                 }
             }
         }
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    private fun getCurrentTime(): String {
-        val currentTime = Calendar.getInstance().time
-        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        return formatter.format(currentTime)
     }
 
     private fun deleteCartProductsFromCollectionAndAddSetupOrderToOrderCollection(order: Order) {
