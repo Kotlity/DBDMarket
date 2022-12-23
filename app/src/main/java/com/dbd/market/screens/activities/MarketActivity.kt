@@ -51,6 +51,7 @@ class MarketActivity : AppCompatActivity() {
                 R.id.productDescriptionFragment -> binding.bottomNavigationView.visibility = View.GONE
                 R.id.setupOrderFragment -> binding.bottomNavigationView.visibility = View.GONE
                 R.id.completeOrderFragment -> binding.bottomNavigationView.visibility = View.GONE
+                R.id.ordersFragment -> binding.bottomNavigationView.visibility = View.GONE
                 else -> binding.bottomNavigationView.visibility = View.VISIBLE
             }
         }

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.dbd.market.R
 import com.dbd.market.databinding.FragmentCompleteOrderBinding
 import com.dbd.market.utils.navigateToAnotherFragmentWithoutArguments
+import com.dbd.market.utils.onBackButtonPressed
 
 class CompleteOrderFragment : Fragment() {
     private lateinit var binding: FragmentCompleteOrderBinding
@@ -27,6 +28,7 @@ class CompleteOrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupCompleteOrderIdTextView(args.completeOrderId)
+        navigateToOrdersFragment()
         navigateToHomeFragment()
         handleOnBackPressedButton()
     }
@@ -35,12 +37,8 @@ class CompleteOrderFragment : Fragment() {
 
     private fun navigateToHomeFragment() { navigateToAnotherFragmentWithoutArguments(binding.closeCompleteOrder, R.id.action_completeOrderFragment_to_homeFragment) }
 
-    private fun handleOnBackPressedButton() {
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                findNavController().navigate(R.id.action_completeOrderFragment_to_homeFragment)
-            }
-        })
-    }
+    private fun handleOnBackPressedButton() { onBackButtonPressed(R.id.action_completeOrderFragment_to_homeFragment) }
+
+    private fun navigateToOrdersFragment() { navigateToAnotherFragmentWithoutArguments(binding.orderDetailsButton, R.id.action_completeOrderFragment_to_ordersFragment) }
 
 }

@@ -80,5 +80,23 @@
             app:exitAnim="@anim/to_right_screen_animation"
             app:popUpToInclusive="true"
             app:popUpTo="@id/homeFragment"/>
+        <action
+            android:id="@+id/action_completeOrderFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment"
+            app:enterAnim="@anim/from_bottom_screen_animation"
+            app:exitAnim="@anim/to_top_screen_animation"/>
+    </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.dbd.market.screens.fragments.market.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" >
+        <action
+            android:id="@+id/action_ordersFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/from_top_screen_animation"
+            app:exitAnim="@anim/to_bottom_screen_animation"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/homeFragment"/>
     </fragment>
 </navigation>

@@ -248,9 +248,7 @@
     <dimen name="ordersEmptyTextViewTextSize">25sp</dimen>
     <dimen name="ordersRecyclerViewTextViewsTextSize">20sp</dimen>
     <dimen name="ordersDateTextViewTextSize">17sp</dimen>
-    <dimen name="ordersTextViewsLinearLayoutMargin">10dp</dimen>
-    <dimen name="ordersImageViewWidth">70dp</dimen>
-    <dimen name="ordersImageViewHeight">100dp</dimen>
+    <dimen name="ordersTextViewsLinearLayoutMargin">8dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

@@ -4,4 +4,6 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CartProductsSetupOrder(val cartProductList: List<CartProduct>, val totalPrice: Int): Parcelable
+data class CartProductsSetupOrder(val cartProductList: List<CartProduct>, val totalPrice: Int): Parcelable {
+    constructor(): this(emptyList(), 0)
+}
