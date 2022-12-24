@@ -165,14 +165,14 @@
     <dimen name="productDescriptionSpaceBetweenAmountOperationsImageViews">30dp</dimen>
     <dimen name="closeFragmentImageViewSize">45dp</dimen>
     <dimen name="cartScreenProductListTitleTextViewSize">25sp</dimen>
-    <dimen name="cartScreenTotalPriceTextViewMarginStart">10dp</dimen>
-    <dimen name="cartScreenTotalPriceTextViewSize">30sp</dimen>
+    <dimen name="totalPriceTextViewMarginStart">10dp</dimen>
+    <dimen name="totalPriceTextViewTextSize">30sp</dimen>
     <dimen name="cartScreenPriceTextViewMarginEnd">10dp</dimen>
     <dimen name="cartScreenPriceTextViewSize">20sp</dimen>
     <dimen name="cartScreenNextButtonTextSize">30sp</dimen>
-    <dimen name="cartTotalPriceConstraintLayoutBackgroundDashGap">10dp</dimen>
-    <dimen name="cartTotalPriceConstraintLayoutBackgroundDashWidth">10dp</dimen>
-    <dimen name="cartTotalPriceConstraintLayoutBackgroundWidth">2dp</dimen>
+    <dimen name="totalPriceConstraintLayoutBackgroundDashGap">10dp</dimen>
+    <dimen name="totalPriceConstraintLayoutBackgroundDashWidth">10dp</dimen>
+    <dimen name="totalPriceConstraintLayoutBackgroundWidth">2dp</dimen>
     <dimen name="emptyCartTextViewSize">25sp</dimen>
     <dimen name="emptyCartImageViewSize">150dp</dimen>
     <dimen name="cartProductRecyclerViewLayoutItemMarginTop">5dp</dimen>
@@ -240,7 +240,7 @@
     <dimen name="completeOrderIdTextViewTextSize">20sp</dimen>
     <dimen name="completeOrderPathTitleTextViewTextSize">17sp</dimen>
     <dimen name="completeOrderPathTextViewTextSize">20sp</dimen>
-    <dimen name="orderDetailsButtonTextSize">23sp</dimen>
+    <dimen name="orderDetailButtonTextSize">23sp</dimen>
     <dimen name="LoadingTextViewTextSize">25sp</dimen>
     <dimen name="loadingHeightSpaceBetweenTextViewAndProgressBar">10dp</dimen>
     <dimen name="splashScreenTitleTextViewTextSize">48sp</dimen>
@@ -249,6 +249,26 @@
     <dimen name="ordersRecyclerViewTextViewsTextSize">20sp</dimen>
     <dimen name="ordersDateTextViewTextSize">17sp</dimen>
     <dimen name="ordersTextViewsLinearLayoutMargin">8dp</dimen>
+    <dimen name="orderDetailIdTitleTextViewTextSize">33sp</dimen>
+    <dimen name="orderDetailAddressTitleTextViewTextSize">30sp</dimen>
+    <dimen name="orderDetailAddressTypeTextViewTextSize">20sp</dimen>
+    <dimen name="orderDetailAddressFieldsTextViewTextSize">23sp</dimen>
+    <dimen name="orderDetailSpaceBetweenAddressTitleAndItsValue">7dp</dimen>
+    <dimen name="orderDetailSpaceBetweenAddressPartsHeight">1dp</dimen>
+    <dimen name="orderDetailSpaceBetweenAddressPartsMarginVertical">10dp</dimen>
+    <dimen name="orderDetailAddressBackgroundStrokeSize">2dp</dimen>
+    <dimen name="orderDetailTitleRecyclerViewTextViewTextSize">30sp</dimen>
+    <dimen name="orderDetailTotalPriceTextViewTextSize">28sp</dimen>
+    <dimen name="closeOrderDetailImageViewMarginTop">5dp</dimen>
+    <dimen name="orderDetailIdTitleTextViewMarginTop">11dp</dimen>
+    <dimen name="orderDetailAddressTitleLinearLayoutMarginTop">20dp</dimen>
+    <dimen name="orderDetailAddressInfoLinearLayoutPaddingHorizontal">10dp</dimen>
+    <dimen name="orderDetailAddressInfoLinearLayoutMarginTop">15dp</dimen>
+    <dimen name="orderDetailPhoneNumberLinearLayoutMarginBottom">10dp</dimen>
+    <dimen name="orderDetailTitleRecyclerViewTextViewMarginTop">15dp</dimen>
+    <dimen name="orderDetailRecyclerViewMarginTop">15dp</dimen>
+    <dimen name="totalPriceConstraintLayoutMarginVertical">15dp</dimen>
+    <dimen name="totalPriceConstraintLayoutHeight">70dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

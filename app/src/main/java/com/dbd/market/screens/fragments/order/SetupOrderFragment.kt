@@ -1,4 +1,4 @@
-package com.dbd.market.screens.fragments.market
+package com.dbd.market.screens.fragments.order
 
 import android.os.Bundle
 import android.util.TypedValue
@@ -123,7 +123,7 @@ class SetupOrderFragment : Fragment() {
                     val order = Order(Random().nextInt(Constants.BOUND_OF_ORDER_ID), CartProductsSetupOrder(args.cartProductsSetupOrder.cartProductList, args.cartProductsSetupOrder.totalPrice), setupOrderSelectedAddress!!, time)
                     deleteCartProductsFromCollectionAndAddSetupOrderToOrderCollection(order)
                     observeDeleteCartProductsFromCollectionAndAddSetupOrderToOrderCollection()
-                    navigateToCompleteOrderFragment(order.id)
+                    navigateToCompleteOrderFragment(order)
                 }
             }
         }
@@ -133,8 +133,8 @@ class SetupOrderFragment : Fragment() {
         setupOrderViewModel.deleteAllCartProductsFromCollectionAndAddSetupOrderToOrderCollection(order)
     }
 
-    private fun navigateToCompleteOrderFragment(orderId: Int) {
-        val action = SetupOrderFragmentDirections.actionSetupOrderFragmentToCompleteOrderFragment(orderId)
+    private fun navigateToCompleteOrderFragment(order: Order) {
+        val action = SetupOrderFragmentDirections.actionSetupOrderFragmentToCompleteOrderFragment(order)
         findNavController().navigate(action)
     }
 

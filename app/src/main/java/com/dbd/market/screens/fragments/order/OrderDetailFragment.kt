@@ -1,20 +1,21 @@
-package com.dbd.market.screens.fragments.market
+package com.dbd.market.screens.fragments.order
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dbd.market.databinding.FragmentSearchBinding
+import com.dbd.market.R
+import com.dbd.market.databinding.FragmentOrderDetailBinding
 
-class SearchFragment : Fragment() {
-    private lateinit var binding: FragmentSearchBinding
+class OrderDetailFragment : Fragment() {
+    private lateinit var binding: FragmentOrderDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSearchBinding.inflate(inflater)
+        binding = FragmentOrderDetailBinding.inflate(inflater)
         return binding.root
     }
 

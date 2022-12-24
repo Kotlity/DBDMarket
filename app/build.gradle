@@ -99,9 +99,6 @@ dependencies {
     // Circular image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    // StepView
-    implementation 'com.shuhart.stepview:stepview:1.5.1'
-
     // ViewPager2 indicator
     implementation 'io.github.vejei.viewpagerindicator:viewpagerindicator:1.0.0-alpha.1'
 

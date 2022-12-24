@@ -1,4 +1,4 @@
-package com.dbd.market.screens.fragments.market
+package com.dbd.market.screens.fragments.market.bottom_navigation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

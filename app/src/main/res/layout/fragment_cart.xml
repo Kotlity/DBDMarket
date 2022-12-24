@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
-    tools:context=".screens.fragments.market.CartFragment">
+    tools:context=".screens.fragments.market.bottom_navigation.CartFragment">
 
     <ProgressBar
         android:id="@+id/cartFragmentProgressBar"
@@ -82,7 +82,7 @@
         android:id="@+id/totalPriceConstraintLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/cart_total_price_constraint_layout_background"
+        android:background="@drawable/total_price_constraint_layout_background"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/cartTotalPriceBottomHorizontalGuideline"
         app:layout_constraintEnd_toEndOf="@+id/cartRightVerticalGuideline"
@@ -92,11 +92,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/cartScreenTotalPriceTextViewMarginStart"
+            android:layout_marginStart="@dimen/totalPriceTextViewMarginStart"
             android:fontFamily="@font/app_buttons_font"
-            android:text="@string/cartScreenTotalPriceTextViewString"
+            android:text="@string/totalPriceTextViewString"
             android:textColor="@color/white"
-            android:textSize="@dimen/cartScreenTotalPriceTextViewSize"
+            android:textSize="@dimen/totalPriceTextViewTextSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

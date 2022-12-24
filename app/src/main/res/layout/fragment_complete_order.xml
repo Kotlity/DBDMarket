@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
-    tools:context=".screens.fragments.market.CompleteOrderFragment">
+    tools:context=".screens.fragments.order.CompleteOrderFragment">
 
     <ImageView
         android:id="@+id/closeCompleteOrder"
@@ -110,12 +110,12 @@
         app:layout_constraintBottom_toTopOf="@+id/completeOrderOrderDetailsButtonBottomHorizontalGuideline">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/orderDetailsButton"
+            android:id="@+id/orderDetailButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/orderDetailsButtonTextString"
+            android:text="@string/orderDetailButtonTextString"
             android:textAllCaps="false"
-            android:textSize="@dimen/orderDetailsButtonTextSize"
+            android:textSize="@dimen/orderDetailButtonTextSize"
             android:layout_weight="0.5"
             android:background="@drawable/setup_order_button_background"/>
 

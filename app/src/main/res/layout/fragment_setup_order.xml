@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
-    tools:context=".screens.fragments.market.SetupOrderFragment">
+    tools:context=".screens.fragments.order.SetupOrderFragment">
 
     <TextView
         android:id="@+id/setupOrderLoadingTextView"
@@ -154,11 +154,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/cartScreenTotalPriceTextViewMarginStart"
+        android:layout_marginStart="@dimen/totalPriceTextViewMarginStart"
         android:fontFamily="@font/app_buttons_font"
-        android:text="@string/cartScreenTotalPriceTextViewString"
+        android:text="@string/totalPriceTextViewString"
         android:textColor="@color/white"
-        android:textSize="@dimen/cartScreenTotalPriceTextViewSize"
+        android:textSize="@dimen/totalPriceTextViewTextSize"
         app:layout_constraintStart_toStartOf="@+id/setupOrderLeftVerticalGuideLine"
         app:layout_constraintBottom_toTopOf="@+id/setupOrderTotalPriceBottomView"/>
 

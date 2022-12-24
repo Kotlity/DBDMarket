@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    android:fillViewport="true"
+    tools:context=".screens.fragments.order.OrderDetailFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/closeOrderDetail"
+                android:layout_width="@dimen/closeFragmentImageViewSize"
+                android:layout_height="@dimen/closeFragmentImageViewSize"
+                android:src="@drawable/ic_close_icon"
+                android:layout_marginTop="@dimen/closeOrderDetailImageViewMarginTop"
+                app:layout_constraintStart_toStartOf="@+id/orderDetailLeftVerticalGuideLine"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/orderDetailIdTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/title_other_products"
+                android:text="@string/ordersIdTitleTextViewString"
+                android:textColor="@color/white"
+                android:textSize="@dimen/orderDetailIdTitleTextViewTextSize"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/orderDetailIdTitleTextViewMarginTop"
+                app:layout_constraintEnd_toEndOf="@+id/orderDetailRightVerticalGuideLine"
+                app:layout_constraintStart_toStartOf="@+id/orderDetailLeftVerticalGuideLine"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/orderDetailAddressTitleLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/orderDetailAddressTitleLinearLayoutMarginTop"
+                app:layout_constraintEnd_toStartOf="@+id/orderDetailRightVerticalGuideLine"
+                app:layout_constraintStart_toEndOf="@+id/orderDetailLeftVerticalGuideLine"
+                app:layout_constraintTop_toBottomOf="@+id/orderDetailIdTitleTextView">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/app_buttons_font"
+                    android:text="@string/orderDetailAddressTitleTextViewString"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/orderDetailAddressTitleTextViewTextSize" />
+
+                <TextView
+                    android:id="@+id/orderDetailAddressTypeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/orderDetailAddressTypeTextViewTextSize"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/orderDetailAddressInfoLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/order_detail_address_background"
+                android:gravity="start"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/orderDetailAddressInfoLinearLayoutPaddingHorizontal"
+                android:layout_marginTop="@dimen/orderDetailAddressInfoLinearLayoutMarginTop"
+                app:layout_constraintEnd_toStartOf="@+id/orderDetailRightVerticalGuideLine"
+                app:layout_constraintStart_toEndOf="@+id/orderDetailLeftVerticalGuideLine"
+                app:layout_constraintTop_toBottomOf="@+id/orderDetailAddressTitleLinearLayout">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/orderDetailAddressTitleTextView"
+                        android:text="@string/orderDetailAddressCountryTextViewString" />
+
+                    <View
+                        android:layout_width="@dimen/orderDetailSpaceBetweenAddressTitleAndItsValue"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:id="@+id/orderDetailAddressCountryTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/orderDetailAddressFieldsTextViewTextSize"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/orderDetailAddressTitleTextView"
+                        android:text="@string/orderDetailAddressCityTextViewString" />
+
+                    <View
+                        android:layout_width="@dimen/orderDetailSpaceBetweenAddressTitleAndItsValue"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:id="@+id/orderDetailAddressCityTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/orderDetailAddressFieldsTextViewTextSize"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/orderDetailAddressTitleTextView"
+                        android:text="@string/orderDetailAddressStreetTextViewString" />
+
+                    <View
+                        android:layout_width="@dimen/orderDetailSpaceBetweenAddressTitleAndItsValue"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:id="@+id/orderDetailAddressStreetTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/orderDetailAddressFieldsTextViewTextSize"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/orderDetailSpaceBetweenAddressPartsHeight"
+                    android:layout_marginVertical="@dimen/orderDetailSpaceBetweenAddressPartsMarginVertical"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/orderDetailAddressTitleTextView"
+                        android:text="@string/orderDetailAddressFirstNameTextViewString" />
+
+                    <View
+                        android:layout_width="@dimen/orderDetailSpaceBetweenAddressTitleAndItsValue"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:id="@+id/orderDetailAddressFirstNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/orderDetailAddressFieldsTextViewTextSize"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/orderDetailAddressTitleTextView"
+                        android:text="@string/orderDetailAddressLastNameTextViewString" />
+
+                    <View
+                        android:layout_width="@dimen/orderDetailSpaceBetweenAddressTitleAndItsValue"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:id="@+id/orderDetailAddressLastNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/orderDetailAddressFieldsTextViewTextSize"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/orderDetailPhoneNumberLinearLayoutMarginBottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/orderDetailAddressTitleTextView"
+                        android:text="@string/orderDetailAddressPhoneNumberTextViewString" />
+
+                    <View
+                        android:layout_width="@dimen/orderDetailSpaceBetweenAddressTitleAndItsValue"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:id="@+id/orderDetailAddressPhoneNumberTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/orderDetailAddressFieldsTextViewTextSize"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/orderDetailTitleRecyclerViewTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/orderDetailTitleRecyclerViewTextViewTextSize"
+                android:fontFamily="@font/app_buttons_font"
+                android:layout_marginTop="@dimen/orderDetailTitleRecyclerViewTextViewMarginTop"
+                app:layout_constraintStart_toEndOf="@+id/orderDetailLeftVerticalGuideLine"
+                app:layout_constraintTop_toBottomOf="@+id/orderDetailAddressInfoLinearLayout"
+                app:layout_constraintEnd_toStartOf="@+id/orderDetailRightVerticalGuideLine"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/orderDetailRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:layout_marginTop="@dimen/orderDetailRecyclerViewMarginTop"
+                app:layout_constraintStart_toEndOf="@+id/orderDetailLeftVerticalGuideLine"
+                app:layout_constraintTop_toBottomOf="@+id/orderDetailTitleRecyclerViewTextView"
+                app:layout_constraintEnd_toStartOf="@+id/orderDetailRightVerticalGuideLine"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/totalPriceConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/totalPriceConstraintLayoutHeight"
+                android:background="@drawable/total_price_constraint_layout_background"
+                android:orientation="horizontal"
+                android:layout_marginVertical="@dimen/totalPriceConstraintLayoutMarginVertical"
+                app:layout_constraintStart_toEndOf="@+id/orderDetailLeftVerticalGuideLine"
+                app:layout_constraintTop_toBottomOf="@+id/orderDetailRecyclerView"
+                app:layout_constraintEnd_toStartOf="@+id/orderDetailRightVerticalGuideLine"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/totalPriceTextViewMarginStart"
+                    android:fontFamily="@font/title_profitable_products"
+                    android:text="@string/totalPriceTextViewString"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/totalPriceTextViewTextSize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/orderDetailTotalPriceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/cartScreenPriceTextViewMarginEnd"
+                    android:fontFamily="@font/title_profitable_products"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/orderDetailTotalPriceTextViewTextSize"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/orderDetailLeftVerticalGuideLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.03" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/orderDetailRightVerticalGuideLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.97" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.dbd.market.screens.fragments.market.HomeFragment"
+        android:name="com.dbd.market.screens.fragments.market.bottom_navigation.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.dbd.market.screens.fragments.market.CartFragment"
+        android:name="com.dbd.market.screens.fragments.market.bottom_navigation.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" >
         <action
@@ -34,12 +34,12 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.dbd.market.screens.fragments.market.SearchFragment"
+        android:name="com.dbd.market.screens.fragments.market.bottom_navigation.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.dbd.market.screens.fragments.market.UserFragment"
+        android:name="com.dbd.market.screens.fragments.market.bottom_navigation.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
     <fragment
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/setupOrderFragment"
-        android:name="com.dbd.market.screens.fragments.market.SetupOrderFragment"
+        android:name="com.dbd.market.screens.fragments.order.SetupOrderFragment"
         android:label="fragment_setup_order"
         tools:layout="@layout/fragment_setup_order" >
         <argument
@@ -67,12 +67,9 @@
     </fragment>
     <fragment
         android:id="@+id/completeOrderFragment"
-        android:name="com.dbd.market.screens.fragments.market.CompleteOrderFragment"
+        android:name="com.dbd.market.screens.fragments.order.CompleteOrderFragment"
         android:label="fragment_complete_order"
         tools:layout="@layout/fragment_complete_order" >
-        <argument
-            android:name="completeOrderId"
-            app:argType="integer" />
         <action
             android:id="@+id/action_completeOrderFragment_to_homeFragment"
             app:destination="@id/homeFragment"
@@ -80,15 +77,20 @@
             app:exitAnim="@anim/to_right_screen_animation"
             app:popUpToInclusive="true"
             app:popUpTo="@id/homeFragment"/>
+        <argument
+            android:name="orderArgument"
+            app:argType="com.dbd.market.data.Order" />
         <action
-            android:id="@+id/action_completeOrderFragment_to_ordersFragment"
-            app:destination="@id/ordersFragment"
+            android:id="@+id/action_completeOrderFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment"
             app:enterAnim="@anim/from_bottom_screen_animation"
-            app:exitAnim="@anim/to_top_screen_animation"/>
+            app:exitAnim="@anim/to_top_screen_animation"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/completeOrderFragment"/>
     </fragment>
     <fragment
         android:id="@+id/ordersFragment"
-        android:name="com.dbd.market.screens.fragments.market.OrdersFragment"
+        android:name="com.dbd.market.screens.fragments.order.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" >
         <action
@@ -99,4 +101,18 @@
             app:popUpToInclusive="true"
             app:popUpTo="@id/homeFragment"/>
     </fragment>
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.dbd.market.screens.fragments.order.OrderDetailFragment"
+        android:label="fragment_order_detail"
+        tools:layout="@layout/fragment_order_detail" >
+        <action
+            android:id="@+id/action_orderDetailFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment"
+            app:enterAnim="@anim/from_top_screen_animation"
+            app:exitAnim="@anim/to_bottom_screen_animation"
+            app:popUpToInclusive="false"
+            app:popUpTo="@id/ordersFragment"/>
+    </fragment>
+
 </navigation>

@@ -1,11 +1,10 @@
-package com.dbd.market.screens.fragments.market
+package com.dbd.market.screens.fragments.order
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dbd.market.R
@@ -27,8 +26,8 @@ class CompleteOrderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupCompleteOrderIdTextView(args.completeOrderId)
-        navigateToOrdersFragment()
+        setupCompleteOrderIdTextView(args.orderArgument.id)
+        navigateToOrderDetailFragment()
         navigateToHomeFragment()
         handleOnBackPressedButton()
     }
@@ -39,6 +38,9 @@ class CompleteOrderFragment : Fragment() {
 
     private fun handleOnBackPressedButton() { onBackButtonPressed(R.id.action_completeOrderFragment_to_homeFragment) }
 
-    private fun navigateToOrdersFragment() { navigateToAnotherFragmentWithoutArguments(binding.orderDetailsButton, R.id.action_completeOrderFragment_to_ordersFragment) }
+    private fun navigateToOrderDetailFragment() {
+        val action =
+        findNavController()
+    }
 
 }

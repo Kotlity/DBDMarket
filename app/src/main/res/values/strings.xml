@@ -78,7 +78,7 @@
     <string name="productDescriptionSuccessfullyAddedToTheCartString">You have successfully added this product to your cart</string>
     <string name="productDescriptionPleaseChooseSizeString">Please choose the size for the product first</string>
     <string name="cartScreenProductListTitleString">Cart products list</string>
-    <string name="cartScreenTotalPriceTextViewString">Total price:</string>
+    <string name="totalPriceTextViewString">Total price:</string>
     <string name="cartScreenNextButtonTextString">Next</string>
     <string name="emptyCartTextViewString">Your cart list is empty</string>
     <string name="successfullyDeletedCartProductString">You have successfully deleted this cart product from your cart</string>
@@ -104,8 +104,8 @@
     <string name="completeOrderTitleTextViewString">Order is completed</string>
     <string name="completeOrderIdTitleTextViewString">Your order id is: #</string>
     <string name="completeOrderPathTitleTextViewString">To track your order follow the path:</string>
-    <string name="completeOrderPathTextViewString"><![CDATA[Profile -> All orders -> Recent order]]></string>
-    <string name="orderDetailsButtonTextString">Order details</string>
+    <string name="completeOrderPathTextViewString"><![CDATA[Profile -> All orders]]></string>
+    <string name="orderDetailButtonTextString">Order detail</string>
     <string name="setupOrderLoadingTextViewDeletingCartProductsString">Deleting cart products...</string>
     <string name="setupOrderLoadingTextViewAddingOrderToCollectionString">Adding order to collection...</string>
     <string name="initialLoadingTextViewStateString">Loading</string>
@@ -114,6 +114,13 @@
     <string name="thirdLoadingTextViewStateString">Loading...</string>
     <string name="ordersTitleTextViewString">Your orders</string>
     <string name="ordersEmptyTextViewString">Your orders list is empty</string>
-    <string name="ordersIdTitleTextViewString">Order: #</string>
+    <string name="ordersIdTitleTextViewString">Order:&#160;#</string>
     <string name="ordersRecyclerViewDateTitleTextViewString">Date:&#160;</string>
+    <string name="orderDetailAddressTitleTextViewString">Address</string>
+    <string name="orderDetailAddressCountryTextViewString">Country:&#160;</string>
+    <string name="orderDetailAddressCityTextViewString">City:&#160;</string>
+    <string name="orderDetailAddressStreetTextViewString">Street:&#160;</string>
+    <string name="orderDetailAddressFirstNameTextViewString">First Name:&#160;</string>
+    <string name="orderDetailAddressLastNameTextViewString">Last Name:&#160;</string>
+    <string name="orderDetailAddressPhoneNumberTextViewString">Phone number:&#160;</string>
 </resources>
