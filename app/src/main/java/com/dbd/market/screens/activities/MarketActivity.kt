@@ -45,14 +45,19 @@ class MarketActivity : AppCompatActivity() {
         binding.bottomNavigationView.setupWithNavController(navController)
     }
 
+    private fun hideBottomNavigationView() { binding.bottomNavigationView.visibility = View.GONE }
+
+    private fun showBottomNavigationView() { binding.bottomNavigationView.visibility = View.VISIBLE }
+
     private fun handleBottomNavigationViewVisibility() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.productDescriptionFragment -> binding.bottomNavigationView.visibility = View.GONE
-                R.id.setupOrderFragment -> binding.bottomNavigationView.visibility = View.GONE
-                R.id.completeOrderFragment -> binding.bottomNavigationView.visibility = View.GONE
-                R.id.ordersFragment -> binding.bottomNavigationView.visibility = View.GONE
-                else -> binding.bottomNavigationView.visibility = View.VISIBLE
+                R.id.productDescriptionFragment -> hideBottomNavigationView()
+                R.id.setupOrderFragment -> hideBottomNavigationView()
+                R.id.completeOrderFragment -> hideBottomNavigationView()
+                R.id.ordersFragment -> hideBottomNavigationView()
+                R.id.orderDetailFragment -> hideBottomNavigationView()
+                else -> showBottomNavigationView()
             }
         }
     }

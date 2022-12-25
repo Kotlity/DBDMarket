@@ -100,6 +100,15 @@
             app:exitAnim="@anim/to_bottom_screen_animation"
             app:popUpToInclusive="true"
             app:popUpTo="@id/homeFragment"/>
+        <action
+            android:id="@+id/action_ordersFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment"
+            app:enterAnim="@anim/from_left_screen_animation"
+            app:exitAnim="@anim/to_right_screen_animation"
+            app:popEnterAnim="@anim/from_right_screen_animation"
+            app:popExitAnim="@anim/to_left_screen_animation"
+            app:popUpToInclusive="false"
+            app:popUpTo="@id/ordersFragment"/>
     </fragment>
     <fragment
         android:id="@+id/orderDetailFragment"
@@ -113,6 +122,9 @@
             app:exitAnim="@anim/to_bottom_screen_animation"
             app:popUpToInclusive="false"
             app:popUpTo="@id/ordersFragment"/>
+        <argument
+            android:name="orderDetail"
+            app:argType="com.dbd.market.data.Order" />
     </fragment>
 
 </navigation>

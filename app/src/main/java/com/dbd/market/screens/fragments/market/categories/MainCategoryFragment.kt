@@ -17,7 +17,7 @@ import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.SpecialProductsAdapter
 import com.dbd.market.data.Product
 import com.dbd.market.databinding.FragmentMainCategoryBinding
-import com.dbd.market.screens.fragments.market.HomeFragmentDirections
+import com.dbd.market.screens.fragments.market.bottom_navigation.HomeFragmentDirections
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.RECYCLER_VIEW_AUTO_SCROLL_PERIOD
 import com.dbd.market.viewmodels.market.categories.MainCategoryViewModel

@@ -1,5 +1,6 @@
 package com.dbd.market.adapters.product_description
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.dbd.market.R
 import com.dbd.market.utils.Constants.PRODUCT_DESCRIPTION_IMAGE_VIEW_ANIMATION_DURATION
 
-class ProductDescriptionImageViewPager2Adapter: RecyclerView.Adapter<ProductDescriptionImageViewPager2Adapter.ProductDescriptionImageViewPager2ViewHolder>() {
+class ProductDescriptionImageViewPager2Adapter(private val thisContext: Context): RecyclerView.Adapter<ProductDescriptionImageViewPager2Adapter.ProductDescriptionImageViewPager2ViewHolder>() {
 
     inner class ProductDescriptionImageViewPager2ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(image: String) {

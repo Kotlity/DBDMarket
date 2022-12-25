@@ -9,9 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dbd.market.R
 import com.dbd.market.adapters.orders.OrdersAdapter
+import com.dbd.market.data.Order
 import com.dbd.market.databinding.FragmentOrdersBinding
 import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.market.OrdersViewModel
@@ -36,6 +38,7 @@ class OrdersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupOrdersRecyclerView()
         navigateToHomeFragment()
+        navigateToOrderDetailFragment()
         handleOnBackPressedButton()
         observeOrdersState()
     }
@@ -46,6 +49,14 @@ class OrdersFragment : Fragment() {
             adapter = ordersAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             addItemDecoration(MarginItemDecoration(MarginItemDecorationType.CARTPRODUCT, resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
+        }
+    }
+
+    private fun navigateToOrderDetailFragment() {
+        ordersAdapter.onRecyclerViewItemClick { order ->
+            val takenOrder = order as Order
+            val action = OrdersFragmentDirections.actionOrdersFragmentToOrderDetailFragment(takenOrder)
+            findNavController().navigate(action)
         }
     }
 

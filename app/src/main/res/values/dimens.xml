@@ -269,6 +269,13 @@
     <dimen name="orderDetailRecyclerViewMarginTop">15dp</dimen>
     <dimen name="totalPriceConstraintLayoutMarginVertical">15dp</dimen>
     <dimen name="totalPriceConstraintLayoutHeight">70dp</dimen>
+    <dimen name="orderDetailTimeLinearLayoutMarginTop">15dp</dimen>
+    <dimen name="orderDetailAmountTextViewTextSize">20sp</dimen>
+    <dimen name="orderDetailImagesViewPager2Height">150dp</dimen>
+    <dimen name="orderDetailImagesViewPager2MarginTop">5dp</dimen>
+    <dimen name="orderDetailImagesCircleViewPager2IndicatorMarginTop">8dp</dimen>
+    <dimen name="orderDetailImagesCircleViewPager2IndicatorGap">5dp</dimen>
+    <dimen name="orderDetailImagesCircleViewPager2IndicatorRadius">5dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

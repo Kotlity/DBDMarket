@@ -15,7 +15,7 @@ import com.dbd.market.adapters.main_category.InterestingProductsAdapter
 import com.dbd.market.adapters.main_category.ProfitableCategoryProductsAdapter
 import com.dbd.market.data.Product
 import com.dbd.market.databinding.FragmentSuitsBinding
-import com.dbd.market.screens.fragments.market.HomeFragmentDirections
+import com.dbd.market.screens.fragments.market.bottom_navigation.HomeFragmentDirections
 import com.dbd.market.utils.*
 import com.dbd.market.viewmodels.market.categories.SuitsCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint

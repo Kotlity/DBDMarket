@@ -73,7 +73,7 @@ class ProductDescriptionFragment : Fragment() {
     }
 
     private fun setupProductDescriptionImageViewPager2Adapter(product: Product) {
-        productDescriptionImageViewPager2Adapter = ProductDescriptionImageViewPager2Adapter()
+        productDescriptionImageViewPager2Adapter = ProductDescriptionImageViewPager2Adapter(requireContext())
         binding.apply {
             productDescriptionViewPager2.adapter = productDescriptionImageViewPager2Adapter
             productDescriptionImageViewPager2Adapter.differ.submitList(product.images)

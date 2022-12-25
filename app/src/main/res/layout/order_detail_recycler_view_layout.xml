@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/light_blue">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/cartProductRecyclerViewLayoutItemMarginTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/orderDetailImagesViewPager2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/orderDetailImagesViewPager2Height"
+            android:layout_marginTop="@dimen/orderDetailImagesViewPager2MarginTop"/>
+
+        <io.github.vejei.viewpagerindicator.indicator.CircleIndicator
+            android:id="@+id/orderDetailImagesCircleViewPager2Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/orderDetailImagesCircleViewPager2IndicatorMarginTop"
+            app:indicatorColor="@color/white"
+            app:indicatorSelectedColor="@color/red"
+            app:indicatorGap="@dimen/orderDetailImagesCircleViewPager2IndicatorGap"
+            app:indicatorRadius="@dimen/orderDetailImagesCircleViewPager2IndicatorRadius"/>
+
+
+        <TextView
+            android:id="@+id/cartProductTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/cartProductTitleTextViewSize"
+            android:fontFamily="@font/title_other_products"
+            android:layout_marginTop="@dimen/cartProductRecyclerViewLayoutItemMarginTop"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/cartProductRecyclerViewLayoutItemMarginTop">
+
+            <TextView
+                android:id="@+id/cartProductNewPriceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                android:textSize="@dimen/cartProductPricesTextViewsSize"/>
+
+            <View
+                android:layout_width="@dimen/cartProductPricesMarginHorizontal"
+                android:layout_height="0dp"/>
+
+            <TextView
+                android:id="@+id/cartProductOldPriceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                android:textSize="@dimen/cartProductPricesTextViewsSize"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/orderDetailAmountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/orderDetailAmountTextViewString"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            android:textSize="@dimen/orderDetailAmountTextViewTextSize"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/cartProductRecyclerViewLayoutItemMarginTop">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/cartProductSizeCircleImageView"
+                android:layout_width="@dimen/cartProductSizeCircleImageViewSize"
+                android:layout_height="@dimen/cartProductSizeCircleImageViewSize"
+                android:src="@color/dark_yellow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/cartProductSizeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/cartProductSizeTextViewSize"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@+id/cartProductSizeCircleImageView"
+                app:layout_constraintTop_toTopOf="@+id/cartProductSizeCircleImageView"
+                app:layout_constraintEnd_toEndOf="@+id/cartProductSizeCircleImageView"
+                app:layout_constraintBottom_toBottomOf="@+id/cartProductSizeCircleImageView"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,5 @@
 package com.dbd.market.adapters.orders
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,19 +9,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dbd.market.R
 import com.dbd.market.data.Order
-import java.text.SimpleDateFormat
+import com.dbd.market.utils.OnRecyclerViewItemClickInterface
+import com.dbd.market.utils.convertDateToString
 
-class OrdersAdapter: RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
+class OrdersAdapter: RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>(), OnRecyclerViewItemClickInterface {
 
     inner class OrdersViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val ordersIdTextView = itemView.findViewById<TextView>(R.id.ordersIdTextView)
         private val ordersDateTextView = itemView.findViewById<TextView>(R.id.ordersDateTextView)
 
-        @SuppressLint("SimpleDateFormat")
         fun bind(order: Order) {
             ordersIdTextView.text = order.id.toString()
-            val convertDateToString = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(order.time)
-            ordersDateTextView.text = convertDateToString
+            ordersDateTextView.text = convertDateToString(order.time)
         }
     }
 
@@ -44,8 +42,13 @@ class OrdersAdapter: RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
         val currentOrder = differ.currentList[position]
 
         holder.bind(currentOrder)
+        holder.itemView.setOnClickListener { onOrderClick?.let { it(currentOrder) } }
     }
 
     override fun getItemCount() = differ.currentList.size
+
+    private var onOrderClick: ((Order) -> Unit)? = null
+
+    override fun onRecyclerViewItemClick(onClick: (T: Any) -> Unit) { onOrderClick = onClick }
 
 }

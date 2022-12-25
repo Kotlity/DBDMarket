@@ -66,6 +66,27 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/orderDetailTimeLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/orderDetailTimeLinearLayoutMarginTop"
+                app:layout_constraintStart_toEndOf="@+id/orderDetailLeftVerticalGuideLine"
+                app:layout_constraintTop_toBottomOf="@+id/orderDetailAddressTitleLinearLayout"
+                app:layout_constraintEnd_toStartOf="@+id/orderDetailRightVerticalGuideLine">
+
+                <TextView
+                    style="@style/orderDetailAddressTitleTextView"
+                    android:text="@string/orderDateTitleTextViewString" />
+
+                <TextView
+                    style="@style/orderDetailAddressInfoTextView"
+                    android:id="@+id/orderDetailTimeTextView" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/orderDetailAddressInfoLinearLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -76,7 +97,7 @@
                 android:layout_marginTop="@dimen/orderDetailAddressInfoLinearLayoutMarginTop"
                 app:layout_constraintEnd_toStartOf="@+id/orderDetailRightVerticalGuideLine"
                 app:layout_constraintStart_toEndOf="@+id/orderDetailLeftVerticalGuideLine"
-                app:layout_constraintTop_toBottomOf="@+id/orderDetailAddressTitleLinearLayout">
+                app:layout_constraintTop_toBottomOf="@+id/orderDetailTimeLinearLayout">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -92,12 +113,8 @@
                         android:layout_height="0dp" />
 
                     <TextView
-                        android:id="@+id/orderDetailAddressCountryTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/orderDetailAddressFieldsTextViewTextSize"
-                        android:textStyle="italic" />
+                        style="@style/orderDetailAddressInfoTextView"
+                        android:id="@+id/orderDetailAddressCountryTextView" />
 
                 </LinearLayout>
 
@@ -115,12 +132,8 @@
                         android:layout_height="0dp" />
 
                     <TextView
-                        android:id="@+id/orderDetailAddressCityTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/orderDetailAddressFieldsTextViewTextSize"
-                        android:textStyle="italic" />
+                        style="@style/orderDetailAddressInfoTextView"
+                        android:id="@+id/orderDetailAddressCityTextView" />
 
                 </LinearLayout>
 
@@ -138,12 +151,8 @@
                         android:layout_height="0dp" />
 
                     <TextView
-                        android:id="@+id/orderDetailAddressStreetTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/orderDetailAddressFieldsTextViewTextSize"
-                        android:textStyle="italic" />
+                        style="@style/orderDetailAddressInfoTextView"
+                        android:id="@+id/orderDetailAddressStreetTextView" />
 
                 </LinearLayout>
 
@@ -167,12 +176,8 @@
                         android:layout_height="0dp" />
 
                     <TextView
-                        android:id="@+id/orderDetailAddressFirstNameTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/orderDetailAddressFieldsTextViewTextSize"
-                        android:textStyle="italic" />
+                        style="@style/orderDetailAddressInfoTextView"
+                        android:id="@+id/orderDetailAddressFirstNameTextView" />
 
                 </LinearLayout>
 
@@ -190,12 +195,8 @@
                         android:layout_height="0dp" />
 
                     <TextView
-                        android:id="@+id/orderDetailAddressLastNameTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/orderDetailAddressFieldsTextViewTextSize"
-                        android:textStyle="italic" />
+                        style="@style/orderDetailAddressInfoTextView"
+                        android:id="@+id/orderDetailAddressLastNameTextView" />
 
                 </LinearLayout>
 
@@ -214,12 +215,8 @@
                         android:layout_height="0dp" />
 
                     <TextView
-                        android:id="@+id/orderDetailAddressPhoneNumberTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/orderDetailAddressFieldsTextViewTextSize"
-                        android:textStyle="italic" />
+                        style="@style/orderDetailAddressInfoTextView"
+                        android:id="@+id/orderDetailAddressPhoneNumberTextView" />
 
                 </LinearLayout>
 

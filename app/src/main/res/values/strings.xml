@@ -115,7 +115,7 @@
     <string name="ordersTitleTextViewString">Your orders</string>
     <string name="ordersEmptyTextViewString">Your orders list is empty</string>
     <string name="ordersIdTitleTextViewString">Order:&#160;#</string>
-    <string name="ordersRecyclerViewDateTitleTextViewString">Date:&#160;</string>
+    <string name="orderDateTitleTextViewString">Date:&#160;</string>
     <string name="orderDetailAddressTitleTextViewString">Address</string>
     <string name="orderDetailAddressCountryTextViewString">Country:&#160;</string>
     <string name="orderDetailAddressCityTextViewString">City:&#160;</string>
@@ -123,4 +123,7 @@
     <string name="orderDetailAddressFirstNameTextViewString">First Name:&#160;</string>
     <string name="orderDetailAddressLastNameTextViewString">Last Name:&#160;</string>
     <string name="orderDetailAddressPhoneNumberTextViewString">Phone number:&#160;</string>
+    <string name="orderDetailAmountTextViewString">Amount:&#160;</string>
+    <string name="orderDetailProductTitleTextViewString">Product</string>
+    <string name="orderDetailProductsTitleTextViewString">Products</string>
 </resources>
