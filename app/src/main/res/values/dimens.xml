@@ -277,6 +277,9 @@
     <dimen name="orderDetailImagesCircleViewPager2IndicatorGap">5dp</dimen>
     <dimen name="orderDetailImagesCircleViewPager2IndicatorRadius">5dp</dimen>
     <dimen name="setupOrderCartProductsViewPager2Size">120dp</dimen>
+    <dimen name="userTakePictureFloatingActionButtonMarginEnd">30dp</dimen>
+    <dimen name="collapsingUserAppBarHeight">250dp</dimen>
+    <dimen name="collapsingUserToolbarExpandedTitleMarginStart">10dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>
