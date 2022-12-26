@@ -6,13 +6,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/turquoise">
 
-    <ImageView
-        android:id="@+id/setupOrderCartProductImageView"
-        android:layout_width="@dimen/setupOrderCartProductImageViewSize"
-        android:layout_height="@dimen/setupOrderCartProductImageViewSize"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/setupOrderCartProductsViewPager2"
+        android:layout_width="@dimen/setupOrderCartProductsViewPager2Size"
+        android:layout_height="@dimen/setupOrderCartProductsViewPager2Size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <io.github.vejei.viewpagerindicator.indicator.CircleIndicator
+        android:id="@+id/setupOrderCartProductsViewPager2Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/orderDetailImagesCircleViewPager2IndicatorMarginTop"
+        android:foregroundGravity="center"
+        app:indicatorColor="@color/white"
+        app:indicatorSelectedColor="@color/red"
+        app:indicatorGap="@dimen/orderDetailImagesCircleViewPager2IndicatorGap"
+        app:indicatorRadius="@dimen/orderDetailImagesCircleViewPager2IndicatorRadius"
+        app:layout_constraintStart_toStartOf="@+id/setupOrderCartProductsViewPager2"
+        app:layout_constraintTop_toBottomOf="@+id/setupOrderCartProductsViewPager2"
+        app:layout_constraintEnd_toEndOf="@+id/setupOrderCartProductsViewPager2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/setupOrderCartProductTitleTextView"
@@ -23,7 +37,7 @@
             android:textSize="@dimen/setupOrderCartProductTitleTextViewSize"
             android:fontFamily="@font/login_register_title_font"
             android:layout_margin="@dimen/setupOrderCartProductWidgetsMargin"
-            app:layout_constraintStart_toEndOf="@+id/setupOrderCartProductImageView"
+            app:layout_constraintStart_toEndOf="@+id/setupOrderCartProductsViewPager2"
             app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout

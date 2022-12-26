@@ -32,7 +32,6 @@
             app:indicatorGap="@dimen/orderDetailImagesCircleViewPager2IndicatorGap"
             app:indicatorRadius="@dimen/orderDetailImagesCircleViewPager2IndicatorRadius"/>
 
-
         <TextView
             android:id="@+id/cartProductTitleTextView"
             android:layout_width="wrap_content"

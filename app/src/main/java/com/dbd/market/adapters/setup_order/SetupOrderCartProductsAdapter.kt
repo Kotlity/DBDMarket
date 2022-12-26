@@ -5,35 +5,48 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import androidx.viewpager2.widget.ViewPager2
 import com.dbd.market.R
+import com.dbd.market.adapters.product_description.ProductDescriptionImageViewPager2Adapter
 import com.dbd.market.data.CartProduct
+import com.dbd.market.utils.Constants
+import com.dbd.market.utils.ViewPager2ImagesBackgroundType
 import com.dbd.market.utils.getNewPriceAfterDiscount
+import io.github.vejei.viewpagerindicator.indicator.CircleIndicator
 
-class SetupOrderCartProductsAdapter(private val thisContext: Context): RecyclerView.Adapter<SetupOrderCartProductsAdapter.SetupOrderCartProductsViewHolder>() {
+class SetupOrderCartProductsAdapter(private val setupOrderCartProductsAdapterContext: Context): RecyclerView.Adapter<SetupOrderCartProductsAdapter.SetupOrderCartProductsViewHolder>() {
 
     inner class SetupOrderCartProductsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val setupOrderCartProductImageView = itemView.findViewById<ImageView>(R.id.setupOrderCartProductImageView)
+        private val setupOrderCartProductsViewPager2 = itemView.findViewById<ViewPager2>(R.id.setupOrderCartProductsViewPager2)
+        private val setupOrderCartProductsViewPager2Indicator = itemView.findViewById<CircleIndicator>(R.id.setupOrderCartProductsViewPager2Indicator)
         private val setupOrderCartProductTitleTextView = itemView.findViewById<TextView>(R.id.setupOrderCartProductTitleTextView)
         private val setupOrderCartProductNewPriceTextView = itemView.findViewById<TextView>(R.id.setupOrderCartProductNewPriceTextView)
         private val setupOrderCartProductOldPriceTextView = itemView.findViewById<TextView>(R.id.setupOrderCartProductOldPriceTextView)
         private val setupOrderCartProductQuantityTextView = itemView.findViewById<TextView>(R.id.setupOrderCartProductQuantityTextView)
 
         fun bind(cartProduct: CartProduct) {
-            Glide.with(itemView.context).load(cartProduct.images[0]).error(R.drawable.ic_error_icon).into(setupOrderCartProductImageView)
+            setupOrderCartProductsChildAdapter(setupOrderCartProductsViewPager2, cartProduct.images)
+
+            if (cartProduct.images.size >= Constants.MIN_AMOUNT_OF_IMAGES_TO_SHOW_RECT_VIEW_PAGER2_INDICATOR) {
+                setupOrderCartProductsViewPager2Indicator.apply {
+                    setWithViewPager2(setupOrderCartProductsViewPager2)
+                    itemCount = cartProduct.images.size
+                    setAnimationMode(CircleIndicator.AnimationMode.SLIDE)
+                }
+            } else setupOrderCartProductsViewPager2Indicator.visibility = View.GONE
+
             setupOrderCartProductTitleTextView.text = cartProduct.name
             if (cartProduct.discount != null) {
                 setupOrderCartProductNewPriceTextView.text = getNewPriceAfterDiscount(cartProduct.price, cartProduct.discount)
                 setupOrderCartProductOldPriceTextView.apply {
                     text = cartProduct.price.toString().plus("$")
                     paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                    setTextColor(ContextCompat.getColor(thisContext, R.color.grey))
+                    setTextColor(ContextCompat.getColor(setupOrderCartProductsAdapterContext, R.color.grey))
                 }
             } else {
                 setupOrderCartProductNewPriceTextView.visibility = View.GONE
@@ -41,6 +54,12 @@ class SetupOrderCartProductsAdapter(private val thisContext: Context): RecyclerV
             }
             setupOrderCartProductQuantityTextView.text = cartProduct.amount.toString()
         }
+    }
+
+    private fun setupOrderCartProductsChildAdapter(childViewPager2: ViewPager2, listOfImages: List<String>) {
+        val setupOrderChildAdapter = ProductDescriptionImageViewPager2Adapter(setupOrderCartProductsAdapterContext, ViewPager2ImagesBackgroundType.WITHOUTSHADOW)
+        childViewPager2.adapter = setupOrderChildAdapter
+        setupOrderChildAdapter.differ.submitList(listOfImages)
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<CartProduct>() {

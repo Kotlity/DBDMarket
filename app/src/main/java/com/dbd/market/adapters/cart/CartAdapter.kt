@@ -11,17 +11,23 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.dbd.market.R
+import com.dbd.market.adapters.product_description.ProductDescriptionImageViewPager2Adapter
 import com.dbd.market.data.CartProduct
+import com.dbd.market.utils.Constants
 import com.dbd.market.utils.Constants.CART_PRODUCT_IMAGE_VIEW_ANIMATION_DURATION
+import com.dbd.market.utils.ViewPager2ImagesBackgroundType
 import com.dbd.market.utils.getNewPriceAfterDiscount
+import io.github.vejei.viewpagerindicator.indicator.CircleIndicator
 
 class CartAdapter(private val thisContext: Context): RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     inner class CartViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val cartProductImageView = itemView.findViewById<ImageView>(R.id.cartProductImageView)
+        private val cartProductsViewPager2 = itemView.findViewById<ViewPager2>(R.id.cartProductsViewPager2)
+        private val cartProductsViewPager2Indicator = itemView.findViewById<CircleIndicator>(R.id.cartProductsViewPager2Indicator)
         private val cartProductTitleTextView = itemView.findViewById<TextView>(R.id.cartProductTitleTextView)
         private val cartProductNewPriceTextView = itemView.findViewById<TextView>(R.id.cartProductNewPriceTextView)
         private val cartProductOldPriceTextView = itemView.findViewById<TextView>(R.id.cartProductOldPriceTextView)
@@ -32,11 +38,16 @@ class CartAdapter(private val thisContext: Context): RecyclerView.Adapter<CartAd
         val cartProductDeleteImageView = itemView.findViewById<ImageView>(R.id.cartProductDeleteImageView)
 
         fun bind(cartProduct: CartProduct) {
-            Glide.with(itemView.context)
-                .load(cartProduct.images[0])
-                .error(R.drawable.ic_error_icon)
-                .transition(DrawableTransitionOptions.withCrossFade(CART_PRODUCT_IMAGE_VIEW_ANIMATION_DURATION))
-                .into(cartProductImageView)
+            setupCartChildAdapter(cartProductsViewPager2, cartProduct.images)
+
+            if (cartProduct.images.size >= Constants.MIN_AMOUNT_OF_IMAGES_TO_SHOW_RECT_VIEW_PAGER2_INDICATOR) {
+                cartProductsViewPager2Indicator.apply {
+                    setWithViewPager2(cartProductsViewPager2)
+                    itemCount = cartProduct.images.size
+                    setAnimationMode(CircleIndicator.AnimationMode.SLIDE)
+                }
+            } else cartProductsViewPager2Indicator.visibility = View.GONE
+
             cartProductTitleTextView.text = cartProduct.name
             if (cartProduct.discount != null) {
                 cartProductNewPriceTextView.text = getNewPriceAfterDiscount(cartProduct.price, cartProduct.discount)
@@ -52,6 +63,12 @@ class CartAdapter(private val thisContext: Context): RecyclerView.Adapter<CartAd
             cartProductSizeTextView.text = cartProduct.size
             cartProductQuantityTextView.text = cartProduct.amount.toString()
         }
+    }
+
+    private fun setupCartChildAdapter(childViewPager2: ViewPager2, listOfImages: List<String>) {
+        val cartChildAdapter = ProductDescriptionImageViewPager2Adapter(thisContext, ViewPager2ImagesBackgroundType.WITHOUTSHADOW)
+        childViewPager2.adapter = cartChildAdapter
+        cartChildAdapter.differ.submitList(listOfImages)
     }
 
     private val differCallback = object: DiffUtil.ItemCallback<CartProduct>() {

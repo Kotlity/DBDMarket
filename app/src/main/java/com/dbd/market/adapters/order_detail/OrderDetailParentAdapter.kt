@@ -16,6 +16,7 @@ import com.dbd.market.R
 import com.dbd.market.adapters.product_description.ProductDescriptionImageViewPager2Adapter
 import com.dbd.market.data.CartProduct
 import com.dbd.market.utils.Constants
+import com.dbd.market.utils.ViewPager2ImagesBackgroundType
 import com.dbd.market.utils.getNewPriceAfterDiscount
 import io.github.vejei.viewpagerindicator.indicator.CircleIndicator
 import io.github.vejei.viewpagerindicator.indicator.RectIndicator
@@ -60,7 +61,7 @@ class OrderDetailParentAdapter(private val orderDetailParentAdapterContext: Cont
     }
 
     private fun setupOrderDetailChildAdapter(childViewPager2: ViewPager2, listOfImages: List<String>) {
-        val orderDetailChildAdapter = ProductDescriptionImageViewPager2Adapter(orderDetailParentAdapterContext)
+        val orderDetailChildAdapter = ProductDescriptionImageViewPager2Adapter(orderDetailParentAdapterContext, ViewPager2ImagesBackgroundType.WITHSHADOW)
         childViewPager2.adapter = orderDetailChildAdapter
         orderDetailChildAdapter.differ.submitList(listOfImages)
     }
