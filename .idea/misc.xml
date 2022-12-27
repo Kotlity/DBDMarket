@@ -6,6 +6,7 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable-v24/ic_first_last_name_icon_edit_text_out_of_focus.xml" value="0.1275" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable-v24/login_register_first_last_name_icon_edit_text_selector.xml" value="0.1275" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable-v24/products_adder_delete_all_images_button_background.xml" value="0.1605" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/all_orders_icon_background.xml" value="0.2405" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/app_add_to_cart_button_background.xml" value="0.1835" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/app_apply_dialog_button_background.xml" value="0.1975" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/app_cancel_dialog_button_background.xml" value="0.1895" />
@@ -39,12 +40,15 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/fghfgh.xml" value="0.21" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/floating_action_button_background.xml" value="0.2405" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_add_icon.xml" value="0.238" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_address_icon.xml" value="0.2355" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_baseline_download_24.xml" value="0.2405" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_cart_icon.xml" value="0.3035" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_close_icon.xml" value="0.177" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_delete_icon.xml" value="0.1765" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_done_icon.xml" value="0.1895" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_email_icon.xml" value="0.19" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_email_icon_edit_text_in_focus.xml" value="0.1275" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_email_icon_edit_text_out_of_focus.xml" value="0.1355" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_error_icon.xml" value="0.1895" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_favorite_border_icon.xml" value="0.1215" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_favorite_icon.xml" value="0.1865" />
@@ -52,12 +56,14 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_first_last_name_icon_edit_text_out_of_focus.xml" value="0.1275" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_headdress_selected_tab_layout_icon.xml" value="0.2475" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_headdress_tab_layout_icon.xml" value="0.2475" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_language_icon.xml" value="0.2355" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_main_tab_layout_icon.xml" value="0.2475" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_password_icon_edit_text_in_focus.xml" value="0.19" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_password_icon_edit_text_out_of_focus.xml" value="0.19" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_registration_email_icon_in_focus.xml" value="0.19" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_registration_email_icon_out_of_focus.xml" value="0.19" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_search_icon.xml" value="0.2475" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/ic_time_icon.xml" value="0.2355" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/increase_quantity_icon_background.xml" value="0.1765" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/interesting_item_button_background.xml" value="0.1865" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/login_edit_text_background.xml" value="0.1405" />
@@ -90,6 +96,14 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/toast_custom_background.xml" value="0.16" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/total_price_constraint_layout_background.xml" value="0.241" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/unselected_setup_order_addresses_recycler_view_item_background.xml" value="0.1995" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/user_exit_background.xml" value="0.1745" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/user_exit_background_selector.xml" value="0.1355" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/user_exit_icon_background.xml" value="0.1435" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/user_exit_layout_background.xml" value="0.1355" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/user_options_background.xml" value="0.2405" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/user_options_background_hovered.xml" value="0.1355" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/user_options_line_background.xml" value="0.176" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/drawable/user_title_options_background.xml" value="0.176" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/activity_login_register.xml" value="0.264" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/activity_main.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/activity_market.xml" value="0.264" />
@@ -120,7 +134,7 @@
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_sign_in_up_option.xml" value="0.3875" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_suits.xml" value="0.2" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_torso.xml" value="0.264" />
-        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_user.xml" value="0.264" />
+        <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_user.xml" value="0.2" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/fragment_weapon.xml" value="0.264" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/interesting_product_recycler_vew_layout.xml" value="0.4" />
         <entry key="..\:/Users/bogdan/AndroidStudioProjects/DBDMarket/app/src/main/res/layout/interesting_product_recycler_view_layout.xml" value="0.3875" />

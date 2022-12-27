@@ -21,7 +21,7 @@
             android:fitsSystemWindows="true"
             app:contentScrim="@color/orange"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            app:title="Bohdan Denysenko"
+            app:maxLines="2"
             app:expandedTitleMarginStart="@dimen/collapsingUserToolbarExpandedTitleMarginStart"
             app:collapsedTitleTextAppearance="@style/collapsedTitleOfToolbar"
             app:expandedTitleTextAppearance="@style/expandedTitleOfToolbar"
@@ -31,8 +31,7 @@
             <ImageView
                 android:id="@+id/collapsingUserImageView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/claudette_set_01"
+                android:layout_height="@dimen/collapsingUserImageViewHeight"
                 app:layout_collapseMode="parallax"
                 tools:ignore="ContentDescription" />
 
@@ -60,5 +59,197 @@
         android:baselineAlignBottom="false"
         app:backgroundTint="@color/dark_yellow"
         tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/userOperationsLinearLayoutMarginTop"
+        android:layout_marginHorizontal="@dimen/userOperationsLinearLayoutMarginHorizontal"
+        android:gravity="center"
+        android:background="@drawable/user_options_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/userOperationsChildLinearLayoutsHeight"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/userOperationsChildLinearLayoutsMarginTop"
+            android:layout_marginHorizontal="@dimen/userOperationsChildLinearLayoutsMarginHorizontal"
+            android:background="@drawable/user_title_options_background">
+
+            <ImageView
+                android:id="@+id/userAllOrdersIconImageView"
+                style="@style/userOptionsImageViews"
+                android:src="@drawable/ic_cart_icon"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:layout_width="@dimen/spaceBetweenUserOperationsWidgets"
+                android:layout_height="0dp"/>
+
+            <TextView
+                style="@style/userOptionsTextViews"
+                android:text="@string/userAllOrdersTextViewString" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/userSeparatorBetweenChildLinearLayoutsWidth"
+            android:layout_height="@dimen/userSeparatorBetweenChildLinearLayoutsHeight"
+            android:layout_marginVertical="@dimen/userSeparatorBetweenChildLinearLayoutsMarginVertical"
+            android:background="@drawable/user_options_line_background"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/userOperationsChildLinearLayoutsHeight"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/userOperationsChildLinearLayoutsMarginHorizontal"
+            android:background="@drawable/user_title_options_background">
+
+            <ImageView
+                style="@style/userOptionsImageViews"
+                android:src="@drawable/ic_time_icon"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:layout_width="@dimen/spaceBetweenUserOperationsWidgets"
+                android:layout_height="0dp"/>
+
+            <TextView
+                style="@style/userOptionsTextViews"
+                android:text="@string/userRecentOrderTextViewString" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/userSeparatorBetweenChildLinearLayoutsWidth"
+            android:layout_height="@dimen/userSeparatorBetweenChildLinearLayoutsHeight"
+            android:layout_marginVertical="@dimen/userSeparatorBetweenChildLinearLayoutsMarginVertical"
+            android:background="@drawable/user_options_line_background"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/userOperationsChildLinearLayoutsHeight"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/userOperationsChildLinearLayoutsMarginHorizontal"
+            android:background="@drawable/user_title_options_background">
+
+            <ImageView
+                android:id="@+id/userAllAddressesIconImageView"
+                style="@style/userOptionsImageViews"
+                android:src="@drawable/ic_address_icon"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:layout_width="@dimen/spaceBetweenUserOperationsWidgets"
+                android:layout_height="0dp"/>
+
+            <TextView
+                style="@style/userOptionsTextViews"
+                android:text="@string/userAllAddressesTextViewString" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/userSeparatorBetweenChildLinearLayoutsWidth"
+            android:layout_height="@dimen/userSeparatorBetweenChildLinearLayoutsHeight"
+            android:layout_marginVertical="@dimen/userSeparatorBetweenChildLinearLayoutsMarginVertical"
+            android:background="@drawable/user_options_line_background"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/userOperationsChildLinearLayoutsHeight"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/userOperationsChildLinearLayoutsMarginHorizontal"
+            android:background="@drawable/user_title_options_background">
+
+            <ImageView
+                android:id="@+id/userSelectLanguageIconImageView"
+                style="@style/userOptionsImageViews"
+                android:src="@drawable/ic_language_icon"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:layout_width="@dimen/spaceBetweenUserOperationsWidgets"
+                android:layout_height="0dp"/>
+
+            <TextView
+                style="@style/userOptionsTextViews"
+                android:text="@string/userLanguageTextViewString" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/userSeparatorBetweenChildLinearLayoutsWidth"
+            android:layout_height="@dimen/userSeparatorBetweenChildLinearLayoutsHeight"
+            android:layout_marginVertical="@dimen/userSeparatorBetweenChildLinearLayoutsMarginVertical"
+            android:background="@drawable/user_options_line_background"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/userOperationsChildLinearLayoutsHeight"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/userOperationsChildLinearLayoutsMarginHorizontal"
+            android:layout_marginBottom="@dimen/userOperationsChildLinearLayoutsMarginBottom"
+            android:background="@drawable/user_title_options_background">
+
+            <ImageView
+                android:id="@+id/userResetPasswordIconImageView"
+                style="@style/userOptionsImageViews"
+                android:src="@drawable/ic_security_icon"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:layout_width="@dimen/spaceBetweenUserOperationsWidgets"
+                android:layout_height="0dp"/>
+
+            <TextView
+                style="@style/userOptionsTextViews"
+                android:text="@string/userResetPasswordTextViewString" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/userExitLinearLayout"
+        android:layout_width="@dimen/userExitLinearLayoutWidth"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="@dimen/userExitLinearLayoutMarginBottom"
+        android:background="@drawable/user_options_background"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/userExitLinearLayoutPaddingVertical">
+
+        <ImageView
+            android:layout_width="@dimen/userExitImageViewSize"
+            android:layout_height="@dimen/userExitImageViewSize"
+            android:background="@drawable/user_exit_icon_background"
+            android:padding="@dimen/userExitImageViewPadding"
+            android:rotation="3"
+            android:src="@drawable/ic_exit_icon"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:layout_width="@dimen/spaceBetweenUserOperationsWidgets"
+            android:layout_height="0dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/title_other_products"
+            android:text="@string/userExitLinearLayoutTextString"
+            android:textColor="@color/black"
+            android:textSize="@dimen/userExitLinearLayoutTextSize"
+            android:textStyle="italic" />
+
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

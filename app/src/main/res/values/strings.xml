@@ -126,4 +126,10 @@
     <string name="orderDetailAmountTextViewString">Amount:&#160;</string>
     <string name="orderDetailProductTitleTextViewString">Product</string>
     <string name="orderDetailProductsTitleTextViewString">Products</string>
+    <string name="userAllOrdersTextViewString">All orders</string>
+    <string name="userRecentOrderTextViewString">Recent order</string>
+    <string name="userAllAddressesTextViewString">All addresses</string>
+    <string name="userLanguageTextViewString">Language</string>
+    <string name="userResetPasswordTextViewString">Reset password</string>
+    <string name="userExitLinearLayoutTextString">Exit</string>
 </resources>

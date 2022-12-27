@@ -280,6 +280,31 @@
     <dimen name="userTakePictureFloatingActionButtonMarginEnd">30dp</dimen>
     <dimen name="collapsingUserAppBarHeight">250dp</dimen>
     <dimen name="collapsingUserToolbarExpandedTitleMarginStart">10dp</dimen>
+    <dimen name="collapsingUserImageViewHeight">200dp</dimen>
+    <dimen name="userOperationsLinearLayoutMarginTop">150dp</dimen>
+    <dimen name="userOperationsLinearLayoutMarginHorizontal">10dp</dimen>
+    <dimen name="userOperationsChildLinearLayoutsHeight">40dp</dimen>
+    <dimen name="userOperationsChildLinearLayoutsMarginTop">10dp</dimen>
+    <dimen name="userOperationsChildLinearLayoutsMarginHorizontal">10dp</dimen>
+    <dimen name="userOperationsChildLinearLayoutsMarginBottom">10dp</dimen>
+    <dimen name="spaceBetweenUserOperationsWidgets">5dp</dimen>
+    <dimen name="userSeparatorBetweenChildLinearLayoutsWidth">100dp</dimen>
+    <dimen name="userSeparatorBetweenChildLinearLayoutsHeight">5dp</dimen>
+    <dimen name="userSeparatorBetweenChildLinearLayoutsMarginVertical">5dp</dimen>
+    <dimen name="userExitLinearLayoutWidth">200dp</dimen>
+    <dimen name="userExitLinearLayoutMarginBottom">50dp</dimen>
+    <dimen name="userExitLinearLayoutPaddingVertical">5dp</dimen>
+    <dimen name="userExitImageViewSize">40dp</dimen>
+    <dimen name="userExitImageViewPadding">8dp</dimen>
+    <dimen name="userExitLinearLayoutTextSize">35sp</dimen>
+    <dimen name="userOptionsTextViewsTextSize">25sp</dimen>
+    <dimen name="userOptionsImageViewsSize">30dp</dimen>
+    <dimen name="userExitIconBackgroundStrokeWidth">3dp</dimen>
+    <dimen name="userOptionsBackgroundStrokeWidth">2dp</dimen>
+    <dimen name="userOptionsBackgroundCornersRadius">20dp</dimen>
+    <dimen name="userOptionsLineBackgroundCornersRadius">5dp</dimen>
+    <dimen name="userTitleOptionsBackgroundCornersRadius">15dp</dimen>
+    <dimen name="userTitleOptionsBackgroundWidth">3dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

@@ -122,4 +122,20 @@
         <item name="android:textStyle">italic</item>
     </style>
 
+    <style name="userOptionsTextViews">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/userOptionsTextViewsTextSize</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/app_description_font</item>
+    </style>
+
+    <style name="userOptionsImageViews">
+        <item name="android:layout_width">@dimen/userOptionsImageViewsSize</item>
+        <item name="android:layout_height">@dimen/userOptionsImageViewsSize</item>
+        <item name="tint">@color/red</item>
+        <item name="android:rotation">3</item>
+    </style>
+
 </resources>
