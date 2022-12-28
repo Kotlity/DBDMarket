@@ -26,7 +26,7 @@
                 android:layout_marginTop="@dimen/appDialogViewsMarginTop"
                 android:fontFamily="@font/app_description_font"
                 android:textColor="@color/white"
-                android:textSize="@dimen/customAlertDialogTitleTextSize"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

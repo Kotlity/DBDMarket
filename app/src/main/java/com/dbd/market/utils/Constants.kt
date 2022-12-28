@@ -42,6 +42,7 @@ object Constants {
     const val BOUND_OF_ORDER_ID = 100
     const val BOUND_OF_ADDRESS_ID = 100
 
+    const val PERMISSION_UNSUPPORTED_PHONE_VERSION = "Sorry, but your version of Android does not support this feature"
     const val PERMISSION_HAS_DENIED = "You have not allowed the app to access your storage. Please do it manually in the app settings"
     const val ALERT_DIALOG_PERMISSION_RATIONALE_TITLE = "Storage permission required"
 

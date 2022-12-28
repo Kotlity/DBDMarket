@@ -1,7 +1,6 @@
 package com.dbd.market.screens.fragments.market.bottom_navigation
 
 import android.os.Bundle
-import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -80,18 +79,9 @@ class CartFragment : Fragment() {
     }
 
     private fun showAlertDialogToDeleteCartProduct(cartProduct: CartProduct) {
-        val typedTitleFloatValue = TypedValue().also {
-            requireContext().resources.getValue(R.dimen.customAlertDialogTitleTextViewSize, it, false)
-        }.float
-        val typedMessageFloatValue = TypedValue().also {
-            requireContext().resources.getValue(R.dimen.customAlertDialogMessageTextViewSize, it, false)
-        }.float
-
         showCustomAlertDialog(requireContext(),
             "Deleting ${cartProduct.name} from your cart",
-            typedTitleFloatValue,
             "Are you sure you want to delete ${cartProduct.name} from your cart ?",
-            typedMessageFloatValue,
             onPositiveButtonClick = {
                 cartViewModel.deleteCartProduct(cartProduct)
                 observeCartProductDeleteState()

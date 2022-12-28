@@ -1,7 +1,6 @@
 package com.dbd.market.screens.fragments.order
 
 import android.os.Bundle
-import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -86,18 +85,9 @@ class SetupOrderFragment : Fragment() {
     }
 
     private fun showAlertDialogToDeleteAddress(address: Address) {
-        val typedTitleFloatValue = TypedValue().also {
-            requireContext().resources.getValue(R.dimen.customAlertDialogTitleTextViewSize, it, false)
-        }.float
-        val typedMessageFloatValue = TypedValue().also {
-            requireContext().resources.getValue(R.dimen.customAlertDialogMessageTextViewSize, it, false)
-        }.float
-
         showCustomAlertDialog(requireContext(),
             getString(R.string.deletingAddressAlertDialogTitleString),
-            typedTitleFloatValue,
             getString(R.string.deletingAddressAlertDialogMessageString),
-            typedMessageFloatValue,
             onPositiveButtonClick = {
                 setupOrderViewModel.deleteAddress(address)
                 setupOrderViewModel.changeSetupOrderSelectedAddressValue(null)

@@ -11,7 +11,6 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -201,18 +200,9 @@ class ProductsAdderActivity : AppCompatActivity() {
     }
 
     private fun requestUserToDeleteAllTakenImages() {
-        val typedTitleFloatValue = TypedValue().also {
-            resources.getValue(R.dimen.customAlertDialogTitleTextViewSize, it, false)
-        }.float
-        val typedMessageFloatValue = TypedValue().also {
-            resources.getValue(R.dimen.customAlertDialogMessageTextViewSize, it, false)
-        }.float
-
         showCustomAlertDialog(this,
             DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_TITLE,
-            typedTitleFloatValue,
-            DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_MESSAGE,
-            typedMessageFloatValue) {
+            DELETE_ALL_TAKEN_IMAGES_ALERT_DIALOG_MESSAGE) {
             selectedImagesListFromGallery.clear()
             selectedImagesListForRecyclerView.clear()
             updateDataFromAdapter()
