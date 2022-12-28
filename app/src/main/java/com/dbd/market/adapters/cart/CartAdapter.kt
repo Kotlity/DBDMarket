@@ -12,13 +12,10 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.dbd.market.R
 import com.dbd.market.adapters.product_description.ProductDescriptionImageViewPager2Adapter
 import com.dbd.market.data.CartProduct
 import com.dbd.market.utils.Constants
-import com.dbd.market.utils.Constants.CART_PRODUCT_IMAGE_VIEW_ANIMATION_DURATION
 import com.dbd.market.utils.ViewPager2ImagesBackgroundType
 import com.dbd.market.utils.getNewPriceAfterDiscount
 import io.github.vejei.viewpagerindicator.indicator.CircleIndicator

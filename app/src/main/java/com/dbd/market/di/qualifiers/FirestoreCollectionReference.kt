@@ -4,7 +4,7 @@ import javax.inject.Qualifier
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class UserCollectionReference
+annotation class UsersCollectionReference
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)

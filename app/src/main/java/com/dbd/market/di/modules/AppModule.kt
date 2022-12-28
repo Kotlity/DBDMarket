@@ -27,6 +27,8 @@ import com.dbd.market.repositories.market.product_description.ProductDescription
 import com.dbd.market.repositories.market.product_description.ProductDescriptionRepositoryImplementation
 import com.dbd.market.repositories.market.setup_order.SetupOrderRepository
 import com.dbd.market.repositories.market.setup_order.SetupOrderRepositoryImplementation
+import com.dbd.market.repositories.market.user.UserRepository
+import com.dbd.market.repositories.market.user.UserRepositoryImplementation
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_ADDRESSES_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_CART_PRODUCTS_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_ORDERS_COLLECTION
@@ -34,6 +36,7 @@ import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_PRODUCTS_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_USER_COLLECTION
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -64,10 +67,14 @@ object AppModule {
     @Singleton
     fun provideUserUid() = FirebaseAuth.getInstance().currentUser?.uid
 
-    @UserCollectionReference
+    @UsersCollectionReference
     @Provides
     @Singleton
-    fun provideUserCollectionReference() = Firebase.firestore.collection(FIREBASE_FIRESTORE_USER_COLLECTION)
+    fun provideUsersCollectionReference() = Firebase.firestore.collection(FIREBASE_FIRESTORE_USER_COLLECTION)
+
+    @Provides
+    @Singleton
+    fun provideUserDocumentReference(userUid: String?, @UsersCollectionReference usersCollectionReference: CollectionReference) = userUid?.let { usersCollectionReference.document(it) }
 
     @Provides
     @Singleton
@@ -80,17 +87,21 @@ object AppModule {
     @UserCartProductsCollectionReference
     @Provides
     @Singleton
-    fun provideUserCartProductsCollectionReference(userUid: String?, @UserCollectionReference userCollectionReference: CollectionReference) = userUid?.let { userCollectionReference.document(it).collection(FIREBASE_FIRESTORE_CART_PRODUCTS_COLLECTION) }
+    fun provideUserCartProductsCollectionReference(userDocumentReference: DocumentReference?) = userDocumentReference?.collection(FIREBASE_FIRESTORE_CART_PRODUCTS_COLLECTION)
 
     @UserAddressesCollectionReference
     @Provides
     @Singleton
-    fun provideUserAddressesCollectionReference(userUid: String?, @UserCollectionReference userCollectionReference: CollectionReference) = userUid?.let { userCollectionReference.document(it).collection(FIREBASE_FIRESTORE_ADDRESSES_COLLECTION) }
+    fun provideUserAddressesCollectionReference(userDocumentReference: DocumentReference?) = userDocumentReference?.collection(FIREBASE_FIRESTORE_ADDRESSES_COLLECTION)
 
     @UserOrderCollectionReference
     @Provides
     @Singleton
-    fun provideUserOrderCollectionReference(userId: String?, @UserCollectionReference userCollectionReference: CollectionReference) = userId?.let { userCollectionReference.document(it).collection(FIREBASE_FIRESTORE_ORDERS_COLLECTION) }
+    fun provideUserOrderCollectionReference(userDocumentReference: DocumentReference?) = userDocumentReference?.collection(FIREBASE_FIRESTORE_ORDERS_COLLECTION)
+
+    @Provides
+    @Singleton
+    fun provideUserRepository(userDocumentReference: DocumentReference?): UserRepository = UserRepositoryImplementation(userDocumentReference)
 
     @Provides
     @Singleton
