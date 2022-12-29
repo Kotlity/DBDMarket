@@ -24,12 +24,17 @@ class UserRepositoryImplementation @Inject constructor(
         }
     }
 
-    override fun updateUserImage(imageUri: Uri, imageName: String, onSuccess: (Uri) -> Unit, onFailure: (String) -> Unit) {
+    override fun uploadUserImageToFirebaseStorage(imageUri: Uri, imageName: String, onSuccess: (Uri) -> Unit, onFailure: (String) -> Unit) {
         val userImagesStorageReference = storageReference.child(FIREBASE_STORAGE_USERS_IMAGES_PATH).child(userUid!!).child(imageName)
         userImagesStorageReference.putFile(imageUri).addOnSuccessListener {
             userImagesStorageReference.downloadUrl
                 .addOnSuccessListener { uploadedUri -> onSuccess(uploadedUri) }
                 .addOnFailureListener { downloadingImageUrlFromFirebaseStorageError -> onFailure(downloadingImageUrlFromFirebaseStorageError.message.toString()) }
         }.addOnFailureListener { addingImageToUserImagesStorageReferenceError -> onFailure(addingImageToUserImagesStorageReferenceError.message.toString()) }
+    }
+
+    override fun uploadUserImageToFirebaseFirestore(userImage: MutableMap<String, Any>, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
+        userDocumentReference?.update(userImage)?.addOnSuccessListener { onSuccess() }
+            ?.addOnFailureListener { updatingUserImageError -> onFailure(updatingUserImageError.message.toString()) }
     }
 }

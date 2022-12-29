@@ -24,6 +24,7 @@ import com.dbd.market.data.User
 import com.dbd.market.databinding.FragmentUserBinding
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.ALERT_DIALOG_PERMISSION_RATIONALE_TITLE
+import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_USER_IMAGE_FIELD
 import com.dbd.market.utils.Constants.PERMISSION_HAS_DENIED
 import com.dbd.market.utils.Constants.PERMISSION_UNSUPPORTED_PHONE_VERSION
 import com.dbd.market.utils.Constants.REQUEST_CODE_SELECT_IMAGES
@@ -53,6 +54,7 @@ class UserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         makeFloatingActionButtonVisibleWhileCollapsingToolbar()
         observeUserState()
+        observeUpdatedUserImageFirebaseFirestoreState()
         onUserFloatingButtonClick()
     }
 
@@ -125,10 +127,8 @@ class UserFragment : Fragment() {
             isPhotoPicked = true
             val takenImageUri = data.data
             val imageName = retrieveFileName(takenImageUri!!)
-            userViewModel.updateUserImage(takenImageUri, imageName)
-            observeUpdatedUserImageState()
-            val bitmapImage = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, takenImageUri)
-            binding.collapsingUserImageView.setImageBitmap(bitmapImage)
+            userViewModel.uploadUserImageToFirebaseStorage(takenImageUri, imageName)
+            observeUpdatedUserImageFirebaseStorageState()
         }
     }
 
@@ -145,14 +145,33 @@ class UserFragment : Fragment() {
         }
     }
 
-    private fun observeUpdatedUserImageState() {
+    private fun observeUpdatedUserImageFirebaseStorageState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            userViewModel.updatedUserImage.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+            userViewModel.updatedUserImageFirebaseStorage.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
                 when(it) {
                     is Resource.Success -> {
                         hideUserProgressBar()
-                        withContext(Dispatchers.Main) { Glide.with(this@UserFragment).load(it.data).into(binding.collapsingUserImageView) }
+                        val userImage = mutableMapOf<String, Any>()
+                        userImage[FIREBASE_FIRESTORE_USER_IMAGE_FIELD] = it.data.toString()
+                        userViewModel.uploadUserImageToFirebaseFirestore(userImage)
+                        observeUpdatedUserImageFirebaseFirestoreState()
                     }
+                    is Resource.Loading -> showUserProgressBar()
+                    is Resource.Error -> {
+                        hideUserProgressBar()
+                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                    }
+                    is Resource.Undefined -> Unit
+                }
+            }
+        }
+    }
+
+    private fun observeUpdatedUserImageFirebaseFirestoreState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            userViewModel.updatedUserImageFirebaseFirestore.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                when(it) {
+                    is Resource.Success -> hideUserProgressBar()
                     is Resource.Loading -> showUserProgressBar()
                     is Resource.Error -> {
                         hideUserProgressBar()

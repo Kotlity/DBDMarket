@@ -131,7 +131,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseFirestoreStorage() = Firebase.storage.reference
+    fun provideFirebaseStorage() = Firebase.storage.reference
 
     @Provides
     @Singleton

@@ -24,6 +24,7 @@ object Constants {
     const val FIREBASE_FIRESTORE_CART_PRODUCTS_SIZE_FIELD = "size"
     const val FIREBASE_FIRESTORE_CART_PRODUCTS_AMOUNT_FIELD = "amount"
     const val FIREBASE_FIRESTORE_ORDERS_DATE_FIELD = "time"
+    const val FIREBASE_FIRESTORE_USER_IMAGE_FIELD = "image"
 
     const val FIREBASE_FIRESTORE_ADDRESSES_ID_FIELD = "id"
 
