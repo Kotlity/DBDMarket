@@ -40,6 +40,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import dagger.Module
 import dagger.Provides
@@ -101,7 +102,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUserRepository(userDocumentReference: DocumentReference?): UserRepository = UserRepositoryImplementation(userDocumentReference)
+    fun provideUserRepository(userDocumentReference: DocumentReference?, storageReference: StorageReference, userUid: String?): UserRepository = UserRepositoryImplementation(userDocumentReference, storageReference, userUid)
 
     @Provides
     @Singleton

@@ -22,19 +22,18 @@ import com.bumptech.glide.Glide
 import com.dbd.market.R
 import com.dbd.market.data.User
 import com.dbd.market.databinding.FragmentUserBinding
-import com.dbd.market.utils.Constants
+import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.ALERT_DIALOG_PERMISSION_RATIONALE_TITLE
 import com.dbd.market.utils.Constants.PERMISSION_HAS_DENIED
 import com.dbd.market.utils.Constants.PERMISSION_UNSUPPORTED_PHONE_VERSION
 import com.dbd.market.utils.Constants.REQUEST_CODE_SELECT_IMAGES
 import com.dbd.market.utils.Constants.REQUEST_CODE_STORAGE_PERMISSION
-import com.dbd.market.utils.Resource
-import com.dbd.market.utils.showCustomAlertDialog
-import com.dbd.market.utils.showToast
 import com.dbd.market.viewmodels.market.UserViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class UserFragment : Fragment() {
@@ -125,6 +124,9 @@ class UserFragment : Fragment() {
         if (requestCode == REQUEST_CODE_SELECT_IMAGES && resultCode == RESULT_OK && data != null && data.data != null) {
             isPhotoPicked = true
             val takenImageUri = data.data
+            val imageName = retrieveFileName(takenImageUri!!)
+            userViewModel.updateUserImage(takenImageUri, imageName)
+            observeUpdatedUserImageState()
             val bitmapImage = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, takenImageUri)
             binding.collapsingUserImageView.setImageBitmap(bitmapImage)
         }
@@ -142,5 +144,28 @@ class UserFragment : Fragment() {
             }
         }
     }
+
+    private fun observeUpdatedUserImageState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            userViewModel.updatedUserImage.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                when(it) {
+                    is Resource.Success -> {
+                        hideUserProgressBar()
+                        withContext(Dispatchers.Main) { Glide.with(this@UserFragment).load(it.data).into(binding.collapsingUserImageView) }
+                    }
+                    is Resource.Loading -> showUserProgressBar()
+                    is Resource.Error -> {
+                        hideUserProgressBar()
+                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                    }
+                    is Resource.Undefined -> Unit
+                }
+            }
+        }
+    }
+
+    private fun showUserProgressBar() { binding.userProgressBar.visibility = View.VISIBLE }
+
+    private fun hideUserProgressBar() { binding.userProgressBar.visibility = View.GONE }
 
 }
