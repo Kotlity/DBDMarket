@@ -18,8 +18,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.dbd.market.R
+import com.dbd.market.data.Order
 import com.dbd.market.data.User
 import com.dbd.market.databinding.FragmentUserBinding
 import com.dbd.market.utils.*
@@ -32,15 +34,14 @@ import com.dbd.market.utils.Constants.REQUEST_CODE_STORAGE_PERMISSION
 import com.dbd.market.viewmodels.market.UserViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class UserFragment : Fragment() {
     private lateinit var binding: FragmentUserBinding
     private val userViewModel by viewModels<UserViewModel>()
     private var isPhotoPicked = false
+    private var recentOrder: Order? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +57,8 @@ class UserFragment : Fragment() {
         observeUserState()
         observeUpdatedUserImageFirebaseFirestoreState()
         onUserFloatingButtonClick()
+        onUserAllOrdersLinearLayoutClick()
+        onUserRecentOrderLinearLayoutClick()
     }
 
     private fun makeFloatingActionButtonVisibleWhileCollapsingToolbar() {
@@ -103,6 +106,19 @@ class UserFragment : Fragment() {
         binding.userTakePictureFloatingActionButton.setOnClickListener {
             if (checkIfMobileSDKIsEnoughToUploadUserImage()) handleDifferentVersionsOfRequestStoragePermission(Manifest.permission.READ_EXTERNAL_STORAGE)
             else showToast(requireContext(), binding.root, R.drawable.ic_error_icon, PERMISSION_UNSUPPORTED_PHONE_VERSION)
+        }
+    }
+
+    private fun onUserAllOrdersLinearLayoutClick() { navigateToAnotherFragmentWithoutArguments(binding.allOrdersLinearLayout, R.id.action_userFragment_to_ordersFragment) }
+
+    private fun onUserRecentOrderLinearLayoutClick() {
+        binding.recentOrderLinearLayout.setOnClickListener {
+            userViewModel.getUserRecentOrder()
+            observeUserRecentOrder()
+            recentOrder?.let {
+                val action = UserFragmentDirections.actionUserFragmentToOrderDetailFragment(it)
+                findNavController().navigate(action)
+            }
         }
     }
 
@@ -172,6 +188,25 @@ class UserFragment : Fragment() {
             userViewModel.updatedUserImageFirebaseFirestore.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
                 when(it) {
                     is Resource.Success -> hideUserProgressBar()
+                    is Resource.Loading -> showUserProgressBar()
+                    is Resource.Error -> {
+                        hideUserProgressBar()
+                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                    }
+                    is Resource.Undefined -> Unit
+                }
+            }
+        }
+    }
+
+    private fun observeUserRecentOrder() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            userViewModel.userRecentOrder.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                when(it) {
+                    is Resource.Success -> {
+                        hideUserProgressBar()
+                        recentOrder = it.data
+                    }
                     is Resource.Loading -> showUserProgressBar()
                     is Resource.Error -> {
                         hideUserProgressBar()

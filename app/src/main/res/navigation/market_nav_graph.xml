@@ -41,7 +41,22 @@
         android:id="@+id/userFragment"
         android:name="com.dbd.market.screens.fragments.market.bottom_navigation.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment"
+            app:enterAnim="@anim/from_right_screen_animation"
+            app:exitAnim="@anim/to_left_screen_animation"
+            app:popEnterAnim="@anim/from_left_screen_animation"
+            app:popExitAnim="@anim/to_right_screen_animation"/>
+        <action
+            android:id="@+id/action_userFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment"
+            app:enterAnim="@anim/from_top_screen_animation"
+            app:exitAnim="@anim/to_bottom_screen_animation"
+            app:popEnterAnim="@anim/from_bottom_screen_animation"
+            app:popExitAnim="@anim/to_top_screen_animation" />
+    </fragment>
     <fragment
         android:id="@+id/productDescriptionFragment"
         android:name="com.dbd.market.screens.fragments.market.ProductDescriptionFragment"
@@ -94,13 +109,6 @@
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" >
         <action
-            android:id="@+id/action_ordersFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/from_top_screen_animation"
-            app:exitAnim="@anim/to_bottom_screen_animation"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/homeFragment"/>
-        <action
             android:id="@+id/action_ordersFragment_to_orderDetailFragment"
             app:destination="@id/orderDetailFragment"
             app:enterAnim="@anim/from_left_screen_animation"
@@ -109,6 +117,13 @@
             app:popExitAnim="@anim/to_left_screen_animation"
             app:popUpToInclusive="false"
             app:popUpTo="@id/ordersFragment"/>
+        <action
+            android:id="@+id/action_ordersFragment_to_userFragment"
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/to_right_screen_animation"
+            app:exitAnim="@anim/from_left_screen_animation"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/userFragment"/>
     </fragment>
     <fragment
         android:id="@+id/orderDetailFragment"

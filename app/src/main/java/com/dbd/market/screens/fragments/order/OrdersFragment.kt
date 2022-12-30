@@ -37,7 +37,7 @@ class OrdersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupOrdersRecyclerView()
-        navigateToHomeFragment()
+        onCloseOrdersImageViewClick()
         navigateToOrderDetailFragment()
         handleOnBackPressedButton()
         observeOrdersState()
@@ -60,9 +60,9 @@ class OrdersFragment : Fragment() {
         }
     }
 
-    private fun navigateToHomeFragment() { navigateToAnotherFragmentWithoutArguments(binding.closeOrders, R.id.action_ordersFragment_to_homeFragment) }
+    private fun onCloseOrdersImageViewClick() { navigateToAnotherFragmentWithoutArguments(binding.closeOrders, R.id.action_ordersFragment_to_userFragment) }
 
-    private fun handleOnBackPressedButton() { onBackButtonPressed(R.id.action_ordersFragment_to_homeFragment) }
+    private fun handleOnBackPressedButton() { onBackButtonPressed(R.id.action_ordersFragment_to_userFragment) }
 
     private fun observeOrdersState() {
         viewLifecycleOwner.lifecycleScope.launch {

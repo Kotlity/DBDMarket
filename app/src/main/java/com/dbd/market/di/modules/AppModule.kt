@@ -102,7 +102,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUserRepository(userDocumentReference: DocumentReference?, storageReference: StorageReference, userUid: String?): UserRepository = UserRepositoryImplementation(userDocumentReference, storageReference, userUid)
+    fun provideUserRepository(userDocumentReference: DocumentReference?, @UserOrderCollectionReference userOrderCollectionReference: CollectionReference?, storageReference: StorageReference, userUid: String?): UserRepository = UserRepositoryImplementation(userDocumentReference, userOrderCollectionReference, storageReference, userUid)
 
     @Provides
     @Singleton

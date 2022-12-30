@@ -3,6 +3,7 @@ package com.dbd.market.viewmodels.market
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dbd.market.data.Order
 import com.dbd.market.data.User
 import com.dbd.market.repositories.market.user.UserRepository
 import com.dbd.market.utils.Resource
@@ -24,6 +25,9 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
 
     private val _updatedUserImageFirebaseFirestore = MutableStateFlow<Resource<Boolean>>(Resource.Undefined())
     val updatedUserImageFirebaseFirestore = _updatedUserImageFirebaseFirestore.asStateFlow()
+
+    private val _userRecentOrder = MutableStateFlow<Resource<Order>>(Resource.Undefined())
+    val userRecentOrder = _userRecentOrder.asStateFlow()
 
     init {
         getUser()
@@ -48,6 +52,13 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
             _updatedUserImageFirebaseFirestore.value = Resource.Loading()
             userRepository.uploadUserImageToFirebaseFirestore(userImage, onSuccess = { _updatedUserImageFirebaseFirestore.value = Resource.Success(true) },
             onFailure = { updatingUserImageError -> _updatedUserImageFirebaseFirestore.value = Resource.Error(updatingUserImageError) })
+        }
+    }
+
+    fun getUserRecentOrder() {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.getUserRecentOrder(onSuccess = { recentOrder -> _userRecentOrder.value = Resource.Success(recentOrder) },
+                onFailure = { gettingUserRecentOrderError -> _userRecentOrder.value = Resource.Error(gettingUserRecentOrderError) })
         }
     }
 
