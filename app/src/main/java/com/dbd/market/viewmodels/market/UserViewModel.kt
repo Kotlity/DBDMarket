@@ -57,6 +57,7 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
 
     fun getUserRecentOrder() {
         viewModelScope.launch(Dispatchers.IO) {
+            _userRecentOrder.value = Resource.Loading()
             userRepository.getUserRecentOrder(onSuccess = { recentOrder -> _userRecentOrder.value = Resource.Success(recentOrder) },
                 onFailure = { gettingUserRecentOrderError -> _userRecentOrder.value = Resource.Error(gettingUserRecentOrderError) })
         }

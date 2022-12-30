@@ -7,6 +7,8 @@ import com.dbd.market.repositories.introduction.login.LoginRepository
 import com.dbd.market.repositories.introduction.login.LoginRepositoryImplementation
 import com.dbd.market.repositories.introduction.register.RegisterRepository
 import com.dbd.market.repositories.introduction.register.RegisterRepositoryImplementation
+import com.dbd.market.repositories.market.addresses.AddressesRepository
+import com.dbd.market.repositories.market.addresses.AddressesRepositoryImplementation
 import com.dbd.market.repositories.market.cart.CartProductsRepository
 import com.dbd.market.repositories.market.cart.CartProductsRepositoryImplementation
 import com.dbd.market.repositories.market.categories.headdress.HeaddressCategoryRepository
@@ -103,6 +105,10 @@ object AppModule {
     @Provides
     @Singleton
     fun provideUserRepository(userDocumentReference: DocumentReference?, @UserOrderCollectionReference userOrderCollectionReference: CollectionReference?, storageReference: StorageReference, userUid: String?): UserRepository = UserRepositoryImplementation(userDocumentReference, userOrderCollectionReference, storageReference, userUid)
+
+    @Provides
+    @Singleton
+    fun provideAddressesRepository(@UserAddressesCollectionReference userAddressesCollectionReference: CollectionReference?): AddressesRepository = AddressesRepositoryImplementation(userAddressesCollectionReference)
 
     @Provides
     @Singleton
