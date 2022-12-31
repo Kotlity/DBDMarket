@@ -305,6 +305,20 @@
     <dimen name="userOptionsLineBackgroundCornersRadius">5dp</dimen>
     <dimen name="userTitleOptionsBackgroundCornersRadius">15dp</dimen>
     <dimen name="userTitleOptionsBackgroundWidth">3dp</dimen>
+    <dimen name="addressesTitleTextViewTextSize">26sp</dimen>
+    <dimen name="addressesEmptyTextViewTextSize">23sp</dimen>
+    <dimen name="addressesItemBackgroundCornersRadius">15dp</dimen>
+    <dimen name="addressesTypeTextViewTextSize">22sp</dimen>
+    <dimen name="addressesImageViewWidth">40dp</dimen>
+    <dimen name="addressesTextViewsLinearLayoutPaddingStart">5dp</dimen>
+    <dimen name="addressesTextViewsLinearLayoutMarginBottom">8dp</dimen>
+    <dimen name="addressesSpaceBetweenFirstLastNameTextViews">7dp</dimen>
+    <dimen name="addressesSpaceBetweenCountryCityTextViews">5dp</dimen>
+    <dimen name="addressesPhoneNumberTextViewTextSize">16sp</dimen>
+    <dimen name="addressesPhoneNumberTextViewMarginEnd">10dp</dimen>
+    <dimen name="addressesStreetTextViewTextSize">15sp</dimen>
+    <dimen name="addressesFirstLastNameTextViewsTextSize">18sp</dimen>
+    <dimen name="addressesCountryCityTextViewsTextSize">15sp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

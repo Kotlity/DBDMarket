@@ -141,5 +141,10 @@
             android:name="orderDetail"
             app:argType="com.dbd.market.data.Order" />
     </fragment>
+    <fragment
+        android:id="@+id/addressesFragment"
+        android:name="com.dbd.market.screens.fragments.market.AddressesFragment"
+        android:label="fragment_addresses"
+        tools:layout="@layout/fragment_addresses" />
 
 </navigation>

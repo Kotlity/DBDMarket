@@ -57,6 +57,7 @@ class MarketActivity : AppCompatActivity() {
                 R.id.completeOrderFragment -> hideBottomNavigationView()
                 R.id.ordersFragment -> hideBottomNavigationView()
                 R.id.orderDetailFragment -> hideBottomNavigationView()
+                R.id.addressesFragment -> hideBottomNavigationView()
                 else -> showBottomNavigationView()
             }
         }

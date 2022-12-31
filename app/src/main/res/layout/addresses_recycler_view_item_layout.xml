@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/addresses_item_background">
+
+    <TextView
+        android:id="@+id/addressesTypeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/addressesTypeTextViewTextSize"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/addressesImageView"
+        android:layout_width="@dimen/addressesImageViewWidth"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_address_icon"
+        app:tint="@color/yellow"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addressesTypeTextView"
+        app:layout_constraintEnd_toStartOf="@+id/addressesTextViewsLinearLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/addressesTextViewsLinearLayout"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:id="@+id/addressesTextViewsLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/addressesTextViewsLinearLayoutPaddingStart"
+        android:layout_marginBottom="@dimen/addressesTextViewsLinearLayoutMarginBottom"
+        app:layout_constraintStart_toEndOf="@+id/addressesImageView"
+        app:layout_constraintTop_toBottomOf="@+id/addressesTypeTextView"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/addressesFirstLastNameTextViews"
+                android:id="@+id/addressesFirstnameTextView" />
+
+            <View
+                android:layout_width="@dimen/addressesSpaceBetweenFirstLastNameTextViews"
+                android:layout_height="0dp"/>
+
+            <TextView
+                style="@style/addressesFirstLastNameTextViews"
+                android:id="@+id/addressesLastnameTextView" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/addressesCountryCityTextViews"
+                android:id="@+id/addressesCountryTextView" />
+
+            <View
+                android:layout_width="@dimen/addressesSpaceBetweenCountryCityTextViews"
+                android:layout_height="0dp"/>
+
+            <TextView
+                style="@style/addressesCountryCityTextViews"
+                android:id="@+id/addressesCityTextView" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/addressesPhoneNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/addressesPhoneNumberTextViewTextSize"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        android:layout_marginEnd="@dimen/addressesPhoneNumberTextViewMarginEnd"
+        app:layout_constraintTop_toBottomOf="@+id/addressesTypeTextView"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/addressesStreetTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:textSize="@dimen/addressesStreetTextViewTextSize"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/addressesPhoneNumberTextView"
+        app:layout_constraintTop_toBottomOf="@+id/addressesPhoneNumberTextView"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

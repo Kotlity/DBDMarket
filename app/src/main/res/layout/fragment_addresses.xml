@@ -1,8 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screens.fragments.market.AddressesFragment">
 
-</FrameLayout>
+    <ProgressBar
+        android:id="@+id/addressesProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/red"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/closeAddresses"
+        android:layout_width="@dimen/closeFragmentImageViewSize"
+        android:layout_height="@dimen/closeFragmentImageViewSize"
+        android:src="@drawable/ic_close_icon"
+        app:layout_constraintBottom_toTopOf="@+id/addressesToolbarBottomHorizontalGuideLine"
+        app:layout_constraintStart_toEndOf="@+id/addressesLeftVerticalGuideLine"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/app_title_font"
+        android:text="@string/addressesTitleTextViewText"
+        android:textColor="@color/white"
+        android:textSize="@dimen/addressesTitleTextViewTextSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/addressesToolbarBottomHorizontalGuideLine"
+        app:layout_constraintEnd_toStartOf="@+id/addressesRightVerticalGuideLine"
+        app:layout_constraintStart_toEndOf="@+id/addressesLeftVerticalGuideLine"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/addressesRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/addressesRightVerticalGuideLine"
+        app:layout_constraintStart_toEndOf="@+id/addressesLeftVerticalGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/addressesToolbarBottomHorizontalGuideLine" />
+
+    <ImageView
+        android:id="@+id/addressesEmptyImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_empty_cart_icon"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/emptyAddressesImageViewLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/emptyAddressesImageViewTopHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/emptyAddressesImageViewRightVerticalGuideline"
+        app:layout_constraintBottom_toTopOf="@+id/emptyAddressesImageViewBottomHorizontalGuideline"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/addressesEmptyTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/addressesEmptyTextViewString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/addressesEmptyTextViewTextSize"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/emptyAddressesImageViewLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/emptyAddressesImageViewBottomHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/emptyAddressesImageViewRightVerticalGuideline"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/addressesLeftVerticalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/addressesRightVerticalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/addressesToolbarBottomHorizontalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/emptyAddressesImageViewTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.30" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/emptyAddressesImageViewBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/emptyAddressesImageViewLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/emptyAddressesImageViewRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
