@@ -44,9 +44,9 @@ class OrderDetailFragment : Fragment() {
 
     private fun setupOrderDetailAddressInformation(address: Address) {
         val orderDetailTypeString = address.type
-        val updatedOrderDetailTypeString = StringBuilder(orderDetailTypeString).insert(0, "\"").insert(orderDetailTypeString.length + 1, "\"").toString()
+        val updatedOrderDetailTypeString = formatString(orderDetailTypeString)
         val orderDetailPhoneNumberString = address.phoneNumber
-        val updatedOrderDetailPhoneNumberString = StringBuilder(orderDetailPhoneNumberString).insert(0, "\"").insert(orderDetailPhoneNumberString.length + 1, "\"").toString()
+        val updatedOrderDetailPhoneNumberString = formatString(orderDetailPhoneNumberString)
 
         binding.apply {
             orderDetailAddressTypeTextView.text = updatedOrderDetailTypeString

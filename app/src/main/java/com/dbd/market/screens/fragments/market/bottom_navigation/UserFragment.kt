@@ -59,6 +59,7 @@ class UserFragment : Fragment() {
         onUserFloatingButtonClick()
         onUserAllOrdersLinearLayoutClick()
         onUserRecentOrderLinearLayoutClick()
+        onUserAllAddressesLinearLayoutClick()
     }
 
     private fun makeFloatingActionButtonVisibleWhileCollapsingToolbar() {
@@ -121,6 +122,8 @@ class UserFragment : Fragment() {
             }
         }
     }
+
+    private fun onUserAllAddressesLinearLayoutClick() { navigateToAnotherFragmentWithoutArguments(binding.allAddressesLinearLayout, R.id.action_userFragment_to_addressesFragment) }
 
     private fun launchIntentToTakeUserImageFromGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)

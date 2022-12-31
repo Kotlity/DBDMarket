@@ -56,6 +56,15 @@
             app:exitAnim="@anim/to_bottom_screen_animation"
             app:popEnterAnim="@anim/from_bottom_screen_animation"
             app:popExitAnim="@anim/to_top_screen_animation" />
+        <action
+            android:id="@+id/action_userFragment_to_addressesFragment"
+            app:destination="@id/addressesFragment"
+            app:popUpToInclusive="false"
+            app:popUpTo="@id/userFragment"
+            app:enterAnim="@anim/from_left_screen_animation"
+            app:exitAnim="@anim/to_right_screen_animation"
+            app:popEnterAnim="@anim/from_right_screen_animation"
+            app:popExitAnim="@anim/to_left_screen_animation"/>
     </fragment>
     <fragment
         android:id="@+id/productDescriptionFragment"

@@ -319,6 +319,8 @@
     <dimen name="addressesStreetTextViewTextSize">15sp</dimen>
     <dimen name="addressesFirstLastNameTextViewsTextSize">18sp</dimen>
     <dimen name="addressesCountryCityTextViewsTextSize">15sp</dimen>
+    <dimen name="addressesIdTextViewTextSize">18sp</dimen>
+    <dimen name="addressesIdTextViewMargin">10dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

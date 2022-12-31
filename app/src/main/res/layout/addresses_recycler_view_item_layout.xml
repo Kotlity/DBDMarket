@@ -24,7 +24,7 @@
         app:tint="@color/yellow"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addressesTypeTextView"
+        app:layout_constraintTop_toTopOf="@+id/addressesTextViewsLinearLayout"
         app:layout_constraintEnd_toStartOf="@+id/addressesTextViewsLinearLayout"
         app:layout_constraintBottom_toBottomOf="@+id/addressesTextViewsLinearLayout"
         tools:ignore="ContentDescription" />
@@ -100,5 +100,17 @@
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/addressesPhoneNumberTextView"
         app:layout_constraintTop_toBottomOf="@+id/addressesPhoneNumberTextView"/>
+
+    <TextView
+        android:id="@+id/addressesIdTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/addressesIdTextViewTextSize"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_margin="@dimen/addressesIdTextViewMargin"
+        app:layout_constraintTop_toBottomOf="@+id/addressesStreetTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
