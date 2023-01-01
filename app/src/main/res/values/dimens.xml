@@ -321,6 +321,11 @@
     <dimen name="addressesCountryCityTextViewsTextSize">15sp</dimen>
     <dimen name="addressesIdTextViewTextSize">18sp</dimen>
     <dimen name="addressesIdTextViewMargin">10dp</dimen>
+    <dimen name="changeLanguageAlertDialogTitleTextViewTextSize">22sp</dimen>
+    <dimen name="radioGroupMarginVertical">10dp</dimen>
+    <dimen name="languageImageViewsSize">30dp</dimen>
+    <dimen name="spaceBetweenLanguageWidgets">10dp</dimen>
+    <dimen name="languageTextViewsTextSize">20sp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

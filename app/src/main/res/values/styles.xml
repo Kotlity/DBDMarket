@@ -154,4 +154,18 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="languageImageViews">
+        <item name="android:layout_width">@dimen/languageImageViewsSize</item>
+        <item name="android:layout_height">@dimen/languageImageViewsSize</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="languageTextViews">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/languageTextViewsTextSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>

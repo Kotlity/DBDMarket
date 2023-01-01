@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardElevation="@dimen/cardViewDialogElevation"
+        app:cardCornerRadius="@dimen/cardViewDialogCornerRadius">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/dialog_custom_background">
+
+            <TextView
+                android:id="@+id/changeLanguageAlertDialogTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/appDialogViewsMarginTop"
+                android:fontFamily="@font/app_description_font"
+                android:textColor="@color/white"
+                android:textSize="@dimen/changeLanguageAlertDialogTitleTextViewTextSize"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginVertical="@dimen/radioGroupMarginVertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/changeLanguageAlertDialogTitleTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/changeLanguageAlertDialogButtonsTopHorizontalGuideline">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioButtonEnglish"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        style="@style/languageImageViews"
+                        android:src="@drawable/language_united_states_image"
+                        tools:ignore="ContentDescription" />
+
+                    <View
+                        android:layout_width="@dimen/spaceBetweenLanguageWidgets"
+                        android:layout_height="0dp"/>
+
+                    <TextView
+                        style="@style/languageTextViews"
+                        android:text="@string/unitedStatesTextViewString" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioButtonUkrainian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        style="@style/languageImageViews"
+                        android:src="@drawable/language_ukraine_image"
+                        tools:ignore="ContentDescription" />
+
+                    <View
+                        android:layout_width="@dimen/spaceBetweenLanguageWidgets"
+                        android:layout_height="0dp"/>
+
+                    <TextView
+                        style="@style/languageTextViews"
+                        android:text="@string/UkrainianTextViewString" />
+
+                </LinearLayout>
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/customAlertDialogButtonLayoutMarginTop"
+                app:layout_constraintBottom_toBottomOf="@+id/changeLanguageAlertDialogButtonsBottomHorizontalGuideline"
+                app:layout_constraintEnd_toEndOf="@+id/changeLanguageAlertDialogButtonsRightGuideline"
+                app:layout_constraintStart_toStartOf="@+id/changeLanguageAlertDialogButtonsLeftGuideline"
+                app:layout_constraintTop_toTopOf="@+id/changeLanguageAlertDialogButtonsTopHorizontalGuideline">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/changeLanguageAlertDialogCancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/app_cancel_dialog_button_background"
+                    android:text="@string/customAlertDialogCancelButtonTextString"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/appCancelSendButtonsDialogTextSize"
+                    android:textStyle="italic" />
+
+                <View
+                    android:layout_width="@dimen/horizontalSpaceBetweenCancelAndSendDialogButtons"
+                    android:layout_height="0dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/changeLanguageAlertDialogApplyButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/app_apply_dialog_button_background"
+                    android:text="@string/customAlertDialogApplyButtonTextString"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/appCancelSendButtonsDialogTextSize"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/changeLanguageAlertDialogButtonsTopHorizontalGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.65" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/changeLanguageAlertDialogButtonsBottomHorizontalGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.95" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/changeLanguageAlertDialogButtonsLeftGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.20" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/changeLanguageAlertDialogButtonsRightGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.80" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

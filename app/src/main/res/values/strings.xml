@@ -56,7 +56,7 @@
     <string name="productsAdderDescriptionTextViewString">The product\'s description</string>
     <string name="productsAdderPriceTextViewString">The product\'s price(in \'$\')</string>
     <string name="productsAdderDiscountTextViewString">The product\'s discount(optional, ex: 0.20)</string>
-    <string name="productsAdderSizeTextViewString">The product\'s size(can be several sizes, ex: L,XL,XXL</string>
+    <string name="productsAdderSizeTextViewString">The product\'s size(can be several sizes, ex: L,XL,XXL)</string>
     <string name="productsAdderSelectedImagesCountTextViewString">Images selected:</string>
     <string name="productsAdderAddImagesButtonTextString">Add products images</string>
     <string name="productsAdderDeleteAllImagesButtonTextString">Delete all products images</string>
@@ -133,4 +133,6 @@
     <string name="userExitLinearLayoutTextString">Exit</string>
     <string name="addressesTitleTextViewText">Your addresses</string>
     <string name="addressesEmptyTextViewString">Your addresses list is empty</string>
+    <string name="unitedStatesTextViewString">United States</string>
+    <string name="UkrainianTextViewString">Українська</string>
 </resources>
