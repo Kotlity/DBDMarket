@@ -2,6 +2,11 @@ package com.dbd.market.utils
 
 object Constants {
 
+    const val SHARED_PREFERENCES_LANGUAGE_KEY = "Language"
+    const val LANGUAGE_KEY = "language"
+    const val ENGLISH_LANGUAGE = "en"
+    const val UKRAINIAN_LANGUAGE = "uk"
+
     const val LOADING_SPLASH_SCREEN_TICK_PERIOD = 1000L
     const val LOADING_SPLASH_SCREEN_PERIOD = 3100L
 

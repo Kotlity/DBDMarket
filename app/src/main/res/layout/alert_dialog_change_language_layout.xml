@@ -33,25 +33,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginVertical="@dimen/radioGroupMarginVertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/changeLanguageAlertDialogTitleTextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/changeLanguageAlertDialogButtonsTopHorizontalGuideline">
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/unitedStatesLinearLayout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/radioButtonEnglish"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="1"
+                    app:layout_constraintStart_toStartOf="@+id/changeLanguageAlertDialogButtonsLeftGuideline"
+                    app:layout_constraintTop_toBottomOf="@+id/changeLanguageAlertDialogTitleTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/changeLanguageAlertDialogButtonsRightGuideline">
 
                     <ImageView
                         style="@style/languageImageViews"
@@ -63,20 +54,33 @@
                         android:layout_height="0dp"/>
 
                     <TextView
+                        android:id="@+id/unitedStatesTextView"
                         style="@style/languageTextViews"
                         android:text="@string/unitedStatesTextViewString" />
+
+                    <ImageView
+                        android:id="@+id/checkedUnitedStatesImageView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_done_icon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:visibility="gone"
+                        tools:ignore="ContentDescription" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/ukrainianLinearLayout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/radioButtonUkrainian"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp"
+                    android:weightSum="1"
+                    app:layout_constraintStart_toStartOf="@+id/changeLanguageAlertDialogButtonsLeftGuideline"
+                    app:layout_constraintTop_toBottomOf="@+id/unitedStatesLinearLayout"
+                    app:layout_constraintEnd_toEndOf="@+id/changeLanguageAlertDialogButtonsRightGuideline"
+                    app:layout_constraintBottom_toTopOf="@+id/changeLanguageAlertDialogButtonsTopHorizontalGuideline">
 
                     <ImageView
                         style="@style/languageImageViews"
@@ -88,18 +92,28 @@
                         android:layout_height="0dp"/>
 
                     <TextView
+                        android:id="@+id/ukrainianTextView"
                         style="@style/languageTextViews"
                         android:text="@string/UkrainianTextViewString" />
 
-                </LinearLayout>
+                    <ImageView
+                        android:id="@+id/checkedUkrainianImageView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_done_icon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:visibility="gone"
+                        tools:ignore="ContentDescription" />
 
-            </RadioGroup>
+                </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:weightSum="1"
                 android:layout_marginTop="@dimen/customAlertDialogButtonLayoutMarginTop"
                 app:layout_constraintBottom_toBottomOf="@+id/changeLanguageAlertDialogButtonsBottomHorizontalGuideline"
                 app:layout_constraintEnd_toEndOf="@+id/changeLanguageAlertDialogButtonsRightGuideline"
@@ -108,26 +122,11 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/changeLanguageAlertDialogCancelButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.4"
                     android:background="@drawable/app_cancel_dialog_button_background"
                     android:text="@string/customAlertDialogCancelButtonTextString"
-                    android:textAllCaps="false"
-                    android:textSize="@dimen/appCancelSendButtonsDialogTextSize"
-                    android:textStyle="italic" />
-
-                <View
-                    android:layout_width="@dimen/horizontalSpaceBetweenCancelAndSendDialogButtons"
-                    android:layout_height="0dp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/changeLanguageAlertDialogApplyButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/app_apply_dialog_button_background"
-                    android:text="@string/customAlertDialogApplyButtonTextString"
                     android:textAllCaps="false"
                     android:textSize="@dimen/appCancelSendButtonsDialogTextSize"
                     android:textStyle="italic" />

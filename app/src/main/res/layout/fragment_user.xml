@@ -165,6 +165,7 @@
             android:background="@drawable/user_options_line_background"/>
 
         <LinearLayout
+            android:id="@+id/languageLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/userOperationsChildLinearLayoutsHeight"
             android:orientation="horizontal"

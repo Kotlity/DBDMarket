@@ -135,4 +135,5 @@
     <string name="addressesEmptyTextViewString">Your addresses list is empty</string>
     <string name="unitedStatesTextViewString">United States</string>
     <string name="UkrainianTextViewString">Українська</string>
+    <string name="changeLanguageAlertDialogTitleString">Changing the application language</string>
 </resources>

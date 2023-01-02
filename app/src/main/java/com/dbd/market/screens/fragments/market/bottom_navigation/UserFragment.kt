@@ -2,8 +2,10 @@ package com.dbd.market.screens.fragments.market.bottom_navigation
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -11,6 +13,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatButton
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -24,17 +29,23 @@ import com.dbd.market.R
 import com.dbd.market.data.Order
 import com.dbd.market.data.User
 import com.dbd.market.databinding.FragmentUserBinding
+import com.dbd.market.screens.activities.MarketActivity
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.ALERT_DIALOG_PERMISSION_RATIONALE_TITLE
+import com.dbd.market.utils.Constants.ENGLISH_LANGUAGE
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_USER_IMAGE_FIELD
+import com.dbd.market.utils.Constants.LANGUAGE_KEY
+import com.dbd.market.utils.Constants.SHARED_PREFERENCES_LANGUAGE_KEY
 import com.dbd.market.utils.Constants.PERMISSION_HAS_DENIED
 import com.dbd.market.utils.Constants.PERMISSION_UNSUPPORTED_PHONE_VERSION
 import com.dbd.market.utils.Constants.REQUEST_CODE_SELECT_IMAGES
 import com.dbd.market.utils.Constants.REQUEST_CODE_STORAGE_PERMISSION
+import com.dbd.market.utils.Constants.UKRAINIAN_LANGUAGE
 import com.dbd.market.viewmodels.market.UserViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.util.*
 
 @AndroidEntryPoint
 class UserFragment : Fragment() {
@@ -42,6 +53,7 @@ class UserFragment : Fragment() {
     private val userViewModel by viewModels<UserViewModel>()
     private var isPhotoPicked = false
     private var recentOrder: Order? = null
+    private lateinit var currentLanguage: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +65,7 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        currentLanguage = Locale.getDefault().language
         makeFloatingActionButtonVisibleWhileCollapsingToolbar()
         observeUserState()
         observeUpdatedUserImageFirebaseFirestoreState()
@@ -60,6 +73,7 @@ class UserFragment : Fragment() {
         onUserAllOrdersLinearLayoutClick()
         onUserRecentOrderLinearLayoutClick()
         onUserAllAddressesLinearLayoutClick()
+        onUserLanguageLinearLayoutClick()
     }
 
     private fun makeFloatingActionButtonVisibleWhileCollapsingToolbar() {
@@ -124,6 +138,96 @@ class UserFragment : Fragment() {
     }
 
     private fun onUserAllAddressesLinearLayoutClick() { navigateToAnotherFragmentWithoutArguments(binding.allAddressesLinearLayout, R.id.action_userFragment_to_addressesFragment) }
+
+    private fun onUserLanguageLinearLayoutClick() {
+        binding.languageLinearLayout.setOnClickListener {
+            showAlertDialog()
+        }
+    }
+
+    private fun showAlertDialog() {
+        val alertDialog = AlertDialog.Builder(requireContext()).create()
+        val alertDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.alert_dialog_change_language_layout, null)
+        alertDialog.apply {
+            setView(alertDialogView)
+            setCancelable(false)
+        }
+
+        val changeLanguageAlertDialogTitleTextView = alertDialogView.findViewById<TextView>(R.id.changeLanguageAlertDialogTitleTextView)
+        val unitedStatesLinearLayout = alertDialogView.findViewById<LinearLayout>(R.id.unitedStatesLinearLayout)
+        val ukrainianLinearLayout = alertDialogView.findViewById<LinearLayout>(R.id.ukrainianLinearLayout)
+        val unitedStatesTextView = alertDialogView.findViewById<TextView>(R.id.unitedStatesTextView)
+        val ukrainianTextView = alertDialogView.findViewById<TextView>(R.id.ukrainianTextView)
+        val checkedUnitedStatesImageView = alertDialogView.findViewById<ImageView>(R.id.checkedUnitedStatesImageView)
+        val checkedUkrainianImageView = alertDialogView.findViewById<ImageView>(R.id.checkedUkrainianImageView)
+        val changeLanguageAlertDialogCancelButton = alertDialogView.findViewById<AppCompatButton>(R.id.changeLanguageAlertDialogCancelButton)
+
+        changeLanguageAlertDialogTitleTextView.text = getString(R.string.changeLanguageAlertDialogTitleString)
+
+        fun changeToEnglish() {
+            unitedStatesLinearLayout.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green))
+            checkedUnitedStatesImageView.visibility = View.VISIBLE
+            ukrainianLinearLayout.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.red))
+            ukrainianTextView.apply {
+                setTextColor(ContextCompat.getColor(requireContext(), R.color.grey))
+                typeface = Typeface.SANS_SERIF
+            }
+            checkedUkrainianImageView.visibility = View.GONE
+        }
+
+        fun changeToUkrainian() {
+            ukrainianLinearLayout.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green))
+            checkedUkrainianImageView.visibility = View.VISIBLE
+            unitedStatesLinearLayout.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.red))
+            unitedStatesTextView.apply {
+                setTextColor(ContextCompat.getColor(requireContext(), R.color.grey))
+                typeface = Typeface.SANS_SERIF
+            }
+            checkedUnitedStatesImageView.visibility = View.GONE
+        }
+
+        when(currentLanguage) {
+            ENGLISH_LANGUAGE -> changeToEnglish()
+            UKRAINIAN_LANGUAGE -> changeToUkrainian()
+        }
+
+        fun setLocal(langCode: String) {
+            val locale = Locale(langCode)
+            Locale.setDefault(locale)
+            val resources = context?.resources
+            val config = resources?.configuration
+            config?.locale = locale
+            resources?.updateConfiguration(config,resources.displayMetrics)
+        }
+
+        fun changeLanguage(language: String) {
+            val intent = Intent(requireActivity(), MarketActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
+            val sharedPref = activity?.getSharedPreferences(SHARED_PREFERENCES_LANGUAGE_KEY, Context.MODE_PRIVATE)
+            sharedPref?.edit()?.putString(LANGUAGE_KEY, ENGLISH_LANGUAGE)?.apply()
+
+            if (language == ENGLISH_LANGUAGE) {
+                setLocal(ENGLISH_LANGUAGE)
+                changeToEnglish()
+                sharedPref?.edit()?.putString(LANGUAGE_KEY, ENGLISH_LANGUAGE)?.apply()
+                startActivity(intent)
+            } else if (language == UKRAINIAN_LANGUAGE) {
+                setLocal(UKRAINIAN_LANGUAGE)
+                changeToUkrainian()
+                sharedPref?.edit()?.putString(LANGUAGE_KEY, UKRAINIAN_LANGUAGE)?.apply()
+                startActivity(intent)
+            }
+        }
+
+        unitedStatesLinearLayout.setOnClickListener { changeLanguage(ENGLISH_LANGUAGE) }
+
+        ukrainianLinearLayout.setOnClickListener { changeLanguage(UKRAINIAN_LANGUAGE) }
+
+        changeLanguageAlertDialogCancelButton.setOnClickListener { alertDialog.dismiss() }
+
+        alertDialog.show()
+    }
 
     private fun launchIntentToTakeUserImageFromGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)

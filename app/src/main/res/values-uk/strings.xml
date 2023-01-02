@@ -136,4 +136,5 @@
     <string name="addressesEmptyTextViewString">Ваш список адрес порожній</string>
     <string name="unitedStatesTextViewString">United States</string>
     <string name="UkrainianTextViewString">Українська</string>
+    <string name="changeLanguageAlertDialogTitleString">Зміна мови програми</string>
 </resources>
