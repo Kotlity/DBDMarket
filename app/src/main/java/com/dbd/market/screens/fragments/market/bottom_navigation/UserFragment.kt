@@ -69,11 +69,13 @@ class UserFragment : Fragment() {
         makeFloatingActionButtonVisibleWhileCollapsingToolbar()
         observeUserState()
         observeUpdatedUserImageFirebaseFirestoreState()
+        observeUserResetPasswordState()
         onUserFloatingButtonClick()
         onUserAllOrdersLinearLayoutClick()
         onUserRecentOrderLinearLayoutClick()
         onUserAllAddressesLinearLayoutClick()
         onUserLanguageLinearLayoutClick()
+        onUserResetPasswordLinearLayoutClick()
     }
 
     private fun makeFloatingActionButtonVisibleWhileCollapsingToolbar() {
@@ -142,6 +144,19 @@ class UserFragment : Fragment() {
     private fun onUserLanguageLinearLayoutClick() {
         binding.languageLinearLayout.setOnClickListener {
             showAlertDialog()
+        }
+    }
+
+    private fun onUserResetPasswordLinearLayoutClick() {
+        binding.resetPasswordLinearLayout.setOnClickListener {
+            showDialogForResettingPassword(
+                requireContext(),
+                getString(R.string.resetPasswordTitleDialogTextViewString),
+                getString(R.string.resetPasswordDescriptionDialogTextViewString),
+                getString(R.string.appCancelResetPasswordButtonTextString),
+                getString(R.string.appSendResetPasswordButtonTextString),
+                onPositiveButtonClick = { email -> userViewModel.resetUserPasswordViaEmail(email) }
+            )
         }
     }
 
@@ -319,6 +334,19 @@ class UserFragment : Fragment() {
                         hideUserProgressBar()
                         showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
                     }
+                    is Resource.Undefined -> Unit
+                }
+            }
+        }
+    }
+
+    private fun observeUserResetPasswordState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            userViewModel.userResetPassword.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                when(it) {
+                    is Resource.Success -> showToast(requireActivity(), binding.root, R.drawable.ic_done_icon, getString(R.string.successResetPasswordToastMessageString))
+                    is Resource.Error -> showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                    is Resource.Loading -> Unit
                     is Resource.Undefined -> Unit
                 }
             }

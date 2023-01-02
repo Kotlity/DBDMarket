@@ -5,17 +5,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbd.market.data.Order
 import com.dbd.market.data.User
+import com.dbd.market.helpers.operations.UserResettingPasswordOperation
 import com.dbd.market.repositories.market.user.UserRepository
 import com.dbd.market.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UserViewModel @Inject constructor(private val userRepository: UserRepository): ViewModel() {
+class UserViewModel @Inject constructor(
+    private val userRepository: UserRepository,
+    private val userResettingPasswordOperation: UserResettingPasswordOperation): ViewModel() {
 
     private val _user = MutableStateFlow<Resource<User>>(Resource.Undefined())
     val user = _user.asStateFlow()
@@ -28,6 +33,9 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
 
     private val _userRecentOrder = MutableStateFlow<Resource<Order>>(Resource.Undefined())
     val userRecentOrder = _userRecentOrder.asStateFlow()
+
+    private val _userResetPassword = MutableSharedFlow<Resource<String>>()
+    val userResetPassword = _userResetPassword.asSharedFlow()
 
     init {
         getUser()
@@ -60,6 +68,16 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
             _userRecentOrder.value = Resource.Loading()
             userRepository.getUserRecentOrder(onSuccess = { recentOrder -> _userRecentOrder.value = Resource.Success(recentOrder) },
                 onFailure = { gettingUserRecentOrderError -> _userRecentOrder.value = Resource.Error(gettingUserRecentOrderError) })
+        }
+    }
+
+    fun resetUserPasswordViaEmail(email: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _userResetPassword.emit(Resource.Loading())
+            userResettingPasswordOperation.resetUserPasswordViaEmail(email,
+                onSuccess = { viewModelScope.launch(Dispatchers.IO) { _userResetPassword.emit(Resource.Success(email)) } },
+                onFailure = { resettingUserPasswordError -> viewModelScope.launch(Dispatchers.IO) { _userResetPassword.emit(Resource.Error(resettingUserPasswordError)) } }
+            )
         }
     }
 

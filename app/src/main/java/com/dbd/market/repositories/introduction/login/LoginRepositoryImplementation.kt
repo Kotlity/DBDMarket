@@ -5,8 +5,7 @@ import com.google.firebase.auth.FirebaseAuth
 import java.lang.Exception
 import javax.inject.Inject
 
-class LoginRepositoryImplementation @Inject constructor(private val firebaseAuth: FirebaseAuth):
-    LoginRepository {
+class LoginRepositoryImplementation @Inject constructor(private val firebaseAuth: FirebaseAuth): LoginRepository {
 
     override fun loginUserWithEmailAndPassword(email: String, password: String, onSuccess: (AuthResult) -> Unit, onFailure: (Exception) -> Unit) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -15,16 +14,6 @@ class LoginRepositoryImplementation @Inject constructor(private val firebaseAuth
             }
             .addOnFailureListener { loginException ->
                 onFailure(loginException)
-            }
-    }
-
-    override fun resetPasswordWithEmail(email: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
-        firebaseAuth.sendPasswordResetEmail(email)
-            .addOnSuccessListener {
-                onSuccess()
-            }
-            .addOnFailureListener { resetException ->
-                onFailure(resetException)
             }
     }
 }

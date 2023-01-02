@@ -2,6 +2,7 @@ package com.dbd.market.viewmodels.introduction
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dbd.market.helpers.operations.UserResettingPasswordOperation
 import com.dbd.market.repositories.introduction.login.LoginRepository
 import com.dbd.market.utils.*
 import com.google.firebase.auth.FirebaseUser
@@ -14,7 +15,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository): ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val loginRepository: LoginRepository,
+    private val userResettingPasswordOperation: UserResettingPasswordOperation): ViewModel() {
 
     private val _loginUser: MutableSharedFlow<Resource<FirebaseUser>> = MutableSharedFlow()
     val loginUser = _loginUser.asSharedFlow()
@@ -65,7 +68,7 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
         viewModelScope.launch {
             _resetPassword.emit(Resource.Loading())
         }
-        loginRepository.resetPasswordWithEmail(email,
+        userResettingPasswordOperation.resetUserPasswordViaEmail(email,
             onSuccess = {
                 viewModelScope.launch {
                     _resetPassword.emit(Resource.Success(email))
@@ -73,7 +76,7 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
             },
             onFailure = { resetException ->
                 viewModelScope.launch {
-                    _resetPassword.emit(Resource.Error(resetException.message.toString()))
+                    _resetPassword.emit(Resource.Error(resetException))
                 }
             }
         )
