@@ -136,4 +136,6 @@
     <string name="unitedStatesTextViewString">United States</string>
     <string name="UkrainianTextViewString">Українська</string>
     <string name="changeLanguageAlertDialogTitleString">Changing the application language</string>
+    <string name="userLogoutTitleAlertDialogString">Signing out of a user account</string>
+    <string name="userLogoutMessageAlertDialogString">Are you sure you want to log out of your user account ?</string>
 </resources>

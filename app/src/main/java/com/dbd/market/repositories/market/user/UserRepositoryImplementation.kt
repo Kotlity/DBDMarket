@@ -6,6 +6,8 @@ import com.dbd.market.data.User
 import com.dbd.market.di.qualifiers.UserOrderCollectionReference
 import com.dbd.market.utils.Constants
 import com.dbd.market.utils.Constants.FIREBASE_STORAGE_USERS_IMAGES_PATH
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.Query
@@ -18,6 +20,7 @@ class UserRepositoryImplementation @Inject constructor(
     private val userDocumentReference: DocumentReference?,
     @UserOrderCollectionReference private val userOrderCollectionReference: CollectionReference?,
     private val storageReference: StorageReference,
+    private val firebaseAuth: FirebaseAuth,
     private val userUid: String?
     ): UserRepository {
 
@@ -54,6 +57,13 @@ class UserRepositoryImplementation @Inject constructor(
                 onSuccess(recentUserOrder[0])
             }
             ?.addOnFailureListener { gettingUserRecentOrderException -> onFailure(gettingUserRecentOrderException.message.toString())}
+    }
+
+    override fun userLogout(onSuccess: () -> Unit, onFailure: (String) -> Unit) {
+        try {
+            firebaseAuth.signOut()
+            onSuccess()
+        } catch (e: FirebaseAuthException) { onFailure(e.message.toString()) }
     }
 
 }

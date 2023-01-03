@@ -64,6 +64,8 @@ object Constants {
 
     const val IMAGES_ARE_NOT_SELECTED = "Images are not selected"
 
+    const val USER_SUCCESSFULLY_LOGOUT = "You have successfully logged out of your account"
+
     const val FIRSTNAME_IS_EMPTY= "Firstname cannot be empty"
     const val FIRSTNAME_STARTS_WITH_LOWERCASE = "Firstname cannot starts with lowercase"
     const val FIRSTNAME_STARTS_WITH_DIGIT = "Firstname cannot starts with a digit"

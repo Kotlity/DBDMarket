@@ -137,4 +137,6 @@
     <string name="unitedStatesTextViewString">United States</string>
     <string name="UkrainianTextViewString">Українська</string>
     <string name="changeLanguageAlertDialogTitleString">Зміна мови програми</string>
+    <string name="userLogoutTitleAlertDialogString">Вихід з облікового запису користувача</string>
+    <string name="userLogoutMessageAlertDialogString">Ви дійсно хочете вийти з облікового запису користувача ?</string>
 </resources>

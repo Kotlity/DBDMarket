@@ -104,7 +104,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUserRepository(userDocumentReference: DocumentReference?, @UserOrderCollectionReference userOrderCollectionReference: CollectionReference?, storageReference: StorageReference, userUid: String?): UserRepository = UserRepositoryImplementation(userDocumentReference, userOrderCollectionReference, storageReference, userUid)
+    fun provideUserRepository(userDocumentReference: DocumentReference?, @UserOrderCollectionReference userOrderCollectionReference: CollectionReference?, storageReference: StorageReference, firebaseAuth: FirebaseAuth, userUid: String?): UserRepository = UserRepositoryImplementation(userDocumentReference, userOrderCollectionReference, storageReference, firebaseAuth, userUid)
 
     @Provides
     @Singleton

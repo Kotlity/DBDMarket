@@ -7,6 +7,7 @@ import com.dbd.market.data.Order
 import com.dbd.market.data.User
 import com.dbd.market.helpers.operations.UserResettingPasswordOperation
 import com.dbd.market.repositories.market.user.UserRepository
+import com.dbd.market.utils.Constants.USER_SUCCESSFULLY_LOGOUT
 import com.dbd.market.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -36,6 +37,9 @@ class UserViewModel @Inject constructor(
 
     private val _userResetPassword = MutableSharedFlow<Resource<String>>()
     val userResetPassword = _userResetPassword.asSharedFlow()
+
+    private val _logoutUser = MutableSharedFlow<Resource<String>>()
+    val logoutUser = _logoutUser.asSharedFlow()
 
     init {
         getUser()
@@ -78,6 +82,18 @@ class UserViewModel @Inject constructor(
                 onSuccess = { viewModelScope.launch(Dispatchers.IO) { _userResetPassword.emit(Resource.Success(email)) } },
                 onFailure = { resettingUserPasswordError -> viewModelScope.launch(Dispatchers.IO) { _userResetPassword.emit(Resource.Error(resettingUserPasswordError)) } }
             )
+        }
+    }
+
+    fun userLogout() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _logoutUser.emit(Resource.Loading())
+            userRepository.userLogout(onSuccess = {
+                viewModelScope.launch { _logoutUser.emit(Resource.Success(USER_SUCCESSFULLY_LOGOUT)) }
+            },
+            onFailure = { userLogoutingError ->
+                viewModelScope.launch { _logoutUser.emit(Resource.Error(userLogoutingError)) }
+            })
         }
     }
 

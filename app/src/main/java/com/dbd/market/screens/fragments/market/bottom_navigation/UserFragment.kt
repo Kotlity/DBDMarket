@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ActivityCompat
@@ -29,6 +30,7 @@ import com.dbd.market.R
 import com.dbd.market.data.Order
 import com.dbd.market.data.User
 import com.dbd.market.databinding.FragmentUserBinding
+import com.dbd.market.screens.activities.LoginRegisterActivity
 import com.dbd.market.screens.activities.MarketActivity
 import com.dbd.market.utils.*
 import com.dbd.market.utils.Constants.ALERT_DIALOG_PERMISSION_RATIONALE_TITLE
@@ -70,12 +72,14 @@ class UserFragment : Fragment() {
         observeUserState()
         observeUpdatedUserImageFirebaseFirestoreState()
         observeUserResetPasswordState()
+        observeLogoutUserState()
         onUserFloatingButtonClick()
         onUserAllOrdersLinearLayoutClick()
         onUserRecentOrderLinearLayoutClick()
         onUserAllAddressesLinearLayoutClick()
         onUserLanguageLinearLayoutClick()
         onUserResetPasswordLinearLayoutClick()
+        onUserExitLinearLayoutClick()
     }
 
     private fun makeFloatingActionButtonVisibleWhileCollapsingToolbar() {
@@ -160,6 +164,19 @@ class UserFragment : Fragment() {
         }
     }
 
+    private fun onUserExitLinearLayoutClick() {
+        binding.userExitLinearLayout.setOnClickListener {
+            showCustomAlertDialog(
+                requireContext(),
+                resources.getString(R.string.userLogoutTitleAlertDialogString),
+                resources.getString(R.string.userLogoutMessageAlertDialogString),
+                onPositiveButtonClick = { userViewModel.userLogout() }
+            )
+        }
+    }
+
+    private fun <T> navigationIntent(activity: Class<T>) = Intent(requireActivity(), activity).also { it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK) }
+
     private fun showAlertDialog() {
         val alertDialog = AlertDialog.Builder(requireContext()).create()
         val alertDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.alert_dialog_change_language_layout, null)
@@ -216,8 +233,7 @@ class UserFragment : Fragment() {
         }
 
         fun changeLanguage(language: String) {
-            val intent = Intent(requireActivity(), MarketActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            val intent = navigationIntent(MarketActivity::class.java)
 
             val sharedPref = activity?.getSharedPreferences(SHARED_PREFERENCES_LANGUAGE_KEY, Context.MODE_PRIVATE)
             sharedPref?.edit()?.putString(LANGUAGE_KEY, ENGLISH_LANGUAGE)?.apply()
@@ -347,6 +363,26 @@ class UserFragment : Fragment() {
                     is Resource.Success -> showToast(requireActivity(), binding.root, R.drawable.ic_done_icon, getString(R.string.successResetPasswordToastMessageString))
                     is Resource.Error -> showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
                     is Resource.Loading -> Unit
+                    is Resource.Undefined -> Unit
+                }
+            }
+        }
+    }
+
+    private fun observeLogoutUserState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            userViewModel.logoutUser.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                when(it) {
+                    is Resource.Success -> {
+                        hideUserProgressBar()
+                        val intent = navigationIntent(LoginRegisterActivity::class.java)
+                        startActivity(intent)
+                    }
+                    is Resource.Error -> {
+                       hideUserProgressBar()
+                       showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                    }
+                    is Resource.Loading -> showUserProgressBar()
                     is Resource.Undefined -> Unit
                 }
             }
