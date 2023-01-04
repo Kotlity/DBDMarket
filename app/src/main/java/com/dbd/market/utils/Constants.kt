@@ -7,6 +7,8 @@ object Constants {
     const val ENGLISH_LANGUAGE = "en"
     const val UKRAINIAN_LANGUAGE = "uk"
 
+    const val USER_AVATAR_DATABASE_NAME = "userAvatar.db"
+
     const val LOADING_SPLASH_SCREEN_TICK_PERIOD = 1000L
     const val LOADING_SPLASH_SCREEN_PERIOD = 3100L
 

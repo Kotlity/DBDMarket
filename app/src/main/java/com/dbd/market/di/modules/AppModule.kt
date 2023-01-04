@@ -1,5 +1,7 @@
 package com.dbd.market.di.modules
 
+import android.app.Application
+import androidx.room.Room
 import com.dbd.market.di.qualifiers.*
 import com.dbd.market.helpers.operations.UserAddressesFirestoreOperations
 import com.dbd.market.helpers.operations.UserCartProductsFirestoreOperations
@@ -31,11 +33,14 @@ import com.dbd.market.repositories.market.setup_order.SetupOrderRepository
 import com.dbd.market.repositories.market.setup_order.SetupOrderRepositoryImplementation
 import com.dbd.market.repositories.market.user.UserRepository
 import com.dbd.market.repositories.market.user.UserRepositoryImplementation
+import com.dbd.market.room.database.UserAvatarDatabase
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_ADDRESSES_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_CART_PRODUCTS_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_ORDERS_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_PRODUCTS_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_USER_COLLECTION
+import com.dbd.market.utils.Constants.FIREBASE_STORAGE_USERS_IMAGES_PATH
+import com.dbd.market.utils.Constants.USER_AVATAR_DATABASE_NAME
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
@@ -104,7 +109,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUserRepository(userDocumentReference: DocumentReference?, @UserOrderCollectionReference userOrderCollectionReference: CollectionReference?, storageReference: StorageReference, firebaseAuth: FirebaseAuth, userUid: String?): UserRepository = UserRepositoryImplementation(userDocumentReference, userOrderCollectionReference, storageReference, firebaseAuth, userUid)
+    fun provideUserRepository(userDocumentReference: DocumentReference?, @UserOrderCollectionReference userOrderCollectionReference: CollectionReference?, @FirebaseStorageReferenceUserImages storageReference: StorageReference, firebaseAuth: FirebaseAuth): UserRepository = UserRepositoryImplementation(userDocumentReference, userOrderCollectionReference, storageReference, firebaseAuth)
 
     @Provides
     @Singleton
@@ -135,9 +140,15 @@ object AppModule {
     @Singleton
     fun provideLoginRepository(firebaseAuth: FirebaseAuth): LoginRepository = LoginRepositoryImplementation(firebaseAuth)
 
+    @FirebaseStorageReference
     @Provides
     @Singleton
     fun provideFirebaseStorage() = Firebase.storage.reference
+
+    @FirebaseStorageReferenceUserImages
+    @Provides
+    @Singleton
+    fun provideFirebaseStorageReferenceUserImages(userUid: String?, @FirebaseStorageReference storageReference: StorageReference) = storageReference.child(FIREBASE_STORAGE_USERS_IMAGES_PATH).child(userUid!!)
 
     @Provides
     @Singleton
@@ -162,4 +173,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideLegsCategoryRepository(@ProductsCollectionReference productsCollectionReference: CollectionReference): LegsCategoryRepository = LegsCategoryRepositoryImplementation(productsCollectionReference)
+
+    @Provides
+    @Singleton
+    fun provideUserAvatarDatabase(context: Application) = Room.databaseBuilder(context, UserAvatarDatabase::class.java, USER_AVATAR_DATABASE_NAME).build()
 }

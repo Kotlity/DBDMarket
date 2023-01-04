@@ -3,6 +3,7 @@ package com.dbd.market.repositories.market.user
 import android.net.Uri
 import com.dbd.market.data.Order
 import com.dbd.market.data.User
+import com.dbd.market.room.entity.UserAvatarEntity
 
 interface UserRepository {
 
@@ -15,4 +16,6 @@ interface UserRepository {
     fun getUserRecentOrder(onSuccess: (Order) -> Unit, onFailure: (String) -> Unit)
 
     fun userLogout(onSuccess: () -> Unit, onFailure: (String) -> Unit )
+
+    suspend fun insertUserAvatar(userAvatarEntity: UserAvatarEntity)
 }

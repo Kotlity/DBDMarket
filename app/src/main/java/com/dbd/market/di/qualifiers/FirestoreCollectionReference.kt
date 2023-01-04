@@ -21,3 +21,11 @@ annotation class UserAddressesCollectionReference
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class UserOrderCollectionReference
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class FirebaseStorageReference
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class FirebaseStorageReferenceUserImages

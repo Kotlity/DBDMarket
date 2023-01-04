@@ -3,9 +3,11 @@ package com.dbd.market.repositories.market.user
 import android.net.Uri
 import com.dbd.market.data.Order
 import com.dbd.market.data.User
+import com.dbd.market.di.qualifiers.FirebaseStorageReferenceUserImages
 import com.dbd.market.di.qualifiers.UserOrderCollectionReference
+import com.dbd.market.room.database.UserAvatarDatabase
+import com.dbd.market.room.entity.UserAvatarEntity
 import com.dbd.market.utils.Constants
-import com.dbd.market.utils.Constants.FIREBASE_STORAGE_USERS_IMAGES_PATH
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.firestore.CollectionReference
@@ -19,9 +21,9 @@ import javax.inject.Inject
 class UserRepositoryImplementation @Inject constructor(
     private val userDocumentReference: DocumentReference?,
     @UserOrderCollectionReference private val userOrderCollectionReference: CollectionReference?,
-    private val storageReference: StorageReference,
+    @FirebaseStorageReferenceUserImages private val storageReference: StorageReference,
     private val firebaseAuth: FirebaseAuth,
-    private val userUid: String?
+    private val userAvatarDatabase: UserAvatarDatabase
     ): UserRepository {
 
     override fun getUser(onSuccess: (User) -> Unit, onFailure: (String) -> Unit) {
@@ -35,7 +37,7 @@ class UserRepositoryImplementation @Inject constructor(
     }
 
     override fun uploadUserImageToFirebaseStorage(imageUri: Uri, imageName: String, onSuccess: (Uri) -> Unit, onFailure: (String) -> Unit) {
-        val userImagesStorageReference = storageReference.child(FIREBASE_STORAGE_USERS_IMAGES_PATH).child(userUid!!).child(imageName)
+        val userImagesStorageReference = storageReference.child(imageName)
         userImagesStorageReference.putFile(imageUri).addOnSuccessListener {
             userImagesStorageReference.downloadUrl
                 .addOnSuccessListener { uploadedUri -> onSuccess(uploadedUri) }
@@ -65,5 +67,7 @@ class UserRepositoryImplementation @Inject constructor(
             onSuccess()
         } catch (e: FirebaseAuthException) { onFailure(e.message.toString()) }
     }
+
+    override suspend fun insertUserAvatar(userAvatarEntity: UserAvatarEntity) { userAvatarDatabase.userAvatarDao().insertUserAvatarEntity(userAvatarEntity) }
 
 }

@@ -27,6 +27,7 @@ import com.dbd.market.R
 import com.dbd.market.databinding.ActivityProductsAdderBinding
 import com.dbd.market.helpers.products_adder.adapter.ProductsAdderAdapter
 import com.dbd.market.data.Product
+import com.dbd.market.di.qualifiers.FirebaseStorageReference
 import com.dbd.market.helpers.products_adder.data.SelectedImage
 import com.dbd.market.helpers.products_adder.viewmodel.ProductsAdderViewModel
 import com.dbd.market.utils.Constants.ALERT_DIALOG_PERMISSION_RATIONALE_TITLE
@@ -65,7 +66,7 @@ class ProductsAdderActivity : AppCompatActivity() {
     private var selectedImagesListForRecyclerView = mutableListOf<SelectedImage>()
     private lateinit var productsAdderAdapter: ProductsAdderAdapter
 
-    @Inject lateinit var firebaseStorage: StorageReference
+    @Inject @FirebaseStorageReference lateinit var firebaseStorage: StorageReference
     @Inject lateinit var firebaseFirestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {

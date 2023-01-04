@@ -5,10 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbd.market.data.Order
 import com.dbd.market.data.User
+import com.dbd.market.di.qualifiers.FirebaseStorageReferenceUserImages
 import com.dbd.market.helpers.operations.UserResettingPasswordOperation
 import com.dbd.market.repositories.market.user.UserRepository
 import com.dbd.market.utils.Constants.USER_SUCCESSFULLY_LOGOUT
 import com.dbd.market.utils.Resource
+import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -21,7 +23,8 @@ import javax.inject.Inject
 @HiltViewModel
 class UserViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val userResettingPasswordOperation: UserResettingPasswordOperation): ViewModel() {
+    private val userResettingPasswordOperation: UserResettingPasswordOperation,
+    @FirebaseStorageReferenceUserImages private val storageReference: StorageReference): ViewModel() {
 
     private val _user = MutableStateFlow<Resource<User>>(Resource.Undefined())
     val user = _user.asStateFlow()
