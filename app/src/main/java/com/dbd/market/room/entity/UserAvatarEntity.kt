@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class UserAvatarEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     val userAvatar: Uri
 )

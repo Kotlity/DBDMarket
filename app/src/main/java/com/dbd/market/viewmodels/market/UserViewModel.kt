@@ -8,6 +8,7 @@ import com.dbd.market.data.User
 import com.dbd.market.di.qualifiers.FirebaseStorageReferenceUserImages
 import com.dbd.market.helpers.operations.UserResettingPasswordOperation
 import com.dbd.market.repositories.market.user.UserRepository
+import com.dbd.market.room.entity.UserAvatarEntity
 import com.dbd.market.utils.Constants.USER_SUCCESSFULLY_LOGOUT
 import com.dbd.market.utils.Resource
 import com.google.firebase.storage.StorageReference
@@ -97,6 +98,12 @@ class UserViewModel @Inject constructor(
             onFailure = { userLogoutingError ->
                 viewModelScope.launch { _logoutUser.emit(Resource.Error(userLogoutingError)) }
             })
+        }
+    }
+
+    fun insertUserAvatar(userAvatarEntity: UserAvatarEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.insertUserAvatar(userAvatarEntity)
         }
     }
 

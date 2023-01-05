@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dark_grey"
+    tools:context=".screens.fragments.market.UserAvatarsFragment">
+
+    <ImageView
+        android:id="@+id/closeUserAvatars"
+        android:layout_width="@dimen/closeFragmentImageViewSize"
+        android:layout_height="@dimen/closeFragmentImageViewSize"
+        android:src="@drawable/ic_close_icon"
+        app:layout_constraintBottom_toTopOf="@+id/userAvatarsToolbarBottomHorizontalGuideLine"
+        app:layout_constraintStart_toEndOf="@+id/userAvatarsLeftVerticalGuideLine"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/app_title_font"
+        android:text="@string/userAvatarsTitleTextViewString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/userAvatarsTitleTextViewTextSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/userAvatarsToolbarBottomHorizontalGuideLine"
+        app:layout_constraintEnd_toStartOf="@+id/userAvatarsRightVerticalGuideLine"
+        app:layout_constraintStart_toEndOf="@+id/userAvatarsLeftVerticalGuideLine"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/userAvatarsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/userAvatarsRightVerticalGuideLine"
+        app:layout_constraintStart_toEndOf="@+id/userAvatarsLeftVerticalGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/userAvatarsToolbarBottomHorizontalGuideLine" />
+
+    <ImageView
+        android:id="@+id/userAvatarsEmptyImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_no_user_photo_icon"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/emptyUserAvatarsImageViewLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/emptyUserAvatarsImageViewTopHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/emptyUserAvatarsImageViewRightVerticalGuideline"
+        app:layout_constraintBottom_toTopOf="@+id/emptyUserAvatarsImageViewBottomHorizontalGuideline"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/userAvatarsEmptyTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/userAvatarsEmptyTextViewString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/userAvatarsEmptyTextViewTextSize"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/emptyUserAvatarsImageViewLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/emptyUserAvatarsImageViewBottomHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/emptyUserAvatarsImageViewRightVerticalGuideline"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/userAvatarsLeftVerticalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/userAvatarsRightVerticalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/userAvatarsToolbarBottomHorizontalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/emptyUserAvatarsImageViewTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.30" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/emptyUserAvatarsImageViewBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/emptyUserAvatarsImageViewLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/emptyUserAvatarsImageViewRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

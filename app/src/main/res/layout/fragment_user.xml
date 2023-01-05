@@ -72,6 +72,32 @@
         android:background="@drawable/user_options_background">
 
         <LinearLayout
+            android:id="@+id/userAvatarsLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/userOperationsChildLinearLayoutsHeight"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/userOperationsChildLinearLayoutsMarginTop"
+            android:layout_marginHorizontal="@dimen/userOperationsChildLinearLayoutsMarginHorizontal"
+            android:background="@drawable/user_title_options_background">
+
+            <ImageView
+                android:id="@+id/userAvatarsIconImageView"
+                style="@style/userOptionsImageViews"
+                android:src="@drawable/ic_user_avatar_icon"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:layout_width="@dimen/spaceBetweenUserOperationsWidgets"
+                android:layout_height="0dp"/>
+
+            <TextView
+                style="@style/userOptionsTextViews"
+                android:text="@string/userAvatarsTextViewString" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/allOrdersLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/userOperationsChildLinearLayoutsHeight"

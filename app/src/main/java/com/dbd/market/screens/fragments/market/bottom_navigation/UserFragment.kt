@@ -15,7 +15,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ActivityCompat
@@ -30,6 +29,7 @@ import com.dbd.market.R
 import com.dbd.market.data.Order
 import com.dbd.market.data.User
 import com.dbd.market.databinding.FragmentUserBinding
+import com.dbd.market.room.entity.UserAvatarEntity
 import com.dbd.market.screens.activities.LoginRegisterActivity
 import com.dbd.market.screens.activities.MarketActivity
 import com.dbd.market.utils.*
@@ -282,6 +282,7 @@ class UserFragment : Fragment() {
             val takenImageUri = data.data
             val imageName = retrieveFileName(takenImageUri!!)
             userViewModel.uploadUserImageToFirebaseStorage(takenImageUri, imageName)
+            userViewModel.insertUserAvatar(UserAvatarEntity(userAvatar = takenImageUri))
             observeUpdatedUserImageFirebaseStorageState()
         }
     }

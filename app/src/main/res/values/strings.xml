@@ -138,4 +138,9 @@
     <string name="changeLanguageAlertDialogTitleString">Changing the application language</string>
     <string name="userLogoutTitleAlertDialogString">Signing out of a user account</string>
     <string name="userLogoutMessageAlertDialogString">Are you sure you want to log out of your user account ?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="userAvatarsTitleTextViewString">Your avatars</string>
+    <string name="userAvatarsEmptyTextViewString">Your avatars list is empty</string>
+    <string name="userAvatarsTextViewString">Avatars</string>
 </resources>

@@ -33,6 +33,8 @@ import com.dbd.market.repositories.market.setup_order.SetupOrderRepository
 import com.dbd.market.repositories.market.setup_order.SetupOrderRepositoryImplementation
 import com.dbd.market.repositories.market.user.UserRepository
 import com.dbd.market.repositories.market.user.UserRepositoryImplementation
+import com.dbd.market.repositories.market.user_avatar.UserAvatarRepository
+import com.dbd.market.repositories.market.user_avatar.UserAvatarRepositoryImplementation
 import com.dbd.market.room.database.UserAvatarDatabase
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_ADDRESSES_COLLECTION
 import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_CART_PRODUCTS_COLLECTION
@@ -109,7 +111,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUserRepository(userDocumentReference: DocumentReference?, @UserOrderCollectionReference userOrderCollectionReference: CollectionReference?, @FirebaseStorageReferenceUserImages storageReference: StorageReference, firebaseAuth: FirebaseAuth): UserRepository = UserRepositoryImplementation(userDocumentReference, userOrderCollectionReference, storageReference, firebaseAuth)
+    fun provideUserRepository(userDocumentReference: DocumentReference?, @UserOrderCollectionReference userOrderCollectionReference: CollectionReference?, @FirebaseStorageReferenceUserImages storageReference: StorageReference, firebaseAuth: FirebaseAuth, userAvatarDatabase: UserAvatarDatabase): UserRepository = UserRepositoryImplementation(userDocumentReference, userOrderCollectionReference, storageReference, firebaseAuth, userAvatarDatabase)
 
     @Provides
     @Singleton
@@ -177,4 +179,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideUserAvatarDatabase(context: Application) = Room.databaseBuilder(context, UserAvatarDatabase::class.java, USER_AVATAR_DATABASE_NAME).build()
+
+    @Provides
+    @Singleton
+    fun provideUserAvatarRepository(userAvatarDatabase: UserAvatarDatabase): UserAvatarRepository = UserAvatarRepositoryImplementation(userAvatarDatabase)
 }

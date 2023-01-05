@@ -281,7 +281,7 @@
     <dimen name="collapsingUserAppBarHeight">250dp</dimen>
     <dimen name="collapsingUserToolbarExpandedTitleMarginStart">10dp</dimen>
     <dimen name="collapsingUserImageViewHeight">200dp</dimen>
-    <dimen name="userOperationsLinearLayoutMarginTop">150dp</dimen>
+    <dimen name="userOperationsLinearLayoutMarginTop">190dp</dimen>
     <dimen name="userOperationsLinearLayoutMarginHorizontal">10dp</dimen>
     <dimen name="userOperationsChildLinearLayoutsHeight">40dp</dimen>
     <dimen name="userOperationsChildLinearLayoutsMarginTop">10dp</dimen>
@@ -292,7 +292,7 @@
     <dimen name="userSeparatorBetweenChildLinearLayoutsHeight">5dp</dimen>
     <dimen name="userSeparatorBetweenChildLinearLayoutsMarginVertical">5dp</dimen>
     <dimen name="userExitLinearLayoutWidth">200dp</dimen>
-    <dimen name="userExitLinearLayoutMarginBottom">50dp</dimen>
+    <dimen name="userExitLinearLayoutMarginBottom">30dp</dimen>
     <dimen name="userExitLinearLayoutPaddingVertical">5dp</dimen>
     <dimen name="userExitImageViewSize">40dp</dimen>
     <dimen name="userExitImageViewPadding">8dp</dimen>
@@ -325,6 +325,8 @@
     <dimen name="languageImageViewsSize">30dp</dimen>
     <dimen name="spaceBetweenLanguageWidgets">10dp</dimen>
     <dimen name="languageTextViewsTextSize">20sp</dimen>
+    <dimen name="userAvatarsTitleTextViewTextSize">28sp</dimen>
+    <dimen name="userAvatarsEmptyTextViewTextSize">26sp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>
