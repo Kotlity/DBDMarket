@@ -126,6 +126,9 @@
     <string name="orderDetailAmountTextViewString">Сума:&#160;</string>
     <string name="orderDetailProductTitleTextViewString">Продукт</string>
     <string name="orderDetailProductsTitleTextViewString">Продукти</string>
+    <string name="userAvatarsTitleTextViewString">Твої аватари</string>
+    <string name="userAvatarsEmptyTextViewString">Ваш список аватарів порожній</string>
+    <string name="userAvatarsTextViewString">Аватари</string>
     <string name="userAllOrdersTextViewString">Всі замовлення</string>
     <string name="userRecentOrderTextViewString">Останнє замовлення</string>
     <string name="userAllAddressesTextViewString">Всі адреси</string>
@@ -139,4 +142,7 @@
     <string name="changeLanguageAlertDialogTitleString">Зміна мови програми</string>
     <string name="userLogoutTitleAlertDialogString">Вихід з облікового запису користувача</string>
     <string name="userLogoutMessageAlertDialogString">Ви дійсно хочете вийти з облікового запису користувача ?</string>
+    <string name="userAvatarAlertDialogTitleString">Зміна аватара користувача</string>
+    <string name="userAvatarAlertDialogMessageString">Ви дійсно хочете змінити ваш поточний аватар користувача на цей ?</string>
+    <string name="userAvatarSuccessfullyUpdatedString">Ви успішно змінили ваш аватар користувача</string>
 </resources>

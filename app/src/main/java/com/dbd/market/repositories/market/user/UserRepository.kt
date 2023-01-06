@@ -11,8 +11,6 @@ interface UserRepository {
 
     fun uploadUserImageToFirebaseStorage(imageUri: Uri, imageName: String, onSuccess: (Uri) -> Unit, onFailure: (String) -> Unit)
 
-    fun uploadUserImageToFirebaseFirestore(userImage: MutableMap<String, Any>, onSuccess: () -> Unit, onFailure: (String) -> Unit)
-
     fun getUserRecentOrder(onSuccess: (Order) -> Unit, onFailure: (String) -> Unit)
 
     fun userLogout(onSuccess: () -> Unit, onFailure: (String) -> Unit )

@@ -125,6 +125,9 @@
     <string name="orderDetailAmountTextViewString">Amount:&#160;</string>
     <string name="orderDetailProductTitleTextViewString">Product</string>
     <string name="orderDetailProductsTitleTextViewString">Products</string>
+    <string name="userAvatarsTitleTextViewString">Your avatars</string>
+    <string name="userAvatarsEmptyTextViewString">Your avatars list is empty</string>
+    <string name="userAvatarsTextViewString">Avatars</string>
     <string name="userAllOrdersTextViewString">All orders</string>
     <string name="userRecentOrderTextViewString">Recent order</string>
     <string name="userAllAddressesTextViewString">All addresses</string>
@@ -138,9 +141,7 @@
     <string name="changeLanguageAlertDialogTitleString">Changing the application language</string>
     <string name="userLogoutTitleAlertDialogString">Signing out of a user account</string>
     <string name="userLogoutMessageAlertDialogString">Are you sure you want to log out of your user account ?</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="userAvatarsTitleTextViewString">Your avatars</string>
-    <string name="userAvatarsEmptyTextViewString">Your avatars list is empty</string>
-    <string name="userAvatarsTextViewString">Avatars</string>
+    <string name="userAvatarAlertDialogTitleString">Changing user avatar</string>
+    <string name="userAvatarAlertDialogMessageString">Are you sure you want to change your current user avatar to this one ?</string>
+    <string name="userAvatarSuccessfullyUpdatedString">You have successfully updated your user avatar</string>
 </resources>

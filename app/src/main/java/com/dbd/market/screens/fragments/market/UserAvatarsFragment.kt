@@ -1,5 +1,6 @@
 package com.dbd.market.screens.fragments.market
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,8 +15,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.dbd.market.R
 import com.dbd.market.adapters.user_avatars.UserAvatarsAdapter
 import com.dbd.market.databinding.FragmentUserAvatarsBinding
-import com.dbd.market.utils.MarginItemDecoration
-import com.dbd.market.utils.MarginItemDecorationType
+import com.dbd.market.utils.*
+import com.dbd.market.utils.Constants.FIREBASE_FIRESTORE_USER_IMAGE_FIELD
 import com.dbd.market.viewmodels.market.UserAvatarsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -37,8 +38,10 @@ class UserAvatarsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUserAvatarsRecyclerView()
+        onUserSetAvatarImageViewClick()
         onCloseUserAvatarsImageViewClick()
         observeUserAvatarsState()
+        observeUpdatedUserImageFirebaseFirestoreState()
     }
 
     private fun setupUserAvatarsRecyclerView() {
@@ -47,6 +50,18 @@ class UserAvatarsFragment : Fragment() {
             adapter = userAvatarsAdapter
             layoutManager = GridLayoutManager(requireContext(), 2)
             addItemDecoration(MarginItemDecoration(MarginItemDecorationType.PRODUCT, resources.getDimensionPixelSize(R.dimen.spaceBetweenEachItemInProductsRecyclerView)))
+        }
+    }
+
+    private fun onUserSetAvatarImageViewClick() {
+        userAvatarsAdapter.onRecyclerViewItemClick { avatar ->
+            showCustomAlertDialog(requireContext(), getString(R.string.userAvatarAlertDialogTitleString), getString(R.string.userAvatarAlertDialogMessageString),
+                onPositiveButtonClick = {
+                    val userAvatar = avatar as Uri
+                    val userAvatarMutableMap = mutableMapOf<String, Any>()
+                    userAvatarMutableMap[FIREBASE_FIRESTORE_USER_IMAGE_FIELD] = userAvatar
+                    userAvatarsViewModel.uploadUserImageToFirebaseFirestore(userAvatarMutableMap)
+                })
         }
     }
 
@@ -62,6 +77,29 @@ class UserAvatarsFragment : Fragment() {
             }
         }
     }
+
+    private fun observeUpdatedUserImageFirebaseFirestoreState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            userAvatarsViewModel.updatedUserImageFirebaseFirestore.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                when(it) {
+                    is Resource.Success -> {
+                        showToast(requireContext(), binding.root, R.drawable.ic_done_icon, getString(R.string.userAvatarSuccessfullyUpdatedString))
+                        hideUserAvatarsProgressBar()
+                    }
+                    is Resource.Loading -> showUserAvatarsProgressBar()
+                    is Resource.Error -> {
+                        hideUserAvatarsProgressBar()
+                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                    }
+                    is Resource.Undefined -> Unit
+                }
+            }
+        }
+    }
+
+    private fun showUserAvatarsProgressBar() { binding.userAvatarsProgressBar.visibility = View.VISIBLE }
+
+    private fun hideUserAvatarsProgressBar() { binding.userAvatarsProgressBar.visibility = View.GONE }
 
     private fun showEmptyWidgets() {
         binding.apply {

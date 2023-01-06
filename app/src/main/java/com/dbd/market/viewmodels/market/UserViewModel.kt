@@ -5,13 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbd.market.data.Order
 import com.dbd.market.data.User
-import com.dbd.market.di.qualifiers.FirebaseStorageReferenceUserImages
 import com.dbd.market.helpers.operations.UserResettingPasswordOperation
+import com.dbd.market.helpers.operations.UserUploadingImageFirebaseFirestoreOperation
 import com.dbd.market.repositories.market.user.UserRepository
 import com.dbd.market.room.entity.UserAvatarEntity
 import com.dbd.market.utils.Constants.USER_SUCCESSFULLY_LOGOUT
 import com.dbd.market.utils.Resource
-import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -25,7 +24,7 @@ import javax.inject.Inject
 class UserViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val userResettingPasswordOperation: UserResettingPasswordOperation,
-    @FirebaseStorageReferenceUserImages private val storageReference: StorageReference): ViewModel() {
+    private val userUploadingImageFirebaseFirestoreOperation: UserUploadingImageFirebaseFirestoreOperation): ViewModel() {
 
     private val _user = MutableStateFlow<Resource<User>>(Resource.Undefined())
     val user = _user.asStateFlow()
@@ -66,7 +65,7 @@ class UserViewModel @Inject constructor(
     fun uploadUserImageToFirebaseFirestore(userImage: MutableMap<String, Any>) {
         viewModelScope.launch(Dispatchers.IO) {
             _updatedUserImageFirebaseFirestore.value = Resource.Loading()
-            userRepository.uploadUserImageToFirebaseFirestore(userImage, onSuccess = { _updatedUserImageFirebaseFirestore.value = Resource.Success(true) },
+            userUploadingImageFirebaseFirestoreOperation.uploadUserImageToFirebaseFirestore(userImage, onSuccess = { _updatedUserImageFirebaseFirestore.value = Resource.Success(true) },
             onFailure = { updatingUserImageError -> _updatedUserImageFirebaseFirestore.value = Resource.Error(updatingUserImageError) })
         }
     }

@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.dbd.market.di.qualifiers.*
 import com.dbd.market.helpers.operations.UserAddressesFirestoreOperations
 import com.dbd.market.helpers.operations.UserCartProductsFirestoreOperations
+import com.dbd.market.helpers.operations.UserUploadingImageFirebaseFirestoreOperation
 import com.dbd.market.repositories.introduction.login.LoginRepository
 import com.dbd.market.repositories.introduction.login.LoginRepositoryImplementation
 import com.dbd.market.repositories.introduction.register.RegisterRepository
@@ -93,6 +94,10 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAddressesFirestoreOperations(@UserAddressesCollectionReference userAddressesCollectionReference: CollectionReference?) = UserAddressesFirestoreOperations(userAddressesCollectionReference)
+
+    @Provides
+    @Singleton
+    fun provideUploadingImageFirebaseFirestoreOperation(userDocumentReference: DocumentReference?) = UserUploadingImageFirebaseFirestoreOperation(userDocumentReference)
 
     @UserCartProductsCollectionReference
     @Provides

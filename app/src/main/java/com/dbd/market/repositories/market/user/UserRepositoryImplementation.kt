@@ -45,11 +45,6 @@ class UserRepositoryImplementation @Inject constructor(
         }.addOnFailureListener { addingImageToUserImagesStorageReferenceError -> onFailure(addingImageToUserImagesStorageReferenceError.message.toString()) }
     }
 
-    override fun uploadUserImageToFirebaseFirestore(userImage: MutableMap<String, Any>, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
-        userDocumentReference?.update(userImage)?.addOnSuccessListener { onSuccess() }
-            ?.addOnFailureListener { updatingUserImageError -> onFailure(updatingUserImageError.message.toString()) }
-    }
-
     override fun getUserRecentOrder(onSuccess: (Order) -> Unit, onFailure: (String) -> Unit) {
         userOrderCollectionReference?.orderBy(Constants.FIREBASE_FIRESTORE_ORDERS_DATE_FIELD, Query.Direction.DESCENDING)
             ?.limit(Constants.USER_RECENT_ORDER_LIMIT)
