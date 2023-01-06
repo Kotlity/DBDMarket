@@ -65,6 +65,15 @@
             app:exitAnim="@anim/to_right_screen_animation"
             app:popEnterAnim="@anim/from_right_screen_animation"
             app:popExitAnim="@anim/to_left_screen_animation"/>
+        <action
+            android:id="@+id/action_userFragment_to_userAvatarsFragment"
+            app:destination="@id/userAvatarsFragment"
+            app:popUpToInclusive="false"
+            app:popUpTo="@id/userFragment"
+            app:enterAnim="@anim/from_left_screen_animation"
+            app:exitAnim="@anim/to_right_screen_animation"
+            app:popEnterAnim="@anim/from_right_screen_animation"
+            app:popExitAnim="@anim/to_left_screen_animation" />
     </fragment>
     <fragment
         android:id="@+id/productDescriptionFragment"
@@ -155,5 +164,10 @@
         android:name="com.dbd.market.screens.fragments.market.AddressesFragment"
         android:label="fragment_addresses"
         tools:layout="@layout/fragment_addresses" />
+    <fragment
+        android:id="@+id/userAvatarsFragment"
+        android:name="com.dbd.market.screens.fragments.market.UserAvatarsFragment"
+        android:label="fragment_user_avatars"
+        tools:layout="@layout/fragment_user_avatars" />
 
 </navigation>

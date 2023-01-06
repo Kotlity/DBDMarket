@@ -327,6 +327,16 @@
     <dimen name="languageTextViewsTextSize">20sp</dimen>
     <dimen name="userAvatarsTitleTextViewTextSize">28sp</dimen>
     <dimen name="userAvatarsEmptyTextViewTextSize">26sp</dimen>
+    <dimen name="userAvatarsCardViewCornerRadius">15dp</dimen>
+    <dimen name="userAvatarsCardViewElevation">10dp</dimen>
+    <dimen name="userAvatarImageViewWidth">160dp</dimen>
+    <dimen name="userAvatarImageViewHeight">150dp</dimen>
+    <dimen name="userAvatarImageViewMargin">10dp</dimen>
+    <dimen name="userAvatarIdTextViewTextSize">20sp</dimen>
+    <dimen name="userAvatarIdTextViewMargin">8dp</dimen>
+    <dimen name="userSetAvatarImageViewWidth">40dp</dimen>
+    <dimen name="userSetAvatarImageViewHeight">40dp</dimen>
+    <dimen name="userSetAvatarImageViewMargin">8dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

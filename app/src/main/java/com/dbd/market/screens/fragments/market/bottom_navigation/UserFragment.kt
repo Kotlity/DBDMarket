@@ -74,6 +74,7 @@ class UserFragment : Fragment() {
         observeUserResetPasswordState()
         observeLogoutUserState()
         onUserFloatingButtonClick()
+        onUserAvatarsLinearLayoutClick()
         onUserAllOrdersLinearLayoutClick()
         onUserRecentOrderLinearLayoutClick()
         onUserAllAddressesLinearLayoutClick()
@@ -129,6 +130,8 @@ class UserFragment : Fragment() {
             else showToast(requireContext(), binding.root, R.drawable.ic_error_icon, PERMISSION_UNSUPPORTED_PHONE_VERSION)
         }
     }
+
+    private fun onUserAvatarsLinearLayoutClick() { navigateToAnotherFragmentWithoutArguments(binding.userAvatarsLinearLayout, R.id.action_userFragment_to_userAvatarsFragment) }
 
     private fun onUserAllOrdersLinearLayoutClick() { navigateToAnotherFragmentWithoutArguments(binding.allOrdersLinearLayout, R.id.action_userFragment_to_ordersFragment) }
 
