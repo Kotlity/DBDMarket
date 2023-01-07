@@ -145,4 +145,6 @@
     <string name="userAvatarAlertDialogTitleString">Зміна аватара користувача</string>
     <string name="userAvatarAlertDialogMessageString">Ви дійсно хочете змінити ваш поточний аватар користувача на цей ?</string>
     <string name="userAvatarSuccessfullyUpdatedString">Ви успішно змінили ваш аватар користувача</string>
+    <string name="homeHeaderTextViewString">Продукти</string>
+    <string name="headerSearchViewQueryHint">Пошук продуктів</string>
 </resources>

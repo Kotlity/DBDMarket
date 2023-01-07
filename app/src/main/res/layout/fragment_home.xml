@@ -7,79 +7,18 @@
     android:background="@color/dark_grey"
     tools:context=".screens.fragments.market.bottom_navigation.HomeFragment">
 
-    <LinearLayout
-        android:id="@+id/homeHeader"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/appHomeHeaderBottomHorizontalGuideline"
-        app:layout_constraintEnd_toEndOf="@+id/appHomeHeaderRightVerticalGuideline"
-        app:layout_constraintStart_toStartOf="@+id/appHomeHeaderLeftVerticalGuideline"
-        app:layout_constraintTop_toTopOf="@+id/appHomeHeaderTopHorizontalGuideline">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/search_products_and_tab_layout_background">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/app_title_font"
-                android:paddingVertical="@dimen/appSearchProductsTextPaddingVertical"
-                android:paddingStart="@dimen/appSearchProductsTextPaddingStart"
-                android:singleLine="true"
-                android:text="@string/searchProductsHomeHeaderText"
-                android:textSize="@dimen/appSearchHomeHeaderProductsTextSize"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:layout_width="@dimen/app_search_home_header_icon_size"
-                android:layout_height="@dimen/app_search_home_header_icon_size"
-                android:layout_marginEnd="@dimen/app_horizontal_space_between_home_header_icons"
-                android:src="@drawable/ic_search_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <View
-            android:layout_width="@dimen/app_horizontal_space_between_home_header_icons"
-            android:layout_height="match_parent" />
-
-        <ImageView
-            android:layout_width="@dimen/app_scan_and_voice_home_header_icons_size"
-            android:layout_height="@dimen/app_scan_and_voice_home_header_icons_size"
-            android:background="@drawable/app_home_header_icons_background"
-            android:padding="@dimen/app_home_header_scan_and_voice_icons_padding"
-            android:src="@drawable/ic_scan_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
-
-        <View
-            android:layout_width="@dimen/app_horizontal_space_between_home_header_icons"
-            android:layout_height="match_parent" />
-
-        <ImageView
-            android:layout_width="@dimen/app_scan_and_voice_home_header_icons_size"
-            android:layout_height="@dimen/app_scan_and_voice_home_header_icons_size"
-            android:background="@drawable/app_home_header_icons_background"
-            android:padding="@dimen/app_home_header_scan_and_voice_icons_padding"
-            android:src="@drawable/ic_voice_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
-
-    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/homeHeaderTextViewString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/homeHeaderTextViewTextSize"
+        android:textStyle="bold"
+        android:fontFamily="@font/app_title_font"
+        app:layout_constraintStart_toEndOf="@+id/appHomeHeaderLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/appHomeHeaderTopHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/appHomeHeaderRightVerticalGuideline"
+        app:layout_constraintBottom_toTopOf="@+id/appHomeHeaderBottomHorizontalGuideline"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/homeTabLayout"

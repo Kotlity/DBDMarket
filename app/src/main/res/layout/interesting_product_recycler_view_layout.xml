@@ -53,17 +53,6 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/interestingProductFavoriteImageView"
-        android:layout_width="@dimen/appInterestingProductFavoriteImageViewSize"
-        android:layout_height="@dimen/appInterestingProductFavoriteImageViewSize"
-        android:src="@drawable/ic_favorite_border_icon"
-        app:tint="@color/red"
-        android:layout_marginTop="@dimen/appInterestingProductFavoriteImageViewMargin"
-        android:layout_marginEnd="@dimen/appInterestingProductFavoriteImageViewMargin"
-        app:layout_constraintTop_toBottomOf="@+id/interestingImageViewConstraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
     <TextView
         android:id="@+id/interestingItemProductNameTextView"
         android:layout_width="wrap_content"

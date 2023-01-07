@@ -1,8 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_grey"
     tools:context=".screens.fragments.market.bottom_navigation.SearchFragment">
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/searchHeaderLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintBottom_toTopOf="@+id/searchBottomHorizontalGuideLine"
+        app:layout_constraintEnd_toStartOf="@+id/searchRightVerticalGuideLine"
+        app:layout_constraintStart_toEndOf="@+id/searchLeftVerticalGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/searchTopHorizontalGuideLine">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/headerSearchView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.95"
+            app:queryHint="@string/headerSearchViewQueryHint"
+            android:background="@drawable/search_products_and_tab_layout_background"/>
+
+        <ImageView
+            android:id="@+id/headerSearchVoiceImageView"
+            android:layout_width="@dimen/headerSearchVoiceImageViewWidth"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/headerSearchVoiceImageViewMarginStart"
+            android:background="@drawable/search_products_and_tab_layout_background"
+            android:padding="@dimen/app_voice_icon_padding"
+            android:src="@drawable/ic_voice_icon"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/searchLeftVerticalGuideLine"
+        app:layout_constraintTop_toBottomOf="@+id/searchRecyclerViewHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/searchRightVerticalGuideLine"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/searchLeftVerticalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/searchRightVerticalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/searchTopHorizontalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.03" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/searchBottomHorizontalGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/searchRecyclerViewHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.14" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

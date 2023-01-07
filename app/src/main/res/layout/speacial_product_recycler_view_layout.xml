@@ -72,17 +72,6 @@
                 app:spinning_bar_color="@color/red"
                 app:spinning_bar_width="@dimen/appButtonSpinningBarWidth" />
 
-            <ImageView
-                android:id="@+id/specialProductFavoriteImageView"
-                android:layout_width="@dimen/appSpecialProductFavoriteImageViewWidthAndHeight"
-                android:layout_height="@dimen/appSpecialProductFavoriteImageViewWidthAndHeight"
-                android:src="@drawable/ic_favorite_icon"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintEnd_toStartOf="@+id/specialItemAddToCartButton"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:tint="@color/red"
-                tools:ignore="ContentDescription" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

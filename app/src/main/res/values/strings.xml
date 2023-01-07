@@ -144,4 +144,6 @@
     <string name="userAvatarAlertDialogTitleString">Changing user avatar</string>
     <string name="userAvatarAlertDialogMessageString">Are you sure you want to change your current user avatar to this one ?</string>
     <string name="userAvatarSuccessfullyUpdatedString">You have successfully updated your user avatar</string>
+    <string name="homeHeaderTextViewString">Products</string>
+    <string name="headerSearchViewQueryHint">Product search…</string>
 </resources>

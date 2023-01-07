@@ -31,7 +31,8 @@
             android:exported="true"/>
         <activity
             android:name=".screens.activities.MarketActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".screens.activities.LoginRegisterActivity"
             android:exported="true"/>
