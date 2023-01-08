@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/searchSizeRecyclerViewItemSize"
+    android:layout_height="@dimen/searchSizeRecyclerViewItemSize"
+    android:background="@drawable/search_size_background">
+
+    <TextView
+        android:id="@+id/searchSizeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/searchSizeTextViewTextSize"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:fontFamily="@font/login_register_title_font"
+        android:layout_gravity="center"/>
+
+</FrameLayout>

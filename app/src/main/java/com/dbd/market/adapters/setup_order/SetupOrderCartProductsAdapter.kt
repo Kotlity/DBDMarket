@@ -32,7 +32,7 @@ class SetupOrderCartProductsAdapter(private val setupOrderCartProductsAdapterCon
         fun bind(cartProduct: CartProduct) {
             setupOrderCartProductsChildAdapter(setupOrderCartProductsViewPager2, cartProduct.images)
 
-            if (cartProduct.images.size >= Constants.MIN_AMOUNT_OF_IMAGES_TO_SHOW_RECT_VIEW_PAGER2_INDICATOR) {
+            if (cartProduct.images.size >= Constants.MIN_AMOUNT_OF_IMAGES_TO_SHOW_VIEW_PAGER2_INDICATOR) {
                 setupOrderCartProductsViewPager2Indicator.apply {
                     setWithViewPager2(setupOrderCartProductsViewPager2)
                     itemCount = cartProduct.images.size

@@ -7,6 +7,45 @@
     android:background="@color/dark_grey"
     tools:context=".screens.fragments.market.bottom_navigation.SearchFragment">
 
+    <ProgressBar
+        android:id="@+id/searchProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/searchEmptyImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_search_empty_icon"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/emptySearchProductsImageViewLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/emptySearchProductsImageViewTopHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/emptySearchProductsImageViewRightVerticalGuideline"
+        app:layout_constraintBottom_toTopOf="@+id/emptySearchProductsImageViewBottomHorizontalGuideline"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/searchEmptyTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/noProductsFoundTextViewString"
+        android:textColor="@color/white"
+        android:textSize="@dimen/noProductsFoundTextViewTextSize"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/emptySearchProductsImageViewLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/emptySearchProductsImageViewBottomHorizontalGuideline"
+        app:layout_constraintEnd_toStartOf="@+id/emptySearchProductsImageViewRightVerticalGuideline" />
+
     <LinearLayout
         android:id="@+id/searchHeaderLinearLayout"
         android:layout_width="0dp"
@@ -23,7 +62,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.95"
-            app:queryHint="@string/headerSearchViewQueryHint"
+            app:queryHint="@string/headerSearchEditTextQueryHint"
             android:background="@drawable/search_products_and_tab_layout_background"/>
 
         <ImageView
@@ -41,10 +80,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintStart_toEndOf="@+id/searchLeftVerticalGuideLine"
         app:layout_constraintTop_toBottomOf="@+id/searchRecyclerViewHorizontalGuideline"
-        app:layout_constraintEnd_toStartOf="@+id/searchRightVerticalGuideLine"/>
+        app:layout_constraintEnd_toStartOf="@+id/searchRightVerticalGuideLine"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/searchLeftVerticalGuideLine"
@@ -80,5 +120,33 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.14" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/emptySearchProductsImageViewTopHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.30" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/emptySearchProductsImageViewBottomHorizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/emptySearchProductsImageViewLeftVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/emptySearchProductsImageViewRightVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

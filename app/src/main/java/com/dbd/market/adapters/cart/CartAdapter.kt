@@ -37,7 +37,7 @@ class CartAdapter(private val thisContext: Context): RecyclerView.Adapter<CartAd
         fun bind(cartProduct: CartProduct) {
             setupCartChildAdapter(cartProductsViewPager2, cartProduct.images)
 
-            if (cartProduct.images.size >= Constants.MIN_AMOUNT_OF_IMAGES_TO_SHOW_RECT_VIEW_PAGER2_INDICATOR) {
+            if (cartProduct.images.size >= Constants.MIN_AMOUNT_OF_IMAGES_TO_SHOW_VIEW_PAGER2_INDICATOR) {
                 cartProductsViewPager2Indicator.apply {
                     setWithViewPager2(cartProductsViewPager2)
                     itemCount = cartProduct.images.size

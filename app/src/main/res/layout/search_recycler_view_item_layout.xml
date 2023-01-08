@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/searchCardViewWidth"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="@dimen/searchCardViewElevation"
+        app:cardCornerRadius="@dimen/searchCardViewCornerRadius"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/search_card_view_background">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/searchViewPager2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/searchViewPager2Height"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <io.github.vejei.viewpagerindicator.indicator.RectIndicator
+                android:id="@+id/searchViewPager2Indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:indicatorColor="@color/white"
+                app:indicatorSelectedColor="@color/blue"
+                app:indicatorHeight="@dimen/searchViewPager2IndicatorHeight"
+                app:indicatorWidth="@dimen/searchViewPager2IndicatorWidth"
+                app:indicatorGap="@dimen/searchViewPager2IndicatorGap"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchViewPager2"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <LinearLayout
+                android:id="@+id/searchHeaderLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/searchHeaderLinearLayoutMarginTop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchViewPager2"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    style="@style/searchHeaderTextViews"
+                    android:id="@+id/searchCategoryTextView"
+                    android:textSize="@dimen/searchCategoryTextViewTextSize"
+                    android:fontFamily="@font/login_register_title_font" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/spaceBetweenSearchCategoryAndNameTextViews"/>
+
+                <TextView
+                    style="@style/searchHeaderTextViews"
+                    android:id="@+id/searchNameTextView"
+                    android:textSize="@dimen/searchNameTextViewTextSize"
+                    android:fontFamily="@font/app_buttons_font" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/searchPricesLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchHeaderLinearLayout"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    style="@style/oldNewPricesTextViews"
+                    android:id="@+id/searchNewPriceTextView"
+                    android:textColor="@color/red" />
+
+                <View
+                    android:id="@+id/spaceBetweenOldNewPricesTextViews"
+                    android:layout_width="@dimen/spaceBetweenOldNewPricesTextViewsWidth"
+                    android:layout_height="0dp"/>
+
+                <TextView
+                    style="@style/oldNewPricesTextViews"
+                    android:id="@+id/searchOldPriceTextView"
+                    android:textColor="@color/dark_grey" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/searchSizesRecyclerView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchPricesLinearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -333,6 +333,25 @@
     <dimen name="homeHeaderTextViewTextSize">30sp</dimen>
     <dimen name="headerSearchVoiceImageViewWidth">50dp</dimen>
     <dimen name="headerSearchVoiceImageViewMarginStart">10dp</dimen>
+    <dimen name="oldNewPricesTextViewsTextSize">20sp</dimen>
+    <dimen name="noProductsFoundTextViewTextSize">26sp</dimen>
+    <dimen name="spaceBetweenSearchSize">10dp</dimen>
+    <dimen name="searchCardViewWidth">180dp</dimen>
+    <dimen name="searchCardViewElevation">5dp</dimen>
+    <dimen name="searchCardViewCornerRadius">10dp</dimen>
+    <dimen name="searchViewPager2Height">150dp</dimen>
+    <dimen name="searchViewPager2IndicatorHeight">3dp</dimen>
+    <dimen name="searchViewPager2IndicatorWidth">35dp</dimen>
+    <dimen name="searchViewPager2IndicatorGap">5dp</dimen>
+    <dimen name="searchHeaderLinearLayoutMarginTop">5dp</dimen>
+    <dimen name="searchCategoryTextViewTextSize">23sp</dimen>
+    <dimen name="spaceBetweenSearchCategoryAndNameTextViews">3dp</dimen>
+    <dimen name="searchNameTextViewTextSize">21sp</dimen>
+    <dimen name="spaceBetweenOldNewPricesTextViewsWidth">10dp</dimen>
+    <dimen name="searchSizeRecyclerViewItemSize">35dp</dimen>
+    <dimen name="searchSizeTextViewTextSize">15sp</dimen>
+    <dimen name="searchSizeBackgroundRadius">5dp</dimen>
+    <dimen name="searchSizeBackgroundStrokeWidth">1dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

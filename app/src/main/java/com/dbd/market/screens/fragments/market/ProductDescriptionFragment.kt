@@ -20,7 +20,7 @@ import com.dbd.market.data.CartProduct
 import com.dbd.market.data.Product
 import com.dbd.market.databinding.FragmentProductDescriptionBinding
 import com.dbd.market.utils.*
-import com.dbd.market.utils.Constants.MIN_AMOUNT_OF_IMAGES_TO_SHOW_RECT_VIEW_PAGER2_INDICATOR
+import com.dbd.market.utils.Constants.MIN_AMOUNT_OF_IMAGES_TO_SHOW_VIEW_PAGER2_INDICATOR
 import com.dbd.market.viewmodels.market.ProductDescriptionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.vejei.viewpagerindicator.indicator.RectIndicator
@@ -77,7 +77,7 @@ class ProductDescriptionFragment : Fragment() {
         binding.apply {
             productDescriptionViewPager2.adapter = productDescriptionImageViewPager2Adapter
             productDescriptionImageViewPager2Adapter.differ.submitList(product.images)
-            if (product.images.size >= MIN_AMOUNT_OF_IMAGES_TO_SHOW_RECT_VIEW_PAGER2_INDICATOR) {
+            if (product.images.size >= MIN_AMOUNT_OF_IMAGES_TO_SHOW_VIEW_PAGER2_INDICATOR) {
                 rectViewPager2Indicator.apply {
                     setWithViewPager2(binding.productDescriptionViewPager2)
                     itemCount = product.images.size

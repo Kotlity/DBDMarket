@@ -30,6 +30,8 @@ import com.dbd.market.repositories.market.orders.OrdersRepository
 import com.dbd.market.repositories.market.orders.OrdersRepositoryImplementation
 import com.dbd.market.repositories.market.product_description.ProductDescriptionRepository
 import com.dbd.market.repositories.market.product_description.ProductDescriptionRepositoryImplementation
+import com.dbd.market.repositories.market.search.SearchRepository
+import com.dbd.market.repositories.market.search.SearchRepositoryImplementation
 import com.dbd.market.repositories.market.setup_order.SetupOrderRepository
 import com.dbd.market.repositories.market.setup_order.SetupOrderRepositoryImplementation
 import com.dbd.market.repositories.market.user.UserRepository
@@ -188,4 +190,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideUserAvatarRepository(userAvatarDatabase: UserAvatarDatabase): UserAvatarRepository = UserAvatarRepositoryImplementation(userAvatarDatabase)
+
+    @Provides
+    @Singleton
+    fun provideSearchRepository(@ProductsCollectionReference productsCollectionReference: CollectionReference): SearchRepository = SearchRepositoryImplementation(productsCollectionReference)
 }

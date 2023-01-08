@@ -5,7 +5,6 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -19,7 +18,6 @@ import com.dbd.market.utils.Constants
 import com.dbd.market.utils.ViewPager2ImagesBackgroundType
 import com.dbd.market.utils.getNewPriceAfterDiscount
 import io.github.vejei.viewpagerindicator.indicator.CircleIndicator
-import io.github.vejei.viewpagerindicator.indicator.RectIndicator
 
 class OrderDetailParentAdapter(private val orderDetailParentAdapterContext: Context): RecyclerView.Adapter<OrderDetailParentAdapter.OrderDetailParentViewHolder>() {
 
@@ -35,7 +33,7 @@ class OrderDetailParentAdapter(private val orderDetailParentAdapterContext: Cont
         fun bind(cartProduct: CartProduct) {
             setupOrderDetailChildAdapter(orderDetailImagesViewPager2, cartProduct.images)
 
-            if (cartProduct.images.size >= Constants.MIN_AMOUNT_OF_IMAGES_TO_SHOW_RECT_VIEW_PAGER2_INDICATOR) {
+            if (cartProduct.images.size >= Constants.MIN_AMOUNT_OF_IMAGES_TO_SHOW_VIEW_PAGER2_INDICATOR) {
                 orderDetailImagesCircleViewPager2Indicator.apply {
                     setWithViewPager2(orderDetailImagesViewPager2)
                     itemCount = cartProduct.images.size
