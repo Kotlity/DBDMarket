@@ -148,4 +148,9 @@
     <string name="homeHeaderTextViewString">Продукти</string>
     <string name="headerSearchEditTextQueryHint">Пошук продуктів</string>
     <string name="noProductsFoundTextViewString">Продукти з такою назвою не знайдені</string>
+    <string name="deviceDoesNotSupportVoiceInput">Вибачте, але ваш пристрій не підтримує голосове введення</string>
+    <string name="voiceRecordingAlertDialogTitleString">Потрібен дозвіл на запис голосу</string>
+    <string name="voiceRecordingAlertDialogMessageString">Будь ласка, прийміть дозвіл на голосове введення для цієї операції</string>
+    <string name="voicePermissionHasDeniedString">Ви не надали додатку доступ до голосового введення. Зробіть це вручну в налаштуваннях програми</string>
+    <string name="voiceRecordingTitleString">Почніть говорити…</string>
 </resources>

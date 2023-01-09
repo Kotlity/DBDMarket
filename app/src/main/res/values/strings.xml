@@ -147,4 +147,9 @@
     <string name="homeHeaderTextViewString">Products</string>
     <string name="headerSearchEditTextQueryHint">Product search…</string>
     <string name="noProductsFoundTextViewString">No products found with this name</string>
+    <string name="deviceDoesNotSupportVoiceInput">Sorry, but your device does not support voice input</string>
+    <string name="voiceRecordingAlertDialogTitleString">Voice recording permission required</string>
+    <string name="voiceRecordingAlertDialogMessageString">Please, accept voice input permission for this operation</string>
+    <string name="voicePermissionHasDeniedString">You have not allowed the app to access your voice input. Please do it manually in the app settings</string>
+    <string name="voiceRecordingTitleString">Start talking…</string>
 </resources>
