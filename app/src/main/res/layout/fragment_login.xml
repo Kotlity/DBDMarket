@@ -120,34 +120,6 @@
         app:layout_constraintEnd_toEndOf="@+id/appEditTextsRightVerticalGuideline"
         app:layout_constraintBottom_toBottomOf="@+id/appLoginButtonBottomHorizontalGuideline"/>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/appEditTextsLeftVerticalGuideline"
-        app:layout_constraintTop_toTopOf="@+id/appLoginFacebookGoogleIconsTopHorizontalGuideline"
-        app:layout_constraintEnd_toEndOf="@+id/appEditTextsRightVerticalGuideline"
-        app:layout_constraintBottom_toBottomOf="@+id/appLoginFacebookGoogleIconsBottomHorizontalGuideline"
-        android:gravity="center">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/loginFacebookLogoImageView"
-            android:layout_width="@dimen/appLogosImageViewsWidthSize"
-            android:layout_height="wrap_content"
-            android:src="@drawable/facebook_logo_icon"/>
-
-        <View
-            android:layout_width="@dimen/spaceBetweenLogosWidthSize"
-            android:layout_height="0dp"/>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/loginGoogleLogoImageView"
-            android:layout_width="@dimen/appLogosImageViewsWidthSize"
-            android:layout_height="wrap_content"
-            android:src="@drawable/google_logo_icon"/>
-
-    </LinearLayout>
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/appTitleTopHorizontalGuideline"
         android:layout_width="wrap_content"
@@ -259,19 +231,5 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.77" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/appLoginFacebookGoogleIconsTopHorizontalGuideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.78" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/appLoginFacebookGoogleIconsBottomHorizontalGuideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.83" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

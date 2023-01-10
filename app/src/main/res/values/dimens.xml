@@ -29,8 +29,6 @@
     <dimen name="helperLoginRegisterSize">17sp</dimen>
     <dimen name="loginRegisterLinkSize">15sp</dimen>
     <dimen name="appLoginRegisterButtonTextSize">27sp</dimen>
-    <dimen name="appLogosImageViewsWidthSize">50dp</dimen>
-    <dimen name="spaceBetweenLogosWidthSize">20dp</dimen>
     <integer name="zero">0</integer>
     <dimen name="toastCustomLinearLayoutPaddingHorizontal">3dp</dimen>
     <dimen name="appToastCustomImageViewSize">50dp</dimen>
