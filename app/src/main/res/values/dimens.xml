@@ -350,6 +350,8 @@
     <dimen name="searchSizeTextViewTextSize">15sp</dimen>
     <dimen name="searchSizeBackgroundRadius">5dp</dimen>
     <dimen name="searchSizeBackgroundStrokeWidth">1dp</dimen>
+    <dimen name="googleSignInImageViewSize">45dp</dimen>
+    <dimen name="googleSignInImageViewMarginTop">10dp</dimen>
     <item name="customAlertDialogTitleTextViewSize" format="float" type="dimen">22.0</item>
     <item name="customAlertDialogMessageTextViewSize" format="float" type="dimen">18.0</item>
 </resources>

@@ -120,6 +120,17 @@
         app:layout_constraintEnd_toEndOf="@+id/appEditTextsRightVerticalGuideline"
         app:layout_constraintBottom_toBottomOf="@+id/appLoginButtonBottomHorizontalGuideline"/>
 
+    <ImageView
+        android:id="@+id/googleSignInImageView"
+        android:layout_width="@dimen/googleSignInImageViewSize"
+        android:layout_height="@dimen/googleSignInImageViewSize"
+        android:src="@drawable/google_logo_icon"
+        android:layout_marginTop="@dimen/googleSignInImageViewMarginTop"
+        app:layout_constraintStart_toEndOf="@+id/appEditTextsLeftVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/appButtonLogin"
+        app:layout_constraintEnd_toStartOf="@+id/appEditTextsRightVerticalGuideline"
+        tools:ignore="ContentDescription" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/appTitleTopHorizontalGuideline"
         android:layout_width="wrap_content"

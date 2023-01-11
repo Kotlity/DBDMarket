@@ -2,11 +2,15 @@ package com.dbd.market.viewmodels.introduction
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dbd.market.data.User
 import com.dbd.market.helpers.operations.UserResettingPasswordOperation
 import com.dbd.market.repositories.introduction.login.LoginRepository
 import com.dbd.market.utils.*
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -27,6 +31,9 @@ class LoginViewModel @Inject constructor(
 
     private val _resetPassword = MutableSharedFlow<Resource<String>>()
     val resetPassword = _resetPassword.asSharedFlow()
+
+    private val _loginUserWithGoogle = MutableSharedFlow<Resource<Boolean>>()
+    val loginUserWithGoogle = _loginUserWithGoogle.asSharedFlow()
 
     fun loginUserWithEmailAndPassword(email: String, password: String) {
         if (isCorrectedEditTextsInput(email, password)) {
@@ -80,5 +87,30 @@ class LoginViewModel @Inject constructor(
                 }
             }
         )
+    }
+
+    fun signInWithGoogle(idToken: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _loginUserWithGoogle.emit(Resource.Loading())
+            val credential = GoogleAuthProvider.getCredential(idToken, null)
+            loginRepository.signInWithGoogle(credential).addOnSuccessListener {
+                val firebaseUser = FirebaseAuth.getInstance().currentUser
+                val email = firebaseUser!!.email!!
+                val image = firebaseUser.photoUrl?.toString()
+                val user = User("", "", email, image ?: "")
+                loginRepository.saveUserInformationToFirebaseFirestore(firebaseUser.uid, user, onSuccess = {
+                    viewModelScope.launch(Dispatchers.IO) {
+                        _loginUserWithGoogle.emit(Resource.Success(true))
+                    }
+                }, onFailure = { savingUserInformationToFirebaseFirestoreError ->
+                    viewModelScope.launch(Dispatchers.IO) {
+                        _loginUserWithGoogle.emit(Resource.Error(savingUserInformationToFirebaseFirestoreError))
+                    }
+                })
+            }.addOnFailureListener { signingWithGoogleError -> {
+                viewModelScope.launch(Dispatchers.IO) { _loginUserWithGoogle.emit(Resource.Error(signingWithGoogleError.message.toString())) }
+            }
+            }
+        }
     }
 }

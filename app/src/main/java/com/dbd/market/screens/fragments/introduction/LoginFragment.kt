@@ -14,8 +14,12 @@ import com.dbd.market.R
 import com.dbd.market.databinding.FragmentLoginBinding
 import com.dbd.market.screens.activities.MarketActivity
 import com.dbd.market.utils.*
+import com.dbd.market.utils.Constants.REQUEST_CODE_GOOGLE_SIGN_IN
 import com.dbd.market.utils.Constants.SUCCESSFULLY_ACCOUNT_LOGIN_TOAST_MESSAGE
 import com.dbd.market.viewmodels.introduction.LoginViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,6 +42,8 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUnderlineToLinkTextView(getString(R.string.forgotPasswordString), binding.forgotPasswordLinkTextView)
         loginUserByEmailAndPassword()
+        onGoogleSignInImageViewClick()
+        observeLoginUserWithGoogleState()
         observeLoginState()
         observeLoginValidationEditTextsState()
         navigateToRegisterFragment()
@@ -51,6 +57,60 @@ class LoginFragment : Fragment() {
                 val email = emailLoginEditText.text.toString().trim()
                 val password = passwordLoginEditText.text.toString().trim()
                 loginViewModel.loginUserWithEmailAndPassword(email, password)
+            }
+        }
+    }
+
+    private fun getGoogleSingInClient(): GoogleSignInClient {
+        val googleSignInOptions = GoogleSignInOptions.Builder()
+            .requestIdToken(resources.getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        return GoogleSignIn.getClient(requireActivity(), googleSignInOptions)
+    }
+
+    private fun onGoogleSignInImageViewClick() {
+        binding.googleSignInImageView.setOnClickListener {
+            val signInIntent = getGoogleSingInClient().signInIntent
+            startActivityForResult(signInIntent, REQUEST_CODE_GOOGLE_SIGN_IN)
+        }
+    }
+
+    @Deprecated("Deprecated in Java", ReplaceWith(
+        "super.onActivityResult(requestCode, resultCode, data)",
+        "androidx.fragment.app.Fragment"
+    )
+    )
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_GOOGLE_SIGN_IN) {
+            val signInWithGoogleTask = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val googleSignInAccount = signInWithGoogleTask.result
+                loginViewModel.signInWithGoogle(googleSignInAccount.idToken!!)
+            } catch (e: Exception) { showToast(requireContext(), binding.root, R.drawable.ic_error_icon, e.message.toString()) }
+        }
+    }
+
+    private fun observeLoginUserWithGoogleState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            loginViewModel.loginUserWithGoogle.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect {
+                when(it) {
+                    is Resource.Success -> {
+                        binding.appButtonLogin.revertAnimation()
+                        val intent = Intent(requireActivity(), MarketActivity::class.java).apply {
+                            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        }
+                        startActivity(intent)
+                    }
+                    is Resource.Loading -> binding.appButtonLogin.startAnimation()
+                    is Resource.Error -> {
+                        binding.appButtonLogin.revertAnimation()
+                        showToast(requireContext(), binding.root, R.drawable.ic_error_icon, it.message.toString())
+                    }
+                    is Resource.Undefined -> Unit
+                }
             }
         }
     }

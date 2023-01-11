@@ -147,7 +147,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideLoginRepository(firebaseAuth: FirebaseAuth): LoginRepository = LoginRepositoryImplementation(firebaseAuth)
+    fun provideLoginRepository(firebaseAuth: FirebaseAuth, @UsersCollectionReference usersCollectionReference: CollectionReference): LoginRepository = LoginRepositoryImplementation(firebaseAuth, usersCollectionReference)
 
     @FirebaseStorageReference
     @Provides

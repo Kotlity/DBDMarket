@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "492653029375-70kof4a64btpq73dlnbqju14cvcplpt3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dbd.market",
+            "certificate_hash": "54aaf3c49841069ebb5d27d5ba994db3523b1491"
+          }
+        },
+        {
           "client_id": "492653029375-nq597bg4316j9r313v8u8muvmclen0n8.apps.googleusercontent.com",
           "client_type": 3
         }
